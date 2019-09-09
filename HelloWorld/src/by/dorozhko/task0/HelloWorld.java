@@ -1,7 +1,15 @@
 package by.dorozhko.task0;
 
-public class HelloWorld {
-    public static void main(String[] args){
-        System.out.println("Hello");
+public final class HelloWorld {
+    /** private default constructor.
+     */
+    private HelloWorld() { }
+
+
+    /** Method main.
+     * @param args Arguments
+     */
+    public static void main(final String[] args) {
+        System.out.println("Hello world");
     }
 }
