@@ -13,6 +13,7 @@ public final class HelloWorld {
      */
     public static void main(final String[] args) {
         final Logger logger = Logger.getLogger(HelloWorld.class);
+
         String hello = "Hello World";
 
         logger.info(hello);
