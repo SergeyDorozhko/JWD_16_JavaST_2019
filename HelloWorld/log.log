@@ -1,0 +1,6 @@
+2019-09-10 20:23:25 INFO  HelloWorld:18 - Hello World
+2019-09-10 20:24:52 INFO  HelloWorld:18 - Hello World
+2019-09-10 20:26:29 ERROR HelloWorld:21 - end of the program. Bye
+2019-09-10 20:26:56 INFO  HelloWorld:18 - Hello World
+2019-09-10 20:26:56 ERROR HelloWorld:21 - end of the program. Bye
+2019-09-10 20:35:11 ERROR HelloWorld:20 - end of the program. Bye
