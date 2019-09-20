@@ -1,0 +1,11 @@
+Carriage:  name = Petrovich, weight = 15000, length = 35, carriageType = ECONOM_CLASS, maxValueOfBaggage = 40, numberOfPassengers = 85
+Train: name = Vasia, weight = 25000, length = 35, engineType = DIESEL, enginePower = 800, maxSpeed = 90
+ghjghvbnvbncgvl
+jbhbn
+Carriage: name = Petr, weight = 15000, length = 35, carriageType = ECONOM_CLASS, maxValueOfBaggage = 40, numberOfPassengers = 85
+Carriage: name = Petrov, weight = 15000, length = 35, carriageType = ECONOM_CLASS, maxValueOfBaggage = 40, numberOfPassengers = 85
+Train: name = Vasia, weight = 25000, length = 35, engineType = DIESEL, enginePower = 800, maxSpeed = 90
+Carriage:sdf d
+Carriage:  name = Petrov, weight = 15000, length = 35, carriageType = ECONOM_CLASS, maxValueOfBaggage = 40, numberOfPassengers = 85
+
+Carriage: id = 999999999, name = Sasha, weight = 1500091, length = 35, carriageType = ECONOM_cLASS, maxValueOfBaggage = 40, numberOfPassengers = 85
