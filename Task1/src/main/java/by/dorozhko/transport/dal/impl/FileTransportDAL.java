@@ -24,7 +24,8 @@ public class FileTransportDAL implements TransportDAL {
     /**
      * Log4j creation.
      */
-    private final Logger logger = LogManager.getLogger(FileTransportDAL.class.getName());
+    private final Logger logger = LogManager.
+            getLogger(FileTransportDAL.class.getName());
 
     /**
      * ethod write to the file List of Strings.
@@ -33,9 +34,11 @@ public class FileTransportDAL implements TransportDAL {
      * @return true of successful.
      * @throws DALException cover IOException.
      */
-    public boolean write(final List<String> transportEntity) throws DALException {
+    public boolean write(final List<String> transportEntity)
+            throws DALException {
 
-        try (BufferedOutputStream buff = new BufferedOutputStream(new FileOutputStream(file))) {
+        try (BufferedOutputStream buff =
+                     new BufferedOutputStream(new FileOutputStream(file))) {
             for (String line : transportEntity) {
                 buff.write((line + "\n").getBytes());
             }

@@ -7,7 +7,11 @@ import by.dorozhko.transport.repository.transport_specification.FindSpecificatio
 import java.util.List;
 
 public class GetAllEntity implements FindSpecification {
-
+    /**
+     * connecting to the storage.
+     *
+     * @return list of entity.
+     */
     public List<TransportEntity> getAllEntityOfQuery() {
         Storage storage = Storage.getInstanse();
 

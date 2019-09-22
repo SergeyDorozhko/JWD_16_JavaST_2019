@@ -1,10 +1,16 @@
-package by.dorozhko.transport.command.impl;
+package by.dorozhko.transport.controller.command.impl;
 
-import by.dorozhko.transport.command.Command;
+import by.dorozhko.transport.controller.command.Command;
 import by.dorozhko.transport.services.ServiceProvider;
 import by.dorozhko.transport.services.Services;
 
 public class SpecificationQuery implements Command {
+    /**
+     * connecting user request with services.
+     *
+     * @param params user action.
+     * @return result of action.
+     */
     public String execute(final String params) {
         ServiceProvider provider = ServiceProvider.getInstance();
         Services services = provider.getService();

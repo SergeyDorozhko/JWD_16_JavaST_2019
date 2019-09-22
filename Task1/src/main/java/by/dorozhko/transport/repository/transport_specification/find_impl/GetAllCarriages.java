@@ -11,9 +11,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GetAllCarriages implements FindSpecification {
+    /**
+     * logger of the class.
+     */
+    private final Logger logger = LogManager.
+            getLogger(GetAllCarriages.class.getName());
 
-    private final static Logger logger = LogManager.getLogger(GetAllCarriages.class.getName());
-
+    /**
+     * repository method getting list of entity from the storage.
+     *
+     * @return list of entity
+     */
     public List<TransportEntity> getAllEntityOfQuery() {
         logger.debug("start method");
         Storage storage = Storage.getInstanse();
@@ -23,7 +31,8 @@ public class GetAllCarriages implements FindSpecification {
         List<TransportEntity> onlyCarriages = new ArrayList<>();
 
         for (TransportEntity entity : allEntity) {
-            boolean isCarriage = entity.getClass().getName().equals(Carriage.class.getName());
+            boolean isCarriage = entity.getClass().getName().
+                    equals(Carriage.class.getName());
             logger.trace("Is a carriage: " + isCarriage);
             if (isCarriage) {
                 onlyCarriages.add(entity);

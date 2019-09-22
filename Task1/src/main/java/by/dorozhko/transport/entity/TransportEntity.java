@@ -34,7 +34,9 @@ public abstract class TransportEntity {
      * @param weightInKilo   weight in kilograms of entity.
      * @param lengthInMeters length in miters of entity.
      */
-    public TransportEntity(final String entityName, final int weightInKilo, final int lengthInMeters) {
+    public TransportEntity(final String entityName,
+                           final int weightInKilo,
+                           final int lengthInMeters) {
         this.id = idGenerator++;
         this.name = entityName;
         this.weight = weightInKilo;
@@ -62,10 +64,10 @@ public abstract class TransportEntity {
     /**
      * setName().
      *
-     * @param name set name of entity.
+     * @param newName set name of entity.
      */
-    public void setName(final String name) {
-        this.name = name;
+    public void setName(final String newName) {
+        this.name = newName;
     }
 
     /**

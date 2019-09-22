@@ -9,29 +9,56 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public final class Validator {
-
-    private static int maxValueLength = 10;
-    private static String numberTeamplate = "^\\d+$";
+    /**
+     * number of carriage params.
+     */
+    private static int numberOfCarriageParams = 6;
+    /**
+     * number of train params.
+     */
+    private static int numberOfTrainParams = 6;
+    /**
+     * max available length of integer param.
+     */
+    private static int maxValueLength = 9;
+    /**
+     * teamplate for number.
+     */
+    private static String numberTeamplate = "^\\-?\\d+$";
+    /**
+     * teamplate for word.
+     */
     private static String wordTeamplate = "^\\w+$";
 
 
     private Validator() {
     }
 
+    /**
+     * Check is line valid.
+     *
+     * @param line params of entity.
+     * @return result of validation.
+     */
     public static boolean isValidLine(final String line) {
 
-        String[] cheackClass = line.split(":");
+        String[] checkClass = line.split(":");
 
-        boolean isCarriage = cheackClass[0].trim().equals(Carriage.class.getSimpleName());
-        boolean isTrain = cheackClass[0].trim().equals(Train.class.getSimpleName());
-
+        boolean isEnoughParams = checkClass.length > 1;
+        if (!isEnoughParams) {
+            return false;
+        }
+        boolean isCarriage = checkClass[0].trim().
+                equals(Carriage.class.getSimpleName());
+        boolean isTrain = checkClass[0].trim().
+                equals(Train.class.getSimpleName());
         boolean result;
 
 
         if (isCarriage) {
-            result = checkCarriageArguments(cheackClass[1]);
+            result = checkCarriageArguments(checkClass[1]);
         } else if (isTrain) {
-            result = checkTrainArguments(cheackClass[1]);
+            result = checkTrainArguments(checkClass[1]);
         } else {
             return false;
         }
@@ -42,7 +69,7 @@ public final class Validator {
 
     private static boolean checkCarriageArguments(final String arguments) {
         String[] carriageParam = arguments.split(",");
-        if (carriageParam.length != 6) {
+        if (carriageParam.length != numberOfCarriageParams) {
             return false;
         }
         if (!checkKeyAndValueIsWord("name", carriageParam[0])) {
@@ -61,11 +88,13 @@ public final class Validator {
             return false;
         }
 
-        if (!checkKeyAndValuePositivNumber("maxValueOfBaggage", carriageParam[4])) {
+        if (!checkKeyAndValuePositivNumber("maxValueOfBaggage",
+                carriageParam[4])) {
             return false;
         }
 
-        if (!checkKeyAndValuePositivNumber("numberOfPassengers", carriageParam[5])) {
+        if (!checkKeyAndValuePositivNumber("numberOfPassengers",
+                carriageParam[5])) {
             return false;
         }
 
@@ -74,9 +103,9 @@ public final class Validator {
     }
 
 
-    private static boolean checkTrainArguments(String argumensts) {
+    private static boolean checkTrainArguments(final String argumensts) {
         String[] trainParam = argumensts.split(",");
-        if (trainParam.length != 6) {
+        if (trainParam.length != numberOfTrainParams) {
             return false;
         }
         if (!checkKeyAndValueIsWord("name", trainParam[0])) {
@@ -107,14 +136,16 @@ public final class Validator {
     }
 
 
-    private static boolean checkKeyAndValuePositivNumber(String key, String keyAndValueLine) {
+    private static boolean checkKeyAndValuePositivNumber(
+            final String key, final String keyAndValueLine) {
         String[] keyThenValue = keyAndValueLine.split("=");
         if (!keyThenValue[0].trim().equals(key) || keyThenValue.length == 1) {
             return false;
         }
 
 
-        if (!isNumber(keyThenValue[1]) || keyThenValue[1].length() > maxValueLength) {
+        if (!isNumber(keyThenValue[1])
+                || keyThenValue[1].length() > maxValueLength) {
             return false;
         }
 
@@ -125,8 +156,13 @@ public final class Validator {
         return true;
     }
 
-
-    public static boolean isNumber(String number) {
+    /**
+     * check is line a number.
+     *
+     * @param number incoming value.
+     * @return result of check.
+     */
+    public static boolean isNumber(final String number) {
         Pattern pattern = Pattern.compile(numberTeamplate);
         Matcher matcher = pattern.matcher(number.trim());
 
@@ -138,7 +174,8 @@ public final class Validator {
     }
 
 
-    private static boolean checkKeyAndValueIsWord(String key, String keyAndValueLine) {
+    private static boolean checkKeyAndValueIsWord(
+            final String key, final String keyAndValueLine) {
         String[] keyThenValue = keyAndValueLine.split("=");
         if (!keyThenValue[0].trim().equals(key) || keyThenValue.length == 1) {
             return false;
@@ -152,7 +189,7 @@ public final class Validator {
     }
 
 
-    private static boolean isWord(String word) {
+    private static boolean isWord(final String word) {
         Pattern pattern = Pattern.compile(wordTeamplate);
         Matcher matcher = pattern.matcher(word.trim());
 
@@ -164,7 +201,8 @@ public final class Validator {
     }
 
 
-    private static boolean checkTypeOfCarriage(String key, String keyAndValueLine) {
+    private static boolean checkTypeOfCarriage(
+            final String key, final String keyAndValueLine) {
         String[] keyThenValue = keyAndValueLine.split("=");
         if (!keyThenValue[0].trim().equals(key) || keyThenValue.length == 1) {
             return false;
@@ -179,7 +217,8 @@ public final class Validator {
     }
 
 
-    private static boolean checkTypeOfEngine(String key, String keyAndValueLine) {
+    private static boolean checkTypeOfEngine(
+            final String key, final String keyAndValueLine) {
         String[] keyThenValue = keyAndValueLine.split("=");
         if (!keyThenValue[0].trim().equals(key) || keyThenValue.length == 1) {
             return false;

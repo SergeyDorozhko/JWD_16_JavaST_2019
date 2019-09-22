@@ -10,7 +10,6 @@ import by.dorozhko.transport.entity.params.EngineType;
 import by.dorozhko.transport.repository.RepositoryFactory;
 import by.dorozhko.transport.repository.SpecificationProvider;
 import by.dorozhko.transport.repository.TransportRepository;
-import by.dorozhko.transport.repository.TransportSpecification;
 import by.dorozhko.transport.services.Services;
 import by.dorozhko.transport.services.exception.ServiceException;
 import by.dorozhko.transport.services.validator.Validator;
@@ -24,7 +23,7 @@ public class ImplServices implements Services {
     /**
      * logger.
      */
-    private static final Logger logger =
+    private final Logger logger =
             LogManager.getLogger(ImplServices.class.getName());
 
     /**
@@ -46,8 +45,10 @@ public class ImplServices implements Services {
         String result = "";
         try {
             result = transportRepository.delete(removeId);
-            result = result + " from line " + line;
+            result = result + " from line " + line
+                    + " -  successfully removed.";
         } catch (Exception e) {
+            logger.error("line not found", e);
             result = "Line №" + line + "don't found.";
         }
         logger.trace(result);
@@ -61,13 +62,16 @@ public class ImplServices implements Services {
      * @return result.
      */
     @Override
-    public String viewByQuery(String query) {
+    public String viewByQuery(final String query) {
         logger.debug(query);
         RepositoryFactory repositoryFactory = RepositoryFactory.getInstance();
-        TransportRepository transportRepository = repositoryFactory.getRepository();
+        TransportRepository transportRepository
+                = repositoryFactory.getRepository();
 
-        SpecificationProvider specification = SpecificationProvider.getInstance();
-        List<TransportEntity> list = transportRepository.query(specification.getSpecification(query));
+        SpecificationProvider specification
+                = SpecificationProvider.getInstance();
+        List<TransportEntity> list = transportRepository.
+                query(specification.getSpecification(query));
 
 
         StringBuilder result = new StringBuilder("");
@@ -80,15 +84,24 @@ public class ImplServices implements Services {
         return result.toString();
     }
 
+    /**
+     * Method take carriages from storage and count all passengers.
+     *
+     * @param keyToPassengers key to take all carriages.
+     * @return number of passengers.
+     */
     @Override
     public String countPassengers(final String keyToPassengers) {
 
         logger.debug("countPassengers");
         RepositoryFactory repositoryFactory = RepositoryFactory.getInstance();
-        TransportRepository transportRepository = repositoryFactory.getRepository();
+        TransportRepository transportRepository =
+                repositoryFactory.getRepository();
 
-        SpecificationProvider specification = SpecificationProvider.getInstance();
-        List<TransportEntity> list = transportRepository.query(specification.getSpecification(keyToPassengers));
+        SpecificationProvider specification =
+                SpecificationProvider.getInstance();
+        List<TransportEntity> list = transportRepository.
+                query(specification.getSpecification(keyToPassengers));
 
 
         int numberOfPassegers = 0;
@@ -101,6 +114,12 @@ public class ImplServices implements Services {
         return "" + numberOfPassegers;
     }
 
+
+    /**
+     * Method take carriages from storage and count all baggage.
+     * @param keyToCarriageAccess key to take all carriages.
+     * @return number of baggage.
+     */
     @Override
     public String countBaggage(final String keyToCarriageAccess) {
         logger.debug("start count baggage");
@@ -109,7 +128,8 @@ public class ImplServices implements Services {
         TransportRepository transportRepository = repository.getRepository();
 
         SpecificationProvider provider = SpecificationProvider.getInstance();
-        List<TransportEntity> list = transportRepository.query(provider.getSpecification(keyToCarriageAccess));
+        List<TransportEntity> list = transportRepository.
+                query(provider.getSpecification(keyToCarriageAccess));
 
         int countBaggageResult = 0;
 
@@ -120,37 +140,53 @@ public class ImplServices implements Services {
         return "" + countBaggageResult;
     }
 
+
+    /**
+     * Method take carriages from storage
+     * where number of passengers between x - y.
+     * @param param param fo found carriages.
+     * @return list f carriages.
+     */
     @Override
-    public String viewCarriagesWhereNumberOfPassengersBetween(final String param) {
+    public String
+    viewCarriagesWhereNumberOfPassengersBetween(final String param) {
         logger.trace(param);
 
         String[] specificationThenMinMaxValue = param.split("-");
 
         RepositoryFactory repositoryFactory = RepositoryFactory.getInstance();
-        TransportRepository transportRepository = repositoryFactory.getRepository();
+        TransportRepository transportRepository
+                = repositoryFactory.getRepository();
 
-        SpecificationProvider specification = SpecificationProvider.getInstance();
+        SpecificationProvider specification
+                = SpecificationProvider.getInstance();
 
         List<TransportEntity> list =
-                transportRepository.query(specification.getSpecification(specificationThenMinMaxValue[0]));
+                transportRepository.query(specification.
+                        getSpecification(specificationThenMinMaxValue[0]));
 
         logger.trace(list.size());
 
-        boolean isMinNumber = Validator.isNumber(specificationThenMinMaxValue[1].split("to")[0]);
+        boolean isMinNumber = Validator.
+                isNumber(specificationThenMinMaxValue[1].split("to")[0]);
 
         int minValue = -1;
         if (isMinNumber) {
-            minValue = Integer.valueOf(specificationThenMinMaxValue[1].split("to")[0]);
+            minValue = Integer.valueOf(specificationThenMinMaxValue[1].
+                    split("to")[0]);
         }
 
         logger.trace("" + minValue + isMinNumber);
 
 
-        boolean isMaxNumber = Validator.isNumber(specificationThenMinMaxValue[1].split("to")[1]);
+        boolean isMaxNumber
+                = Validator.isNumber(specificationThenMinMaxValue[1].
+                split("to")[1]);
 
         int maxValue = -1;
         if (isMaxNumber) {
-            maxValue = Integer.valueOf(specificationThenMinMaxValue[1].split("to")[1]);
+            maxValue = Integer.valueOf(specificationThenMinMaxValue[1].
+                    split("to")[1]);
         }
 
         logger.trace("" + maxValue + isMaxNumber);
@@ -165,7 +201,8 @@ public class ImplServices implements Services {
         for (TransportEntity entity : list) {
             Carriage carriage = (Carriage) entity;
             logger.trace("in foreach");
-            if (carriage.getNumberOfPassengers() >= minValue && carriage.getNumberOfPassengers() <= maxValue) {
+            if (carriage.getNumberOfPassengers() >= minValue
+                    && carriage.getNumberOfPassengers() <= maxValue) {
                 resultList.add(carriage);
             }
         }
@@ -194,6 +231,7 @@ public class ImplServices implements Services {
         try {
             data = readData.getTransportDAO().read();
         } catch (DALException e) {
+            logger.error("access to data:", e);
             throw new ServiceException(e);
         }
 
@@ -240,8 +278,6 @@ public class ImplServices implements Services {
 
     private Carriage createCarriage(final String params) {
         String[] param = params.split(",");
-
-
         String name = param[0].split("=")[1].trim();
         int weight = Integer.parseInt(param[1].split("=")[1].trim());
         int length = Integer.parseInt(param[2].split("=")[1].trim());

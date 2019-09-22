@@ -1,6 +1,6 @@
-package by.dorozhko.transport.command.impl;
+package by.dorozhko.transport.controller.command.impl;
 
-import by.dorozhko.transport.command.Command;
+import by.dorozhko.transport.controller.command.Command;
 import by.dorozhko.transport.services.ServiceProvider;
 import by.dorozhko.transport.services.Services;
 import by.dorozhko.transport.services.exception.ServiceException;
@@ -8,11 +8,20 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class CreateTrainFromDataCommand implements Command {
+    /**
+     * Logger of the class.
+     */
+    private Logger logger = LogManager.
+            getLogger(CreateTrainFromDataCommand.class.getName());
 
-    private Logger logger = LogManager.getLogger(CreateTrainFromDataCommand.class.getName());
-
+    /**
+     * Command connection to the service.
+     *
+     * @param params user action.
+     * @return service.
+     */
     @Override
-    public String execute(String params) {
+    public String execute(final String params) {
         ServiceProvider provider = ServiceProvider.getInstance();
         Services services = provider.getService();
         boolean result = true;

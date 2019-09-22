@@ -25,15 +25,20 @@ public class Train extends TransportEntity {
      * @param name           super class parametr.
      * @param weightInKilo   super class parametr.
      * @param lengthInMeters super class parametr.
-     * @param engineType     Engine type of power.
-     * @param enginePower    Power of engine in horse power.
-     * @param maxSpeed       Max value of speed (in kilometer per hour)
+     * @param typeOfEngine     Engine type of power.
+     * @param powerOfEngine    Power of engine in horse power.
+     * @param maximumSpeed       Max value of speed (in kilometer per hour)
      */
-    public Train(String name, int weightInKilo, int lengthInMeters, EngineType engineType, int enginePower, int maxSpeed) {
+    public Train(final String name,
+                 final int weightInKilo,
+                 final int lengthInMeters,
+                 final EngineType typeOfEngine,
+                 final int powerOfEngine,
+                 final int maximumSpeed) {
         super(name, weightInKilo, lengthInMeters);
-        this.engineType = engineType;
-        this.enginePower = enginePower;
-        this.maxSpeed = maxSpeed;
+        this.engineType = typeOfEngine;
+        this.enginePower = powerOfEngine;
+        this.maxSpeed = maximumSpeed;
     }
 
 
@@ -49,10 +54,10 @@ public class Train extends TransportEntity {
     /**
      * Method set type of engine power.
      *
-     * @param engineType
+     * @param typeOfEngine enum.
      */
-    public void setEngineType(EngineType engineType) {
-        this.engineType = engineType;
+    public void setEngineType(final EngineType typeOfEngine) {
+        this.engineType = typeOfEngine;
     }
 
     /**
@@ -67,10 +72,10 @@ public class Train extends TransportEntity {
     /**
      * Method set engine power.
      *
-     * @param enginePower Power in horse power.
+     * @param poserOfEngine Power in horse power.
      */
-    public void setEnginePower(int enginePower) {
-        this.enginePower = enginePower;
+    public void setEnginePower(final int poserOfEngine) {
+        this.enginePower = poserOfEngine;
     }
 
     /**
@@ -85,13 +90,17 @@ public class Train extends TransportEntity {
     /**
      * Method set max value of speed in kilometers per hour.
      *
-     * @param maxSpeed
+     * @param maximumSpeed max value of speed.
      */
-    public void setMaxSpeed(int maxSpeed) {
-        this.maxSpeed = maxSpeed;
+    public void setMaxSpeed(final int maximumSpeed) {
+        this.maxSpeed = maximumSpeed;
     }
 
-
+    /**
+     * generating hashcode.
+     *
+     * @return hashcode.
+     */
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -103,9 +112,13 @@ public class Train extends TransportEntity {
         return result;
     }
 
-
+    /**
+     * Equals.
+     * @param o object.
+     * @return result.
+     */
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) {
             return true;
         }
@@ -130,8 +143,19 @@ public class Train extends TransportEntity {
         return true;
     }
 
+    /**
+     * to string.
+     * @return string view of entity.
+     */
     @Override
     public String toString() {
-        return getClass().getSimpleName() + ": id = " + super.getId() + ", name = " + super.getName() + ", weight = " + super.getWeightInKilo() + ", length = " + super.getLengthInMeters() + ", engineType = " + engineType + ", enginePower = " + enginePower + ", maxSpeed = " + maxSpeed;
+        return getClass().getSimpleName()
+                + ": id = " + super.getId()
+                + ", name = " + super.getName()
+                + ", weight = " + super.getWeightInKilo()
+                + ", length = " + super.getLengthInMeters()
+                + ", engineType = " + engineType
+                + ", enginePower = " + enginePower
+                + ", maxSpeed = " + maxSpeed;
     }
 }

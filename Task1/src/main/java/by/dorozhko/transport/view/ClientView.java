@@ -1,12 +1,8 @@
 package by.dorozhko.transport.view;
 
 import by.dorozhko.transport.controller.Controller;
-import by.dorozhko.transport.dal.exception.DALException;
-import by.dorozhko.transport.services.Services;
-import by.dorozhko.transport.services.impl.ImplServices;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import sun.security.jgss.wrapper.GSSCredElement;
 
 import java.util.Scanner;
 
@@ -14,7 +10,7 @@ public class ClientView {
     /**
      * Controller object.
      */
-    Controller controller = new Controller();
+    private Controller controller = new Controller();
 
     /**
      * Scanner for scanning user input.
@@ -24,7 +20,8 @@ public class ClientView {
     /**
      * Logger of the class ClientView.
      */
-    private final Logger logger = LogManager.getLogger(ClientView.class.getName());
+    private final Logger logger =
+            LogManager.getLogger(ClientView.class.getName());
 
     /**
      * Start cLient veiw.
@@ -66,7 +63,8 @@ public class ClientView {
 
                 while (!userInput.hasNextInt()) {
                     userInput.next();
-                    System.out.println("incorrect input.  Input number of line you wat to delete: ");
+                    System.out.println("incorrect input."
+                            + "  Input number of line you wat to delete: ");
                 }
 
                 request = "delete| " + userInput.nextInt();
@@ -74,26 +72,35 @@ public class ClientView {
                 System.out.println(controller.doAction(request));
                 break;
             case "4":
+                logger.trace("User: specificationQuery sort");
+
+                System.out.println(controller.
+                        doAction("specificationQuery|" + sort()));
                 break;
             case "5":
-                logger.trace("User: specificationQuery");
+                logger.trace("User: specificationQuery find");
 
-                System.out.println(controller.doAction("specificationQuery|" + find()));
+                System.out.println(controller.
+                        doAction("specificationQuery|" + find()));
                 break;
             case "6":
                 logger.trace("User: countPassengers");
 
-                System.out.println(controller.doAction("countPassengers|AllCarriages"));
+                System.out.println(controller.
+                        doAction("countPassengers|AllCarriages"));
                 break;
             case "7":
                 logger.trace("User: countBaggage");
 
-                System.out.println(controller.doAction("countBaggage|AllCarriages"));
+                System.out.println(controller.
+                        doAction("countBaggage|AllCarriages"));
                 break;
             case "8":
                 logger.trace("User: number of passengers between");
 
-                System.out.println(controller.doAction("numberOfPassengersBetween|AllCarriages-" + numberOfPassengersBetween()));
+                System.out.println(controller.
+                        doAction("numberOfPassengersBetween|AllCarriages-"
+                                + numberOfPassengersBetween()));
                 break;
             case "0":
                 System.out.println("Have a nice day!!! \n\tBye!!!");
@@ -152,8 +159,13 @@ public class ClientView {
         boolean isCorrectInput = false;
 
         do {
-            System.out.println("Select carriage type:\n1) COMPARTMENT\n2) ECONOM_CLASS_SITTING\n"
-                    + "3) ECONOM_CLASS\n4) SV\n5) INTERNATIONAL_FIRST_CLASS\n6) INTERNATIOAL_SECOND_CLASS");
+            System.out.println("Select carriage type:\n"
+                    + "1) COMPARTMENT\n"
+                    + "2) ECONOM_CLASS_SITTING\n"
+                    + "3) ECONOM_CLASS\n"
+                    + "4) SV\n"
+                    + "5) INTERNATIONAL_FIRST_CLASS\n"
+                    + "6) INTERNATIOAL_SECOND_CLASS");
             input = userInput.next();
             switch (input) {
                 case "1":
@@ -218,7 +230,8 @@ public class ClientView {
         boolean isCorrectInput = false;
 
         do {
-            System.out.println("Select engine type:\n1) DIESEL\n2) ELECTRICITY");
+            System.out.println("Select engine type:\n"
+                    + "1) DIESEL\n2) ELECTRICITY");
             input = userInput.next();
             switch (input) {
                 case "1":
@@ -251,8 +264,7 @@ public class ClientView {
         do {
             System.out.println("Press to find:\n"
                     + "1)display all\n"
-                    + "2)All carriages\n"
-                    + "3) Count passengers");
+                    + "2)All carriages\n");
             String input = userInput.next();
             switch (input) {
                 case "1":
@@ -261,10 +273,6 @@ public class ClientView {
                     break;
                 case "2":
                     data.append("AllCarriages");
-                    isCorrectInput = true;
-                    break;
-                case "3":
-                    data.append("countPassengers");
                     isCorrectInput = true;
                     break;
                 default:
@@ -276,6 +284,36 @@ public class ClientView {
         return data.toString();
     }
 
+    private String sort() {
+        StringBuilder data = new StringBuilder("");
+        boolean isCorrectInput = false;
+        do {
+            System.out.println("Press to sort by:\n"
+                    + "1)all entity by name\n"
+                    + "2)All entity by weight\n"
+                    + "3)All entity by name then by weight\n");
+            String input = userInput.next();
+            switch (input) {
+                case "1":
+                    data.append("SortAllByName");
+                    isCorrectInput = true;
+                    break;
+                case "2":
+                    data.append("SortAllByWeight");
+                    isCorrectInput = true;
+                    break;
+                case "3":
+                    data.append("SortAllByNameThenByWeight");
+                    isCorrectInput = true;
+                default:
+                    System.out.println("Incorrect value, please, try again.");
+            }
+        } while (!isCorrectInput);
+
+        logger.info("Try to find:" + data.toString());
+        return data.toString();
+
+    }
 
     private String numberOfPassengersBetween() {
         StringBuilder data = new StringBuilder("");
@@ -293,7 +331,8 @@ public class ClientView {
 
         data.append("to" + input);
 
-        logger.info("Try to find number of passengers between:" + data.toString());
+        logger.info("Try to find number of passengers between:"
+                + data.toString());
         return data.toString();
     }
 }

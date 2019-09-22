@@ -4,19 +4,61 @@ import by.dorozhko.transport.services.exception.ServiceException;
 
 
 public interface Services {
-    public boolean addEntityFromData() throws ServiceException;
+    /**
+     * Abstract method to read data from data and  create entity.
+     *
+     * @return result of action.
+     * @throws ServiceException cover DAL exception.
+     */
+    boolean addEntityFromData() throws ServiceException;
 
-    public boolean addEntity(String data);
+    /**
+     * Method add Entity to tne repository.
+     *
+     * @param data entity params.
+     * @return result of action.
+     */
+    boolean addEntity(String data);
 
-    public String deleteEntity(String id);
+    /**
+     * Method remove entity from repository.
+     *
+     * @param line number of line of entity.
+     * @return type of deleted entity.
+     */
+    String deleteEntity(String line);
 
-    public String viewByQuery(String query);
+    /**
+     * Method show information by query.
+     *
+     * @param query query params.
+     * @return information by query.
+     */
+    String viewByQuery(String query);
 
-    public String countPassengers(String keyToCarriageAccess);
+    /**
+     * Method show information by query.
+     *
+     * @param keyToCarriageAccess key to access to the storage and action.
+     * @return number of passengers
+     */
+    String countPassengers(String keyToCarriageAccess);
 
-    public String countBaggage(String keyToCarriageAccess);
+    /**
+     * Method show information by query.
+     *
+     * @param keyToCarriageAccess key to access to the storage and action.
+     * @return number of baggage positions.
+     */
+    String countBaggage(String keyToCarriageAccess);
 
-    public String viewCarriagesWhereNumberOfPassengersBetween(String param);
+    /**
+     * Method show information by query.
+     *
+     * @param param find between.
+     * @return all carriages which have current number of passengers.
+     */
+    String viewCarriagesWhereNumberOfPassengersBetween(String param);
 
 
 }

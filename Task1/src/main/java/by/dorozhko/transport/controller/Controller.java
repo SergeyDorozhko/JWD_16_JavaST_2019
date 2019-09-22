@@ -1,12 +1,14 @@
 package by.dorozhko.transport.controller;
 
-import by.dorozhko.transport.command.Command;
-import by.dorozhko.transport.command.CommandProvider;
+import by.dorozhko.transport.controller.command.Command;
+import by.dorozhko.transport.controller.command.CommandProvider;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class Controller {
-
+    /**
+     * Logger of the class controller.
+     */
     private Logger logger = LogManager.getLogger(Controller.class.getName());
     /**
      * Connect commandProvider.
@@ -24,9 +26,11 @@ public class Controller {
         logger.debug("User request: " + action[0] + ", params : " + action[1]);
         String result;
 
-        Command command = commandProvider.getCommand(action[0]);
+        Command command = commandProvider.
+                getCommand(action[0]);
         result = command.execute(action[1]);
-        logger.trace("Have result (result length): " + result.length() + "symbols");
+        logger.trace("Have result (result length): "
+                + result.length() + "symbols");
         return result;
     }
 }
