@@ -2674,3 +2674,159 @@ java.lang.IndexOutOfBoundsException: Index: 10, Size: 6
 2019-09-22 09:02:33.171 [main] TRACE by.dorozhko.transport.controller.Controller - Have result (result length): 45symbols
 2019-09-22 09:02:33.171 [main] TRACE by.dorozhko.transport.view.ClientView - waiting for user input.
 2019-09-22 09:02:38.289 [main] INFO  by.dorozhko.transport.view.ClientView - Exit from program by user.
+2019-09-22 20:45:31.019 [main] TRACE by.dorozhko.transport.view.ClientView - waiting for user input.
+2019-09-22 20:45:36.744 [main] TRACE by.dorozhko.transport.view.ClientView - User: read from file
+2019-09-22 20:45:36.744 [main] DEBUG by.dorozhko.transport.controller.Controller - User request: readFromFile, params : find
+2019-09-22 20:45:36.744 [main] TRACE dorozhko.transport.controller.command.CommandProvider - readFromFile
+2019-09-22 20:45:36.759 [main] TRACE transport.controller.command.impl.CreateTrainFromDataCommand - Add entity from data result : true
+2019-09-22 20:45:36.759 [main] TRACE by.dorozhko.transport.controller.Controller - Have result (result length): 32symbols
+2019-09-22 20:45:36.759 [main] TRACE by.dorozhko.transport.view.ClientView - waiting for user input.
+2019-09-22 20:45:42.321 [main] TRACE by.dorozhko.transport.view.ClientView - User: specificationQuery find
+2019-09-22 20:45:43.228 [main] INFO  by.dorozhko.transport.view.ClientView - Try to find:displayAll
+2019-09-22 20:45:43.228 [main] DEBUG by.dorozhko.transport.controller.Controller - User request: specificationQuery, params : displayAll
+2019-09-22 20:45:43.228 [main] TRACE dorozhko.transport.controller.command.CommandProvider - specificationQuery
+2019-09-22 20:45:43.228 [main] DEBUG dorozhko.transport.services.impl.ImplServices - displayAll
+2019-09-22 20:45:43.228 [main] DEBUG by.dorozhko.transport.repository.SpecificationProvider - Query: displayAll
+2019-09-22 20:45:43.228 [main] TRACE by.dorozhko.transport.controller.Controller - Have result (result length): 797symbols
+2019-09-22 20:45:43.228 [main] TRACE by.dorozhko.transport.view.ClientView - waiting for user input.
+2019-09-22 20:45:51.040 [main] INFO  by.dorozhko.transport.view.ClientView - Exit from program by user.
+2019-09-22 21:10:10.390 [main] TRACE by.dorozhko.transport.view.ClientView - waiting for user input.
+2019-09-22 21:10:12.790 [main] TRACE by.dorozhko.transport.view.ClientView - User: read from file
+2019-09-22 21:10:12.790 [main] DEBUG by.dorozhko.transport.controller.Controller - User request: readFromFile, params : find
+2019-09-22 21:10:12.790 [main] TRACE dorozhko.transport.controller.command.CommandProvider - readFromFile
+2019-09-22 21:10:12.795 [main] TRACE transport.controller.command.impl.CreateTrainFromDataCommand - Add entity from data result : true
+2019-09-22 21:10:12.800 [main] TRACE by.dorozhko.transport.controller.Controller - Have result (result length): 32symbols
+2019-09-22 21:10:12.800 [main] TRACE by.dorozhko.transport.view.ClientView - waiting for user input.
+2019-09-22 21:10:15.050 [main] TRACE by.dorozhko.transport.view.ClientView - User: read from file
+2019-09-22 21:10:15.050 [main] DEBUG by.dorozhko.transport.controller.Controller - User request: readFromFile, params : find
+2019-09-22 21:10:15.050 [main] TRACE dorozhko.transport.controller.command.CommandProvider - readFromFile
+2019-09-22 21:10:15.053 [main] TRACE transport.controller.command.impl.CreateTrainFromDataCommand - Add entity from data result : true
+2019-09-22 21:10:15.053 [main] TRACE by.dorozhko.transport.controller.Controller - Have result (result length): 32symbols
+2019-09-22 21:10:15.053 [main] TRACE by.dorozhko.transport.view.ClientView - waiting for user input.
+2019-09-22 21:10:16.690 [main] TRACE by.dorozhko.transport.view.ClientView - User: add
+2019-09-22 21:10:33.353 [main] INFO  by.dorozhko.transport.view.ClientView - Try to add:add|Train:name = sfd-,weight = 321,length = 43,engineType = DIESEL,enginePower = 435,maxSpeed = 43
+2019-09-22 21:10:33.353 [main] DEBUG by.dorozhko.transport.controller.Controller - User request: add, params : Train:name = sfd-,weight = 321,length = 43,engineType = DIESEL,enginePower = 435,maxSpeed = 43
+2019-09-22 21:10:33.353 [main] TRACE dorozhko.transport.controller.command.CommandProvider - add
+2019-09-22 21:10:33.353 [main] TRACE by.dorozhko.transport.controller.Controller - Have result (result length): 55symbols
+2019-09-22 21:10:33.353 [main] TRACE by.dorozhko.transport.view.ClientView - waiting for user input.
+2019-09-22 21:10:44.040 [main] TRACE by.dorozhko.transport.view.ClientView - User: add
+2019-09-22 21:10:58.230 [main] INFO  by.dorozhko.transport.view.ClientView - Try to add:add|Train:name = rew,weight = 434,length = 123,engineType = DIESEL,enginePower = 12,maxSpeed = 52
+2019-09-22 21:10:58.230 [main] DEBUG by.dorozhko.transport.controller.Controller - User request: add, params : Train:name = rew,weight = 434,length = 123,engineType = DIESEL,enginePower = 12,maxSpeed = 52
+2019-09-22 21:10:58.230 [main] TRACE dorozhko.transport.controller.command.CommandProvider - add
+2019-09-22 21:10:58.230 [main] TRACE by.dorozhko.transport.controller.Controller - Have result (result length): 19symbols
+2019-09-22 21:10:58.230 [main] TRACE by.dorozhko.transport.view.ClientView - waiting for user input.
+2019-09-22 21:11:10.230 [main] TRACE by.dorozhko.transport.view.ClientView - User: specificationQuery sort
+2019-09-22 21:11:17.290 [main] INFO  by.dorozhko.transport.view.ClientView - Try to find:SortAllByNameThenByWeight
+2019-09-22 21:11:17.291 [main] DEBUG by.dorozhko.transport.controller.Controller - User request: specificationQuery, params : SortAllByNameThenByWeight
+2019-09-22 21:11:17.291 [main] TRACE dorozhko.transport.controller.command.CommandProvider - specificationQuery
+2019-09-22 21:11:17.291 [main] DEBUG dorozhko.transport.services.impl.ImplServices - SortAllByNameThenByWeight
+2019-09-22 21:11:17.293 [main] DEBUG by.dorozhko.transport.repository.SpecificationProvider - Query: SortAllByNameThenByWeight
+2019-09-22 21:11:17.340 [main] TRACE by.dorozhko.transport.controller.Controller - Have result (result length): 1711symbols
+2019-09-22 21:11:17.340 [main] TRACE by.dorozhko.transport.view.ClientView - waiting for user input.
+2019-09-22 21:11:36.000 [main] TRACE by.dorozhko.transport.view.ClientView - User: specificationQuery find
+2019-09-22 21:11:38.260 [main] INFO  by.dorozhko.transport.view.ClientView - Try to find:displayAll
+2019-09-22 21:11:38.260 [main] DEBUG by.dorozhko.transport.controller.Controller - User request: specificationQuery, params : displayAll
+2019-09-22 21:11:38.260 [main] TRACE dorozhko.transport.controller.command.CommandProvider - specificationQuery
+2019-09-22 21:11:38.260 [main] DEBUG dorozhko.transport.services.impl.ImplServices - displayAll
+2019-09-22 21:11:38.261 [main] DEBUG by.dorozhko.transport.repository.SpecificationProvider - Query: displayAll
+2019-09-22 21:11:38.261 [main] TRACE by.dorozhko.transport.controller.Controller - Have result (result length): 1711symbols
+2019-09-22 21:11:38.261 [main] TRACE by.dorozhko.transport.view.ClientView - waiting for user input.
+2019-09-22 21:11:45.551 [main] TRACE by.dorozhko.transport.view.ClientView - User: specificationQuery find
+2019-09-22 21:11:46.780 [main] INFO  by.dorozhko.transport.view.ClientView - Try to find:AllCarriages
+2019-09-22 21:11:46.780 [main] DEBUG by.dorozhko.transport.controller.Controller - User request: specificationQuery, params : AllCarriages
+2019-09-22 21:11:46.780 [main] TRACE dorozhko.transport.controller.command.CommandProvider - specificationQuery
+2019-09-22 21:11:46.780 [main] DEBUG dorozhko.transport.services.impl.ImplServices - AllCarriages
+2019-09-22 21:11:46.780 [main] DEBUG by.dorozhko.transport.repository.SpecificationProvider - Query: AllCarriages
+2019-09-22 21:11:46.780 [main] DEBUG transport.repository.transport_specification.find_impl.GetAllCarriages - start method
+2019-09-22 21:11:46.780 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: true
+2019-09-22 21:11:46.780 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: false
+2019-09-22 21:11:46.780 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: true
+2019-09-22 21:11:46.780 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: true
+2019-09-22 21:11:46.780 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: false
+2019-09-22 21:11:46.780 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: true
+2019-09-22 21:11:46.780 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: true
+2019-09-22 21:11:46.780 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: false
+2019-09-22 21:11:46.780 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: true
+2019-09-22 21:11:46.780 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: true
+2019-09-22 21:11:46.780 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: false
+2019-09-22 21:11:46.780 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: true
+2019-09-22 21:11:46.780 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: false
+2019-09-22 21:11:46.780 [main] TRACE by.dorozhko.transport.controller.Controller - Have result (result length): 1137symbols
+2019-09-22 21:11:46.780 [main] TRACE by.dorozhko.transport.view.ClientView - waiting for user input.
+2019-09-22 21:11:54.353 [main] TRACE by.dorozhko.transport.view.ClientView - User: countPassengers
+2019-09-22 21:11:54.353 [main] DEBUG by.dorozhko.transport.controller.Controller - User request: countPassengers, params : AllCarriages
+2019-09-22 21:11:54.353 [main] TRACE dorozhko.transport.controller.command.CommandProvider - countPassengers
+2019-09-22 21:11:54.353 [main] DEBUG dorozhko.transport.services.impl.ImplServices - countPassengers
+2019-09-22 21:11:54.353 [main] DEBUG by.dorozhko.transport.repository.SpecificationProvider - Query: AllCarriages
+2019-09-22 21:11:54.353 [main] DEBUG transport.repository.transport_specification.find_impl.GetAllCarriages - start method
+2019-09-22 21:11:54.353 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: true
+2019-09-22 21:11:54.353 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: false
+2019-09-22 21:11:54.353 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: true
+2019-09-22 21:11:54.353 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: true
+2019-09-22 21:11:54.353 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: false
+2019-09-22 21:11:54.353 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: true
+2019-09-22 21:11:54.353 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: true
+2019-09-22 21:11:54.353 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: false
+2019-09-22 21:11:54.353 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: true
+2019-09-22 21:11:54.353 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: true
+2019-09-22 21:11:54.353 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: false
+2019-09-22 21:11:54.353 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: true
+2019-09-22 21:11:54.353 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: false
+2019-09-22 21:11:54.353 [main] TRACE by.dorozhko.transport.controller.Controller - Have result (result length): 3symbols
+2019-09-22 21:11:54.359 [main] TRACE by.dorozhko.transport.view.ClientView - waiting for user input.
+2019-09-22 21:11:58.570 [main] TRACE by.dorozhko.transport.view.ClientView - User: countBaggage
+2019-09-22 21:11:58.570 [main] DEBUG by.dorozhko.transport.controller.Controller - User request: countBaggage, params : AllCarriages
+2019-09-22 21:11:58.570 [main] TRACE dorozhko.transport.controller.command.CommandProvider - countBaggage
+2019-09-22 21:11:58.570 [main] DEBUG dorozhko.transport.services.impl.ImplServices - start count baggage
+2019-09-22 21:11:58.570 [main] DEBUG by.dorozhko.transport.repository.SpecificationProvider - Query: AllCarriages
+2019-09-22 21:11:58.570 [main] DEBUG transport.repository.transport_specification.find_impl.GetAllCarriages - start method
+2019-09-22 21:11:58.570 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: true
+2019-09-22 21:11:58.570 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: false
+2019-09-22 21:11:58.570 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: true
+2019-09-22 21:11:58.570 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: true
+2019-09-22 21:11:58.570 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: false
+2019-09-22 21:11:58.570 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: true
+2019-09-22 21:11:58.570 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: true
+2019-09-22 21:11:58.570 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: false
+2019-09-22 21:11:58.570 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: true
+2019-09-22 21:11:58.570 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: true
+2019-09-22 21:11:58.570 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: false
+2019-09-22 21:11:58.570 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: true
+2019-09-22 21:11:58.570 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: false
+2019-09-22 21:11:58.570 [main] DEBUG dorozhko.transport.services.impl.ImplServices - 680
+2019-09-22 21:11:58.570 [main] TRACE by.dorozhko.transport.controller.Controller - Have result (result length): 3symbols
+2019-09-22 21:11:58.570 [main] TRACE by.dorozhko.transport.view.ClientView - waiting for user input.
+2019-09-22 21:12:03.500 [main] TRACE by.dorozhko.transport.view.ClientView - User: number of passengers between
+2019-09-22 21:12:10.170 [main] INFO  by.dorozhko.transport.view.ClientView - Try to find number of passengers between:10to50
+2019-09-22 21:12:10.170 [main] DEBUG by.dorozhko.transport.controller.Controller - User request: numberOfPassengersBetween, params : AllCarriages-10to50
+2019-09-22 21:12:10.170 [main] TRACE dorozhko.transport.controller.command.CommandProvider - numberOfPassengersBetween
+2019-09-22 21:12:10.170 [main] TRACE dorozhko.transport.services.impl.ImplServices - AllCarriages-10to50
+2019-09-22 21:12:10.170 [main] DEBUG by.dorozhko.transport.repository.SpecificationProvider - Query: AllCarriages
+2019-09-22 21:12:10.170 [main] DEBUG transport.repository.transport_specification.find_impl.GetAllCarriages - start method
+2019-09-22 21:12:10.170 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: true
+2019-09-22 21:12:10.170 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: false
+2019-09-22 21:12:10.170 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: true
+2019-09-22 21:12:10.170 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: true
+2019-09-22 21:12:10.170 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: false
+2019-09-22 21:12:10.170 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: true
+2019-09-22 21:12:10.170 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: true
+2019-09-22 21:12:10.170 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: false
+2019-09-22 21:12:10.170 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: true
+2019-09-22 21:12:10.170 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: true
+2019-09-22 21:12:10.170 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: false
+2019-09-22 21:12:10.170 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: true
+2019-09-22 21:12:10.170 [main] TRACE transport.repository.transport_specification.find_impl.GetAllCarriages - Is a carriage: false
+2019-09-22 21:12:10.170 [main] TRACE dorozhko.transport.services.impl.ImplServices - 8
+2019-09-22 21:12:10.170 [main] TRACE dorozhko.transport.services.impl.ImplServices - 10true
+2019-09-22 21:12:10.170 [main] TRACE dorozhko.transport.services.impl.ImplServices - 50true
+2019-09-22 21:12:10.170 [main] TRACE dorozhko.transport.services.impl.ImplServices - in foreach
+2019-09-22 21:12:10.170 [main] TRACE dorozhko.transport.services.impl.ImplServices - in foreach
+2019-09-22 21:12:10.170 [main] TRACE dorozhko.transport.services.impl.ImplServices - in foreach
+2019-09-22 21:12:10.170 [main] TRACE dorozhko.transport.services.impl.ImplServices - in foreach
+2019-09-22 21:12:10.170 [main] TRACE dorozhko.transport.services.impl.ImplServices - in foreach
+2019-09-22 21:12:10.170 [main] TRACE dorozhko.transport.services.impl.ImplServices - in foreach
+2019-09-22 21:12:10.170 [main] TRACE dorozhko.transport.services.impl.ImplServices - in foreach
+2019-09-22 21:12:10.170 [main] TRACE dorozhko.transport.services.impl.ImplServices - in foreach
+2019-09-22 21:12:10.170 [main] TRACE by.dorozhko.transport.controller.Controller - Have result (result length): 1137symbols
+2019-09-22 21:12:10.170 [main] TRACE by.dorozhko.transport.view.ClientView - waiting for user input.
+2019-09-22 21:12:30.191 [main] INFO  by.dorozhko.transport.view.ClientView - Exit from program by user.

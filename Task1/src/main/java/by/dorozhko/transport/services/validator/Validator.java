@@ -69,70 +69,29 @@ public final class Validator {
 
     private static boolean checkCarriageArguments(final String arguments) {
         String[] carriageParam = arguments.split(",");
-        if (carriageParam.length != numberOfCarriageParams) {
-            return false;
-        }
-        if (!checkKeyAndValueIsWord("name", carriageParam[0])) {
-            return false;
-        }
 
-        if (!checkKeyAndValuePositivNumber("weight", carriageParam[1])) {
-            return false;
-        }
-
-        if (!checkKeyAndValuePositivNumber("length", carriageParam[2])) {
-            return false;
-        }
-
-        if (!checkTypeOfCarriage("carriageType", carriageParam[3])) {
-            return false;
-        }
-
-        if (!checkKeyAndValuePositivNumber("maxValueOfBaggage",
-                carriageParam[4])) {
-            return false;
-        }
-
-        if (!checkKeyAndValuePositivNumber("numberOfPassengers",
-                carriageParam[5])) {
-            return false;
-        }
-
-        return true;
-
+        return carriageParam.length == numberOfCarriageParams
+                && checkKeyAndValueIsWord("name", carriageParam[0])
+                && checkKeyAndValuePositivNumber("weight", carriageParam[1])
+                && checkKeyAndValuePositivNumber("length", carriageParam[2])
+                && checkTypeOfCarriage("carriageType", carriageParam[3])
+                && checkKeyAndValuePositivNumber("maxValueOfBaggage",
+                carriageParam[4])
+                && checkKeyAndValuePositivNumber("numberOfPassengers",
+                carriageParam[5]);
     }
 
 
     private static boolean checkTrainArguments(final String argumensts) {
         String[] trainParam = argumensts.split(",");
-        if (trainParam.length != numberOfTrainParams) {
-            return false;
-        }
-        if (!checkKeyAndValueIsWord("name", trainParam[0])) {
-            return false;
-        }
 
-        if (!checkKeyAndValuePositivNumber("weight", trainParam[1])) {
-            return false;
-        }
-
-        if (!checkKeyAndValuePositivNumber("length", trainParam[2])) {
-            return false;
-        }
-
-        if (!checkTypeOfEngine("engineType", trainParam[3])) {
-            return false;
-        }
-
-        if (!checkKeyAndValuePositivNumber("enginePower", trainParam[4])) {
-            return false;
-        }
-
-        if (!checkKeyAndValuePositivNumber("maxSpeed", trainParam[5])) {
-            return false;
-        }
-
-        return true;
+        return trainParam.length == numberOfTrainParams
+                && checkKeyAndValueIsWord("name", trainParam[0])
+                && checkKeyAndValuePositivNumber("weight", trainParam[1])
+                && checkKeyAndValuePositivNumber("length", trainParam[2])
+                && checkTypeOfEngine("engineType", trainParam[3])
+                && checkKeyAndValuePositivNumber("enginePower", trainParam[4])
+                && checkKeyAndValuePositivNumber("maxSpeed", trainParam[5]);
     }
 
 
@@ -149,11 +108,8 @@ public final class Validator {
             return false;
         }
 
-        int value = Integer.valueOf(keyThenValue[1].trim());
-        if (value <= 0) {
-            return false;
-        }
-        return true;
+        int value = Integer.parseInt(keyThenValue[1].trim());
+        return value > 0;
     }
 
     /**
@@ -166,26 +122,18 @@ public final class Validator {
         Pattern pattern = Pattern.compile(numberTeamplate);
         Matcher matcher = pattern.matcher(number.trim());
 
-        if (matcher.find()) {
-            return true;
-        }
-
-        return false;
+        return matcher.find();
     }
 
 
     private static boolean checkKeyAndValueIsWord(
             final String key, final String keyAndValueLine) {
         String[] keyThenValue = keyAndValueLine.split("=");
-        if (!keyThenValue[0].trim().equals(key) || keyThenValue.length == 1) {
-            return false;
-        }
 
-        if (!isWord(keyThenValue[1])) {
-            return false;
-        }
 
-        return true;
+        return keyThenValue[0].trim().equals(key)
+                && keyThenValue.length != 1
+                && isWord(keyThenValue[1]);
     }
 
 
@@ -193,11 +141,8 @@ public final class Validator {
         Pattern pattern = Pattern.compile(wordTeamplate);
         Matcher matcher = pattern.matcher(word.trim());
 
-        if (matcher.find()) {
-            return true;
-        }
 
-        return false;
+        return matcher.find();
     }
 
 
