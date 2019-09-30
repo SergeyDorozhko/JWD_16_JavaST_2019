@@ -1,0 +1,12 @@
+0 5 9 5 2 3
+5 0 8 2 3 1
+5 6 0 4 8 9
+4 5 6 0 8 4
+7 5 6 3 0 6
+7 5 3 9 5 0
+
+
+ThreadValue=456
+ThreadValue=46
+ThreadValue=563
+ThreadValue=20
