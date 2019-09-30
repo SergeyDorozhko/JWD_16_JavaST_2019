@@ -2830,3 +2830,21 @@ java.lang.IndexOutOfBoundsException: Index: 10, Size: 6
 2019-09-22 21:12:10.170 [main] TRACE by.dorozhko.transport.controller.Controller - Have result (result length): 1137symbols
 2019-09-22 21:12:10.170 [main] TRACE by.dorozhko.transport.view.ClientView - waiting for user input.
 2019-09-22 21:12:30.191 [main] INFO  by.dorozhko.transport.view.ClientView - Exit from program by user.
+2019-09-23 20:25:14.228 [main] TRACE by.dorozhko.transport.view.ClientView - waiting for user input.
+2019-09-23 20:25:16.504 [main] TRACE by.dorozhko.transport.view.ClientView - User: read from file
+2019-09-23 20:25:16.504 [main] DEBUG by.dorozhko.transport.controller.Controller - User request: readFromFile, params : find
+2019-09-23 20:25:16.504 [main] TRACE dorozhko.transport.controller.command.CommandProvider - readFromFile
+2019-09-23 20:25:16.590 [main] TRACE transport.controller.command.impl.CreateTrainFromDataCommand - Add entity from data result : true
+2019-09-23 20:25:16.590 [main] TRACE by.dorozhko.transport.controller.Controller - Have result (result length): 32symbols
+2019-09-23 20:25:16.590 [main] TRACE by.dorozhko.transport.view.ClientView - waiting for user input.
+2019-09-23 20:25:24.461 [main] TRACE by.dorozhko.transport.view.ClientView - User: specificationQuery find
+2019-09-23 20:25:25.803 [main] INFO  by.dorozhko.transport.view.ClientView - Try to find:displayAll
+2019-09-23 20:25:25.803 [main] DEBUG by.dorozhko.transport.controller.Controller - User request: specificationQuery, params : displayAll
+2019-09-23 20:25:25.803 [main] TRACE dorozhko.transport.controller.command.CommandProvider - specificationQuery
+2019-09-23 20:25:25.803 [main] DEBUG dorozhko.transport.services.impl.ImplServices - displayAll
+2019-09-23 20:25:25.819 [main] DEBUG by.dorozhko.transport.repository.SpecificationProvider - Query: displayAll
+2019-09-23 20:25:25.819 [main] TRACE by.dorozhko.transport.controller.Controller - Have result (result length): 797symbols
+2019-09-23 20:25:25.819 [main] TRACE by.dorozhko.transport.view.ClientView - waiting for user input.
+2019-09-23 20:25:30.969 [main] INFO  by.dorozhko.transport.view.ClientView - Exit from program by user.
+2019-09-24 18:14:10.425 [main] TRACE by.dorozhko.transport.view.ClientView - waiting for user input.
+2019-09-24 18:14:12.800 [main] INFO  by.dorozhko.transport.view.ClientView - Exit from program by user.
