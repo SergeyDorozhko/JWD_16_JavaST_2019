@@ -1,13 +1,26 @@
 package by.dorozhko.matrix.service.parser;
 
-public class Parser {
-    public static String[] parseBySpace(String line) {
-        String [] dataFromLine = line.split("[ ]+");
+public final class Parser {
+
+    private Parser() { }
+
+    /**
+     * parse line by space.
+     * @param line line with params.
+     * @return array of string.
+     */
+    public static String[] parseBySpace(final String line) {
+        String[] dataFromLine = line.split("[ ]+");
         return dataFromLine;
     }
 
-    public static String[] parseByEqualSing(String line) {
-        String [] dataFromLine = line.split("=");
+    /**
+     * parse line by equal sing.
+     * @param line line with params.
+     * @return array of data.
+     */
+    public static String[] parseByEqualSing(final String line) {
+        String[] dataFromLine = line.split("=");
         return dataFromLine;
     }
 }

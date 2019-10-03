@@ -20,7 +20,7 @@ public final class MatrixStorage {
     /**
      * value of time to sleep.
      */
-    private int timeToSleep = 50;
+    private final int timeToSleep = 50;
     /**
      * logger.
      */

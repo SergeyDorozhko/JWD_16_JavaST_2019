@@ -1,19 +1,35 @@
 package by.dorozhko.matrix.repository.exception;
 
 public class RepositoryException extends Exception {
-    public RepositoryException(){
+    /**
+     * public default constructor.
+     */
+    public RepositoryException() {
         super();
     }
 
-    public RepositoryException(String message){
+    /**
+     * Public constructor with massage param.
+     * @param message information about exception.
+     */
+    public RepositoryException(final String message) {
         super(message);
     }
 
-    public RepositoryException(Exception ex) {
+    /**
+     * Public constructor with massage param.
+     * @param ex exception.
+     */
+    public RepositoryException(final Exception ex) {
         super(ex);
     }
 
-    public RepositoryException (String message, Exception ex) {
+    /**
+     * Public constructor with massage and exception param.
+     * @param message information about exception.
+     * @param ex exception
+     */
+    public RepositoryException(final String message, final Exception ex) {
         super(message, ex);
     }
 }

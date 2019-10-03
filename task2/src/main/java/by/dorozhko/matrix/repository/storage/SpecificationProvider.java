@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class SpecificationProvider {
 
-    private final static SpecificationProvider instance = new SpecificationProvider();
+    private static final SpecificationProvider instance = new SpecificationProvider();
 
     private Map<String, StorageSpecification> specificationMap = new HashMap<>();
 
