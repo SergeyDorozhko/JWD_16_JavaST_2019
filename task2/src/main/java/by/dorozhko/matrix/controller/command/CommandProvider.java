@@ -7,25 +7,36 @@ import by.dorozhko.matrix.controller.command.impl.InitialiseMainDiagonal;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CommandProvider {
-    private final static CommandProvider instance = new CommandProvider();
+public final class CommandProvider {
+    /**
+     * Singletone.
+     */
+    private static final CommandProvider instance = new CommandProvider();
 
-
+    /**
+     * Map of commands connecting with services.
+     */
     private Map<String, Command> commandMap = new HashMap<>();
-
-
-    private CommandProvider(){
+    private CommandProvider() {
         commandMap.put("CreateMatrix", new CreateMatrix());
         commandMap.put("DisplayMatrix", new DisplayMatrix());
         commandMap.put("InitialiseMainDiagonal", new InitialiseMainDiagonal());
     }
 
-
-    public static CommandProvider getInstance(){
+    /**
+     * Creating link to single example of Command provider.
+     * @return link.
+     */
+    public static CommandProvider getInstance() {
         return instance;
     }
 
-    public Command getCommand(String command){
+    /**
+     * Command take user request and connecting to the service.
+     * @param command user request.
+     * @return command to service.
+     */
+    public Command getCommand(final String command) {
         return commandMap.get(command);
     }
 }

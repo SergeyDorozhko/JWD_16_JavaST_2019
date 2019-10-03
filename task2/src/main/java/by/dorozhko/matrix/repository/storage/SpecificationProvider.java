@@ -14,7 +14,7 @@ public class SpecificationProvider {
     private SpecificationProvider(){
         specificationMap.put("ReentrantLock", new SetWithReentrantLock());
         specificationMap.put("Semaphore", new SetWithSemaphore());
-        specificationMap.put("Phase", new SetWithPhase());
+        specificationMap.put("Phase", new SetWithTimeUnit());
     }
 
     public static SpecificationProvider getInstance(){
