@@ -31,7 +31,8 @@ public final class ClientView {
                     + "3)Start initialisation of main"
                     + "diagonal(ReentrantLock).\n"
                     + "4)Start initialisation of main diagonal(Semaphore).\n"
-                    + "5)Start initialisation of main diagonal(Phase).\n"
+                    + "5)Start initialisation of main diagonal(TimeUnit). "
+                    + "NOT RECOMMENDED TO USE.\n"
                     + "0)Exit");
 
             String action = scanner.next();
@@ -55,7 +56,7 @@ public final class ClientView {
                     break;
                 case "5":
                     System.out.println(controller.doAction(
-                            "InitialiseMainDiagonal:Phase"));
+                            "InitialiseMainDiagonal:TimeUnit"));
                     break;
                 case "0":
                     System.out.println("End of a program");

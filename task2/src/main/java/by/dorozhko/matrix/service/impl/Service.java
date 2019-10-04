@@ -13,9 +13,11 @@ import by.dorozhko.matrix.service.validator.Validator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Service implements MatrixService {
     /**
@@ -32,6 +34,8 @@ public class Service implements MatrixService {
      */
     private MatrixRepository matrixRepository
             = repositoryFactory.getMatrixRepository();
+
+    private ExecutorService executorService = Executors.newCachedThreadPool();
     /**
      * Method create matrix from data in storage.
      *
@@ -104,7 +108,7 @@ public class Service implements MatrixService {
         logger.debug("start initialise threads");
         FactoryDAL factoryDAL = FactoryDAL.getInstance();
         MatrixDAL matrixDAL = factoryDAL.getMatrixDAL();
-        List<String> threadData = new ArrayList<>();
+        List<String> threadData = null;
         try {
             threadData = matrixDAL.readData();
         } catch (ExceptionDAL ex) {
@@ -120,9 +124,13 @@ public class Service implements MatrixService {
                 logger.debug("valid data of thread.");
                 int insertValueOfThread = Integer.
                         parseInt(Parser.parseByEqualSing(threadValue)[1]);
-                InitialisationThread thread = new InitialisationThread(
-                        insertValueOfThread, specification);
-                thread.start();
+//                InitialisationThread thread = new InitialisationThread(
+//                        insertValueOfThread, specification);
+//                thread.start();
+
+                executorService.submit(
+                        new InitialisationThread(insertValueOfThread,
+                                specification));
             }
         }
 

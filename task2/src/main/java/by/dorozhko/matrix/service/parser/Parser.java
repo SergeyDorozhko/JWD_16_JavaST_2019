@@ -10,8 +10,7 @@ public final class Parser {
      * @return array of string.
      */
     public static String[] parseBySpace(final String line) {
-        String[] dataFromLine = line.split("[ ]+");
-        return dataFromLine;
+                return line.split("[ ]+");
     }
 
     /**
@@ -20,7 +19,6 @@ public final class Parser {
      * @return array of data.
      */
     public static String[] parseByEqualSing(final String line) {
-        String[] dataFromLine = line.split("=");
-        return dataFromLine;
+                return line.split("=");
     }
 }
