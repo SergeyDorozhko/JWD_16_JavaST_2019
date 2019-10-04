@@ -24,7 +24,7 @@ public class FileMatrixDAL implements MatrixDAL {
     @Override
     public List<String> readData() throws ExceptionDAL {
 
-        List<String> list = new ArrayList<String>();
+        List<String> list = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             while ((reader.ready())) {
                 list.add(reader.readLine());

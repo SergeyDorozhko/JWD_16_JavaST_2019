@@ -12,7 +12,7 @@ public final class SpecificationProvider {
     /**
      * single tone.
      */
-    private static final SpecificationProvider instance
+    private static final SpecificationProvider INSTANCE
             = new SpecificationProvider();
     /**
      * Map of specifications, depends from chosen type of synchronization.
@@ -31,7 +31,7 @@ public final class SpecificationProvider {
      * @return link.
      */
     public static SpecificationProvider getInstance() {
-        return instance;
+        return INSTANCE;
     }
 
     /**

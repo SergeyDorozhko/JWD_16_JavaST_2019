@@ -6,7 +6,7 @@ public final class RepositoryFactory {
     /**
      * single tone.
      */
-    private static final RepositoryFactory instace = new RepositoryFactory();
+    private static final RepositoryFactory INSTACE = new RepositoryFactory();
     /**
      * link to matrix repository implementation.
      */
@@ -20,7 +20,7 @@ public final class RepositoryFactory {
      * @return link.
      */
     public static RepositoryFactory getInstance() {
-        return instace;
+        return INSTACE;
     }
 
     /**

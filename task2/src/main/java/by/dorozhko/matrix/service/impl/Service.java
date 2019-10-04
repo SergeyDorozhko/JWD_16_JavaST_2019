@@ -15,7 +15,6 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -35,7 +34,6 @@ public class Service implements MatrixService {
     private MatrixRepository matrixRepository
             = repositoryFactory.getMatrixRepository();
 
-    private ExecutorService executorService = Executors.newCachedThreadPool();
     /**
      * Method create matrix from data in storage.
      *
@@ -118,21 +116,21 @@ public class Service implements MatrixService {
 
         logger.debug("thread data from file read.");
 
+        ExecutorService executorService = Executors.newCachedThreadPool();
         for (String threadValue : threadData) {
             logger.debug(threadValue);
             if (Validator.isValidThreadData(threadValue)) {
                 logger.debug("valid data of thread.");
                 int insertValueOfThread = Integer.
                         parseInt(Parser.parseByEqualSing(threadValue)[1]);
-//                InitialisationThread thread = new InitialisationThread(
-//                        insertValueOfThread, specification);
-//                thread.start();
+
 
                 executorService.submit(
                         new InitialisationThread(insertValueOfThread,
                                 specification));
             }
         }
+        executorService.shutdown();
 
         return "main diagonal successfully update.";
     }

@@ -11,7 +11,7 @@ public final class CommandProvider {
     /**
      * Singletone.
      */
-    private static final CommandProvider instance = new CommandProvider();
+    private static final CommandProvider INSTANCE = new CommandProvider();
 
     /**
      * Map of commands connecting with services.
@@ -28,7 +28,7 @@ public final class CommandProvider {
      * @return link.
      */
     public static CommandProvider getInstance() {
-        return instance;
+        return INSTANCE;
     }
 
     /**

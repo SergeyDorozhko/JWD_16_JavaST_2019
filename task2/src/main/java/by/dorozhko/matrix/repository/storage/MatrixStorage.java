@@ -12,7 +12,7 @@ public final class MatrixStorage {
     /**
      * single tone.
      */
-    private static final MatrixStorage instance = new MatrixStorage();
+    private static final MatrixStorage INSTANCE = new MatrixStorage();
     /**
      * matrix.
      */
@@ -20,7 +20,7 @@ public final class MatrixStorage {
     /**
      * value of time to sleep.
      */
-    private final int timeToSleep = 50;
+    private static final int TIME_TO_SLEEP = 50;
     /**
      * logger.
      */
@@ -44,7 +44,7 @@ public final class MatrixStorage {
      * @return link.
      */
     public static MatrixStorage getInstance() {
-        return instance;
+        return INSTANCE;
     }
 
     /**
@@ -106,7 +106,7 @@ public final class MatrixStorage {
 
                 matrix[verticalPosition][horizontalPosition] = value;
 
-                TimeUnit.MILLISECONDS.sleep(timeToSleep);
+                TimeUnit.MILLISECONDS.sleep(TIME_TO_SLEEP);
             }
 
         } catch (InterruptedException e) {
@@ -132,7 +132,7 @@ public final class MatrixStorage {
             if (matrix[verticalPosition][horizontalPosition] == 0) {
                 logger.trace(horizontalPosition);
                 matrix[verticalPosition][horizontalPosition] = value;
-                TimeUnit.MILLISECONDS.sleep(timeToSleep);
+                TimeUnit.MILLISECONDS.sleep(TIME_TO_SLEEP);
             }
             semaphore.release();
         } catch (InterruptedException e) {
@@ -154,12 +154,12 @@ public final class MatrixStorage {
         logger.debug("start TimeUnit");
 
         try {
-            TimeUnit.MILLISECONDS.sleep(new Random().nextInt(timeToSleep));
+            TimeUnit.MILLISECONDS.sleep(new Random().nextInt(TIME_TO_SLEEP));
 
             if (matrix[verticalPosition][horizontalPosition] == 0) {
                 logger.trace(horizontalPosition);
                 matrix[verticalPosition][horizontalPosition] = value;
-                TimeUnit.MILLISECONDS.sleep(timeToSleep);
+                TimeUnit.MILLISECONDS.sleep(TIME_TO_SLEEP);
             }
 
         } catch (InterruptedException e) {

@@ -104,7 +104,6 @@ public class MatrixRepositoryImpl implements MatrixRepository {
      */
     @Override
     public int getMatrixSize() {
-        logger.debug("get matrix size + " + storage.getSize());
         return storage.getSize();
     }
 

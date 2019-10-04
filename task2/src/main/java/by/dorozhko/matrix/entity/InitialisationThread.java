@@ -37,9 +37,11 @@ public class InitialisationThread extends Thread {
     /**
      * started thread method wich connecting to the matrix.
      */
+    @Override
     public void run() {
-        logger.debug("start thread with value: " + value
-                + " and speciication: " + repositorySpecification);
+        final String massage = "start thread with value: " + value
+                + " and speciication: " + repositorySpecification;
+        logger.debug(massage);
         RepositoryFactory repositoryFactory = RepositoryFactory.getInstance();
         MatrixRepository repository = repositoryFactory.getMatrixRepository();
 

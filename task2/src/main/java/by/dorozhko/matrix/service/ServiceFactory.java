@@ -6,7 +6,7 @@ public final class ServiceFactory {
     /**
      * single tone.
      */
-    private static final ServiceFactory instance = new ServiceFactory();
+    private static final ServiceFactory INSTANCE = new ServiceFactory();
     /**
      * link to matrix services.
      */
@@ -21,7 +21,7 @@ public final class ServiceFactory {
      * @return link.
      */
     public static ServiceFactory getInstance() {
-        return instance;
+        return INSTANCE;
     }
 
     /**

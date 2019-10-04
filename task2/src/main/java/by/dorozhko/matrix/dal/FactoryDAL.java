@@ -6,7 +6,7 @@ public final class FactoryDAL {
     /**
      * Singletone.
      */
-    private static final FactoryDAL instance = new FactoryDAL();
+    private static final FactoryDAL INSTANCE = new FactoryDAL();
 
     private FactoryDAL() { }
 
@@ -20,7 +20,7 @@ public final class FactoryDAL {
      * @return link to single example.
      */
     public static FactoryDAL getInstance() {
-        return instance;
+        return INSTANCE;
     }
 
     /**
