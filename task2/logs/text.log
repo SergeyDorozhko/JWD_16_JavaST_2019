@@ -7207,3 +7207,356 @@ by.dorozhko.matrix.repository.exception.RepositoryException: Matrix not set up. 
 2019-10-06 10:15:08.750 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - get matrix.
 2019-10-06 10:15:08.750 [main] DEBUG dorozhko.matrix.service.impl.Service - matrix successfully taken.
 2019-10-06 10:15:11.466 [main] ERROR by.dorozhko.matrix.view.ClientView - end by user request
+2019-10-07 11:59:15.827 [main] DEBUG by.dorozhko.matrix.view.ClientView - program started.
+2019-10-07 11:59:18.983 [main] DEBUG dorozhko.matrix.service.impl.Service - start creating matrix
+2019-10-07 11:59:18.987 [main] DEBUG dorozhko.matrix.service.impl.Service - data was taken.
+2019-10-07 11:59:18.990 [main] DEBUG dorozhko.matrix.service.impl.Service - date is valid.
+2019-10-07 11:59:18.991 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - size is set up.
+2019-10-07 11:59:18.991 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.991 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.991 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.991 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.991 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.992 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.992 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.992 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.992 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.992 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.992 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.992 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.992 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.993 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.993 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.993 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.993 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.993 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.993 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.993 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.993 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.996 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.996 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.996 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.996 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.996 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.997 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.997 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.997 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.997 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.997 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.998 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.998 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.998 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.998 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.998 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.998 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.998 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.999 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.999 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.999 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.999 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.999 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.999 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.999 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.999 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.999 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:18.999 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:19.000 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:19.000 [main] DEBUG dorozhko.matrix.service.impl.Service - matrix is set up and initialized
+2019-10-07 11:59:21.654 [main] DEBUG dorozhko.matrix.service.impl.Service - try displey matrix.
+2019-10-07 11:59:21.654 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - get matrix.
+2019-10-07 11:59:21.655 [main] DEBUG dorozhko.matrix.service.impl.Service - matrix successfully taken.
+2019-10-07 11:59:23.852 [main] DEBUG dorozhko.matrix.service.impl.Service - start initialise threads
+2019-10-07 11:59:23.852 [main] DEBUG dorozhko.matrix.service.impl.Service - thread data from file read.
+2019-10-07 11:59:23.853 [main] DEBUG dorozhko.matrix.service.impl.Service - 0 5 9 5 2 3 6
+2019-10-07 11:59:23.853 [main] DEBUG dorozhko.matrix.service.impl.Service - 5 0 8 2 3 1 9
+2019-10-07 11:59:23.853 [main] DEBUG dorozhko.matrix.service.impl.Service - 5 6 0 4 8 9 8
+2019-10-07 11:59:23.853 [main] DEBUG dorozhko.matrix.service.impl.Service - 4 5 6 0 8 4 5
+2019-10-07 11:59:23.854 [main] DEBUG dorozhko.matrix.service.impl.Service - 7 5 6 3 0 6 6
+2019-10-07 11:59:23.854 [main] DEBUG dorozhko.matrix.service.impl.Service - 7 5 3 9 5 0 9
+2019-10-07 11:59:23.854 [main] DEBUG dorozhko.matrix.service.impl.Service - 9 6 8 9 3 6 0
+2019-10-07 11:59:23.854 [main] DEBUG dorozhko.matrix.service.impl.Service - 
+2019-10-07 11:59:23.854 [main] DEBUG dorozhko.matrix.service.impl.Service - ThreadValue=456
+2019-10-07 11:59:23.854 [main] DEBUG dorozhko.matrix.service.impl.Service - valid data of thread.
+2019-10-07 11:59:23.856 [main] DEBUG dorozhko.matrix.service.impl.Service - ThreadValue=33
+2019-10-07 11:59:23.856 [main] DEBUG dorozhko.matrix.service.impl.Service - valid data of thread.
+2019-10-07 11:59:23.857 [main] DEBUG dorozhko.matrix.service.impl.Service - ThreadValue=563
+2019-10-07 11:59:23.857 [pool-2-thread-1] DEBUG by.dorozhko.matrix.entity.InitialisationThread - start thread with value: 456 and speciication: ReentrantLock
+2019-10-07 11:59:23.857 [main] DEBUG dorozhko.matrix.service.impl.Service - valid data of thread.
+2019-10-07 11:59:23.857 [main] DEBUG dorozhko.matrix.service.impl.Service - ThreadValue=20
+2019-10-07 11:59:23.857 [main] DEBUG dorozhko.matrix.service.impl.Service - valid data of thread.
+2019-10-07 11:59:23.859 [pool-2-thread-2] DEBUG by.dorozhko.matrix.entity.InitialisationThread - start thread with value: 33 and speciication: ReentrantLock
+2019-10-07 11:59:23.860 [pool-2-thread-3] DEBUG by.dorozhko.matrix.entity.InitialisationThread - start thread with value: 563 and speciication: ReentrantLock
+2019-10-07 11:59:23.860 [pool-2-thread-4] DEBUG by.dorozhko.matrix.entity.InitialisationThread - start thread with value: 20 and speciication: ReentrantLock
+2019-10-07 11:59:23.864 [pool-2-thread-1] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start REENTRANTLOCK
+2019-10-07 11:59:23.865 [pool-2-thread-4] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start REENTRANTLOCK
+2019-10-07 11:59:23.865 [pool-2-thread-2] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start REENTRANTLOCK
+2019-10-07 11:59:23.865 [pool-2-thread-1] TRACE dorozhko.matrix.repository.storage.MatrixStorage - 0
+2019-10-07 11:59:23.865 [pool-2-thread-3] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start REENTRANTLOCK
+2019-10-07 11:59:23.916 [pool-2-thread-3] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start REENTRANTLOCK
+2019-10-07 11:59:23.916 [pool-2-thread-4] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start REENTRANTLOCK
+2019-10-07 11:59:23.916 [pool-2-thread-1] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start REENTRANTLOCK
+2019-10-07 11:59:23.916 [pool-2-thread-2] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start REENTRANTLOCK
+2019-10-07 11:59:23.917 [pool-2-thread-3] TRACE dorozhko.matrix.repository.storage.MatrixStorage - 1
+2019-10-07 11:59:23.967 [pool-2-thread-3] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start REENTRANTLOCK
+2019-10-07 11:59:23.967 [pool-2-thread-4] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start REENTRANTLOCK
+2019-10-07 11:59:23.967 [pool-2-thread-2] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start REENTRANTLOCK
+2019-10-07 11:59:23.967 [pool-2-thread-1] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start REENTRANTLOCK
+2019-10-07 11:59:23.967 [pool-2-thread-4] TRACE dorozhko.matrix.repository.storage.MatrixStorage - 2
+2019-10-07 11:59:24.018 [pool-2-thread-4] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start REENTRANTLOCK
+2019-10-07 11:59:24.018 [pool-2-thread-2] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start REENTRANTLOCK
+2019-10-07 11:59:24.018 [pool-2-thread-1] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start REENTRANTLOCK
+2019-10-07 11:59:24.019 [pool-2-thread-4] TRACE dorozhko.matrix.repository.storage.MatrixStorage - 3
+2019-10-07 11:59:24.018 [pool-2-thread-3] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start REENTRANTLOCK
+2019-10-07 11:59:24.069 [pool-2-thread-1] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start REENTRANTLOCK
+2019-10-07 11:59:24.069 [pool-2-thread-2] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start REENTRANTLOCK
+2019-10-07 11:59:24.069 [pool-2-thread-3] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start REENTRANTLOCK
+2019-10-07 11:59:24.069 [pool-2-thread-3] TRACE dorozhko.matrix.repository.storage.MatrixStorage - 4
+2019-10-07 11:59:24.070 [pool-2-thread-4] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start REENTRANTLOCK
+2019-10-07 11:59:24.122 [pool-2-thread-1] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start REENTRANTLOCK
+2019-10-07 11:59:24.122 [pool-2-thread-1] TRACE dorozhko.matrix.repository.storage.MatrixStorage - 5
+2019-10-07 11:59:24.124 [pool-2-thread-3] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start REENTRANTLOCK
+2019-10-07 11:59:24.175 [pool-2-thread-3] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start REENTRANTLOCK
+2019-10-07 11:59:24.175 [pool-2-thread-3] TRACE dorozhko.matrix.repository.storage.MatrixStorage - 6
+2019-10-07 11:59:24.175 [pool-2-thread-2] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start REENTRANTLOCK
+2019-10-07 11:59:24.175 [pool-2-thread-4] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start REENTRANTLOCK
+2019-10-07 11:59:24.175 [pool-2-thread-1] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start REENTRANTLOCK
+2019-10-07 11:59:24.226 [pool-2-thread-2] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start REENTRANTLOCK
+2019-10-07 11:59:24.228 [pool-2-thread-4] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start REENTRANTLOCK
+2019-10-07 11:59:25.193 [main] DEBUG dorozhko.matrix.service.impl.Service - try displey matrix.
+2019-10-07 11:59:25.193 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - get matrix.
+2019-10-07 11:59:25.194 [main] DEBUG dorozhko.matrix.service.impl.Service - matrix successfully taken.
+2019-10-07 11:59:27.746 [main] DEBUG dorozhko.matrix.service.impl.Service - start creating matrix
+2019-10-07 11:59:27.746 [main] DEBUG dorozhko.matrix.service.impl.Service - data was taken.
+2019-10-07 11:59:27.748 [main] DEBUG dorozhko.matrix.service.impl.Service - date is valid.
+2019-10-07 11:59:27.748 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - size is set up.
+2019-10-07 11:59:27.748 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.748 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.748 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.748 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.749 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.749 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.749 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.749 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.749 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.750 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.750 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.750 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.750 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.750 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.750 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.750 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.750 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.751 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.751 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.751 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.751 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.751 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.751 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.751 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.751 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.751 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.751 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.751 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.751 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.751 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.752 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.752 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.752 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.752 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.752 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.752 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.752 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.752 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.752 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.752 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.753 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.753 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.754 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.754 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.754 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.754 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.754 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.754 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.754 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:27.754 [main] DEBUG dorozhko.matrix.service.impl.Service - matrix is set up and initialized
+2019-10-07 11:59:29.035 [main] DEBUG dorozhko.matrix.service.impl.Service - try displey matrix.
+2019-10-07 11:59:29.035 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - get matrix.
+2019-10-07 11:59:29.035 [main] DEBUG dorozhko.matrix.service.impl.Service - matrix successfully taken.
+2019-10-07 11:59:30.317 [main] DEBUG dorozhko.matrix.service.impl.Service - start initialise threads
+2019-10-07 11:59:30.318 [main] DEBUG dorozhko.matrix.service.impl.Service - thread data from file read.
+2019-10-07 11:59:30.318 [main] DEBUG dorozhko.matrix.service.impl.Service - 0 5 9 5 2 3 6
+2019-10-07 11:59:30.318 [main] DEBUG dorozhko.matrix.service.impl.Service - 5 0 8 2 3 1 9
+2019-10-07 11:59:30.318 [main] DEBUG dorozhko.matrix.service.impl.Service - 5 6 0 4 8 9 8
+2019-10-07 11:59:30.318 [main] DEBUG dorozhko.matrix.service.impl.Service - 4 5 6 0 8 4 5
+2019-10-07 11:59:30.318 [main] DEBUG dorozhko.matrix.service.impl.Service - 7 5 6 3 0 6 6
+2019-10-07 11:59:30.318 [main] DEBUG dorozhko.matrix.service.impl.Service - 7 5 3 9 5 0 9
+2019-10-07 11:59:30.318 [main] DEBUG dorozhko.matrix.service.impl.Service - 9 6 8 9 3 6 0
+2019-10-07 11:59:30.318 [main] DEBUG dorozhko.matrix.service.impl.Service - 
+2019-10-07 11:59:30.318 [main] DEBUG dorozhko.matrix.service.impl.Service - ThreadValue=456
+2019-10-07 11:59:30.319 [main] DEBUG dorozhko.matrix.service.impl.Service - valid data of thread.
+2019-10-07 11:59:30.319 [main] DEBUG dorozhko.matrix.service.impl.Service - ThreadValue=33
+2019-10-07 11:59:30.320 [main] DEBUG dorozhko.matrix.service.impl.Service - valid data of thread.
+2019-10-07 11:59:30.321 [main] DEBUG dorozhko.matrix.service.impl.Service - ThreadValue=563
+2019-10-07 11:59:30.321 [main] DEBUG dorozhko.matrix.service.impl.Service - valid data of thread.
+2019-10-07 11:59:30.322 [main] DEBUG dorozhko.matrix.service.impl.Service - ThreadValue=20
+2019-10-07 11:59:30.322 [main] DEBUG dorozhko.matrix.service.impl.Service - valid data of thread.
+2019-10-07 11:59:30.324 [pool-3-thread-1] DEBUG by.dorozhko.matrix.entity.InitialisationThread - start thread with value: 456 and speciication: Semaphore
+2019-10-07 11:59:30.325 [pool-3-thread-1] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start SEMAPHORE
+2019-10-07 11:59:30.325 [pool-3-thread-1] TRACE dorozhko.matrix.repository.storage.MatrixStorage - 0
+2019-10-07 11:59:30.326 [pool-3-thread-3] DEBUG by.dorozhko.matrix.entity.InitialisationThread - start thread with value: 563 and speciication: Semaphore
+2019-10-07 11:59:30.326 [pool-3-thread-4] DEBUG by.dorozhko.matrix.entity.InitialisationThread - start thread with value: 20 and speciication: Semaphore
+2019-10-07 11:59:30.326 [pool-3-thread-3] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start SEMAPHORE
+2019-10-07 11:59:30.326 [pool-3-thread-4] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start SEMAPHORE
+2019-10-07 11:59:30.326 [pool-3-thread-2] DEBUG by.dorozhko.matrix.entity.InitialisationThread - start thread with value: 33 and speciication: Semaphore
+2019-10-07 11:59:30.327 [pool-3-thread-2] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start SEMAPHORE
+2019-10-07 11:59:30.376 [pool-3-thread-1] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start SEMAPHORE
+2019-10-07 11:59:30.376 [pool-3-thread-3] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start SEMAPHORE
+2019-10-07 11:59:30.376 [pool-3-thread-2] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start SEMAPHORE
+2019-10-07 11:59:30.376 [pool-3-thread-4] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start SEMAPHORE
+2019-10-07 11:59:30.376 [pool-3-thread-3] TRACE dorozhko.matrix.repository.storage.MatrixStorage - 1
+2019-10-07 11:59:30.427 [pool-3-thread-2] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start SEMAPHORE
+2019-10-07 11:59:30.427 [pool-3-thread-3] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start SEMAPHORE
+2019-10-07 11:59:30.427 [pool-3-thread-1] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start SEMAPHORE
+2019-10-07 11:59:30.427 [pool-3-thread-4] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start SEMAPHORE
+2019-10-07 11:59:30.427 [pool-3-thread-2] TRACE dorozhko.matrix.repository.storage.MatrixStorage - 2
+2019-10-07 11:59:30.478 [pool-3-thread-2] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start SEMAPHORE
+2019-10-07 11:59:30.478 [pool-3-thread-1] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start SEMAPHORE
+2019-10-07 11:59:30.478 [pool-3-thread-4] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start SEMAPHORE
+2019-10-07 11:59:30.478 [pool-3-thread-3] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start SEMAPHORE
+2019-10-07 11:59:30.478 [pool-3-thread-2] TRACE dorozhko.matrix.repository.storage.MatrixStorage - 3
+2019-10-07 11:59:30.531 [pool-3-thread-4] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start SEMAPHORE
+2019-10-07 11:59:30.531 [pool-3-thread-3] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start SEMAPHORE
+2019-10-07 11:59:30.531 [pool-3-thread-1] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start SEMAPHORE
+2019-10-07 11:59:30.531 [pool-3-thread-2] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start SEMAPHORE
+2019-10-07 11:59:30.531 [pool-3-thread-3] TRACE dorozhko.matrix.repository.storage.MatrixStorage - 4
+2019-10-07 11:59:30.582 [pool-3-thread-1] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start SEMAPHORE
+2019-10-07 11:59:30.582 [pool-3-thread-1] TRACE dorozhko.matrix.repository.storage.MatrixStorage - 5
+2019-10-07 11:59:30.582 [pool-3-thread-4] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start SEMAPHORE
+2019-10-07 11:59:30.582 [pool-3-thread-3] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start SEMAPHORE
+2019-10-07 11:59:30.633 [pool-3-thread-4] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start SEMAPHORE
+2019-10-07 11:59:30.633 [pool-3-thread-3] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start SEMAPHORE
+2019-10-07 11:59:30.633 [pool-3-thread-2] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start SEMAPHORE
+2019-10-07 11:59:30.633 [pool-3-thread-4] TRACE dorozhko.matrix.repository.storage.MatrixStorage - 6
+2019-10-07 11:59:30.633 [pool-3-thread-1] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start SEMAPHORE
+2019-10-07 11:59:30.683 [pool-3-thread-2] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start SEMAPHORE
+2019-10-07 11:59:31.857 [main] DEBUG dorozhko.matrix.service.impl.Service - try displey matrix.
+2019-10-07 11:59:31.857 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - get matrix.
+2019-10-07 11:59:31.857 [main] DEBUG dorozhko.matrix.service.impl.Service - matrix successfully taken.
+2019-10-07 11:59:33.412 [main] DEBUG dorozhko.matrix.service.impl.Service - start creating matrix
+2019-10-07 11:59:33.413 [main] DEBUG dorozhko.matrix.service.impl.Service - data was taken.
+2019-10-07 11:59:33.419 [main] DEBUG dorozhko.matrix.service.impl.Service - date is valid.
+2019-10-07 11:59:33.419 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - size is set up.
+2019-10-07 11:59:33.419 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.419 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.419 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.419 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.419 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.419 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.419 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.419 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.419 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.419 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.420 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.420 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.421 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.421 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.421 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.421 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.421 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.421 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.421 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.421 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.422 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.422 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.422 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.422 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.422 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.422 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.422 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.422 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.422 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.423 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.423 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.423 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.423 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.423 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.423 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.423 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.424 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.424 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.424 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.424 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.424 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.424 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.424 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.424 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.424 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.424 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.425 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.425 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.425 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - Matrix value successfully set up.
+2019-10-07 11:59:33.425 [main] DEBUG dorozhko.matrix.service.impl.Service - matrix is set up and initialized
+2019-10-07 11:59:34.407 [main] DEBUG dorozhko.matrix.service.impl.Service - try displey matrix.
+2019-10-07 11:59:34.407 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - get matrix.
+2019-10-07 11:59:34.407 [main] DEBUG dorozhko.matrix.service.impl.Service - matrix successfully taken.
+2019-10-07 11:59:36.177 [main] DEBUG dorozhko.matrix.service.impl.Service - start initialise threads
+2019-10-07 11:59:36.177 [main] DEBUG dorozhko.matrix.service.impl.Service - thread data from file read.
+2019-10-07 11:59:36.178 [main] DEBUG dorozhko.matrix.service.impl.Service - 0 5 9 5 2 3 6
+2019-10-07 11:59:36.178 [main] DEBUG dorozhko.matrix.service.impl.Service - 5 0 8 2 3 1 9
+2019-10-07 11:59:36.178 [main] DEBUG dorozhko.matrix.service.impl.Service - 5 6 0 4 8 9 8
+2019-10-07 11:59:36.178 [main] DEBUG dorozhko.matrix.service.impl.Service - 4 5 6 0 8 4 5
+2019-10-07 11:59:36.178 [main] DEBUG dorozhko.matrix.service.impl.Service - 7 5 6 3 0 6 6
+2019-10-07 11:59:36.178 [main] DEBUG dorozhko.matrix.service.impl.Service - 7 5 3 9 5 0 9
+2019-10-07 11:59:36.178 [main] DEBUG dorozhko.matrix.service.impl.Service - 9 6 8 9 3 6 0
+2019-10-07 11:59:36.179 [main] DEBUG dorozhko.matrix.service.impl.Service - 
+2019-10-07 11:59:36.179 [main] DEBUG dorozhko.matrix.service.impl.Service - ThreadValue=456
+2019-10-07 11:59:36.179 [main] DEBUG dorozhko.matrix.service.impl.Service - valid data of thread.
+2019-10-07 11:59:36.179 [main] DEBUG dorozhko.matrix.service.impl.Service - ThreadValue=33
+2019-10-07 11:59:36.180 [main] DEBUG dorozhko.matrix.service.impl.Service - valid data of thread.
+2019-10-07 11:59:36.180 [main] DEBUG dorozhko.matrix.service.impl.Service - ThreadValue=563
+2019-10-07 11:59:36.180 [main] DEBUG dorozhko.matrix.service.impl.Service - valid data of thread.
+2019-10-07 11:59:36.180 [main] DEBUG dorozhko.matrix.service.impl.Service - ThreadValue=20
+2019-10-07 11:59:36.181 [main] DEBUG dorozhko.matrix.service.impl.Service - valid data of thread.
+2019-10-07 11:59:36.183 [pool-4-thread-1] DEBUG by.dorozhko.matrix.entity.InitialisationThread - start thread with value: 456 and speciication: TimeUnit
+2019-10-07 11:59:36.183 [pool-4-thread-1] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start TimeUnit
+2019-10-07 11:59:36.184 [pool-4-thread-2] DEBUG by.dorozhko.matrix.entity.InitialisationThread - start thread with value: 33 and speciication: TimeUnit
+2019-10-07 11:59:36.184 [pool-4-thread-2] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start TimeUnit
+2019-10-07 11:59:36.184 [pool-4-thread-3] DEBUG by.dorozhko.matrix.entity.InitialisationThread - start thread with value: 563 and speciication: TimeUnit
+2019-10-07 11:59:36.185 [pool-4-thread-3] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start TimeUnit
+2019-10-07 11:59:36.185 [pool-4-thread-4] DEBUG by.dorozhko.matrix.entity.InitialisationThread - start thread with value: 20 and speciication: TimeUnit
+2019-10-07 11:59:36.186 [pool-4-thread-4] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start TimeUnit
+2019-10-07 11:59:36.195 [pool-4-thread-4] TRACE dorozhko.matrix.repository.storage.MatrixStorage - 0
+2019-10-07 11:59:36.207 [pool-4-thread-3] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start TimeUnit
+2019-10-07 11:59:36.224 [pool-4-thread-2] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start TimeUnit
+2019-10-07 11:59:36.233 [pool-4-thread-1] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start TimeUnit
+2019-10-07 11:59:36.245 [pool-4-thread-3] TRACE dorozhko.matrix.repository.storage.MatrixStorage - 1
+2019-10-07 11:59:36.246 [pool-4-thread-4] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start TimeUnit
+2019-10-07 11:59:36.248 [pool-4-thread-1] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start TimeUnit
+2019-10-07 11:59:36.253 [pool-4-thread-1] TRACE dorozhko.matrix.repository.storage.MatrixStorage - 2
+2019-10-07 11:59:36.255 [pool-4-thread-2] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start TimeUnit
+2019-10-07 11:59:36.278 [pool-4-thread-4] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start TimeUnit
+2019-10-07 11:59:36.278 [pool-4-thread-4] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start TimeUnit
+2019-10-07 11:59:36.294 [pool-4-thread-2] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start TimeUnit
+2019-10-07 11:59:36.295 [pool-4-thread-3] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start TimeUnit
+2019-10-07 11:59:36.303 [pool-4-thread-1] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start TimeUnit
+2019-10-07 11:59:36.317 [pool-4-thread-4] TRACE dorozhko.matrix.repository.storage.MatrixStorage - 3
+2019-10-07 11:59:36.321 [pool-4-thread-2] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start TimeUnit
+2019-10-07 11:59:36.323 [pool-4-thread-3] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start TimeUnit
+2019-10-07 11:59:36.327 [pool-4-thread-1] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start TimeUnit
+2019-10-07 11:59:36.348 [pool-4-thread-2] TRACE dorozhko.matrix.repository.storage.MatrixStorage - 4
+2019-10-07 11:59:36.362 [pool-4-thread-3] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start TimeUnit
+2019-10-07 11:59:36.368 [pool-4-thread-4] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start TimeUnit
+2019-10-07 11:59:36.368 [pool-4-thread-1] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start TimeUnit
+2019-10-07 11:59:36.375 [pool-4-thread-4] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start TimeUnit
+2019-10-07 11:59:36.378 [pool-4-thread-1] TRACE dorozhko.matrix.repository.storage.MatrixStorage - 5
+2019-10-07 11:59:36.388 [pool-4-thread-3] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start TimeUnit
+2019-10-07 11:59:36.388 [pool-4-thread-3] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start TimeUnit
+2019-10-07 11:59:36.398 [pool-4-thread-2] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start TimeUnit
+2019-10-07 11:59:36.398 [pool-4-thread-4] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start TimeUnit
+2019-10-07 11:59:36.406 [pool-4-thread-4] TRACE dorozhko.matrix.repository.storage.MatrixStorage - 6
+2019-10-07 11:59:36.408 [pool-4-thread-2] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start TimeUnit
+2019-10-07 11:59:36.428 [pool-4-thread-1] DEBUG dorozhko.matrix.repository.storage.MatrixStorage - start TimeUnit
+2019-10-07 11:59:37.178 [main] DEBUG dorozhko.matrix.service.impl.Service - try displey matrix.
+2019-10-07 11:59:37.178 [main] DEBUG dorozhko.matrix.repository.impl.MatrixRepositoryImpl - get matrix.
+2019-10-07 11:59:37.179 [main] DEBUG dorozhko.matrix.service.impl.Service - matrix successfully taken.
+2019-10-07 11:59:41.355 [main] ERROR by.dorozhko.matrix.view.ClientView - end by user request
