@@ -17,8 +17,6 @@ public final class Client {
 
     private Controller controller = new Controller();
 
-    private Locale current;
-
     private ResourceBundle resourceBundle;
 
     public void startProgram() {
@@ -29,7 +27,7 @@ public final class Client {
         try {
             i = (char) System.in.read();
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e);
         }
 
         String country = "";
@@ -43,9 +41,11 @@ public final class Client {
                 country = "RU";
                 language = "ru";
                 break;
+            default:
+                System.out.println("Incorrect input.\nSet default English.\n");
         }
 
-        current = new Locale(language, country);
+        Locale current = new Locale(language, country);
         resourceBundle = ResourceBundle.getBundle("local.text", current);
 
 
@@ -108,6 +108,7 @@ public final class Client {
                 System.out.println(resourceBundle.getString("exitMsg"));
                 logger.info("Exit from program by user.");
                 System.exit(0);
+                break;
             default:
                 System.out.println(resourceBundle.getString("errorMsg"));
         }

@@ -30,14 +30,7 @@ public class FileCompositeDAL implements CompositeDAL {
         logger.info("Start wright to file.");
         logger.debug(pathToData);
         File file = new File(pathToData);
-        try {
 
-            logger.error(file.getAbsolutePath());
-            file.createNewFile();
-        } catch (IOException e) {
-            logger.error("couldn't create file");
-            throw new ExceptionDAL(e);
-        }
         try (BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(file))){
             outputStream.write(text.getBytes());
         }catch (IOException ex) {

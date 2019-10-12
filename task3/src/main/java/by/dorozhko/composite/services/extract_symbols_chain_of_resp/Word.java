@@ -8,8 +8,6 @@ public class Word implements Handler {
 
     private String word;
 
-    public Word() {
-    }
 
     @Override
     public void setText(String text) {

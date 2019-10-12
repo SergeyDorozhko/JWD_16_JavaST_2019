@@ -10,7 +10,7 @@ public class LeafSymbol implements Component {
 
     @Override
     public void add(Component c) {
-
+        throw new UnsupportedOperationException();
     }
 
     @Override

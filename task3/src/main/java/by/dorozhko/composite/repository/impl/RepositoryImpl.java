@@ -1,8 +1,6 @@
 package by.dorozhko.composite.repository.impl;
 
-import by.dorozhko.composite.entity.Component;
 import by.dorozhko.composite.entity.Composite;
-import by.dorozhko.composite.entity.CompositeText;
 import by.dorozhko.composite.repository.Repository;
 import by.dorozhko.composite.repository.storage.TextStorage;
 

@@ -13,7 +13,7 @@ public interface Component {
 
     default String getSortedText(String sort) {
         throw new UnsupportedOperationException();
-    };
+    }
 
 
 

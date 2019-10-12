@@ -22,15 +22,13 @@ public class Controller {
      * @return result.
      */
     public String doAction(final String request) {
+        logger.debug(request);
         String[] action = request.split("[|]");
-        logger.debug("User request: " + action[0] + ", params : " + action[1]);
         String result;
 
         Command command = commandProvider.
                 getCommand(action[0]);
         result = command.execute(action[1]);
-        logger.trace("Have result (result length): "
-                + result.length() + "symbols");
         return result;
     }
 }
