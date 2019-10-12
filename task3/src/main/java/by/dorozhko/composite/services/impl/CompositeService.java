@@ -11,8 +11,6 @@ import by.dorozhko.composite.services.extract_symbols_chain_of_resp.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.concurrent.locks.ReentrantLock;
-
 
 public class CompositeService implements Service {
     private Logger logger = LogManager.getLogger(getClass().getName());
@@ -35,7 +33,7 @@ public class CompositeService implements Service {
         logger.debug("Text successfully read from data");
 
 
-        CompositeText compositeText = createCompositeFromText(textFromData);
+        Composite compositeText = createCompositeFromText(textFromData);
 
 
         RepositoryFactory repositoryFactory = RepositoryFactory.getInstance();
@@ -44,12 +42,12 @@ public class CompositeService implements Service {
 
         logger.debug("Composition send to storage.");
 
-        System.out.println(repository.getText());
+
         return "Successfully created.";
     }
 
 
-    private CompositeText createCompositeFromText(String text){
+    private Composite createCompositeFromText(String text) {
         logger.debug("method createCompositeFromText is started.");
         Word wordToSymbol = new Word();
         Lexem lexemToWord = new Lexem(wordToSymbol);
@@ -58,7 +56,7 @@ public class CompositeService implements Service {
         Text textToParagraph = new Text(paragraphToSentence);
 
         logger.debug("Chain of responsibility created. Start to parse text and create composition.");
-        CompositeText compositeText = new CompositeText();
+        Composite compositeText = new CompositeText();
 
         int countParagraphBranch = 0;
 
@@ -117,7 +115,7 @@ public class CompositeService implements Service {
     }
 
     @Override
-    public String viewTextFromRepository(){
+    public String viewTextFromRepository() {
         RepositoryFactory repositoryFactory = RepositoryFactory.getInstance();
         return repositoryFactory.getRepository().getText();
     }
@@ -130,10 +128,20 @@ public class CompositeService implements Service {
         CompositeDAL compositeDAL = factoryDAL.getCompositeDAL();
         try {
             compositeDAL.write(viewTextFromRepository(), pathToData);
-        }catch (ExceptionDAL ex){
+        } catch (ExceptionDAL ex) {
             logger.error(ex);
             return "Some problem with file, data didn't save.";
         }
         return "Data successfully saved.";
+    }
+
+    @Override
+    public String viewSortedText(String sortBy) {
+        logger.debug("Start view sorted text method");
+
+        RepositoryFactory repositoryFactory = RepositoryFactory.getInstance();
+        Repository repository = repositoryFactory.getRepository();
+
+        return repository.getSortedText(sortBy);
     }
 }

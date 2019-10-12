@@ -28,6 +28,7 @@ public class CommandProvider {
         command.put("CreateCompositeFromData", new CreateCompositeFromData());
         command.put("ViewCompositeTextFromRepository", new ViewTextFromRepository());
         command.put("SaveTextToData", new SaveTextToData());
+        command.put("ViewSortedCompositeTextFromRepository", new ViewSortedText());
 
 
     }

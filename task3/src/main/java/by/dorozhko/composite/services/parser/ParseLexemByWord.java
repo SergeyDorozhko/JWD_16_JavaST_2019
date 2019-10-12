@@ -8,17 +8,19 @@ import java.util.regex.Pattern;
 
 public class ParseLexemByWord {
     private static final ParseLexemByWord instance = new ParseLexemByWord();
-    private ParseLexemByWord(){ }
+
+    private ParseLexemByWord() {
+    }
 
     private String wordTeamplate = "(\\w)+|([\\W])";
 
     private Pattern teamplate = Pattern.compile(wordTeamplate);
 
-    public static ParseLexemByWord getInstance(){
+    public static ParseLexemByWord getInstance() {
         return instance;
     }
 
-    public List<String> parse (String lexem){
+    public List<String> parse(String lexem) {
         List<String> result = new ArrayList<>();
         Matcher matcher = teamplate.matcher(lexem);
         while (matcher.find()) {

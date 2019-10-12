@@ -1,25 +1,24 @@
 package by.dorozhko.composite.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class CompositeLexem implements Component {
-    private List<Component> components = new ArrayList<>();
-    @Override
-    public void add(Component c) {
-        components.add(c);
-    }
-
-    @Override
-    public Component getChild(int index) {
-        return components.get(index);
-    }
+public class CompositeLexem extends Composite {
 
     @Override
     public String getTextPart() {
         StringBuilder result = new StringBuilder();
-        for(Component word: components) {
+        for (Component word : components) {
             result.append(word.getTextPart());
+        }
+        return result.toString();
+    }
+
+    @Override
+    public String getSortedText(String sort) {
+
+
+        StringBuilder result = new StringBuilder();
+        for (Component info : components) {
+            result.append(info.getSortedText(sort));
+
         }
         return result.toString();
     }

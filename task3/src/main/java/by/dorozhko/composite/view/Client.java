@@ -5,6 +5,9 @@ import by.dorozhko.composite.controller.Controller;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.IOException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.Scanner;
 
 public final class Client {
@@ -14,13 +17,46 @@ public final class Client {
 
     private Controller controller = new Controller();
 
+    private Locale current;
+
+    private ResourceBundle resourceBundle;
+
     public void startProgram() {
-        System.out.println("\n Choose You action:\n "
-                + "press:\n"
-                + "1) Create composite (reading from file).\n"
-                + "2) View text from composite.\n"
-                + "3) Save text to data.\n"
-                + "0) Exit.");
+
+        System.out.println("Please choose language:\n 1 — English\n 2 — русский ");
+
+        char i = 0;
+        try {
+            i = (char) System.in.read();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        String country = "";
+        String language = "";
+        switch (i) {
+            case '1':
+                country = "";
+                language = "";
+                break;
+            case '2':
+                country = "RU";
+                language = "ru";
+                break;
+        }
+
+        current = new Locale(language, country);
+        resourceBundle = ResourceBundle.getBundle("local.text", current);
+
+
+        userMenu();
+
+
+    }
+
+    private void userMenu() {
+        System.out.println(resourceBundle.getString("userMenu1"));
+
         logger.trace("waiting for user input.");
 
         String userAction = userInput.next();
@@ -30,7 +66,7 @@ public final class Client {
             case "1":
                 logger.trace("User: CreateCompositeFromData");
                 request = "CreateCompositeFromData|";
-                System.out.println("Input path to data:");
+                System.out.println(resourceBundle.getString("path"));
                 request += userInput.next();
                 System.out.println(controller.doAction(request));
 
@@ -46,19 +82,35 @@ public final class Client {
                 logger.trace("User: save text to data");
 
                 request = "SaveTextToData|";
-                System.out.println("Input path to data:");
+                System.out.println(resourceBundle.getString("path"));
                 request += userInput.next();
                 System.out.println(controller.doAction(request));
                 break;
+            case "4":
+                logger.trace("User: View Sorted Composite Text From Repository");
+
+                request = "ViewSortedCompositeTextFromRepository|";
+                System.out.println(resourceBundle.getString("sortMenu"));
+                String userRequest = userInput.next();
+                switch (userRequest) {
+                    case "1":
+                        request += "Text";
+                        break;
+                    default:
+                        System.out.println(resourceBundle.getString("errorMsg"));
+                        startProgram();
+
+                }
+
+                System.out.println(controller.doAction(request));
+                break;
             case "0":
-                System.out.println("Have a nice day!!! \n\tBye!!!");
+                System.out.println(resourceBundle.getString("exitMsg"));
                 logger.info("Exit from program by user.");
                 System.exit(0);
             default:
-                System.out.println("incorrect value. \nTry again:");
+                System.out.println(resourceBundle.getString("errorMsg"));
         }
-        startProgram();
-
-
+        userMenu();
     }
 }

@@ -3,7 +3,8 @@ package by.dorozhko.composite.entity;
 
 public class LeafSymbol implements Component {
     private char symbol;
-    public LeafSymbol(char newSymbol){
+
+    public LeafSymbol(char newSymbol) {
         symbol = newSymbol;
     }
 
@@ -21,4 +22,6 @@ public class LeafSymbol implements Component {
     public String getTextPart() {
         return "" + symbol;
     }
+
+
 }
