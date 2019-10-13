@@ -5,8 +5,9 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ParseParagraphBySentence {
-    private static final ParseParagraphBySentence instance = new ParseParagraphBySentence();
+public final class ParseParagraphBySentence {
+    private static final ParseParagraphBySentence INSTANCE
+            = new ParseParagraphBySentence();
 
     private ParseParagraphBySentence() {
     }
@@ -16,10 +17,10 @@ public class ParseParagraphBySentence {
     private Pattern teamplate = Pattern.compile(sentenceTeamplate);
 
     public static ParseParagraphBySentence getInstance() {
-        return instance;
+        return INSTANCE;
     }
 
-    public List<String> parse(String paragraph) {
+    public List<String> parse(final String paragraph) {
         List<String> result = new ArrayList<>();
         Matcher matcher = teamplate.matcher(paragraph);
         while (matcher.find()) {

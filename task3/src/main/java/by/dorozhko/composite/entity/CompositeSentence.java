@@ -6,7 +6,7 @@ public class CompositeSentence extends Composite {
     @Override
     public String getTextPart() {
         StringBuilder result = new StringBuilder();
-        for (Component lexem: components){
+        for (Component lexem : components) {
             result.append(lexem.getTextPart());
             result.append(" ");
         }
@@ -15,7 +15,7 @@ public class CompositeSentence extends Composite {
     }
 
     @Override
-    public String getSortedText(String sort) {
+    public String getSortedText(final String sort) {
 
 
         StringBuilder result = new StringBuilder();

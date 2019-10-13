@@ -9,16 +9,18 @@ import java.util.List;
 public class Paragraph implements Handler {
     private Sentence parent;
 
-    public Paragraph(Sentence parent) {
+    public Paragraph(final Sentence parent) {
         this.parent = parent;
     }
 
 
     @Override
-    public Composite handlerRequest(String text, Composite composite) {
+    public Composite handlerRequest(final String text,
+                                    final Composite composite) {
 
 
-        ParseParagraphBySentence parser = ParseParagraphBySentence.getInstance();
+        ParseParagraphBySentence parser =
+                ParseParagraphBySentence.getInstance();
         List<String> sentences = parser.parse(text);
 
         for (String sentence : sentences) {

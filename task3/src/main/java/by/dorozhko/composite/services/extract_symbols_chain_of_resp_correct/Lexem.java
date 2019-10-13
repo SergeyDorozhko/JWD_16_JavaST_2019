@@ -7,19 +7,35 @@ import by.dorozhko.composite.services.parser.ParseLexemByWord;
 import java.util.List;
 
 public class Lexem implements Handler {
+    /**
+     * Have knowledge about root handler.
+     */
     private Word root;
 
-    public Lexem(Word newRoot) {
+    /**
+     * public constructor.
+     *
+     * @param newRoot take root handler.
+     */
+    public Lexem(final Word newRoot) {
         this.root = newRoot;
     }
 
-
+    /**
+     * Method first parse text then make a composition.
+     *
+     * @param text      incoming text.
+     * @param composite tree of text parts developing
+     *                  from text branch by branch.
+     * @return tree text composite.
+     */
     @Override
-    public Composite handlerRequest(String newText, Composite composite) {
+    public Composite handlerRequest(final String text,
+                                    final Composite composite) {
 
 
         ParseLexemByWord parser = ParseLexemByWord.getInstance();
-        List<String> words = parser.parse(newText);
+        List<String> words = parser.parse(text);
 
         for (String word : words) {
             Composite wordComposite = new CompositeWord();

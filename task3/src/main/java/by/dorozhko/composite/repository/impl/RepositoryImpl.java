@@ -6,7 +6,7 @@ import by.dorozhko.composite.repository.storage.TextStorage;
 
 public class RepositoryImpl implements Repository {
     @Override
-    public boolean setText(Composite compositeText) {
+    public boolean setText(final Composite compositeText) {
         TextStorage textStorage = TextStorage.getInstance();
         return textStorage.setText(compositeText);
     }
@@ -18,7 +18,7 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
-    public String getSortedText(String sortBy) {
+    public String getSortedText(final String sortBy) {
         TextStorage textStorage = TextStorage.getInstance();
         return textStorage.getSortedText(sortBy);
     }

@@ -23,7 +23,7 @@ public class CompositeText extends Composite {
     }
 
     @Override
-    public String getSortedText(String sort) {
+    public String getSortedText(final String sort) {
         List<Component> sortedList = new ArrayList<>(components);
 
         if (getClass().getSimpleName().contains(sort)) {

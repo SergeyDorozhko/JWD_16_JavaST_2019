@@ -11,7 +11,8 @@ public class Word implements Handler {
 
 
     @Override
-    public Composite handlerRequest(String text, Composite composite) {
+    public Composite handlerRequest(final String text,
+                                    final Composite composite) {
 
 
         ParseWordBySymbol parser = ParseWordBySymbol.getInstance();

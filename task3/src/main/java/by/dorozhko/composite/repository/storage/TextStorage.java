@@ -3,9 +3,9 @@ package by.dorozhko.composite.repository.storage;
 
 import by.dorozhko.composite.entity.Composite;
 
-public class TextStorage {
+public final class TextStorage {
 
-    private static final TextStorage instance = new TextStorage();
+    private static final TextStorage INSTANCE = new TextStorage();
 
     private Composite text;
 
@@ -13,10 +13,10 @@ public class TextStorage {
     }
 
     public static TextStorage getInstance() {
-        return instance;
+        return INSTANCE;
     }
 
-    public boolean setText(Composite newText) {
+    public boolean setText(final Composite newText) {
         text = newText;
         return true;
     }
@@ -28,7 +28,7 @@ public class TextStorage {
         return text.getTextPart();
     }
 
-    public String getSortedText(String sortBy) {
+    public String getSortedText(final String sortBy) {
         if (text == null) {
             return "NO TEXT IN MEMORY.";
         }

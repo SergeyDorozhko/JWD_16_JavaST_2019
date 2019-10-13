@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CommandProvider {
+public final class CommandProvider {
     /**
      * Log4g, logging User request.
      */
@@ -16,7 +16,7 @@ public class CommandProvider {
     /**
      * Creating singletone.
      */
-    private static final CommandProvider instance = new CommandProvider();
+    private static final CommandProvider INSTANCE = new CommandProvider();
 
     /**
      * private constructor.
@@ -26,9 +26,11 @@ public class CommandProvider {
 
     private CommandProvider() {
         command.put("CreateCompositeFromData", new CreateCompositeFromData());
-        command.put("ViewCompositeTextFromRepository", new ViewTextFromRepository());
+        command.put("ViewCompositeTextFromRepository",
+                new ViewTextFromRepository());
         command.put("SaveTextToData", new SaveTextToData());
-        command.put("ViewSortedCompositeTextFromRepository", new ViewSortedText());
+        command.put("ViewSortedCompositeTextFromRepository",
+                new ViewSortedText());
 
 
     }
@@ -39,7 +41,7 @@ public class CommandProvider {
      * @return instace.
      */
     public static CommandProvider getInstance() {
-        return instance;
+        return INSTANCE;
     }
 
     /**

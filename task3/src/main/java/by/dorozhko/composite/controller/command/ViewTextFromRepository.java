@@ -6,7 +6,7 @@ import by.dorozhko.composite.services.ServiceFactory;
 public class ViewTextFromRepository implements Command {
 
     @Override
-    public String execute(String params) {
+    public String execute(final String params) {
         ServiceFactory provider = ServiceFactory.getInstance();
         Service services = provider.getService();
         return services.viewTextFromRepository();

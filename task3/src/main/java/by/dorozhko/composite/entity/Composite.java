@@ -11,12 +11,12 @@ public abstract class Composite implements Component {
     }
 
     @Override
-    public void add(Component c) {
+    public void add(final Component c) {
         components.add(c);
     }
 
     @Override
-    public Component getChild(int index) {
+    public Component getChild(final int index) {
         return components.get(index);
     }
 

@@ -21,7 +21,8 @@ public final class Client {
 
     public void startProgram() {
 
-        System.out.println("Please choose language:\n 1 — English\n 2 — русский ");
+        System.out.println("Please choose language:"
+                + "\n 1 — English\n 2 — русский ");
 
         char i = 0;
         try {
@@ -97,7 +98,8 @@ public final class Client {
                         request += "Text";
                         break;
                     default:
-                        System.out.println(resourceBundle.getString("errorMsg"));
+                        System.out.println(
+                                resourceBundle.getString("errorMsg"));
                         startProgram();
 
                 }

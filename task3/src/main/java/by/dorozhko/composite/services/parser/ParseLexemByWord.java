@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ParseLexemByWord {
-    private static final ParseLexemByWord instance = new ParseLexemByWord();
+public final class ParseLexemByWord {
+    private static final ParseLexemByWord INSTANCE = new ParseLexemByWord();
 
     private ParseLexemByWord() {
     }
@@ -16,10 +16,10 @@ public class ParseLexemByWord {
     private Pattern teamplate = Pattern.compile(wordTeamplate);
 
     public static ParseLexemByWord getInstance() {
-        return instance;
+        return INSTANCE;
     }
 
-    public List<String> parse(String lexem) {
+    public List<String> parse(final String lexem) {
         List<String> result = new ArrayList<>();
         Matcher matcher = teamplate.matcher(lexem);
         while (matcher.find()) {

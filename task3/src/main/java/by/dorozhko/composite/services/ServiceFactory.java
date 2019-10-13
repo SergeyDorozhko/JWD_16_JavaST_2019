@@ -2,8 +2,8 @@ package by.dorozhko.composite.services;
 
 import by.dorozhko.composite.services.impl.CompositeService;
 
-public class ServiceFactory {
-    private static final ServiceFactory instance = new ServiceFactory();
+public final class ServiceFactory {
+    private static final ServiceFactory INSTANCE = new ServiceFactory();
 
     private Service service = new CompositeService();
 
@@ -11,7 +11,7 @@ public class ServiceFactory {
     }
 
     public static ServiceFactory getInstance() {
-        return instance;
+        return INSTANCE;
     }
 
     public Service getService() {

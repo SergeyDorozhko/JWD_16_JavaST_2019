@@ -6,7 +6,7 @@ import java.util.Comparator;
 
 public class TextComporator implements Comparator<Component> {
     @Override
-    public int compare(Component o1, Component o2) {
+    public int compare(final Component o1, final Component o2) {
 
         int result;
 

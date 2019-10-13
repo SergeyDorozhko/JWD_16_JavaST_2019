@@ -9,13 +9,14 @@ import java.util.List;
 public class Sentence implements Handler {
     private Lexem parent;
 
-    public Sentence(Lexem parent) {
+    public Sentence(final Lexem parent) {
         this.parent = parent;
     }
 
 
     @Override
-    public Composite handlerRequest(String text, Composite composite) {
+    public Composite handlerRequest(final String text,
+                                    final Composite composite) {
 
         ParseSentenceByLexem parser = ParseSentenceByLexem.getInstance();
 

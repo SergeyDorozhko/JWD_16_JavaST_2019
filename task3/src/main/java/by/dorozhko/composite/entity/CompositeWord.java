@@ -13,7 +13,7 @@ public class CompositeWord extends Composite {
     }
 
     @Override
-    public String getSortedText(String sort) {
+    public String getSortedText(final String sort) {
 
 
         StringBuilder result = new StringBuilder();

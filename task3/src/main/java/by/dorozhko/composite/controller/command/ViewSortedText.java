@@ -4,7 +4,7 @@ import by.dorozhko.composite.services.ServiceFactory;
 
 public class ViewSortedText implements Command {
     @Override
-    public String execute(String params) {
+    public String execute(final String params) {
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         return serviceFactory.getService().viewSortedText(params);
     }

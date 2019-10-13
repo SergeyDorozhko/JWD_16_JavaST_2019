@@ -5,15 +5,15 @@ public class ExceptionDAL extends Exception {
         super();
     }
 
-    public ExceptionDAL(Exception ex) {
+    public ExceptionDAL(final Exception ex) {
         super(ex);
     }
 
-    public ExceptionDAL(String msg){
+    public ExceptionDAL(final String msg) {
         super(msg);
     }
 
-    public ExceptionDAL(String msg, Exception ex){
+    public ExceptionDAL(final String msg, final Exception ex) {
         super(msg, ex);
     }
 }

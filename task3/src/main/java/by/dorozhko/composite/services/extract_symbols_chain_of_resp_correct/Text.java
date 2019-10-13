@@ -10,13 +10,14 @@ public class Text implements Handler {
 
     private Paragraph parent = null;
 
-    public Text(Paragraph parent) {
+    public Text(final Paragraph parent) {
         this.parent = parent;
     }
 
 
     @Override
-    public Composite handlerRequest(String text, Composite composite) {
+    public Composite handlerRequest(final String text,
+                                    final Composite composite) {
 
         ParseTextByParagraph parser = ParseTextByParagraph.getInstance();
         List<String> paragraphs = parser.parse(text);

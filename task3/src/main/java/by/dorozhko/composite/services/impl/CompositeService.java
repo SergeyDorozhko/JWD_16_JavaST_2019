@@ -3,11 +3,20 @@ package by.dorozhko.composite.services.impl;
 import by.dorozhko.composite.dal.CompositeDAL;
 import by.dorozhko.composite.dal.FactoryDAL;
 import by.dorozhko.composite.dal.exception.ExceptionDAL;
-import by.dorozhko.composite.entity.*;
+import by.dorozhko.composite.entity.Composite;
+import by.dorozhko.composite.entity.CompositeText;
 import by.dorozhko.composite.repository.Repository;
 import by.dorozhko.composite.repository.RepositoryFactory;
 import by.dorozhko.composite.services.Service;
-import by.dorozhko.composite.services.extract_symbols_chain_of_resp_correct.*;
+import by.dorozhko.composite.services.extract_symbols_chain_of_resp_correct.Lexem;
+import by.dorozhko.composite.services.extract_symbols_chain_of_resp_correct.Paragraph;
+import by.dorozhko.composite.services.extract_symbols_chain_of_resp_correct.Sentence;
+import by.dorozhko.composite.services.extract_symbols_chain_of_resp_correct.Word;
+import by.dorozhko.composite.services.extract_symbols_chain_of_resp_correct.Text;
+
+
+
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -16,7 +25,7 @@ public class CompositeService implements Service {
     private Logger logger = LogManager.getLogger(getClass().getName());
 
     @Override
-    public String createCompositeFromData(String pathToData) {
+    public String createCompositeFromData(final String pathToData) {
         logger.debug("Start create composite of text method");
         FactoryDAL factoryDAL = FactoryDAL.getInstance();
         CompositeDAL dal = factoryDAL.getCompositeDAL();
@@ -47,7 +56,7 @@ public class CompositeService implements Service {
     }
 
 
-    private Composite createCompositeFromText(String text) {
+    private Composite createCompositeFromText(final String text) {
         logger.debug("method createCompositeFromText is started.");
         Word wordToSymbol = new Word();
         Lexem lexemToWord = new Lexem(wordToSymbol);
@@ -72,7 +81,7 @@ public class CompositeService implements Service {
     }
 
     @Override
-    public String saveTextToData(String pathToData) {
+    public String saveTextToData(final String pathToData) {
         logger.debug("Start save to data method");
 
         FactoryDAL factoryDAL = FactoryDAL.getInstance();
@@ -87,7 +96,7 @@ public class CompositeService implements Service {
     }
 
     @Override
-    public String viewSortedText(String sortBy) {
+    public String viewSortedText(final String sortBy) {
         logger.debug("Start view sorted text method");
 
         RepositoryFactory repositoryFactory = RepositoryFactory.getInstance();

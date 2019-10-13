@@ -2,15 +2,17 @@ package by.dorozhko.composite.repository;
 
 import by.dorozhko.composite.repository.impl.RepositoryImpl;
 
-public class RepositoryFactory {
-    private static final RepositoryFactory instance = new RepositoryFactory();
+public final class RepositoryFactory {
+    private static final RepositoryFactory INSTANCE
+            = new RepositoryFactory();
 
     private Repository repository = new RepositoryImpl();
 
-    private RepositoryFactory () { }
+    private RepositoryFactory() {
+    }
 
     public static RepositoryFactory getInstance() {
-        return instance;
+        return INSTANCE;
     }
 
     public Repository getRepository() {
