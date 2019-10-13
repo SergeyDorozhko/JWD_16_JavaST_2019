@@ -7,14 +7,12 @@ import by.dorozhko.composite.services.parser.ParseWordBySymbol;
 
 import java.util.List;
 
-public class Word extends ChainHandler implements Handler {
-
+public class Word implements Handler {
 
 
     @Override
-    public Composite handlerRequest(String newText, Composite textPart) {
-        composite = textPart;
-        text = newText;
+    public Composite handlerRequest(String text, Composite composite) {
+
 
         ParseWordBySymbol parser = ParseWordBySymbol.getInstance();
         List<Character> symbols = parser.parse(text);

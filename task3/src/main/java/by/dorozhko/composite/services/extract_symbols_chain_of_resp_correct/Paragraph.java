@@ -6,7 +6,7 @@ import by.dorozhko.composite.services.parser.ParseParagraphBySentence;
 
 import java.util.List;
 
-public class Paragraph extends ChainHandler implements Handler {
+public class Paragraph implements Handler {
     private Sentence parent;
 
     public Paragraph(Sentence parent) {
@@ -15,9 +15,8 @@ public class Paragraph extends ChainHandler implements Handler {
 
 
     @Override
-    public Composite handlerRequest(String newText, Composite textPart) {
-        composite = textPart;
-        text = newText;
+    public Composite handlerRequest(String text, Composite composite) {
+
 
         ParseParagraphBySentence parser = ParseParagraphBySentence.getInstance();
         List<String> sentences = parser.parse(text);

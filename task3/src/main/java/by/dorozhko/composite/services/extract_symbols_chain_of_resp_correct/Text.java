@@ -6,7 +6,7 @@ import by.dorozhko.composite.services.parser.ParseTextByParagraph;
 
 import java.util.List;
 
-public class Text extends ChainHandler implements Handler {
+public class Text implements Handler {
 
     private Paragraph parent = null;
 
@@ -15,19 +15,17 @@ public class Text extends ChainHandler implements Handler {
     }
 
 
-
     @Override
-    public Composite handlerRequest(String newText, Composite textPart) {
-composite = textPart;
-text = newText;
+    public Composite handlerRequest(String text, Composite composite) {
+
         ParseTextByParagraph parser = ParseTextByParagraph.getInstance();
         List<String> paragraphs = parser.parse(text);
 
         for (String paragraph : paragraphs) {
 
-             Composite compositeParagraph = new CompositeParagraph();
-             composite.add(compositeParagraph);
-             parent.handlerRequest(paragraph, compositeParagraph);
+            Composite compositeParagraph = new CompositeParagraph();
+            composite.add(compositeParagraph);
+            parent.handlerRequest(paragraph, compositeParagraph);
         }
         return composite;
     }

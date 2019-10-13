@@ -1783,3 +1783,69 @@
 2019-10-13 07:30:03.916 [main] TRACE dorozhko.composite.controller.command.CommandProvider - ViewCompositeTextFromRepository
 2019-10-13 07:30:03.916 [main] TRACE by.dorozhko.composite.view.Client - waiting for user input.
 2019-10-13 07:30:13.228 [main] INFO  by.dorozhko.composite.view.Client - Exit from program by user.
+2019-10-13 07:44:09.821 [main] TRACE by.dorozhko.composite.view.Client - waiting for user input.
+2019-10-13 07:44:10.930 [main] TRACE by.dorozhko.composite.view.Client - User: CreateCompositeFromData
+2019-10-13 07:44:18.367 [main] DEBUG by.dorozhko.composite.controller.Controller - CreateCompositeFromData|data\text.txt
+2019-10-13 07:44:18.367 [main] TRACE dorozhko.composite.controller.command.CommandProvider - CreateCompositeFromData
+2019-10-13 07:44:18.367 [main] DEBUG dorozhko.composite.services.impl.CompositeService - Start create composite of text method
+2019-10-13 07:44:18.367 [main] DEBUG dorozhko.composite.services.impl.CompositeService - data\text.txt
+2019-10-13 07:44:18.367 [main] DEBUG dorozhko.composite.services.impl.CompositeService - Text successfully read from data
+2019-10-13 07:44:18.367 [main] DEBUG dorozhko.composite.services.impl.CompositeService - method createCompositeFromText is started.
+2019-10-13 07:44:18.367 [main] DEBUG dorozhko.composite.services.impl.CompositeService - Chain of responsibility created. Start to parse text and create composition.
+2019-10-13 07:44:18.383 [main] DEBUG dorozhko.composite.services.impl.CompositeService - Text successfully parsed and composition is ready.
+2019-10-13 07:44:18.383 [main] DEBUG dorozhko.composite.services.impl.CompositeService - Composition send to storage.
+2019-10-13 07:44:18.383 [main] TRACE by.dorozhko.composite.view.Client - waiting for user input.
+2019-10-13 07:44:21.008 [main] TRACE by.dorozhko.composite.view.Client - User: view text from composite
+2019-10-13 07:44:21.008 [main] DEBUG by.dorozhko.composite.controller.Controller - ViewCompositeTextFromRepository| 
+2019-10-13 07:44:21.008 [main] TRACE dorozhko.composite.controller.command.CommandProvider - ViewCompositeTextFromRepository
+2019-10-13 07:44:21.008 [main] TRACE by.dorozhko.composite.view.Client - waiting for user input.
+2019-10-13 07:44:27.820 [main] TRACE by.dorozhko.composite.view.Client - User: View Sorted Composite Text From Repository
+2019-10-13 07:44:28.976 [main] DEBUG by.dorozhko.composite.controller.Controller - ViewSortedCompositeTextFromRepository|Text
+2019-10-13 07:44:28.976 [main] TRACE dorozhko.composite.controller.command.CommandProvider - ViewSortedCompositeTextFromRepository
+2019-10-13 07:44:28.976 [main] DEBUG dorozhko.composite.services.impl.CompositeService - Start view sorted text method
+2019-10-13 07:44:28.976 [main] TRACE by.dorozhko.composite.view.Client - waiting for user input.
+2019-10-13 07:44:37.647 [main] INFO  by.dorozhko.composite.view.Client - Exit from program by user.
+2019-10-13 07:45:17.628 [main] TRACE by.dorozhko.composite.view.Client - waiting for user input.
+2019-10-13 07:45:21.102 [main] TRACE by.dorozhko.composite.view.Client - User: CreateCompositeFromData
+2019-10-13 07:45:27.388 [main] DEBUG by.dorozhko.composite.controller.Controller - CreateCompositeFromData|data\text.txt
+2019-10-13 07:45:27.388 [main] TRACE dorozhko.composite.controller.command.CommandProvider - CreateCompositeFromData
+2019-10-13 07:45:27.388 [main] DEBUG dorozhko.composite.services.impl.CompositeService - Start create composite of text method
+2019-10-13 07:45:27.388 [main] DEBUG dorozhko.composite.services.impl.CompositeService - data\text.txt
+2019-10-13 07:45:27.404 [main] DEBUG dorozhko.composite.services.impl.CompositeService - Text successfully read from data
+2019-10-13 07:45:27.404 [main] DEBUG dorozhko.composite.services.impl.CompositeService - method createCompositeFromText is started.
+2019-10-13 07:45:27.404 [main] DEBUG dorozhko.composite.services.impl.CompositeService - Chain of responsibility created. Start to parse text and create composition.
+2019-10-13 07:45:27.410 [main] DEBUG dorozhko.composite.services.impl.CompositeService - Text successfully parsed and composition is ready.
+2019-10-13 07:45:27.410 [main] DEBUG dorozhko.composite.services.impl.CompositeService - Composition send to storage.
+2019-10-13 07:45:27.410 [main] TRACE by.dorozhko.composite.view.Client - waiting for user input.
+2019-10-13 07:45:29.010 [main] TRACE by.dorozhko.composite.view.Client - User: view text from composite
+2019-10-13 07:45:29.010 [main] DEBUG by.dorozhko.composite.controller.Controller - ViewCompositeTextFromRepository| 
+2019-10-13 07:45:29.010 [main] TRACE dorozhko.composite.controller.command.CommandProvider - ViewCompositeTextFromRepository
+2019-10-13 07:45:29.010 [main] TRACE by.dorozhko.composite.view.Client - waiting for user input.
+2019-10-13 07:45:32.923 [main] TRACE by.dorozhko.composite.view.Client - User: View Sorted Composite Text From Repository
+2019-10-13 07:45:34.751 [main] DEBUG by.dorozhko.composite.controller.Controller - ViewSortedCompositeTextFromRepository|Text
+2019-10-13 07:45:34.751 [main] TRACE dorozhko.composite.controller.command.CommandProvider - ViewSortedCompositeTextFromRepository
+2019-10-13 07:45:34.751 [main] DEBUG dorozhko.composite.services.impl.CompositeService - Start view sorted text method
+2019-10-13 07:45:34.751 [main] TRACE by.dorozhko.composite.view.Client - waiting for user input.
+2019-10-13 07:45:37.964 [main] INFO  by.dorozhko.composite.view.Client - Exit from program by user.
+2019-10-13 07:47:05.760 [main] TRACE by.dorozhko.composite.view.Client - waiting for user input.
+2019-10-13 07:47:07.181 [main] TRACE by.dorozhko.composite.view.Client - User: CreateCompositeFromData
+2019-10-13 07:47:13.353 [main] DEBUG by.dorozhko.composite.controller.Controller - CreateCompositeFromData|data\text.txt
+2019-10-13 07:47:13.353 [main] TRACE dorozhko.composite.controller.command.CommandProvider - CreateCompositeFromData
+2019-10-13 07:47:13.353 [main] DEBUG dorozhko.composite.services.impl.CompositeService - Start create composite of text method
+2019-10-13 07:47:13.353 [main] DEBUG dorozhko.composite.services.impl.CompositeService - data\text.txt
+2019-10-13 07:47:13.369 [main] DEBUG dorozhko.composite.services.impl.CompositeService - Text successfully read from data
+2019-10-13 07:47:13.369 [main] DEBUG dorozhko.composite.services.impl.CompositeService - method createCompositeFromText is started.
+2019-10-13 07:47:13.369 [main] DEBUG dorozhko.composite.services.impl.CompositeService - Chain of responsibility created. Start to parse text and create composition.
+2019-10-13 07:47:13.385 [main] DEBUG dorozhko.composite.services.impl.CompositeService - Text successfully parsed and composition is ready.
+2019-10-13 07:47:13.385 [main] DEBUG dorozhko.composite.services.impl.CompositeService - Composition send to storage.
+2019-10-13 07:47:13.385 [main] TRACE by.dorozhko.composite.view.Client - waiting for user input.
+2019-10-13 07:47:16.338 [main] TRACE by.dorozhko.composite.view.Client - User: view text from composite
+2019-10-13 07:47:16.338 [main] DEBUG by.dorozhko.composite.controller.Controller - ViewCompositeTextFromRepository| 
+2019-10-13 07:47:16.338 [main] TRACE dorozhko.composite.controller.command.CommandProvider - ViewCompositeTextFromRepository
+2019-10-13 07:47:16.338 [main] TRACE by.dorozhko.composite.view.Client - waiting for user input.
+2019-10-13 07:47:21.681 [main] TRACE by.dorozhko.composite.view.Client - User: View Sorted Composite Text From Repository
+2019-10-13 07:47:22.493 [main] DEBUG by.dorozhko.composite.controller.Controller - ViewSortedCompositeTextFromRepository|Text
+2019-10-13 07:47:22.493 [main] TRACE dorozhko.composite.controller.command.CommandProvider - ViewSortedCompositeTextFromRepository
+2019-10-13 07:47:22.493 [main] DEBUG dorozhko.composite.services.impl.CompositeService - Start view sorted text method
+2019-10-13 07:47:22.493 [main] TRACE by.dorozhko.composite.view.Client - waiting for user input.
+2019-10-13 07:47:28.524 [main] INFO  by.dorozhko.composite.view.Client - Exit from program by user.

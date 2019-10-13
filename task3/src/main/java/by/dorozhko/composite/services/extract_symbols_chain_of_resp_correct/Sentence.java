@@ -6,7 +6,7 @@ import by.dorozhko.composite.services.parser.ParseSentenceByLexem;
 
 import java.util.List;
 
-public class Sentence extends ChainHandler implements Handler {
+public class Sentence implements Handler {
     private Lexem parent;
 
     public Sentence(Lexem parent) {
@@ -14,11 +14,9 @@ public class Sentence extends ChainHandler implements Handler {
     }
 
 
-
     @Override
-    public Composite handlerRequest(String newText, Composite textPart) {
-        composite = textPart;
-        text = newText;
+    public Composite handlerRequest(String text, Composite composite) {
+
         ParseSentenceByLexem parser = ParseSentenceByLexem.getInstance();
 
         List<String> lexems = parser.parse(text);
