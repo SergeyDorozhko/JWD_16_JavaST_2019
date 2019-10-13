@@ -6,33 +6,28 @@ import by.dorozhko.composite.services.parser.ParseParagraphBySentence;
 
 import java.util.List;
 
-public class Paragraph implements Handler {
-    private String paragraph;
+public class Paragraph extends ChainHandler implements Handler {
     private Sentence parent;
-    private Composite composite;
 
     public Paragraph(Sentence parent) {
         this.parent = parent;
     }
 
-    @Override
-    public void setText(String text) {
-        paragraph = text;
-    }
 
     @Override
-    public Composite handlerRequest(Composite textPart) {
+    public Composite handlerRequest(String newText, Composite textPart) {
         composite = textPart;
+        text = newText;
+
         ParseParagraphBySentence parser = ParseParagraphBySentence.getInstance();
-        List<String> sentences = parser.parse(paragraph);
+        List<String> sentences = parser.parse(text);
 
         for (String sentence : sentences) {
 
             Composite sentenceComposite = new CompositeSentence();
 
-            parent.setText(sentence);
             composite.add(sentenceComposite);
-            parent.handlerRequest(sentenceComposite);
+            parent.handlerRequest(sentence, sentenceComposite);
         }
         return composite;
     }

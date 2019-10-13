@@ -6,32 +6,27 @@ import by.dorozhko.composite.services.parser.ParseSentenceByLexem;
 
 import java.util.List;
 
-public class Sentence implements Handler {
-    private String sentence;
+public class Sentence extends ChainHandler implements Handler {
     private Lexem parent;
-    private Composite composite;
 
     public Sentence(Lexem parent) {
         this.parent = parent;
     }
 
-    @Override
-    public void setText(String text) {
-        sentence = text;
-    }
+
 
     @Override
-    public Composite handlerRequest(Composite textPart) {
+    public Composite handlerRequest(String newText, Composite textPart) {
         composite = textPart;
+        text = newText;
         ParseSentenceByLexem parser = ParseSentenceByLexem.getInstance();
 
-        List<String> lexems = parser.parse(sentence);
+        List<String> lexems = parser.parse(text);
 
         for (String lexem : lexems) {
             Composite lexemComposite = new CompositeLexem();
             composite.add(lexemComposite);
-            parent.setText(lexem);
-            parent.handlerRequest(lexemComposite);
+            parent.handlerRequest(lexem, lexemComposite);
         }
         return composite;
     }

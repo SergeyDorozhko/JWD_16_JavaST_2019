@@ -6,33 +6,28 @@ import by.dorozhko.composite.services.parser.ParseLexemByWord;
 
 import java.util.List;
 
-public class Lexem implements Handler {
-    private String lexem;
+public class Lexem extends ChainHandler implements Handler {
     private Word root;
-    private Composite composite;
 
     public Lexem(Word newRoot) {
         this.root = newRoot;
     }
 
-    @Override
-    public void setText(String text) {
-        lexem = text;
-    }
+
 
     @Override
-    public Composite handlerRequest(Composite textPart) {
+    public Composite handlerRequest(String newText, Composite textPart) {
         composite = textPart;
+        text = newText;
 
         ParseLexemByWord parser = ParseLexemByWord.getInstance();
-        List<String> words =  parser.parse(lexem);
+        List<String> words =  parser.parse(text);
 
         for(String word : words) {
             Composite wordComposite = new CompositeWord();
 
             composite.add(wordComposite);
-            root.setText(word);
-            root.handlerRequest(wordComposite);
+            root.handlerRequest(word, wordComposite);
         }
         return composite;
     }

@@ -47,73 +47,6 @@ public class CompositeService implements Service {
     }
 
 
-//    private Composite createCompositeFromText(String text) {
-//        logger.debug("method createCompositeFromText is started.");
-//        Word wordToSymbol = new Word();
-//        Lexem lexemToWord = new Lexem(wordToSymbol);
-//        Sentence sentenceToLexem = new Sentence(lexemToWord);
-//        Paragraph paragraphToSentence = new Paragraph(sentenceToLexem);
-//        Text textToParagraph = new Text(paragraphToSentence);
-//
-//        logger.debug("Chain of responsibility created. Start to parse text and create composition.");
-//        Composite compositeText = new CompositeText();
-//
-//        int countParagraphBranch = 0;
-//
-//
-//        textToParagraph.setText(text);
-//
-//        for (Object paragraphFromText : textToParagraph.handlerRequest()) {
-//            String paragraph = (String) paragraphFromText;
-//
-//            compositeText.add(new CompositeParagraph());
-//
-//            int countSentenceBranch = 0;
-//
-//            paragraphToSentence.setText(paragraph);
-//            for (Object sentenceFromParagraph : paragraphToSentence.handlerRequest()) {
-//                String sentence = (String) sentenceFromParagraph;
-//
-//                compositeText.getChild(countParagraphBranch).add(new CompositeSentence());
-//
-//                int countLexemBranch = 0;
-//
-//                sentenceToLexem.setText(sentence);
-//                for (Object lexemFromSentence : sentenceToLexem.handlerRequest()) {
-//                    String lexem = (String) lexemFromSentence;
-//
-//                    compositeText.getChild(countParagraphBranch).getChild(countSentenceBranch).add(new CompositeLexem());
-//
-//                    int countWordBranch = 0;
-//
-//                    lexemToWord.setText(lexem);
-//                    for (Object wordFromLexem : lexemToWord.handlerRequest()) {
-//                        String word = (String) wordFromLexem;
-//
-//                        compositeText.getChild(countParagraphBranch).getChild(countSentenceBranch).getChild(countLexemBranch).add(new CompositeWord());
-//
-//                        wordToSymbol.setText(word);
-//                        for (Object symbolFromWord : wordToSymbol.handlerRequest()) {
-//                            Character symbol = (Character) symbolFromWord;
-//                            compositeText.getChild(countParagraphBranch).getChild(countSentenceBranch).getChild(countLexemBranch).getChild(countWordBranch).add(new LeafSymbol(symbol));
-//                        }
-//                        countWordBranch++;
-//                    }
-//
-//                    countLexemBranch++;
-//                }
-//
-//                countSentenceBranch++;
-//            }
-//
-//            countParagraphBranch++;
-//        }
-//
-//        logger.debug("Text successfully parsed and composition is ready.");
-//
-//        return compositeText;
-//    }
-
     private Composite createCompositeFromText(String text) {
         logger.debug("method createCompositeFromText is started.");
         Word wordToSymbol = new Word();
@@ -125,8 +58,7 @@ public class CompositeService implements Service {
         logger.debug("Chain of responsibility created. Start to parse text and create composition.");
         Composite compositeText = new CompositeText();
 
-        textToParagraph.setText(text);
-        compositeText = textToParagraph.handlerRequest(compositeText);
+        compositeText = textToParagraph.handlerRequest(text, compositeText);
 
 
         logger.debug("Text successfully parsed and composition is ready.");

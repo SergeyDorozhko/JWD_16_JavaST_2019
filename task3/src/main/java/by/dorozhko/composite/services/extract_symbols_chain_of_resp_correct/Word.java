@@ -7,22 +7,17 @@ import by.dorozhko.composite.services.parser.ParseWordBySymbol;
 
 import java.util.List;
 
-public class Word implements Handler {
+public class Word extends ChainHandler implements Handler {
 
-    private String word;
-    private Composite composite;
 
-    @Override
-    public void setText(String text) {
-        word = text;
-    }
 
     @Override
-    public Composite handlerRequest(Composite textPart) {
+    public Composite handlerRequest(String newText, Composite textPart) {
         composite = textPart;
+        text = newText;
 
         ParseWordBySymbol parser = ParseWordBySymbol.getInstance();
-        List<Character> symbols = parser.parse(word);
+        List<Character> symbols = parser.parse(text);
         for (Character symbol : symbols) {
             Component symbolComponent = new LeafSymbol(symbol);
             composite.add(symbolComponent);
