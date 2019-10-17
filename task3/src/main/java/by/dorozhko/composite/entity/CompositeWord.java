@@ -12,15 +12,5 @@ public class CompositeWord extends Composite {
         return result.toString();
     }
 
-    @Override
-    public String getSortedText(final String sort) {
 
-
-        StringBuilder result = new StringBuilder();
-        for (Component info : components) {
-            result.append(info.getTextPart());
-
-        }
-        return result.toString();
-    }
 }

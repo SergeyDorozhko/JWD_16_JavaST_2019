@@ -1,7 +1,12 @@
 package by.dorozhko.composite.repository.storage;
 
 
+import by.dorozhko.composite.entity.Component;
 import by.dorozhko.composite.entity.Composite;
+import by.dorozhko.composite.repository.exception.ExceptionRepository;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public final class TextStorage {
 
@@ -21,6 +26,14 @@ public final class TextStorage {
         return true;
     }
 
+    public List<Component> getCompositeText() throws ExceptionRepository {
+        if (text == null) {
+            throw new ExceptionRepository("NO TEXT IN MEMORY");
+        }
+        return new ArrayList<>(text.getComponents());
+
+    }
+
     public String getText() {
         if (text == null) {
             return "NO TEXT IN MEMORY.";
@@ -28,12 +41,5 @@ public final class TextStorage {
         return text.getTextPart();
     }
 
-    public String getSortedText(final String sortBy) {
-        if (text == null) {
-            return "NO TEXT IN MEMORY.";
-        }
 
-
-        return text.getSortedText(sortBy);
-    }
 }

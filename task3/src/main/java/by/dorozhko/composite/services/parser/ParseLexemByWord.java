@@ -11,7 +11,7 @@ public final class ParseLexemByWord {
     private ParseLexemByWord() {
     }
 
-    private String wordTeamplate = "(\\w)+|([\\W])";
+    private String wordTeamplate = "(\\w)+|([^ ])";
 
     private Pattern teamplate = Pattern.compile(wordTeamplate);
 

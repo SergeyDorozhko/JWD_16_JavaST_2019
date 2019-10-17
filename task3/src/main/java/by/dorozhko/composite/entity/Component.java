@@ -1,19 +1,35 @@
 package by.dorozhko.composite.entity;
 
 public interface Component {
+    /**
+     * Method adding component to composite.
+     * @param c component.
+     */
     void add(Component c);
 
+    /**
+     * get components child.
+     * @param index child index.
+     * @return child component.
+     */
     Component getChild(int index);
 
+    /**
+     * Default realization for leaf.
+     * @return number of childes.
+     */
     default  int getNumberOfChilds() {
         throw new UnsupportedOperationException();
     }
 
+    /**
+     * Makes text from all childes.
+     * @return text.
+     */
     String getTextPart();
 
-    default String getSortedText(String sort) {
-        throw new UnsupportedOperationException();
-    }
+    int numOfSymbols(String symbol);
+
 
 
 

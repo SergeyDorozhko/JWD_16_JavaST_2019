@@ -1,10 +1,10 @@
-package by.dorozhko.composite.entity.comporator;
+package by.dorozhko.composite.services.impl.comporator;
 
 import by.dorozhko.composite.entity.Component;
 
 import java.util.Comparator;
 
-public class TextComporator implements Comparator<Component> {
+public class TextPartComporator implements Comparator<Component> {
     @Override
     public int compare(final Component o1, final Component o2) {
 

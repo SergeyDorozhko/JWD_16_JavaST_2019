@@ -11,14 +11,26 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 
 public final class Client {
+    /**
+     * logger.
+     */
     private Logger logger = LogManager.getLogger(getClass().getName());
-
+    /**
+     * Scan user actions.
+     */
     private Scanner userInput = new Scanner(System.in);
-
+    /**
+     * Link to controller.
+     */
     private Controller controller = new Controller();
-
+    /**
+     * Local language chooser.
+     */
     private ResourceBundle resourceBundle;
 
+    /**
+     * Starting program method.
+     */
     public void startProgram() {
 
         System.out.println("Please choose language:"
@@ -95,7 +107,21 @@ public final class Client {
                 String userRequest = userInput.next();
                 switch (userRequest) {
                     case "1":
-                        request += "Text";
+                        request += "Text ";
+                        break;
+                    case "2":
+                        request += "WordsIsSentence ";
+                        break;
+                    case "3":
+                        request += "LexemsBySymbolsOfAlfabet ";
+                        System.out.println(resourceBundle.getString("sortMenu2"));
+                        userRequest = userInput.next();
+                        if(userRequest.length() == 1) {
+                            request += userRequest;
+                        } else {
+                            System.out.println("errorMsg");
+                            startProgram();
+                        }
                         break;
                     default:
                         System.out.println(

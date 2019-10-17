@@ -7,9 +7,9 @@ import by.dorozhko.composite.services.parser.ParseParagraphBySentence;
 import java.util.List;
 
 public class Paragraph implements Handler {
-    private Sentence parent;
+    private Handler parent;
 
-    public Paragraph(final Sentence parent) {
+    public Paragraph(final Handler parent) {
         this.parent = parent;
     }
 

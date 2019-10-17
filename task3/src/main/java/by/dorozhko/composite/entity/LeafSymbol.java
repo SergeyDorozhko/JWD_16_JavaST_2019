@@ -15,13 +15,23 @@ public class LeafSymbol implements Component {
 
     @Override
     public Component getChild(final int index) {
-        return null;
+        throw  new UnsupportedOperationException();
     }
 
     @Override
     public String getTextPart() {
         return "" + symbol;
     }
+
+    @Override
+    public int numOfSymbols(final String isSymbol) {
+
+        if (isSymbol.equals("" + symbol)) {
+            return 1;
+        }
+        return 0;
+    }
+
 
 
 }

@@ -7,9 +7,9 @@ import by.dorozhko.composite.services.parser.ParseSentenceByLexem;
 import java.util.List;
 
 public class Sentence implements Handler {
-    private Lexem parent;
+    private Handler parent;
 
-    public Sentence(final Lexem parent) {
+    public Sentence(final Handler parent) {
         this.parent = parent;
     }
 

@@ -6,15 +6,24 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public final class ParseTextByParagraph {
+    /**
+     * Single tone.
+     */
     private static final ParseTextByParagraph INSTANCE
             = new ParseTextByParagraph();
 
     private ParseTextByParagraph() {
     }
 
+    /**
+     * Teamplate for parsing text for paragraph.
+     */
     private String paragraphTeamplate =
             "[\\t][\\w\\W]+?[\\n]+?|[\\s]{4}[\\w\\W]+?[\\n]+?";
 
+    /**
+     *
+     */
     private Pattern teamplate = Pattern.compile(paragraphTeamplate);
 
     public static ParseTextByParagraph getInstance() {

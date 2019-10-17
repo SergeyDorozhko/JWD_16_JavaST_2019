@@ -8,9 +8,9 @@ import java.util.List;
 
 public class Text implements Handler {
 
-    private Paragraph parent = null;
+    private Handler parent = null;
 
-    public Text(final Paragraph parent) {
+    public Text(final Handler parent) {
         this.parent = parent;
     }
 

@@ -10,14 +10,14 @@ public class Lexem implements Handler {
     /**
      * Have knowledge about root handler.
      */
-    private Word root;
+    private Handler root;
 
     /**
      * public constructor.
      *
      * @param newRoot take root handler.
      */
-    public Lexem(final Word newRoot) {
+    public Lexem(final Handler newRoot) {
         this.root = newRoot;
     }
 
