@@ -103,33 +103,19 @@ public final class Client {
                 logger.trace("User: View Sorted Composite Text From Repository");
 
                 request = "ViewSortedCompositeTextFromRepository|";
-                System.out.println(resourceBundle.getString("sortMenu"));
-                String userRequest = userInput.next();
-                switch (userRequest) {
-                    case "1":
-                        request += "Text ";
-                        break;
-                    case "2":
-                        request += "WordsIsSentence ";
-                        break;
-                    case "3":
-                        request += "LexemsBySymbolsOfAlfabet ";
-                        System.out.println(resourceBundle.getString("sortMenu2"));
-                        userRequest = userInput.next();
-                        if(userRequest.length() == 1) {
-                            request += userRequest;
-                        } else {
-                            System.out.println("errorMsg");
-                            startProgram();
-                        }
-                        break;
-                    default:
-                        System.out.println(
-                                resourceBundle.getString("errorMsg"));
-                        startProgram();
 
-                }
+                request += sortMenu();
+                System.out.println(controller.doAction(request));
+                break;
+            case "5":
+                logger.trace("User: Save Sorted Composite Text From Repository");
 
+                request = "SaveSortedCompositeTextFromRepository|";
+
+                request += sortMenu();
+
+                System.out.println(resourceBundle.getString("path"));
+                request += "|" + userInput.next();
                 System.out.println(controller.doAction(request));
                 break;
             case "0":
@@ -141,5 +127,39 @@ public final class Client {
                 System.out.println(resourceBundle.getString("errorMsg"));
         }
         userMenu();
+    }
+
+    private String sortMenu() {
+        System.out.println(resourceBundle.getString("sortMenu"));
+        String userRequest = userInput.next();
+
+
+        String result = "";
+        switch (userRequest) {
+            case "1":
+                result = "Text ";
+                break;
+            case "2":
+                result = "WordsIsSentence ";
+                break;
+            case "3":
+                result = "LexemsBySymbolsOfAlfabet ";
+                System.out.println(resourceBundle.getString("sortMenu2"));
+                userRequest = userInput.next();
+                if (userRequest.length() == 1) {
+                    result += userRequest;
+                } else {
+                    System.out.println("errorMsg");
+                    startProgram();
+                }
+                break;
+            default:
+                System.out.println(
+                        resourceBundle.getString("errorMsg"));
+                startProgram();
+
+        }
+
+        return result;
     }
 }

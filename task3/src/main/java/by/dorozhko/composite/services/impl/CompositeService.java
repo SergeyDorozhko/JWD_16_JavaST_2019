@@ -10,7 +10,12 @@ import by.dorozhko.composite.repository.Repository;
 import by.dorozhko.composite.repository.RepositoryFactory;
 import by.dorozhko.composite.repository.exception.ExceptionRepository;
 import by.dorozhko.composite.services.Service;
-import by.dorozhko.composite.services.extract_symbols_chain_of_resp_correct.*;
+import by.dorozhko.composite.services.extract_symbols_chain_of_resp_correct.Sentence;
+import by.dorozhko.composite.services.extract_symbols_chain_of_resp_correct.Lexem;
+import by.dorozhko.composite.services.extract_symbols_chain_of_resp_correct.Text;
+import by.dorozhko.composite.services.extract_symbols_chain_of_resp_correct.Word;
+import by.dorozhko.composite.services.extract_symbols_chain_of_resp_correct.Paragraph;
+
 import by.dorozhko.composite.services.impl.comporator.LexemBySymbolThenAlfabetComporator;
 import by.dorozhko.composite.services.impl.comporator.TextPartComporator;
 import org.apache.logging.log4j.LogManager;
@@ -213,5 +218,23 @@ public class CompositeService implements Service {
         return compositeText;
 
     }
+
+    @Override
+    public String saveSortedText(final String sortBy) {
+        String[] sortByThenPath = sortBy.split("[|]");
+
+        logger.debug("Start save sorted text to data method");
+
+        FactoryDAL factoryDAL = FactoryDAL.getInstance();
+        CompositeDAL compositeDAL = factoryDAL.getCompositeDAL();
+        try {
+            compositeDAL.write(viewSortedText(sortByThenPath[0].trim()), sortByThenPath[1].trim());
+        } catch (ExceptionDAL ex) {
+            logger.error(ex);
+            return "Some problem with file, data didn't save.";
+        }
+        return "Data successfully saved.";
+    }
+
 
 }

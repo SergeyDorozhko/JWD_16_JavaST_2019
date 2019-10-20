@@ -5,5 +5,7 @@ public interface Service {
     String viewTextFromRepository();
     String saveTextToData(String pathToData);
     String viewSortedText(String sortBy);
+    String saveSortedText(String sortBy);
+
 
 }

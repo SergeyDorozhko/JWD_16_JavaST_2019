@@ -31,6 +31,8 @@ public final class CommandProvider {
         command.put("SaveTextToData", new SaveTextToData());
         command.put("ViewSortedCompositeTextFromRepository",
                 new ViewSortedText());
+        command.put("SaveSortedCompositeTextFromRepository",
+                new SaveSortedText());
 
 
     }

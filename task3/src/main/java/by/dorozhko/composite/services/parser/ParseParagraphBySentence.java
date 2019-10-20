@@ -12,7 +12,7 @@ public final class ParseParagraphBySentence {
     private ParseParagraphBySentence() {
     }
 
-    private String sentenceTeamplate = "[\\w\\W]+?[.!?]{1,3}";
+    private String sentenceTeamplate = "[\\w\\W&&[^.!?]]+?[.!?]{1,3}";
 
     private Pattern teamplate = Pattern.compile(sentenceTeamplate);
 

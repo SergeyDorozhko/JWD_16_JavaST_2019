@@ -23,7 +23,7 @@ public class Controller {
      */
     public String doAction(final String request) {
         logger.debug(request);
-        String[] action = request.split("[|]");
+        String[] action = request.split("[|]", 2);
         String result;
 
         Command command = commandProvider.
