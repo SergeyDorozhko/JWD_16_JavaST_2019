@@ -22,14 +22,23 @@ public final class ParseTextByParagraph {
             "[\\t][\\w\\W]+?[\\n]+?|[\\s]{4}[\\w\\W]+?[\\n]+?";
 
     /**
-     *
+     * pattern to parse text to paragraphs.
      */
     private Pattern teamplate = Pattern.compile(paragraphTeamplate);
 
+    /**
+     * link to object of class.
+     * @return link.
+     */
     public static ParseTextByParagraph getInstance() {
         return INSTANCE;
     }
 
+    /**
+     * parser text to paragraphs.
+     * @param text to parse.
+     * @return list of paragraphs.
+     */
     public List<String> parse(final String text) {
         List<String> result = new ArrayList<>();
         Matcher matcher = teamplate.matcher(text);

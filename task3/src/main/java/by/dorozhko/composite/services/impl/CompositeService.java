@@ -79,7 +79,8 @@ public class CompositeService implements Service {
         Text textToParagraph = new Text(paragraphToSentence);
 
 
-        logger.debug("Chain of responsibility created. Start to parse text and create composition.");
+        logger.debug("Chain of responsibility created."
+                + "Start to parse text and create composition.");
         Composite compositeText = new CompositeText();
 
         compositeText = textToParagraph.handlerRequest(text, compositeText);
@@ -122,6 +123,12 @@ public class CompositeService implements Service {
         return "Data successfully saved.";
     }
 
+    /**
+     * display text sorted by query.
+     *
+     * @param sortBy query for sort.
+     * @return sorted text.
+     */
     @Override
     public String viewSortedText(final String sortBy) {
         logger.debug("Start view sorted text method");
@@ -150,7 +157,8 @@ public class CompositeService implements Service {
         return result;
     }
 
-    private Composite sortParagraphBySentencesNumber() throws ExceptionRepository {
+    private Composite sortParagraphBySentencesNumber()
+            throws ExceptionRepository {
         logger.debug("Start sort paragraph by sentences num...");
 
         RepositoryFactory repositoryFactory = RepositoryFactory.getInstance();
@@ -182,13 +190,15 @@ public class CompositeService implements Service {
 
         Composite compositeText = new CompositeText();
 
-        compositeText = textToParagraph.handlerRequest(repository.getText(), compositeText);
+        compositeText = textToParagraph.
+                handlerRequest(repository.getText(), compositeText);
 
 
         for (Component paragraph : compositeText.getComponents()) {
             for (int i = 0; i < paragraph.getNumberOfChilds(); i++) {
                 Composite sentence = (Composite) paragraph.getChild(i);
-                Collections.sort(sentence.getComponents(), new TextPartComporator());
+                Collections.sort(sentence.getComponents(),
+                        new TextPartComporator());
             }
         }
 
@@ -209,26 +219,35 @@ public class CompositeService implements Service {
 
         Composite compositeText = new CompositeText();
 
-        compositeText = textToLexem.handlerRequest(repository.getText(), compositeText);
+        compositeText = textToLexem.handlerRequest(repository.getText(),
+                compositeText);
 
 
-        Collections.sort(compositeText.getComponents(), new LexemBySymbolThenAlfabetComporator(sortBySymbol));
+        Collections.sort(compositeText.getComponents(),
+                new LexemBySymbolThenAlfabetComporator(sortBySymbol));
 
 
         return compositeText;
 
     }
 
+    /**
+     * save text sorted by query.
+     *
+     * @param sortQuerywithPathToSave query to sort with path to save.
+     * @return result.
+     */
     @Override
-    public String saveSortedText(final String sortBy) {
-        String[] sortByThenPath = sortBy.split("[|]");
+    public String saveSortedText(final String sortQuerywithPathToSave) {
+        String[] sortByThenPath = sortQuerywithPathToSave.split("[|]");
 
         logger.debug("Start save sorted text to data method");
 
         FactoryDAL factoryDAL = FactoryDAL.getInstance();
         CompositeDAL compositeDAL = factoryDAL.getCompositeDAL();
         try {
-            compositeDAL.write(viewSortedText(sortByThenPath[0].trim()), sortByThenPath[1].trim());
+            compositeDAL.write(viewSortedText(sortByThenPath[0].trim()),
+                    sortByThenPath[1].trim());
         } catch (ExceptionDAL ex) {
             logger.error(ex);
             return "Some problem with file, data didn't save.";

@@ -7,13 +7,26 @@ import by.dorozhko.composite.services.parser.ParseSentenceByLexem;
 import java.util.List;
 
 public class Sentence implements Handler {
+    /**
+     * next handler.
+     */
     private Handler parent;
 
-    public Sentence(final Handler parent) {
-        this.parent = parent;
+    /**
+     * constructor takes next handler.
+     * @param nextParent next handler.
+     */
+    public Sentence(final Handler nextParent) {
+        parent = nextParent;
     }
 
-
+    /**
+     * make action and give ask next handler.
+     * @param text      incoming text.
+     * @param composite tree of text parts developing
+     *                  from text branch by branch.
+     * @return
+     */
     @Override
     public Composite handlerRequest(final String text,
                                     final Composite composite) {

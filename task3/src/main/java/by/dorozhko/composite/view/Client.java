@@ -100,7 +100,8 @@ public final class Client {
                 System.out.println(controller.doAction(request));
                 break;
             case "4":
-                logger.trace("User: View Sorted Composite Text From Repository");
+                logger.trace("User: View Sorted"
+                        + "Composite Text From Repository");
 
                 request = "ViewSortedCompositeTextFromRepository|";
 
@@ -108,7 +109,8 @@ public final class Client {
                 System.out.println(controller.doAction(request));
                 break;
             case "5":
-                logger.trace("User: Save Sorted Composite Text From Repository");
+                logger.trace("User: Save Sorted"
+                        + "Composite Text From Repository");
 
                 request = "SaveSortedCompositeTextFromRepository|";
 

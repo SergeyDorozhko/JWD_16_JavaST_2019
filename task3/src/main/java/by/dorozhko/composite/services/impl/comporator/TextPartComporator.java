@@ -5,6 +5,12 @@ import by.dorozhko.composite.entity.Component;
 import java.util.Comparator;
 
 public class TextPartComporator implements Comparator<Component> {
+    /**
+     * text comparator.
+     * @param o1 Component of text.
+     * @param o2 componet of text.
+     * @return result of compare.
+     */
     @Override
     public int compare(final Component o1, final Component o2) {
 

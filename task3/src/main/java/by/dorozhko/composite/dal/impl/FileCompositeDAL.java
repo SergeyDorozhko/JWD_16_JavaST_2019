@@ -13,9 +13,17 @@ import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 
 public class FileCompositeDAL implements CompositeDAL {
-
+    /**
+     * logger.
+     */
     private final Logger logger = LogManager.getLogger(getClass().getName());
 
+    /**
+     * read data from file.
+     * @param pathToData path where data is stored.
+     * @return text.
+     * @throws ExceptionDAL cover IOException.
+     */
     @Override
     public String read(final String pathToData) throws ExceptionDAL {
         StringBuilder readFromData = new StringBuilder();
@@ -32,6 +40,13 @@ public class FileCompositeDAL implements CompositeDAL {
         return readFromData.toString();
     }
 
+    /**
+     * write text to file.
+     * @param text information in String format.
+     * @param pathToData path to storage.
+     * @return result.
+     * @throws ExceptionDAL cover IOException.
+     */
     @Override
     public String write(final String text,
                         final String pathToData) throws ExceptionDAL {

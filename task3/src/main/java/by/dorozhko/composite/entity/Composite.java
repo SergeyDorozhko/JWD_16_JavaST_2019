@@ -49,6 +49,11 @@ public abstract class Composite implements Component {
         return components.size();
     }
 
+    /**
+     * Calculate symbols in text part.
+     * @param symbol symbol to calculate.
+     * @return number of matches.
+     */
     public int numOfSymbols(final String symbol) {
         int result = 0;
         for (Component component : components) {

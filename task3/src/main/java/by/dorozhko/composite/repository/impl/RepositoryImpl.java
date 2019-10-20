@@ -9,19 +9,37 @@ import by.dorozhko.composite.repository.storage.TextStorage;
 import java.util.List;
 
 public class RepositoryImpl implements Repository {
-    TextStorage textStorage = TextStorage.getInstance();
 
+    /**
+     * link to storage.
+     */
+    private TextStorage textStorage = TextStorage.getInstance();
+
+    /**
+     * set composite text to storage.
+     * @param compositeText composite of text.
+     * @return result.
+     */
     @Override
     public boolean setText(final Composite compositeText) {
         return textStorage.setText(compositeText);
     }
 
+    /**
+     * get composite of text.
+     * @return list of composite.
+     * @throws ExceptionRepository cover repository exception.
+     */
     @Override
     public List<Component> getCompositeText() throws ExceptionRepository {
 
         return textStorage.getCompositeText();
     }
 
+    /**
+     * get text.
+     * @return text from composite.
+     */
     @Override
     public String getText() {
         return textStorage.getText();

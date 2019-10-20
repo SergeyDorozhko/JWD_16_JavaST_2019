@@ -5,11 +5,14 @@ import by.dorozhko.composite.view.Client;
 
 public final class Main {
 
-    Main() {
-    }
+    private Main() { }
 
+    /**
+     * main method.
+     *
+     * @param args command line params.
+     */
     public static void main(final String[] args) {
-
 
 
         Client client = new Client();

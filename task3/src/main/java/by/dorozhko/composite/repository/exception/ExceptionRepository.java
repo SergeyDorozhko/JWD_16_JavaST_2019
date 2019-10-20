@@ -1,20 +1,34 @@
 package by.dorozhko.composite.repository.exception;
 
-public class ExceptionRepository extends Exception{
+public class ExceptionRepository extends Exception {
 
+    /**
+     * default constructor without params.
+     */
+    public ExceptionRepository() { }
 
-    public ExceptionRepository() {
-    }
-
-    public ExceptionRepository(String message) {
+    /**
+     * Constructor with massage param.
+     * @param message massage of exception.
+     */
+    public ExceptionRepository(final String message) {
         super(message);
     }
 
-    public ExceptionRepository(String message, Throwable cause) {
+    /**
+     * Constructor with exception param and message.
+     * @param message massage of exception.
+     * @param cause exception cause.
+     */
+    public ExceptionRepository(final String message, final Throwable cause) {
         super(message, cause);
     }
 
-    public ExceptionRepository(Throwable cause) {
+    /**
+     * Constructor with exception param.
+     * @param cause exception cause.
+     */
+    public ExceptionRepository(final Throwable cause) {
         super(cause);
     }
 

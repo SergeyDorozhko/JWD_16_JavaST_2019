@@ -8,13 +8,26 @@ import java.util.List;
 
 public class Text implements Handler {
 
+    /**
+     * next handler.
+     */
     private Handler parent = null;
 
-    public Text(final Handler parent) {
-        this.parent = parent;
+    /**
+     * constructor take next handler as param.
+     * @param nextParent next handler.
+     */
+    public Text(final Handler nextParent) {
+        parent = nextParent;
     }
 
-
+    /**
+     * make actio and ask next handler.
+     * @param text      incoming text.
+     * @param composite tree of text parts developing
+     *                  from text branch by branch.
+     * @return composite.
+     */
     @Override
     public Composite handlerRequest(final String text,
                                     final Composite composite) {

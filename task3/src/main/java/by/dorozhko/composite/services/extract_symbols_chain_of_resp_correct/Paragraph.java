@@ -7,13 +7,26 @@ import by.dorozhko.composite.services.parser.ParseParagraphBySentence;
 import java.util.List;
 
 public class Paragraph implements Handler {
+    /**
+     * next take action.
+     */
     private Handler parent;
 
-    public Paragraph(final Handler parent) {
-        this.parent = parent;
+    /**
+     * constructor with take next handler as param.
+     * @param nextParent next handler.
+     */
+    public Paragraph(final Handler nextParent) {
+        this.parent = nextParent;
     }
 
-
+    /**
+     * make action and then give to next.
+     * @param text      incoming text.
+     * @param composite tree of text parts developing
+     *                  from text branch by branch.
+     * @return
+     */
     @Override
     public Composite handlerRequest(final String text,
                                     final Composite composite) {
