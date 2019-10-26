@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.dorozhko.by/tariffs"
+        xmlns:tns="http://www.dorozhko.by/tariffs"
+        elementFormDefault="qualified">
+
+    <element name="tariffs">
+        <complexType>
+            <sequence>
+                <element name="voice_tariff"
+                         type="tns:VoiceTariff"
+                         minOccurs="16"
+                         maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+
+
+    <complexType name="TariffType">
+        <sequence>
+            <element name="name">
+                <simpleType>
+                    <restriction base="ID">
+                        <pattern value="[A-Za-z]+[_]?[a-zA-Z0-9]+"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="operator_name">
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="MTS"></enumeration>
+                        <enumeration value="A1"></enumeration>
+                        <enumeration value="Life"></enumeration>
+                    </restriction>
+                </simpleType>
+            </element>
+        </sequence>
+        <attribute name="payroll" default="0">
+            <simpleType>
+                <restriction base="double">
+                    <minInclusive value="0"/>
+                </restriction>
+            </simpleType>
+        </attribute>
+    </complexType>
+
+
+    <complexType name="VoiceTariff">
+        <complexContent>
+            <extension base="tns:TariffType">
+                <sequence>
+                    <element name="call_price">
+                        <complexType>
+                            <sequence>               <!--проверить подставляется ли значение по умолчанию, если нет убрать default -->
+                                <element name="in_operator">
+                                    <simpleType>
+                                        <restriction base="double">
+                                            <minInclusive value="0"/>
+                                        </restriction>
+                                    </simpleType>
+                                </element>
+                                <element name="other_operators">
+                                    <simpleType>
+                                        <restriction base="double">
+                                            <minInclusive value="0"/>
+                                        </restriction>
+                                    </simpleType>
+                                </element>
+                            </sequence>
+                        </complexType>
+                    </element>
+                    <element name="sms_price" >
+                        <simpleType>
+                            <restriction base="double">
+                                <minInclusive value="0"/>
+                            </restriction>
+                        </simpleType>
+                    </element>
+                    <element name="parametrs">
+                        <complexType>
+                            <sequence>
+                                <element name="tarification">
+                                <simpleType>
+                                    <restriction base="string">
+                                        <enumeration value="per second"/>
+                                        <enumeration value="per minute"/>
+                                        <enumeration value="per 12 second"/>
+                                    </restriction>
+                                </simpleType>
+                                </element>
+                                <element name="connectiong" type="positiveInteger"/>
+                            </sequence>
+                        </complexType>
+                    </element>
+                    <element name="date">
+                        <complexType>
+                            <attribute name="launch_date" use="required">
+                                <simpleType>
+                                    <restriction base="string">
+                                        <pattern value="(([0-2][0-9])||([3][0-1]))-(([0][1-9])||([1][0-2]))-[0-9]{4}"/>
+                                    </restriction>
+                                </simpleType>
+                            </attribute>
+                            <attribute name="archive_date" use="optional">
+                                <simpleType>
+                                    <restriction base="string">
+                                        <pattern value="(([0-2][0-9])||([3][0-1]))-(([0][1-9])||([1][0-2]))-[0-9]{4}"/>
+                                    </restriction>
+                                </simpleType>
+                            </attribute>
+                        </complexType>
+
+                    </element>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+</schema>

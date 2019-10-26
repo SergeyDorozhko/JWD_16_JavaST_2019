@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<tariffs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://www.dorozhko.by/tariffs"
+         xsi:schemaLocation="http://www.dorozhko.by/tariffs tariffs.xsd">
+
+
+    <voice_tariff payroll="12.4">
+        <name>Comfort_S</name>
+        <operator_name>A1</operator_name>
+        <call_price>
+            <in_operator>2.3</in_operator>
+            <other_operators>0.075</other_operators>
+        </call_price>
+        <sms_price>0.075</sms_price>
+        <parametrs>
+            <tarification>per 12 second</tarification>
+            <connectiong>5</connectiong>
+        </parametrs>
+        <date launch_date="01-01-2019"/>
+    </voice_tariff>
+
+    <voice_tariff payroll="20.75">
+        <name>Comfort_M</name>
+        <operator_name>A1</operator_name>
+        <call_price>
+            <in_operator>0</in_operator> <!-- check default value -->
+            <other_operators>0.075</other_operators>
+        </call_price>
+        <sms_price>0.075</sms_price>
+        <parametrs>
+            <tarification>per 12 second</tarification>
+            <connectiong>5</connectiong>
+        </parametrs>
+        <date launch_date="01-01-2019"/>
+    </voice_tariff>
+
+
+    <voice_tariff payroll="27">
+        <name>Comfort_L</name>
+        <operator_name>A1</operator_name>
+        <call_price>
+            <in_operator>0</in_operator> <!-- check default value -->
+            <other_operators>0.075</other_operators>
+        </call_price>
+        <sms_price>0.075</sms_price>
+        <parametrs>
+            <tarification>per 12 second</tarification>
+            <connectiong>5</connectiong>
+        </parametrs>
+        <date launch_date="01-01-2019"/>
+    </voice_tariff>
+
+    <voice_tariff payroll="39.50">
+        <name>Comfort_XL</name>
+        <operator_name>A1</operator_name>
+        <call_price>
+            <in_operator>0</in_operator> <!-- check default value -->
+            <other_operators>0</other_operators>
+        </call_price>
+        <sms_price>0.075</sms_price>
+        <parametrs>
+            <tarification>per minute</tarification>
+            <connectiong>5</connectiong>
+        </parametrs>
+        <date launch_date="01-01-2019"/>
+    </voice_tariff>
+
+    <voice_tariff payroll="10.40">
+        <name>Super</name>
+        <operator_name>MTS</operator_name>
+        <call_price>
+            <in_operator>0.0469</in_operator> <!-- check default value -->
+            <other_operators>0.1147</other_operators>
+        </call_price>
+        <sms_price>0.0595</sms_price>
+        <parametrs>
+            <tarification>per second</tarification>
+            <connectiong>5</connectiong>
+        </parametrs>
+        <date launch_date="10-08-2018"/>
+    </voice_tariff>
+
+    <voice_tariff payroll="17.70">
+        <name>Super_8</name>
+        <operator_name>MTS</operator_name>
+        <call_price>
+            <in_operator>0.0365</in_operator> <!-- check default value -->
+            <other_operators>0.0938</other_operators>
+        </call_price>
+        <sms_price>0.0595</sms_price>
+        <parametrs>
+            <tarification>per second</tarification>
+            <connectiong>5</connectiong>
+        </parametrs>
+        <date launch_date="10-08-2018"/>
+    </voice_tariff>
+
+    <voice_tariff payroll="25.00">
+        <name>Super_max</name>
+        <operator_name>MTS</operator_name>
+        <call_price>
+            <in_operator>0</in_operator> <!-- check default value -->
+            <other_operators>0</other_operators>
+        </call_price>
+        <sms_price>0.0595</sms_price>
+        <parametrs>
+            <tarification>per second</tarification>
+            <connectiong>5</connectiong>
+        </parametrs>
+        <date launch_date="10-08-2018"/>
+    </voice_tariff>
+
+    <voice_tariff> <!-- cheak payroll = 0 default-->
+        <name>Vse_svoi</name>
+        <operator_name>MTS</operator_name>
+        <call_price>
+            <in_operator>0.0960</in_operator> <!-- check default value -->
+            <other_operators>0.1861</other_operators>
+        </call_price>
+        <sms_price>0.0595</sms_price>
+        <parametrs>
+            <tarification>per second</tarification>
+            <connectiong>5</connectiong>
+        </parametrs>
+        <date launch_date="10-03-2005" archive_date="30-12-2008"/>
+    </voice_tariff>
+
+    <voice_tariff payroll="5.90">
+        <name>Golos_1</name>
+        <operator_name>Life</operator_name>
+        <call_price>
+            <in_operator>0</in_operator> <!-- check default value -->
+            <other_operators>0.1</other_operators>
+        </call_price>
+        <sms_price>0.048</sms_price>
+        <parametrs>
+            <tarification>per minute</tarification>
+            <connectiong>3</connectiong>
+        </parametrs>
+        <date launch_date="10-08-2018"/>
+    </voice_tariff>
+
+    <voice_tariff payroll="8.90">
+        <name>Golos_2</name>
+        <operator_name>Life</operator_name>
+        <call_price>
+            <in_operator>0</in_operator> <!-- check default value -->
+            <other_operators>0.1</other_operators>
+        </call_price>
+        <sms_price>0.048</sms_price>
+        <parametrs>
+            <tarification>per minute</tarification>
+            <connectiong>3</connectiong>
+        </parametrs>
+        <date launch_date="10-08-2018"/>
+    </voice_tariff>
+
+
+    <voice_tariff payroll="8.20">
+        <name>Startoviy</name>
+        <operator_name>A1</operator_name>
+        <call_price>
+            <in_operator>0</in_operator>
+            <other_operators>0.075</other_operators>
+        </call_price>
+        <sms_price>0.075</sms_price>
+        <parametrs>
+            <tarification>per 12 second</tarification>
+            <connectiong>5</connectiong>
+        </parametrs>
+        <date launch_date="01-01-2019"/>
+    </voice_tariff>
+
+    <voice_tariff payroll="3.85">
+        <name>Pensionni</name>
+        <operator_name>A1</operator_name>
+        <call_price>
+            <in_operator>0.0551</in_operator> <!-- check default value -->
+            <other_operators>0.1767</other_operators>
+        </call_price>
+        <sms_price>0.0481</sms_price>
+        <parametrs>
+            <tarification>per 12 second</tarification>
+            <connectiong>5</connectiong>
+        </parametrs>
+        <date launch_date="01-10-2017"/>
+    </voice_tariff>
+
+    <voice_tariff payroll="1.64">
+        <name>Social</name>
+        <operator_name>A1</operator_name>
+        <call_price>
+            <in_operator>0.022</in_operator> <!-- check default value -->
+            <other_operators>0.0938</other_operators>
+        </call_price>
+        <sms_price>0.0481</sms_price>
+        <parametrs>
+            <tarification>per 12 second</tarification>
+            <connectiong>1</connectiong>
+        </parametrs>
+        <date launch_date="20-09-2016"/>
+    </voice_tariff>
+
+    <voice_tariff payroll="0.64"> <!-- cheak payroll = 0 default-->
+        <name>Legko_skazat</name>
+        <operator_name>MTS</operator_name>
+        <call_price>
+            <in_operator>0.0838</in_operator> <!-- check default value -->
+            <other_operators>0.1684</other_operators>
+        </call_price>
+        <sms_price>0.023</sms_price>
+        <parametrs>
+            <tarification>per second</tarification>
+            <connectiong>5</connectiong>
+        </parametrs>
+        <date launch_date="31-08-2012"/>
+    </voice_tariff>
+
+
+    <voice_tariff payroll="0.64"> <!-- cheak payroll = 0 default-->
+        <name>Blizki</name>
+        <operator_name>MTS</operator_name>
+        <call_price>
+            <in_operator>0.0082</in_operator> <!-- check default value -->
+            <other_operators>0.0357</other_operators>
+        </call_price>
+        <sms_price>0.035</sms_price>
+        <parametrs>
+            <tarification>per second</tarification>
+            <connectiong>2</connectiong>
+        </parametrs>
+        <date launch_date="30-06-2009"/>
+    </voice_tariff>
+
+    <voice_tariff payroll="1.15"> <!-- cheak payroll = 0 default-->
+        <name>Detski</name>
+        <operator_name>MTS</operator_name>
+        <call_price>
+            <in_operator>0.009</in_operator> <!-- check default value -->
+            <other_operators>0.1380</other_operators>
+        </call_price>
+        <sms_price>0.035</sms_price>
+        <parametrs>
+            <tarification>per second</tarification>
+            <connectiong>2</connectiong>
+        </parametrs>
+        <date launch_date="30-06-2009"/>
+    </voice_tariff>
+
+
+</tariffs>
