@@ -16,6 +16,8 @@ import java.io.IOException;
 public class XMLSchemaValidator {
     private static final Logger logger = LogManager.getLogger("XMLSchemaValidator");
 
+    private XMLSchemaValidator(){}
+
     public static boolean validate(String pathToXML, String pathToXSD){
         logger.debug("start validation");
         String language = XMLConstants.W3C_XML_SCHEMA_NS_URI;

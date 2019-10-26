@@ -13600,3 +13600,902 @@ org.xml.sax.SAXParseException: cvc-enumeration-valid: Value '' is not facet-vali
 2019-10-26 23:43:24.118 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set launch date
 2019-10-26 23:43:24.118 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - end set params of tariff, add to  Set.
 2019-10-26 23:43:24.120 [main] DEBUG XMLSchemaValidator - start validation
+2019-10-26 23:45:16.604 [main] DEBUG XMLSchemaValidator - start validation
+2019-10-26 23:45:16.698 [main] DEBUG XMLSchemaValidator - start validation
+2019-10-26 23:45:16.732 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: tariffs
+2019-10-26 23:45:16.736 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.736 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: voice_tariff
+2019-10-26 23:45:16.736 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - create new tariff.
+2019-10-26 23:45:16.736 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set attribute payroll
+2019-10-26 23:45:16.736 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: name
+2019-10-26 23:45:16.736 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tariff name.
+2019-10-26 23:45:16.737 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: operator_name
+2019-10-26 23:45:16.737 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set operator.
+2019-10-26 23:45:16.737 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: call_price
+2019-10-26 23:45:16.737 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.737 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: in_operator
+2019-10-26 23:45:16.737 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price in operator.
+2019-10-26 23:45:16.737 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: other_operators
+2019-10-26 23:45:16.737 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price between operators.
+2019-10-26 23:45:16.737 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: sms_price
+2019-10-26 23:45:16.738 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set sms price.
+2019-10-26 23:45:16.738 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: parametrs
+2019-10-26 23:45:16.738 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.738 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: tarification
+2019-10-26 23:45:16.738 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tarification type.
+2019-10-26 23:45:16.738 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: connectiong
+2019-10-26 23:45:16.738 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set price of get sim-card.
+2019-10-26 23:45:16.738 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.739 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: date
+2019-10-26 23:45:16.739 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set launch date
+2019-10-26 23:45:16.739 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - end set params of tariff, add to  Set.
+2019-10-26 23:45:16.739 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: voice_tariff
+2019-10-26 23:45:16.739 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - create new tariff.
+2019-10-26 23:45:16.739 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set attribute payroll
+2019-10-26 23:45:16.739 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: name
+2019-10-26 23:45:16.739 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tariff name.
+2019-10-26 23:45:16.739 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: operator_name
+2019-10-26 23:45:16.740 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set operator.
+2019-10-26 23:45:16.740 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: call_price
+2019-10-26 23:45:16.740 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.740 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: in_operator
+2019-10-26 23:45:16.740 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price in operator.
+2019-10-26 23:45:16.740 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: other_operators
+2019-10-26 23:45:16.740 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price between operators.
+2019-10-26 23:45:16.740 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: sms_price
+2019-10-26 23:45:16.740 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set sms price.
+2019-10-26 23:45:16.740 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: parametrs
+2019-10-26 23:45:16.740 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.741 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: tarification
+2019-10-26 23:45:16.741 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tarification type.
+2019-10-26 23:45:16.741 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: connectiong
+2019-10-26 23:45:16.741 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set price of get sim-card.
+2019-10-26 23:45:16.741 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.741 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: date
+2019-10-26 23:45:16.741 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set launch date
+2019-10-26 23:45:16.741 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - end set params of tariff, add to  Set.
+2019-10-26 23:45:16.741 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: voice_tariff
+2019-10-26 23:45:16.741 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - create new tariff.
+2019-10-26 23:45:16.741 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set attribute payroll
+2019-10-26 23:45:16.742 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: name
+2019-10-26 23:45:16.742 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tariff name.
+2019-10-26 23:45:16.742 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: operator_name
+2019-10-26 23:45:16.742 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set operator.
+2019-10-26 23:45:16.742 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: call_price
+2019-10-26 23:45:16.742 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.742 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: in_operator
+2019-10-26 23:45:16.742 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price in operator.
+2019-10-26 23:45:16.742 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: other_operators
+2019-10-26 23:45:16.742 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price between operators.
+2019-10-26 23:45:16.742 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: sms_price
+2019-10-26 23:45:16.743 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set sms price.
+2019-10-26 23:45:16.743 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: parametrs
+2019-10-26 23:45:16.743 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.743 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: tarification
+2019-10-26 23:45:16.743 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tarification type.
+2019-10-26 23:45:16.743 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: connectiong
+2019-10-26 23:45:16.743 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set price of get sim-card.
+2019-10-26 23:45:16.743 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.743 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: date
+2019-10-26 23:45:16.743 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set launch date
+2019-10-26 23:45:16.743 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - end set params of tariff, add to  Set.
+2019-10-26 23:45:16.743 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: voice_tariff
+2019-10-26 23:45:16.743 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - create new tariff.
+2019-10-26 23:45:16.744 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set attribute payroll
+2019-10-26 23:45:16.744 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: name
+2019-10-26 23:45:16.744 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tariff name.
+2019-10-26 23:45:16.744 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: operator_name
+2019-10-26 23:45:16.744 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set operator.
+2019-10-26 23:45:16.744 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: call_price
+2019-10-26 23:45:16.744 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.744 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: in_operator
+2019-10-26 23:45:16.746 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price in operator.
+2019-10-26 23:45:16.747 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: other_operators
+2019-10-26 23:45:16.747 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price between operators.
+2019-10-26 23:45:16.747 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: sms_price
+2019-10-26 23:45:16.747 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set sms price.
+2019-10-26 23:45:16.747 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: parametrs
+2019-10-26 23:45:16.747 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.747 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: tarification
+2019-10-26 23:45:16.747 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tarification type.
+2019-10-26 23:45:16.747 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: connectiong
+2019-10-26 23:45:16.747 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set price of get sim-card.
+2019-10-26 23:45:16.748 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.750 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: date
+2019-10-26 23:45:16.750 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set launch date
+2019-10-26 23:45:16.750 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - end set params of tariff, add to  Set.
+2019-10-26 23:45:16.750 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: voice_tariff
+2019-10-26 23:45:16.750 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - create new tariff.
+2019-10-26 23:45:16.750 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set attribute payroll
+2019-10-26 23:45:16.750 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: name
+2019-10-26 23:45:16.750 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tariff name.
+2019-10-26 23:45:16.750 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: operator_name
+2019-10-26 23:45:16.751 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set operator.
+2019-10-26 23:45:16.751 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: call_price
+2019-10-26 23:45:16.751 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.751 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: in_operator
+2019-10-26 23:45:16.752 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price in operator.
+2019-10-26 23:45:16.752 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: other_operators
+2019-10-26 23:45:16.752 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price between operators.
+2019-10-26 23:45:16.752 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: sms_price
+2019-10-26 23:45:16.752 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set sms price.
+2019-10-26 23:45:16.752 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: parametrs
+2019-10-26 23:45:16.752 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.752 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: tarification
+2019-10-26 23:45:16.752 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tarification type.
+2019-10-26 23:45:16.752 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: connectiong
+2019-10-26 23:45:16.753 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set price of get sim-card.
+2019-10-26 23:45:16.753 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.753 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: date
+2019-10-26 23:45:16.753 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set launch date
+2019-10-26 23:45:16.753 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - end set params of tariff, add to  Set.
+2019-10-26 23:45:16.753 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: voice_tariff
+2019-10-26 23:45:16.753 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - create new tariff.
+2019-10-26 23:45:16.754 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set attribute payroll
+2019-10-26 23:45:16.754 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: name
+2019-10-26 23:45:16.754 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tariff name.
+2019-10-26 23:45:16.754 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: operator_name
+2019-10-26 23:45:16.754 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set operator.
+2019-10-26 23:45:16.754 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: call_price
+2019-10-26 23:45:16.754 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.754 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: in_operator
+2019-10-26 23:45:16.754 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price in operator.
+2019-10-26 23:45:16.754 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: other_operators
+2019-10-26 23:45:16.754 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price between operators.
+2019-10-26 23:45:16.754 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: sms_price
+2019-10-26 23:45:16.754 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set sms price.
+2019-10-26 23:45:16.755 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: parametrs
+2019-10-26 23:45:16.755 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.755 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: tarification
+2019-10-26 23:45:16.755 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tarification type.
+2019-10-26 23:45:16.755 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: connectiong
+2019-10-26 23:45:16.755 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set price of get sim-card.
+2019-10-26 23:45:16.755 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.755 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: date
+2019-10-26 23:45:16.755 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set launch date
+2019-10-26 23:45:16.755 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - end set params of tariff, add to  Set.
+2019-10-26 23:45:16.755 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: voice_tariff
+2019-10-26 23:45:16.755 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - create new tariff.
+2019-10-26 23:45:16.756 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set attribute payroll
+2019-10-26 23:45:16.756 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: name
+2019-10-26 23:45:16.756 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tariff name.
+2019-10-26 23:45:16.756 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: operator_name
+2019-10-26 23:45:16.756 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set operator.
+2019-10-26 23:45:16.756 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: call_price
+2019-10-26 23:45:16.756 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.756 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: in_operator
+2019-10-26 23:45:16.756 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price in operator.
+2019-10-26 23:45:16.756 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: other_operators
+2019-10-26 23:45:16.756 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price between operators.
+2019-10-26 23:45:16.756 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: sms_price
+2019-10-26 23:45:16.756 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set sms price.
+2019-10-26 23:45:16.756 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: parametrs
+2019-10-26 23:45:16.757 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.757 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: tarification
+2019-10-26 23:45:16.757 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tarification type.
+2019-10-26 23:45:16.757 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: connectiong
+2019-10-26 23:45:16.757 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set price of get sim-card.
+2019-10-26 23:45:16.757 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.757 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: date
+2019-10-26 23:45:16.757 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set launch date
+2019-10-26 23:45:16.757 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - end set params of tariff, add to  Set.
+2019-10-26 23:45:16.757 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: voice_tariff
+2019-10-26 23:45:16.757 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - create new tariff.
+2019-10-26 23:45:16.757 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set default payroll
+2019-10-26 23:45:16.758 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: name
+2019-10-26 23:45:16.758 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tariff name.
+2019-10-26 23:45:16.758 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: operator_name
+2019-10-26 23:45:16.758 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set operator.
+2019-10-26 23:45:16.758 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: call_price
+2019-10-26 23:45:16.758 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.758 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: in_operator
+2019-10-26 23:45:16.758 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price in operator.
+2019-10-26 23:45:16.758 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: other_operators
+2019-10-26 23:45:16.758 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price between operators.
+2019-10-26 23:45:16.758 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: sms_price
+2019-10-26 23:45:16.758 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set sms price.
+2019-10-26 23:45:16.758 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: parametrs
+2019-10-26 23:45:16.759 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.759 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: tarification
+2019-10-26 23:45:16.759 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tarification type.
+2019-10-26 23:45:16.759 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: connectiong
+2019-10-26 23:45:16.759 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set price of get sim-card.
+2019-10-26 23:45:16.759 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.759 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: date
+2019-10-26 23:45:16.759 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set launch date
+2019-10-26 23:45:16.759 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set archive date
+2019-10-26 23:45:16.759 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - end set params of tariff, add to  Set.
+2019-10-26 23:45:16.759 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: voice_tariff
+2019-10-26 23:45:16.760 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - create new tariff.
+2019-10-26 23:45:16.760 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set attribute payroll
+2019-10-26 23:45:16.760 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: name
+2019-10-26 23:45:16.760 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tariff name.
+2019-10-26 23:45:16.760 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: operator_name
+2019-10-26 23:45:16.760 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set operator.
+2019-10-26 23:45:16.760 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: call_price
+2019-10-26 23:45:16.760 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.760 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: in_operator
+2019-10-26 23:45:16.760 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price in operator.
+2019-10-26 23:45:16.760 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: other_operators
+2019-10-26 23:45:16.760 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price between operators.
+2019-10-26 23:45:16.760 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: sms_price
+2019-10-26 23:45:16.760 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set sms price.
+2019-10-26 23:45:16.760 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: parametrs
+2019-10-26 23:45:16.760 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.760 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: tarification
+2019-10-26 23:45:16.761 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tarification type.
+2019-10-26 23:45:16.761 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: connectiong
+2019-10-26 23:45:16.761 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set price of get sim-card.
+2019-10-26 23:45:16.761 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.761 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: date
+2019-10-26 23:45:16.761 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set launch date
+2019-10-26 23:45:16.761 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - end set params of tariff, add to  Set.
+2019-10-26 23:45:16.761 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: voice_tariff
+2019-10-26 23:45:16.761 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - create new tariff.
+2019-10-26 23:45:16.761 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set attribute payroll
+2019-10-26 23:45:16.761 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: name
+2019-10-26 23:45:16.761 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tariff name.
+2019-10-26 23:45:16.761 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: operator_name
+2019-10-26 23:45:16.761 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set operator.
+2019-10-26 23:45:16.761 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: call_price
+2019-10-26 23:45:16.761 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.761 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: in_operator
+2019-10-26 23:45:16.761 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price in operator.
+2019-10-26 23:45:16.761 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: other_operators
+2019-10-26 23:45:16.762 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price between operators.
+2019-10-26 23:45:16.762 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: sms_price
+2019-10-26 23:45:16.762 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set sms price.
+2019-10-26 23:45:16.762 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: parametrs
+2019-10-26 23:45:16.762 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.762 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: tarification
+2019-10-26 23:45:16.762 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tarification type.
+2019-10-26 23:45:16.762 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: connectiong
+2019-10-26 23:45:16.762 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set price of get sim-card.
+2019-10-26 23:45:16.762 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.762 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: date
+2019-10-26 23:45:16.763 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set launch date
+2019-10-26 23:45:16.763 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - end set params of tariff, add to  Set.
+2019-10-26 23:45:16.763 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: voice_tariff
+2019-10-26 23:45:16.763 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - create new tariff.
+2019-10-26 23:45:16.763 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set attribute payroll
+2019-10-26 23:45:16.763 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: name
+2019-10-26 23:45:16.763 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tariff name.
+2019-10-26 23:45:16.763 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: operator_name
+2019-10-26 23:45:16.763 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set operator.
+2019-10-26 23:45:16.763 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: call_price
+2019-10-26 23:45:16.763 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.763 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: in_operator
+2019-10-26 23:45:16.763 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price in operator.
+2019-10-26 23:45:16.763 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: other_operators
+2019-10-26 23:45:16.763 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price between operators.
+2019-10-26 23:45:16.764 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: sms_price
+2019-10-26 23:45:16.764 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set sms price.
+2019-10-26 23:45:16.764 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: parametrs
+2019-10-26 23:45:16.764 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.764 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: tarification
+2019-10-26 23:45:16.764 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tarification type.
+2019-10-26 23:45:16.764 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: connectiong
+2019-10-26 23:45:16.764 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set price of get sim-card.
+2019-10-26 23:45:16.764 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.764 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: date
+2019-10-26 23:45:16.764 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set launch date
+2019-10-26 23:45:16.764 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - end set params of tariff, add to  Set.
+2019-10-26 23:45:16.764 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: voice_tariff
+2019-10-26 23:45:16.764 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - create new tariff.
+2019-10-26 23:45:16.764 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set attribute payroll
+2019-10-26 23:45:16.764 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: name
+2019-10-26 23:45:16.765 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tariff name.
+2019-10-26 23:45:16.765 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: operator_name
+2019-10-26 23:45:16.765 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set operator.
+2019-10-26 23:45:16.765 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: call_price
+2019-10-26 23:45:16.765 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.765 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: in_operator
+2019-10-26 23:45:16.765 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price in operator.
+2019-10-26 23:45:16.765 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: other_operators
+2019-10-26 23:45:16.765 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price between operators.
+2019-10-26 23:45:16.765 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: sms_price
+2019-10-26 23:45:16.765 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set sms price.
+2019-10-26 23:45:16.765 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: parametrs
+2019-10-26 23:45:16.765 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.765 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: tarification
+2019-10-26 23:45:16.765 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tarification type.
+2019-10-26 23:45:16.766 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: connectiong
+2019-10-26 23:45:16.766 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set price of get sim-card.
+2019-10-26 23:45:16.766 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.766 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: date
+2019-10-26 23:45:16.766 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set launch date
+2019-10-26 23:45:16.766 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - end set params of tariff, add to  Set.
+2019-10-26 23:45:16.766 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: voice_tariff
+2019-10-26 23:45:16.766 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - create new tariff.
+2019-10-26 23:45:16.766 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set attribute payroll
+2019-10-26 23:45:16.766 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: name
+2019-10-26 23:45:16.766 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tariff name.
+2019-10-26 23:45:16.766 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: operator_name
+2019-10-26 23:45:16.766 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set operator.
+2019-10-26 23:45:16.766 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: call_price
+2019-10-26 23:45:16.766 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.766 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: in_operator
+2019-10-26 23:45:16.767 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price in operator.
+2019-10-26 23:45:16.767 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: other_operators
+2019-10-26 23:45:16.767 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price between operators.
+2019-10-26 23:45:16.767 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: sms_price
+2019-10-26 23:45:16.767 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set sms price.
+2019-10-26 23:45:16.767 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: parametrs
+2019-10-26 23:45:16.767 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.767 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: tarification
+2019-10-26 23:45:16.767 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tarification type.
+2019-10-26 23:45:16.767 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: connectiong
+2019-10-26 23:45:16.767 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set price of get sim-card.
+2019-10-26 23:45:16.767 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.767 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: date
+2019-10-26 23:45:16.767 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set launch date
+2019-10-26 23:45:16.768 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - end set params of tariff, add to  Set.
+2019-10-26 23:45:16.768 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: voice_tariff
+2019-10-26 23:45:16.768 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - create new tariff.
+2019-10-26 23:45:16.768 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set attribute payroll
+2019-10-26 23:45:16.768 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: name
+2019-10-26 23:45:16.768 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tariff name.
+2019-10-26 23:45:16.768 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: operator_name
+2019-10-26 23:45:16.768 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set operator.
+2019-10-26 23:45:16.768 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: call_price
+2019-10-26 23:45:16.768 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.768 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: in_operator
+2019-10-26 23:45:16.769 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price in operator.
+2019-10-26 23:45:16.769 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: other_operators
+2019-10-26 23:45:16.769 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price between operators.
+2019-10-26 23:45:16.769 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: sms_price
+2019-10-26 23:45:16.769 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set sms price.
+2019-10-26 23:45:16.769 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: parametrs
+2019-10-26 23:45:16.769 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.769 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: tarification
+2019-10-26 23:45:16.769 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tarification type.
+2019-10-26 23:45:16.769 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: connectiong
+2019-10-26 23:45:16.769 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set price of get sim-card.
+2019-10-26 23:45:16.769 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.769 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: date
+2019-10-26 23:45:16.769 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set launch date
+2019-10-26 23:45:16.770 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - end set params of tariff, add to  Set.
+2019-10-26 23:45:16.770 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: voice_tariff
+2019-10-26 23:45:16.770 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - create new tariff.
+2019-10-26 23:45:16.770 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set attribute payroll
+2019-10-26 23:45:16.770 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: name
+2019-10-26 23:45:16.770 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tariff name.
+2019-10-26 23:45:16.770 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: operator_name
+2019-10-26 23:45:16.770 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set operator.
+2019-10-26 23:45:16.770 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: call_price
+2019-10-26 23:45:16.770 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.770 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: in_operator
+2019-10-26 23:45:16.770 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price in operator.
+2019-10-26 23:45:16.770 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: other_operators
+2019-10-26 23:45:16.770 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price between operators.
+2019-10-26 23:45:16.770 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: sms_price
+2019-10-26 23:45:16.770 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set sms price.
+2019-10-26 23:45:16.770 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: parametrs
+2019-10-26 23:45:16.770 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.770 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: tarification
+2019-10-26 23:45:16.771 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tarification type.
+2019-10-26 23:45:16.771 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: connectiong
+2019-10-26 23:45:16.771 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set price of get sim-card.
+2019-10-26 23:45:16.771 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.771 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: date
+2019-10-26 23:45:16.771 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set launch date
+2019-10-26 23:45:16.771 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - end set params of tariff, add to  Set.
+2019-10-26 23:45:16.771 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: voice_tariff
+2019-10-26 23:45:16.771 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - create new tariff.
+2019-10-26 23:45:16.771 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set attribute payroll
+2019-10-26 23:45:16.772 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: name
+2019-10-26 23:45:16.772 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tariff name.
+2019-10-26 23:45:16.772 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: operator_name
+2019-10-26 23:45:16.772 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set operator.
+2019-10-26 23:45:16.772 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: call_price
+2019-10-26 23:45:16.772 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.772 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: in_operator
+2019-10-26 23:45:16.772 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price in operator.
+2019-10-26 23:45:16.772 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: other_operators
+2019-10-26 23:45:16.772 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price between operators.
+2019-10-26 23:45:16.772 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: sms_price
+2019-10-26 23:45:16.772 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set sms price.
+2019-10-26 23:45:16.772 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: parametrs
+2019-10-26 23:45:16.772 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.772 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: tarification
+2019-10-26 23:45:16.773 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tarification type.
+2019-10-26 23:45:16.773 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: connectiong
+2019-10-26 23:45:16.773 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set price of get sim-card.
+2019-10-26 23:45:16.773 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:16.773 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: date
+2019-10-26 23:45:16.773 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set launch date
+2019-10-26 23:45:16.773 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - end set params of tariff, add to  Set.
+2019-10-26 23:45:16.774 [main] DEBUG XMLSchemaValidator - start validation
+2019-10-26 23:45:40.575 [main] DEBUG XMLSchemaValidator - start validation
+2019-10-26 23:45:40.649 [main] ERROR XMLSchemaValidator - not valid XML, because:
+org.xml.sax.SAXParseException: cvc-enumeration-valid: Value '' is not facet-valid with respect to enumeration '[MTS, A1, Life]'. It must be a value from the enumeration.
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:203) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.error(ErrorHandlerWrapper.java:134) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:396) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:327) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:284) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator$XSIErrorReporter.reportError(XMLSchemaValidator.java:453) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.reportSchemaError(XMLSchemaValidator.java:3231) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.elementLocallyValidType(XMLSchemaValidator.java:3146) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.processElementContent(XMLSchemaValidator.java:3056) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.handleEndElement(XMLSchemaValidator.java:2135) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.endElement(XMLSchemaValidator.java:854) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanEndElement(XMLDocumentFragmentScannerImpl.java:1782) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:2967) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:602) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:112) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:505) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:842) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:771) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.jaxp.validation.StreamValidatorHelper.validate(StreamValidatorHelper.java:152) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.jaxp.validation.ValidatorImpl.validate(ValidatorImpl.java:116) ~[?:1.8.0_201]
+	at javax.xml.validation.Validator.validate(Validator.java:124) ~[?:1.8.0_201]
+	at by.dorozhko.xmlparse.validator.XMLSchemaValidator.validate(XMLSchemaValidator.java:34) [classes/:?]
+	at by.dorozhko.xmlparse.services.impl.ServiceImpl.buildTariffs(ServiceImpl.java:18) [classes/:?]
+	at by.dorozhko.xmlparse.controller.command.impl.BuildCommand.execute(BuildCommand.java:10) [classes/:?]
+	at by.dorozhko.xmlparse.controller.Controller.doAction(Controller.java:10) [classes/:?]
+	at by.dorozhko.xmlparse.controller.Main.main(Main.java:7) [classes/:?]
+2019-10-26 23:45:40.663 [main] DEBUG XMLSchemaValidator - start validation
+2019-10-26 23:45:40.673 [main] ERROR XMLSchemaValidator - not valid XML, because:
+org.xml.sax.SAXParseException: cvc-enumeration-valid: Value '' is not facet-valid with respect to enumeration '[MTS, A1, Life]'. It must be a value from the enumeration.
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:203) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.error(ErrorHandlerWrapper.java:134) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:396) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:327) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:284) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator$XSIErrorReporter.reportError(XMLSchemaValidator.java:453) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.reportSchemaError(XMLSchemaValidator.java:3231) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.elementLocallyValidType(XMLSchemaValidator.java:3146) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.processElementContent(XMLSchemaValidator.java:3056) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.handleEndElement(XMLSchemaValidator.java:2135) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.endElement(XMLSchemaValidator.java:854) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanEndElement(XMLDocumentFragmentScannerImpl.java:1782) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:2967) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:602) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:112) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:505) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:842) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:771) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.jaxp.validation.StreamValidatorHelper.validate(StreamValidatorHelper.java:152) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.jaxp.validation.ValidatorImpl.validate(ValidatorImpl.java:116) ~[?:1.8.0_201]
+	at javax.xml.validation.Validator.validate(Validator.java:124) ~[?:1.8.0_201]
+	at by.dorozhko.xmlparse.validator.XMLSchemaValidator.validate(XMLSchemaValidator.java:34) [classes/:?]
+	at by.dorozhko.xmlparse.services.impl.ServiceImpl.buildTariffs(ServiceImpl.java:18) [classes/:?]
+	at by.dorozhko.xmlparse.controller.command.impl.BuildCommand.execute(BuildCommand.java:10) [classes/:?]
+	at by.dorozhko.xmlparse.controller.Controller.doAction(Controller.java:10) [classes/:?]
+	at by.dorozhko.xmlparse.controller.Main.main(Main.java:9) [classes/:?]
+2019-10-26 23:45:40.674 [main] DEBUG XMLSchemaValidator - start validation
+2019-10-26 23:45:40.683 [main] ERROR XMLSchemaValidator - not valid XML, because:
+org.xml.sax.SAXParseException: cvc-enumeration-valid: Value '' is not facet-valid with respect to enumeration '[MTS, A1, Life]'. It must be a value from the enumeration.
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:203) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.error(ErrorHandlerWrapper.java:134) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:396) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:327) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:284) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator$XSIErrorReporter.reportError(XMLSchemaValidator.java:453) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.reportSchemaError(XMLSchemaValidator.java:3231) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.elementLocallyValidType(XMLSchemaValidator.java:3146) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.processElementContent(XMLSchemaValidator.java:3056) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.handleEndElement(XMLSchemaValidator.java:2135) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.endElement(XMLSchemaValidator.java:854) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanEndElement(XMLDocumentFragmentScannerImpl.java:1782) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:2967) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:602) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:112) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:505) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:842) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:771) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.jaxp.validation.StreamValidatorHelper.validate(StreamValidatorHelper.java:152) ~[?:1.8.0_201]
+	at com.sun.org.apache.xerces.internal.jaxp.validation.ValidatorImpl.validate(ValidatorImpl.java:116) ~[?:1.8.0_201]
+	at javax.xml.validation.Validator.validate(Validator.java:124) ~[?:1.8.0_201]
+	at by.dorozhko.xmlparse.validator.XMLSchemaValidator.validate(XMLSchemaValidator.java:34) [classes/:?]
+	at by.dorozhko.xmlparse.services.impl.ServiceImpl.buildTariffs(ServiceImpl.java:18) [classes/:?]
+	at by.dorozhko.xmlparse.controller.command.impl.BuildCommand.execute(BuildCommand.java:10) [classes/:?]
+	at by.dorozhko.xmlparse.controller.Controller.doAction(Controller.java:10) [classes/:?]
+	at by.dorozhko.xmlparse.controller.Main.main(Main.java:11) [classes/:?]
+2019-10-26 23:45:57.619 [main] DEBUG XMLSchemaValidator - start validation
+2019-10-26 23:45:57.715 [main] DEBUG XMLSchemaValidator - start validation
+2019-10-26 23:45:57.747 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: tariffs
+2019-10-26 23:45:57.750 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.750 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: voice_tariff
+2019-10-26 23:45:57.750 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - create new tariff.
+2019-10-26 23:45:57.750 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set attribute payroll
+2019-10-26 23:45:57.751 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: name
+2019-10-26 23:45:57.751 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tariff name.
+2019-10-26 23:45:57.751 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: operator_name
+2019-10-26 23:45:57.751 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set operator.
+2019-10-26 23:45:57.751 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: call_price
+2019-10-26 23:45:57.751 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.751 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: in_operator
+2019-10-26 23:45:57.751 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price in operator.
+2019-10-26 23:45:57.751 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: other_operators
+2019-10-26 23:45:57.752 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price between operators.
+2019-10-26 23:45:57.752 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: sms_price
+2019-10-26 23:45:57.752 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set sms price.
+2019-10-26 23:45:57.752 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: parametrs
+2019-10-26 23:45:57.752 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.752 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: tarification
+2019-10-26 23:45:57.752 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tarification type.
+2019-10-26 23:45:57.752 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: connectiong
+2019-10-26 23:45:57.752 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set price of get sim-card.
+2019-10-26 23:45:57.752 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.752 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: date
+2019-10-26 23:45:57.752 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set launch date
+2019-10-26 23:45:57.753 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - end set params of tariff, add to  Set.
+2019-10-26 23:45:57.753 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: voice_tariff
+2019-10-26 23:45:57.753 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - create new tariff.
+2019-10-26 23:45:57.753 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set attribute payroll
+2019-10-26 23:45:57.753 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: name
+2019-10-26 23:45:57.753 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tariff name.
+2019-10-26 23:45:57.753 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: operator_name
+2019-10-26 23:45:57.753 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set operator.
+2019-10-26 23:45:57.753 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: call_price
+2019-10-26 23:45:57.753 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.753 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: in_operator
+2019-10-26 23:45:57.753 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price in operator.
+2019-10-26 23:45:57.754 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: other_operators
+2019-10-26 23:45:57.754 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price between operators.
+2019-10-26 23:45:57.754 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: sms_price
+2019-10-26 23:45:57.754 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set sms price.
+2019-10-26 23:45:57.754 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: parametrs
+2019-10-26 23:45:57.754 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.754 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: tarification
+2019-10-26 23:45:57.754 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tarification type.
+2019-10-26 23:45:57.754 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: connectiong
+2019-10-26 23:45:57.754 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set price of get sim-card.
+2019-10-26 23:45:57.754 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.754 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: date
+2019-10-26 23:45:57.754 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set launch date
+2019-10-26 23:45:57.755 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - end set params of tariff, add to  Set.
+2019-10-26 23:45:57.755 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: voice_tariff
+2019-10-26 23:45:57.755 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - create new tariff.
+2019-10-26 23:45:57.755 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set attribute payroll
+2019-10-26 23:45:57.755 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: name
+2019-10-26 23:45:57.755 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tariff name.
+2019-10-26 23:45:57.755 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: operator_name
+2019-10-26 23:45:57.755 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set operator.
+2019-10-26 23:45:57.755 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: call_price
+2019-10-26 23:45:57.755 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.755 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: in_operator
+2019-10-26 23:45:57.756 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price in operator.
+2019-10-26 23:45:57.756 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: other_operators
+2019-10-26 23:45:57.756 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price between operators.
+2019-10-26 23:45:57.756 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: sms_price
+2019-10-26 23:45:57.756 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set sms price.
+2019-10-26 23:45:57.756 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: parametrs
+2019-10-26 23:45:57.756 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.756 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: tarification
+2019-10-26 23:45:57.756 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tarification type.
+2019-10-26 23:45:57.756 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: connectiong
+2019-10-26 23:45:57.756 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set price of get sim-card.
+2019-10-26 23:45:57.757 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.757 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: date
+2019-10-26 23:45:57.757 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set launch date
+2019-10-26 23:45:57.757 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - end set params of tariff, add to  Set.
+2019-10-26 23:45:57.757 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: voice_tariff
+2019-10-26 23:45:57.757 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - create new tariff.
+2019-10-26 23:45:57.757 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set attribute payroll
+2019-10-26 23:45:57.757 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: name
+2019-10-26 23:45:57.757 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tariff name.
+2019-10-26 23:45:57.757 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: operator_name
+2019-10-26 23:45:57.757 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set operator.
+2019-10-26 23:45:57.758 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: call_price
+2019-10-26 23:45:57.758 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.758 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: in_operator
+2019-10-26 23:45:57.760 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price in operator.
+2019-10-26 23:45:57.761 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: other_operators
+2019-10-26 23:45:57.761 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price between operators.
+2019-10-26 23:45:57.761 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: sms_price
+2019-10-26 23:45:57.761 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set sms price.
+2019-10-26 23:45:57.761 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: parametrs
+2019-10-26 23:45:57.761 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.761 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: tarification
+2019-10-26 23:45:57.762 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tarification type.
+2019-10-26 23:45:57.762 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: connectiong
+2019-10-26 23:45:57.762 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set price of get sim-card.
+2019-10-26 23:45:57.762 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.762 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: date
+2019-10-26 23:45:57.762 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set launch date
+2019-10-26 23:45:57.762 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - end set params of tariff, add to  Set.
+2019-10-26 23:45:57.762 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: voice_tariff
+2019-10-26 23:45:57.762 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - create new tariff.
+2019-10-26 23:45:57.762 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set attribute payroll
+2019-10-26 23:45:57.762 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: name
+2019-10-26 23:45:57.763 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tariff name.
+2019-10-26 23:45:57.763 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: operator_name
+2019-10-26 23:45:57.763 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set operator.
+2019-10-26 23:45:57.763 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: call_price
+2019-10-26 23:45:57.763 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.763 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: in_operator
+2019-10-26 23:45:57.763 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price in operator.
+2019-10-26 23:45:57.763 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: other_operators
+2019-10-26 23:45:57.763 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price between operators.
+2019-10-26 23:45:57.763 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: sms_price
+2019-10-26 23:45:57.763 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set sms price.
+2019-10-26 23:45:57.764 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: parametrs
+2019-10-26 23:45:57.764 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.764 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: tarification
+2019-10-26 23:45:57.764 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tarification type.
+2019-10-26 23:45:57.764 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: connectiong
+2019-10-26 23:45:57.764 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set price of get sim-card.
+2019-10-26 23:45:57.764 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.764 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: date
+2019-10-26 23:45:57.764 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set launch date
+2019-10-26 23:45:57.765 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - end set params of tariff, add to  Set.
+2019-10-26 23:45:57.765 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: voice_tariff
+2019-10-26 23:45:57.765 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - create new tariff.
+2019-10-26 23:45:57.765 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set attribute payroll
+2019-10-26 23:45:57.765 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: name
+2019-10-26 23:45:57.765 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tariff name.
+2019-10-26 23:45:57.765 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: operator_name
+2019-10-26 23:45:57.765 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set operator.
+2019-10-26 23:45:57.765 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: call_price
+2019-10-26 23:45:57.765 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.765 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: in_operator
+2019-10-26 23:45:57.766 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price in operator.
+2019-10-26 23:45:57.766 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: other_operators
+2019-10-26 23:45:57.766 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price between operators.
+2019-10-26 23:45:57.766 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: sms_price
+2019-10-26 23:45:57.766 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set sms price.
+2019-10-26 23:45:57.766 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: parametrs
+2019-10-26 23:45:57.766 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.766 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: tarification
+2019-10-26 23:45:57.766 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tarification type.
+2019-10-26 23:45:57.766 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: connectiong
+2019-10-26 23:45:57.766 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set price of get sim-card.
+2019-10-26 23:45:57.766 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.766 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: date
+2019-10-26 23:45:57.767 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set launch date
+2019-10-26 23:45:57.767 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - end set params of tariff, add to  Set.
+2019-10-26 23:45:57.767 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: voice_tariff
+2019-10-26 23:45:57.767 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - create new tariff.
+2019-10-26 23:45:57.767 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set attribute payroll
+2019-10-26 23:45:57.767 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: name
+2019-10-26 23:45:57.767 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tariff name.
+2019-10-26 23:45:57.767 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: operator_name
+2019-10-26 23:45:57.767 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set operator.
+2019-10-26 23:45:57.767 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: call_price
+2019-10-26 23:45:57.767 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.768 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: in_operator
+2019-10-26 23:45:57.768 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price in operator.
+2019-10-26 23:45:57.768 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: other_operators
+2019-10-26 23:45:57.768 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price between operators.
+2019-10-26 23:45:57.768 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: sms_price
+2019-10-26 23:45:57.768 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set sms price.
+2019-10-26 23:45:57.768 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: parametrs
+2019-10-26 23:45:57.768 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.768 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: tarification
+2019-10-26 23:45:57.768 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tarification type.
+2019-10-26 23:45:57.768 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: connectiong
+2019-10-26 23:45:57.768 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set price of get sim-card.
+2019-10-26 23:45:57.769 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.769 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: date
+2019-10-26 23:45:57.769 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set launch date
+2019-10-26 23:45:57.769 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - end set params of tariff, add to  Set.
+2019-10-26 23:45:57.769 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: voice_tariff
+2019-10-26 23:45:57.769 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - create new tariff.
+2019-10-26 23:45:57.769 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set default payroll
+2019-10-26 23:45:57.769 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: name
+2019-10-26 23:45:57.769 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tariff name.
+2019-10-26 23:45:57.769 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: operator_name
+2019-10-26 23:45:57.769 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set operator.
+2019-10-26 23:45:57.770 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: call_price
+2019-10-26 23:45:57.770 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.770 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: in_operator
+2019-10-26 23:45:57.770 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price in operator.
+2019-10-26 23:45:57.770 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: other_operators
+2019-10-26 23:45:57.770 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price between operators.
+2019-10-26 23:45:57.770 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: sms_price
+2019-10-26 23:45:57.770 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set sms price.
+2019-10-26 23:45:57.770 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: parametrs
+2019-10-26 23:45:57.770 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.770 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: tarification
+2019-10-26 23:45:57.770 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tarification type.
+2019-10-26 23:45:57.770 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: connectiong
+2019-10-26 23:45:57.770 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set price of get sim-card.
+2019-10-26 23:45:57.771 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.771 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: date
+2019-10-26 23:45:57.771 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set launch date
+2019-10-26 23:45:57.771 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set archive date
+2019-10-26 23:45:57.771 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - end set params of tariff, add to  Set.
+2019-10-26 23:45:57.771 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: voice_tariff
+2019-10-26 23:45:57.772 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - create new tariff.
+2019-10-26 23:45:57.772 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set attribute payroll
+2019-10-26 23:45:57.772 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: name
+2019-10-26 23:45:57.772 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tariff name.
+2019-10-26 23:45:57.772 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: operator_name
+2019-10-26 23:45:57.772 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set operator.
+2019-10-26 23:45:57.772 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: call_price
+2019-10-26 23:45:57.772 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.772 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: in_operator
+2019-10-26 23:45:57.772 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price in operator.
+2019-10-26 23:45:57.772 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: other_operators
+2019-10-26 23:45:57.772 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price between operators.
+2019-10-26 23:45:57.772 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: sms_price
+2019-10-26 23:45:57.773 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set sms price.
+2019-10-26 23:45:57.773 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: parametrs
+2019-10-26 23:45:57.773 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.773 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: tarification
+2019-10-26 23:45:57.773 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tarification type.
+2019-10-26 23:45:57.773 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: connectiong
+2019-10-26 23:45:57.773 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set price of get sim-card.
+2019-10-26 23:45:57.773 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.773 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: date
+2019-10-26 23:45:57.773 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set launch date
+2019-10-26 23:45:57.773 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - end set params of tariff, add to  Set.
+2019-10-26 23:45:57.773 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: voice_tariff
+2019-10-26 23:45:57.773 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - create new tariff.
+2019-10-26 23:45:57.773 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set attribute payroll
+2019-10-26 23:45:57.773 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: name
+2019-10-26 23:45:57.773 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tariff name.
+2019-10-26 23:45:57.773 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: operator_name
+2019-10-26 23:45:57.774 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set operator.
+2019-10-26 23:45:57.774 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: call_price
+2019-10-26 23:45:57.774 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.774 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: in_operator
+2019-10-26 23:45:57.774 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price in operator.
+2019-10-26 23:45:57.775 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: other_operators
+2019-10-26 23:45:57.775 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price between operators.
+2019-10-26 23:45:57.775 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: sms_price
+2019-10-26 23:45:57.775 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set sms price.
+2019-10-26 23:45:57.775 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: parametrs
+2019-10-26 23:45:57.775 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.775 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: tarification
+2019-10-26 23:45:57.775 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tarification type.
+2019-10-26 23:45:57.775 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: connectiong
+2019-10-26 23:45:57.775 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set price of get sim-card.
+2019-10-26 23:45:57.776 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.776 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: date
+2019-10-26 23:45:57.776 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set launch date
+2019-10-26 23:45:57.777 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - end set params of tariff, add to  Set.
+2019-10-26 23:45:57.777 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: voice_tariff
+2019-10-26 23:45:57.777 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - create new tariff.
+2019-10-26 23:45:57.777 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set attribute payroll
+2019-10-26 23:45:57.777 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: name
+2019-10-26 23:45:57.777 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tariff name.
+2019-10-26 23:45:57.777 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: operator_name
+2019-10-26 23:45:57.777 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set operator.
+2019-10-26 23:45:57.777 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: call_price
+2019-10-26 23:45:57.777 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.778 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: in_operator
+2019-10-26 23:45:57.778 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price in operator.
+2019-10-26 23:45:57.778 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: other_operators
+2019-10-26 23:45:57.778 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price between operators.
+2019-10-26 23:45:57.778 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: sms_price
+2019-10-26 23:45:57.778 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set sms price.
+2019-10-26 23:45:57.778 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: parametrs
+2019-10-26 23:45:57.778 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.778 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: tarification
+2019-10-26 23:45:57.778 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tarification type.
+2019-10-26 23:45:57.778 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: connectiong
+2019-10-26 23:45:57.778 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set price of get sim-card.
+2019-10-26 23:45:57.778 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.778 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: date
+2019-10-26 23:45:57.778 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set launch date
+2019-10-26 23:45:57.779 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - end set params of tariff, add to  Set.
+2019-10-26 23:45:57.779 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: voice_tariff
+2019-10-26 23:45:57.779 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - create new tariff.
+2019-10-26 23:45:57.779 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set attribute payroll
+2019-10-26 23:45:57.779 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: name
+2019-10-26 23:45:57.779 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tariff name.
+2019-10-26 23:45:57.779 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: operator_name
+2019-10-26 23:45:57.779 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set operator.
+2019-10-26 23:45:57.779 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: call_price
+2019-10-26 23:45:57.779 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.779 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: in_operator
+2019-10-26 23:45:57.779 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price in operator.
+2019-10-26 23:45:57.779 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: other_operators
+2019-10-26 23:45:57.779 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price between operators.
+2019-10-26 23:45:57.780 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: sms_price
+2019-10-26 23:45:57.780 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set sms price.
+2019-10-26 23:45:57.780 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: parametrs
+2019-10-26 23:45:57.780 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.780 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: tarification
+2019-10-26 23:45:57.780 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tarification type.
+2019-10-26 23:45:57.780 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: connectiong
+2019-10-26 23:45:57.780 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set price of get sim-card.
+2019-10-26 23:45:57.780 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.780 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: date
+2019-10-26 23:45:57.780 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set launch date
+2019-10-26 23:45:57.780 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - end set params of tariff, add to  Set.
+2019-10-26 23:45:57.780 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: voice_tariff
+2019-10-26 23:45:57.781 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - create new tariff.
+2019-10-26 23:45:57.781 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set attribute payroll
+2019-10-26 23:45:57.781 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: name
+2019-10-26 23:45:57.781 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tariff name.
+2019-10-26 23:45:57.781 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: operator_name
+2019-10-26 23:45:57.781 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set operator.
+2019-10-26 23:45:57.781 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: call_price
+2019-10-26 23:45:57.781 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.781 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: in_operator
+2019-10-26 23:45:57.781 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price in operator.
+2019-10-26 23:45:57.781 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: other_operators
+2019-10-26 23:45:57.781 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price between operators.
+2019-10-26 23:45:57.781 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: sms_price
+2019-10-26 23:45:57.781 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set sms price.
+2019-10-26 23:45:57.781 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: parametrs
+2019-10-26 23:45:57.781 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.781 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: tarification
+2019-10-26 23:45:57.782 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tarification type.
+2019-10-26 23:45:57.782 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: connectiong
+2019-10-26 23:45:57.782 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set price of get sim-card.
+2019-10-26 23:45:57.782 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.782 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: date
+2019-10-26 23:45:57.782 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set launch date
+2019-10-26 23:45:57.782 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - end set params of tariff, add to  Set.
+2019-10-26 23:45:57.782 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: voice_tariff
+2019-10-26 23:45:57.782 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - create new tariff.
+2019-10-26 23:45:57.782 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set attribute payroll
+2019-10-26 23:45:57.782 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: name
+2019-10-26 23:45:57.783 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tariff name.
+2019-10-26 23:45:57.783 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: operator_name
+2019-10-26 23:45:57.783 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set operator.
+2019-10-26 23:45:57.783 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: call_price
+2019-10-26 23:45:57.783 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.783 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: in_operator
+2019-10-26 23:45:57.783 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price in operator.
+2019-10-26 23:45:57.783 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: other_operators
+2019-10-26 23:45:57.783 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price between operators.
+2019-10-26 23:45:57.783 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: sms_price
+2019-10-26 23:45:57.783 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set sms price.
+2019-10-26 23:45:57.783 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: parametrs
+2019-10-26 23:45:57.783 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.783 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: tarification
+2019-10-26 23:45:57.784 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tarification type.
+2019-10-26 23:45:57.784 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: connectiong
+2019-10-26 23:45:57.784 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set price of get sim-card.
+2019-10-26 23:45:57.784 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.784 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: date
+2019-10-26 23:45:57.784 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set launch date
+2019-10-26 23:45:57.784 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - end set params of tariff, add to  Set.
+2019-10-26 23:45:57.784 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: voice_tariff
+2019-10-26 23:45:57.784 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - create new tariff.
+2019-10-26 23:45:57.784 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set attribute payroll
+2019-10-26 23:45:57.784 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: name
+2019-10-26 23:45:57.784 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tariff name.
+2019-10-26 23:45:57.784 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: operator_name
+2019-10-26 23:45:57.784 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set operator.
+2019-10-26 23:45:57.784 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: call_price
+2019-10-26 23:45:57.785 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.785 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: in_operator
+2019-10-26 23:45:57.785 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price in operator.
+2019-10-26 23:45:57.785 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: other_operators
+2019-10-26 23:45:57.785 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price between operators.
+2019-10-26 23:45:57.785 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: sms_price
+2019-10-26 23:45:57.785 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set sms price.
+2019-10-26 23:45:57.785 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: parametrs
+2019-10-26 23:45:57.785 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.785 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: tarification
+2019-10-26 23:45:57.785 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tarification type.
+2019-10-26 23:45:57.785 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: connectiong
+2019-10-26 23:45:57.785 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set price of get sim-card.
+2019-10-26 23:45:57.785 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.785 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: date
+2019-10-26 23:45:57.785 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set launch date
+2019-10-26 23:45:57.786 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - end set params of tariff, add to  Set.
+2019-10-26 23:45:57.786 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: voice_tariff
+2019-10-26 23:45:57.786 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - create new tariff.
+2019-10-26 23:45:57.786 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set attribute payroll
+2019-10-26 23:45:57.786 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: name
+2019-10-26 23:45:57.786 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tariff name.
+2019-10-26 23:45:57.786 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: operator_name
+2019-10-26 23:45:57.786 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set operator.
+2019-10-26 23:45:57.786 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: call_price
+2019-10-26 23:45:57.786 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.786 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: in_operator
+2019-10-26 23:45:57.786 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price in operator.
+2019-10-26 23:45:57.787 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: other_operators
+2019-10-26 23:45:57.787 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set call price between operators.
+2019-10-26 23:45:57.787 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: sms_price
+2019-10-26 23:45:57.787 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set sms price.
+2019-10-26 23:45:57.787 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: parametrs
+2019-10-26 23:45:57.787 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.787 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: tarification
+2019-10-26 23:45:57.787 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set tarification type.
+2019-10-26 23:45:57.787 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: connectiong
+2019-10-26 23:45:57.787 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set price of get sim-card.
+2019-10-26 23:45:57.787 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - not simple tag, nothing to set: 
+2019-10-26 23:45:57.787 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - find tag: date
+2019-10-26 23:45:57.787 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - set launch date
+2019-10-26 23:45:57.788 [main] DEBUG dorozhko.xmlparse.parsers.sax.TariffsHandler - end set params of tariff, add to  Set.
+2019-10-26 23:45:57.788 [main] DEBUG XMLSchemaValidator - start validation
