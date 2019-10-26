@@ -4,7 +4,9 @@ import by.dorozhko.xmlparse.parsers.ParserFactory;
 import by.dorozhko.xmlparse.parsers.TariffsBuilder;
 import by.dorozhko.xmlparse.services.Service;
 import by.dorozhko.xmlparse.tariffs.TariffType;
+import by.dorozhko.xmlparse.validator.XMLSchemaValidator;
 
+import javax.xml.validation.Validator;
 import java.util.Set;
 
 public class ServiceImpl implements Service {
@@ -12,6 +14,10 @@ public class ServiceImpl implements Service {
 
     @Override
     public String buildTariffs(String pathToXMLandXSD) {
+
+        if(!XMLSchemaValidator.validate(pathToXMLandXSD.split("-")[2],pathToXMLandXSD.split("-")[3])){
+            return "NOT VALID XML FILE, cheak schema";
+        }
 
 
         TariffsBuilder builder = parserFactory.createTariffsBuilder(pathToXMLandXSD.split("-")[1]);
