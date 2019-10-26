@@ -21,9 +21,9 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * <p>Java class for TariffType complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="TariffType">
  *   &lt;complexContent>
@@ -57,16 +57,14 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TariffType", propOrder = {
-    "name",
-    "operatorName"
+        "name",
+        "operatorName"
 })
 @XmlSeeAlso({
-    VoiceTariff.class
+        VoiceTariff.class
 })
 public class TariffType {
 
@@ -81,11 +79,9 @@ public class TariffType {
 
     /**
      * Gets the value of the name property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getName() {
         return name;
@@ -93,11 +89,9 @@ public class TariffType {
 
     /**
      * Sets the value of the name property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setName(String value) {
         this.name = value;
@@ -105,11 +99,9 @@ public class TariffType {
 
     /**
      * Gets the value of the operatorName property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getOperatorName() {
         return operatorName;
@@ -117,11 +109,9 @@ public class TariffType {
 
     /**
      * Sets the value of the operatorName property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setOperatorName(String value) {
         this.operatorName = value;
@@ -129,15 +119,13 @@ public class TariffType {
 
     /**
      * Gets the value of the payroll property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Double }
-     *     
+     *
+     * @return possible object is
+     * {@link Double }
      */
     public double getPayroll() {
         if (payroll == null) {
-            return  0.0D;
+            return 0.0D;
         } else {
             return payroll;
         }
@@ -145,11 +133,9 @@ public class TariffType {
 
     /**
      * Sets the value of the payroll property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Double }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Double }
      */
     public void setPayroll(Double value) {
         this.payroll = value;

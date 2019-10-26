@@ -1,5 +1,6 @@
 package by.dorozhko.xmlparse.parsers.dom;
 
+import by.dorozhko.xmlparse.parsers.TariffsBuilder;
 import by.dorozhko.xmlparse.tariffs.TariffType;
 import by.dorozhko.xmlparse.tariffs.VoiceTariff;
 import org.apache.logging.log4j.LogManager;
@@ -17,15 +18,15 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
-public class TariffsDOMBuilder {
+public class TariffsDOMBuilder extends TariffsBuilder {
     private final Logger logger = LogManager.getLogger(getClass().getName());
 
-    private Set<TariffType> tariffsSet;
+ //   private Set<TariffType> tariffsSet;
 
     private DocumentBuilder documentBuilder;
 
     public TariffsDOMBuilder() {
-        tariffsSet = new HashSet<>();
+//        tariffsSet = new HashSet<>();
 
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
 
@@ -38,45 +39,45 @@ public class TariffsDOMBuilder {
     }
 
 
-    public Set<TariffType> getTariffs(){
-        return tariffsSet;
-    }
+//    public Set<TariffType> getTariffs() {
+//        return tariffsSet;
+//    }
 
-    public void builtSetTarrifs(String filePath){
+    public void buildSetTariffs(String filePath) {
         Document document = null;
-        try{
+        try {
             document = documentBuilder.parse(filePath);
             Element root = document.getDocumentElement();
 
             NodeList tariffList = root.getElementsByTagName("voice_tariff");
 
-            for (int i =0; i < tariffList.getLength(); i++){
+            for (int i = 0; i < tariffList.getLength(); i++) {
                 Element tariffElement = (Element) tariffList.item(i);
                 TariffType voiceTariff = builtTariff(tariffElement);
                 tariffsSet.add(voiceTariff);
             }
 
 
-        }catch (IOException ex){
+        } catch (IOException ex) {
             logger.error("ioexception", ex);
-        }catch (SAXException ex){
+        } catch (SAXException ex) {
             logger.error("parsing fail", ex);
         }
     }
 
 
-    private TariffType builtTariff(Element tariffElement){
+    private TariffType builtTariff(Element tariffElement) {
         VoiceTariff tariff = new VoiceTariff();
         tariff.setName(getElementTextContent(tariffElement, "name"));
         tariff.setOperatorName(getElementTextContent(tariffElement, "operator_name"));
-        if(tariffElement.hasAttribute("payroll")) {
+        if (tariffElement.hasAttribute("payroll")) {
             tariff.setPayroll(Double.parseDouble(tariffElement.getAttribute("payroll")));
-        }else {
+        } else {
             tariff.setPayroll(0.0);
         }
         tariff.setSmsPrice(Double.parseDouble(getElementTextContent(tariffElement, "sms_price")));
         VoiceTariff.CallPrice callPrice = tariff.getCallPrice();
-        Element callPriceElement =(Element) tariffElement.getElementsByTagName("call_price").item(0);
+        Element callPriceElement = (Element) tariffElement.getElementsByTagName("call_price").item(0);
 
         callPrice.setInOperator(Double.valueOf(getElementTextContent(callPriceElement, "in_operator")));
         callPrice.setOtherOperators(Double.parseDouble(getElementTextContent(callPriceElement, "other_operators")));

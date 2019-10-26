@@ -14,18 +14,18 @@ public class TariffsHandler extends DefaultHandler {
 
     private final Logger logger = LogManager.getLogger(getClass().getName());
 
-    private Set<TariffType> tariffTypeSet;
+    private Set<TariffType> tariffsSet;
 
     private VoiceTariff currentTariff;
 
     private String tagName;
 
     public TariffsHandler() {
-        tariffTypeSet = new HashSet<>();
+        tariffsSet = new HashSet<>();
     }
 
     public Set<TariffType> getTariffs() {
-        return tariffTypeSet;
+        return tariffsSet;
     }
 
     public void startElement(String uri, String localName, String qName, Attributes attr) {
@@ -55,7 +55,7 @@ public class TariffsHandler extends DefaultHandler {
     public void endElement(String uri, String localName, String qName) {
         if ("voice_tariff".equals(localName)) {
             logger.debug("end set params of tariff, add to  Set.");
-            tariffTypeSet.add(currentTariff);
+            tariffsSet.add(currentTariff);
         }
     }
 
