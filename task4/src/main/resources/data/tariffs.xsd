@@ -4,11 +4,19 @@
         xmlns:tns="http://www.dorozhko.by/tariffs"
         elementFormDefault="qualified">
 
+
+
+
+    <element name="tariffType" type="tns:TariffType" abstract="true"></element>
+    <element name="voice_tariff" type="tns:VoiceTariff" substitutionGroup="tns:tariffType"></element>
+
+
+
+
     <element name="tariffs">
         <complexType>
             <sequence>
-                <element name="voice_tariff"
-                         type="tns:VoiceTariff"
+                <element ref="tns:tariffType"
                          minOccurs="16"
                          maxOccurs="unbounded"/>
             </sequence>

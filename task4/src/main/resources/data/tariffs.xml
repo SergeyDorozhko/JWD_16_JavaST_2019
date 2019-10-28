@@ -4,6 +4,7 @@
          xsi:schemaLocation="http://www.dorozhko.by/tariffs tariffs.xsd">
 
 
+
     <voice_tariff payroll="12.4">
         <name>Comfort_S</name>
         <operator_name>A1</operator_name>
