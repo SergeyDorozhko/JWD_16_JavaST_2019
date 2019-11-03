@@ -7,7 +7,8 @@
     </Properties>
 
     <Appenders>
-        <File name="TxtFile" fileName="logs/logs.log" bufferedIO="true">
+        <File name="TxtFile" fileName="logs/logs.log" bufferedIO="true">-->
+
             <PatternLayout pattern="${patternfull}"/>
         </File>
     </Appenders>

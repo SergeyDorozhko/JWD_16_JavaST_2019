@@ -1,24 +1,44 @@
 package by.dorozhko.xmlparse.controller.command;
 
-import by.dorozhko.xmlparse.controller.command.impl.BuildCommand;
+import by.dorozhko.xmlparse.controller.command.impl.ParseCommand;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class CommandProvider {
-    private static final CommandProvider instance = new CommandProvider();
+public final class CommandProvider {
+    /**
+     * Single tone.
+     */
+    private static final CommandProvider INSTANCE = new CommandProvider();
+
+    /**
+     * Map of supported commands.
+     */
     private Map<String, Command> command = new HashMap<>();
 
     private CommandProvider() {
-        command.put("BUILD", new BuildCommand());
+        command.put("DOM", new ParseCommand());
+        command.put("SAX", new ParseCommand());
+        command.put("StAX", new ParseCommand());
+
     }
 
+    /**
+     * Get link to command provider method.
+     *
+     * @return link t this object.
+     */
     public static CommandProvider getInstance() {
-        return instance;
+        return INSTANCE;
     }
 
-
-    public Command getCommand(String commandName) {
+    /**
+     * get command method.
+     *
+     * @param commandName params of command.
+     * @return link to needed command.
+     */
+    public Command getCommand(final String commandName) {
         return command.get(commandName);
     }
 
