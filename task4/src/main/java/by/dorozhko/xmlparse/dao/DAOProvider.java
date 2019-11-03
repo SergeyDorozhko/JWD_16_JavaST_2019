@@ -2,6 +2,7 @@ package by.dorozhko.xmlparse.dao;
 
 import by.dorozhko.xmlparse.dao.parsers.ParserFactory;
 import by.dorozhko.xmlparse.dao.parsers.TariffsBuilder;
+import by.dorozhko.xmlparse.dao.property.XMLPropertyImpl;
 import by.dorozhko.xmlparse.dao.validator.XMLSchemaValidator;
 
 public final class DAOProvider {
@@ -19,7 +20,13 @@ public final class DAOProvider {
     private InterfaceValidator validator = new XMLSchemaValidator();
 
     /**
+     * get properties from config.
+     */
+    private InterfaceProperties property = new XMLPropertyImpl();
+
+    /**
      * get link  to single object of this class.
+     *
      * @return link
      */
     public static DAOProvider getInstance() {
@@ -28,6 +35,7 @@ public final class DAOProvider {
 
     /**
      * get link to validator method.
+     *
      * @return link.
      */
     public InterfaceValidator getValidator() {
@@ -36,6 +44,7 @@ public final class DAOProvider {
 
     /**
      * get link of tariffs builder.
+     *
      * @param parser params for parsing (type of parser)
      * @return link to builder.
      */
@@ -43,5 +52,14 @@ public final class DAOProvider {
         ParserFactory parserFactory = ParserFactory.getInstance();
 
         return parserFactory.createTariffsBuilder(parser);
+    }
+
+    /**
+     * get property from config.
+     *
+     * @return property.
+     */
+    public InterfaceProperties getProperty() {
+        return property;
     }
 }

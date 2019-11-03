@@ -7,7 +7,11 @@ import org.apache.logging.log4j.Logger;
 import org.xml.sax.SAXException;
 
 import javax.xml.XMLConstants;
-import javax.xml.stream.*;
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamReader;
+import javax.xml.stream.XMLStreamConstants;
+import javax.xml.stream.XMLStreamException;
+
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import java.io.File;
@@ -15,21 +19,34 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 public class TariffsStAXBuilder extends TariffsBuilder {
-
+    /**
+     * logger.
+     */
     private final Logger logger = LogManager.getLogger(getClass().getName());
 
-
+    /**
+     * Defines an abstract implementation of a factory for getting streams.
+     */
     private XMLInputFactory inputFactory;
 
+    /**
+     * default constructor creates link to XMLInputFactory and set property
+     * external entity to false.
+     */
     public TariffsStAXBuilder() {
         inputFactory = XMLInputFactory.newInstance();
-        inputFactory.setProperty(XMLInputFactory.IS_SUPPORTING_EXTERNAL_ENTITIES, false);
+        inputFactory.setProperty(XMLInputFactory
+                .IS_SUPPORTING_EXTERNAL_ENTITIES, false);
 
     }
 
-
-
-    public void buildSetTariffs(String fileName, String schemaPath) {
+    /**
+     * build set of tariffs.
+     * @param fileName path to xml on server.
+     * @param schemaPath path to schema on server.
+     */
+    public void buildSetTariffs(final String fileName,
+                                final String schemaPath) {
 
         String constant = XMLConstants.W3C_XML_SCHEMA_NS_URI;
         SchemaFactory xsdFactory = SchemaFactory.newInstance(constant);
@@ -42,10 +59,8 @@ public class TariffsStAXBuilder extends TariffsBuilder {
         }
 
 
-
         FileInputStream inputStream = null;
         XMLStreamReader streamReader = null;
-
 
 
         //TODO connect schema.
@@ -54,7 +69,6 @@ public class TariffsStAXBuilder extends TariffsBuilder {
         try {
             inputStream = new FileInputStream(new File(fileName));
             streamReader = inputFactory.createXMLStreamReader(inputStream);
-
 
 
             while (streamReader.hasNext()) {
@@ -82,7 +96,8 @@ public class TariffsStAXBuilder extends TariffsBuilder {
         }
     }
 
-    private VoiceTariff buildTariff(XMLStreamReader reader) throws XMLStreamException {
+    private VoiceTariff buildTariff(final XMLStreamReader reader)
+            throws XMLStreamException {
         VoiceTariff tariff = new VoiceTariff();
 
         if (reader.getAttributeCount() != 0) {
@@ -106,16 +121,19 @@ public class TariffsStAXBuilder extends TariffsBuilder {
                             tariff.setOperatorName(getXMLText(reader));
                             break;
                         case "sms_price":
-                            tariff.setSmsPrice(Double.parseDouble(getXMLText(reader)));
+                            tariff.setSmsPrice(Double
+                                    .parseDouble(getXMLText(reader)));
                             break;
                         case "date":
-                            tariff.getDate().setLaunchDate(reader.getAttributeValue(0));
+                            tariff.getDate().setLaunchDate(reader
+                                    .getAttributeValue(0));
                             if (reader.getAttributeCount() == 2) {
-                                tariff.getDate().setArchiveDate(reader.getAttributeValue(1));
+                                tariff.getDate().setArchiveDate(reader
+                                        .getAttributeValue(1));
                             }
                             break;
                         case "call_price":
-                                tariff.setCallPrice(getXMLCallPrice(reader));
+                            tariff.setCallPrice(getXMLCallPrice(reader));
                             break;
                         case "parametrs":
                             tariff.setParametrs(getXMLParametrs(reader));
@@ -139,7 +157,8 @@ public class TariffsStAXBuilder extends TariffsBuilder {
         throw new XMLStreamException("Unknown element in tag voice_tariff");
     }
 
-    private VoiceTariff.Parametrs getXMLParametrs(XMLStreamReader reader) throws XMLStreamException {
+    private VoiceTariff.Parametrs getXMLParametrs(final XMLStreamReader reader)
+            throws XMLStreamException {
         VoiceTariff.Parametrs parametrs = new VoiceTariff.Parametrs();
         int type;
         String name;
@@ -148,12 +167,13 @@ public class TariffsStAXBuilder extends TariffsBuilder {
             switch (type) {
                 case XMLStreamConstants.START_ELEMENT:
                     name = reader.getLocalName();
-                    switch (name){
+                    switch (name) {
                         case "tarification":
                             parametrs.setTarification(getXMLText(reader));
                             break;
                         case "connectiong":
-                            parametrs.setConnectiong(Integer.parseInt(getXMLText(reader)));
+                            parametrs.setConnectiong(Integer
+                                    .parseInt(getXMLText(reader)));
                             break;
                         default:
                             logger.debug("unsuppoted name", name);
@@ -161,7 +181,7 @@ public class TariffsStAXBuilder extends TariffsBuilder {
                     break;
                 case XMLStreamConstants.END_ELEMENT:
                     name = reader.getLocalName();
-                    if (name.equals("parametrs")){
+                    if (name.equals("parametrs")) {
                         return parametrs;
                     }
                     break;
@@ -174,7 +194,8 @@ public class TariffsStAXBuilder extends TariffsBuilder {
         throw new XMLStreamException("Unknown element in tag parametrs");
     }
 
-    private VoiceTariff.CallPrice getXMLCallPrice(XMLStreamReader reader) throws XMLStreamException {
+    private VoiceTariff.CallPrice getXMLCallPrice(final XMLStreamReader reader)
+            throws XMLStreamException {
         VoiceTariff.CallPrice callPrice = new VoiceTariff.CallPrice();
         int type;
         String name;
@@ -185,10 +206,12 @@ public class TariffsStAXBuilder extends TariffsBuilder {
                     name = reader.getLocalName();
                     switch (name) {
                         case "in_operator":
-                            callPrice.setInOperator(Double.parseDouble(getXMLText(reader)));
+                            callPrice.setInOperator(Double
+                                    .parseDouble(getXMLText(reader)));
                             break;
                         case "other_operators":
-                            callPrice.setOtherOperators(Double.parseDouble(getXMLText(reader)));
+                            callPrice.setOtherOperators(Double
+                                    .parseDouble(getXMLText(reader)));
                             break;
                         default:
                             logger.debug("unsupported tag", name);
@@ -196,7 +219,7 @@ public class TariffsStAXBuilder extends TariffsBuilder {
                     break;
                 case XMLStreamConstants.END_ELEMENT:
                     name = reader.getLocalName();
-                    if(name.equals("call_price")){
+                    if (name.equals("call_price")) {
                         return callPrice;
                     }
                     break;
@@ -207,7 +230,8 @@ public class TariffsStAXBuilder extends TariffsBuilder {
         throw new XMLStreamException("Unknown element in tag call_price");
     }
 
-    private String getXMLText(XMLStreamReader reader) throws XMLStreamException {
+    private String getXMLText(final XMLStreamReader reader)
+            throws XMLStreamException {
         String text = null;
         if (reader.hasNext()) {
             reader.next();

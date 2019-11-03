@@ -16,21 +16,36 @@ import java.io.IOException;
 
 public class TariffsSAXBuilder extends TariffsBuilder {
 
+    /**
+     * logger.
+     */
     private final Logger logger = LogManager.getLogger(getClass().getName());
 
-
+    /**
+     * tariff haandler.
+     */
     private TariffsHandler handler;
 
+    /**
+     * Interface for reading an XML document using callbacks.
+     */
     private XMLReader reader;
 
+    /**
+     * default constructor.
+     */
     public TariffsSAXBuilder() {
-
-
         handler = new TariffsHandler();
 
     }
 
-    public void buildSetTariffs(String fileName, String schemaPath) {
+    /**
+     * build set from xml.
+     * @param fileName path to file.
+     * @param schemaPath path to schema.
+     */
+    public void buildSetTariffs(final String fileName,
+                                final String schemaPath) {
         String constant = XMLConstants.W3C_XML_SCHEMA_NS_URI;
         SchemaFactory xsdFactory = SchemaFactory.newInstance(constant);
         Schema schema = null;

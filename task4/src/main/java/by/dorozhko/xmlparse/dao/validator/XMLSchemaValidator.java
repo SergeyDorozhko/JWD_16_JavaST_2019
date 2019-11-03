@@ -16,14 +16,23 @@ import java.io.File;
 import java.io.IOException;
 
 public class XMLSchemaValidator implements InterfaceValidator {
-    private static final Logger logger = LogManager.getLogger();
+    /**
+     * logger.
+     */
+    private final Logger logger = LogManager.getLogger();
 
-
-    public boolean validate(String pathToXML, String pathToXSD){
+    /**
+     * validating xml file by schema.
+     * @param pathToXML path to xml file on server.
+     * @param pathToXSD path to xsd file on server.
+     * @return result of validating.
+     */
+    public boolean validate(final String pathToXML, final String pathToXSD) {
         logger.debug("start validation");
 
         XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
-        xmlInputFactory.setProperty(XMLInputFactory.IS_SUPPORTING_EXTERNAL_ENTITIES,false);
+        xmlInputFactory.setProperty(XMLInputFactory
+                .IS_SUPPORTING_EXTERNAL_ENTITIES, false);
 
         String language = XMLConstants.W3C_XML_SCHEMA_NS_URI;
         SchemaFactory schemaFactory = SchemaFactory.newInstance(language);
@@ -37,10 +46,10 @@ public class XMLSchemaValidator implements InterfaceValidator {
             Source source = new StreamSource(pathToXML);
             validator.validate(source);
             return true;
-        }catch (SAXException ex) {
+        } catch (SAXException ex) {
             logger.error("not valid XML, because:", ex);
             return false;
-        }catch (IOException ex){
+        } catch (IOException ex) {
             logger.error("not valid because: ", ex);
             return false;
         }

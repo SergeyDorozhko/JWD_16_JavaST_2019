@@ -1,19 +1,35 @@
 package by.dorozhko.xmlparse.services.exception;
 
 public class ServiceException extends Exception {
+    /**
+     * default constructor.
+     */
     public ServiceException() {
         super();
     }
 
-    public ServiceException(String message) {
+    /**
+     * constructor with massage value.
+     * @param message info of exception.
+     */
+    public ServiceException(final String message) {
         super(message);
     }
 
-    public ServiceException(String message, Throwable cause) {
+    /**
+     * constructor with massage and cause params.
+     * @param message value of exception.
+     * @param cause cause of exception.
+     */
+    public ServiceException(final String message, final Throwable cause) {
         super(message, cause);
     }
 
-    public ServiceException(Throwable cause) {
+    /**
+     * constructor with cause param.
+     * @param cause cause of exception.
+     */
+    public ServiceException(final Throwable cause) {
         super(cause);
     }
 }

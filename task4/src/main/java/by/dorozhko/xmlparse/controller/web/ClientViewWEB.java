@@ -42,6 +42,10 @@ public class ClientViewWEB extends HttpServlet {
             "WEB-INF/classes/data/xml";
 
     /**
+     * buffer to read file size.
+     */
+    private static final int BUFFER = 1024;
+    /**
      * Method take user request, take some information instead of user request
      * and send response to web view.
      * @param req user request.
@@ -87,7 +91,7 @@ public class ClientViewWEB extends HttpServlet {
             filecontent = xmlFile.getInputStream();
 
             int read = 0;
-            final byte[] bytes = new byte[1024];
+            final byte[] bytes = new byte[BUFFER];
 
             while ((read = filecontent.read(bytes)) != -1) {
                 out.write(bytes, 0, read);
@@ -107,7 +111,7 @@ public class ClientViewWEB extends HttpServlet {
 
         String pathXml = getServletContext().getResource("")
                 .getPath() + STORAGE_FOLDER_PATH + File.separator + fileName;
-        String pathXsd = getServletContext().getResource("").getPath() + "WEB-INF/classes/data/tariffs.xsd";
+        String rootCatalog = getServletContext().getResource("").getPath();
 
 
         String parser = request.getParameter("parser");
@@ -118,7 +122,7 @@ public class ClientViewWEB extends HttpServlet {
 
         try {
             tariffsSet = command.execute(
-                    parser + ";" + pathXml + ";" + pathXsd);
+                    parser + ";" + pathXml + ";" + rootCatalog);
         } catch (ServiceException ex) {
             request.setAttribute("error", "Not valid XML file");
         }

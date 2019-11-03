@@ -22,14 +22,28 @@ import java.io.IOException;
 
 public class TariffsDOMBuilder extends TariffsBuilder {
 
+    /**
+     * logger.
+     */
     private final Logger logger = LogManager.getLogger(getClass().getName());
 
+    /**
+     * Defines the API to obtain DOM Document instances from an
+     * XML document. Using this class, an application programmer
+     * can obtain a Document from XML.
+     */
     private DocumentBuilder documentBuilder;
 
+    /**
+     * build set of entity from xml method.
+     * @param filePath path to file.
+     * @param schemaPath path to schema.
+     */
+    public void buildSetTariffs(final String filePath,
+                                final String schemaPath) {
 
-    public void buildSetTariffs(String filePath, String schemaPath) {
-
-        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilderFactory documentBuilderFactory
+                = DocumentBuilderFactory.newInstance();
 
         String constant = XMLConstants.W3C_XML_SCHEMA_NS_URI;
         SchemaFactory xsdFactory = SchemaFactory.newInstance(constant);
@@ -76,32 +90,45 @@ public class TariffsDOMBuilder extends TariffsBuilder {
     }
 
 
-    private TariffType builtTariff(Element tariffElement) {
+    private TariffType builtTariff(final Element tariffElement) {
         VoiceTariff tariff = new VoiceTariff();
         tariff.setName(getElementTextContent(tariffElement, "name"));
-        tariff.setOperatorName(getElementTextContent(tariffElement, "operator_name"));
-        tariff.setPayroll(Double.parseDouble(tariffElement.getAttribute("payroll")));
-        tariff.setSmsPrice(Double.parseDouble(getElementTextContent(tariffElement, "sms_price")));
+        tariff.setOperatorName(getElementTextContent(tariffElement,
+                "operator_name"));
+        tariff.setPayroll(Double.parseDouble(tariffElement
+                .getAttribute("payroll")));
+        tariff.setSmsPrice(Double.parseDouble(
+                getElementTextContent(tariffElement, "sms_price")));
         VoiceTariff.CallPrice callPrice = tariff.getCallPrice();
-        Element callPriceElement = (Element) tariffElement.getElementsByTagName("call_price").item(0);
+        Element callPriceElement = (Element) tariffElement
+                .getElementsByTagName("call_price").item(0);
 
-        callPrice.setInOperator(Double.valueOf(getElementTextContent(callPriceElement, "in_operator")));
-        callPrice.setOtherOperators(Double.parseDouble(getElementTextContent(callPriceElement, "other_operators")));
+        callPrice.setInOperator(Double.valueOf(
+                getElementTextContent(callPriceElement,
+                        "in_operator")));
+        callPrice.setOtherOperators(Double.parseDouble(
+                getElementTextContent(callPriceElement,
+                        "other_operators")));
 
         VoiceTariff.Parametrs params = tariff.getParametrs();
-        Element paramElement = (Element) tariffElement.getElementsByTagName("parametrs").item(0);
-        params.setConnectiong(Integer.parseInt(getElementTextContent(paramElement, "connectiong")));
-        params.setTarification(getElementTextContent(paramElement, "tarification"));
+        Element paramElement = (Element) tariffElement
+                .getElementsByTagName("parametrs").item(0);
+        params.setConnectiong(Integer.parseInt(getElementTextContent(
+                paramElement, "connectiong")));
+        params.setTarification(getElementTextContent(paramElement,
+                "tarification"));
 
 
         VoiceTariff.Date dateTariff = tariff.getDate();
-        Element dateElement = (Element) tariffElement.getElementsByTagName("date").item(0);
+        Element dateElement = (Element) tariffElement
+                .getElementsByTagName("date").item(0);
         dateTariff.setLaunchDate(dateElement.getAttribute("launch_date"));
         dateTariff.setArchiveDate(dateElement.getAttribute("archive_date"));
         return tariff;
     }
 
-    private static String getElementTextContent(Element element, String elementName) {
+    private static String getElementTextContent(final Element element,
+                                                final String elementName) {
         NodeList list = element.getElementsByTagName(elementName);
         Node node = list.item(0);
         return node.getTextContent();
