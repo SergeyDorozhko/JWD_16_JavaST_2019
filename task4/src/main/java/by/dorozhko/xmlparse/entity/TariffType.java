@@ -76,17 +76,17 @@ public class TariffType {
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     @XmlID
-    protected String name;
+    private String name;
     /**
      * type of elment.
      */
     @XmlElement(name = "operator_name", required = true)
-    protected String operatorName;
+    private String operatorName;
     /**
      * payroll.
      */
     @XmlAttribute(name = "payroll")
-    protected Double payroll;
+    private Double payroll;
 
     /**
      * Gets the value of the name property.

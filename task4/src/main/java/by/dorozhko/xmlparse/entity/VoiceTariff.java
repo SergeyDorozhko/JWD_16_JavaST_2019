@@ -133,22 +133,22 @@ public class VoiceTariff
      * call price.
      */
     @XmlElement(name = "call_price", required = true)
-    protected VoiceTariff.CallPrice callPrice = new VoiceTariff.CallPrice();
+    private VoiceTariff.CallPrice callPrice = new VoiceTariff.CallPrice();
     /**
      * sms price.
      */
     @XmlElement(name = "sms_price")
-    protected double smsPrice;
+    private double smsPrice;
     /**
      * params such as tarification and pay for connecting.
      */
     @XmlElement(required = true)
-    protected VoiceTariff.Parametrs parametrs = new VoiceTariff.Parametrs();
+    private VoiceTariff.Parametrs parametrs = new VoiceTariff.Parametrs();
     /**
      * data archive and launch.
      */
     @XmlElement(required = true)
-    protected VoiceTariff.Date date = new VoiceTariff.Date();
+    private VoiceTariff.Date date = new VoiceTariff.Date();
 
     /**
      * Gets the value of the callPrice property.
@@ -254,12 +254,12 @@ public class VoiceTariff
          * price in operator.
          */
         @XmlElement(name = "in_operator", defaultValue = "0")
-        protected double inOperator;
+        private double inOperator;
         /**
          * call price to other operators.
          */
         @XmlElement(name = "other_operators")
-        protected double otherOperators;
+        private double otherOperators;
 
         /**
          * Gets the value of the inOperator property.
@@ -314,12 +314,12 @@ public class VoiceTariff
          * launch data.
          */
         @XmlAttribute(name = "launch_date", required = true)
-        protected String launchDate;
+        private String launchDate;
         /**
          * archive data.
          */
         @XmlAttribute(name = "archive_date")
-        protected String archiveDate;
+        private String archiveDate;
 
         /**
          * Gets the value of the launchDate property.
@@ -392,13 +392,13 @@ public class VoiceTariff
          * type of tarification.
          */
         @XmlElement(required = true)
-        protected String tarification;
+        private String tarification;
         /**
          * cost of connection.
          */
         @XmlElement(required = true)
         @XmlSchemaType(name = "positiveInteger")
-        protected Integer connectiong;
+        private Integer connectiong;
 
         /**
          * Gets the value of the tarification property.
@@ -462,8 +462,8 @@ public class VoiceTariff
                 + ", smsPrice=" + smsPrice
                 + ", parametrs=" + parametrs
                 + ", date=" + date
-                + ", name='" + name + '\''
-                + ", operatorName='" + operatorName + '\''
-                + ", payroll=" + payroll + '}';
+                + ", name='" + super.getName() + '\''
+                + ", operatorName='" + super.getOperatorName() + '\''
+                + ", payroll=" + super.getPayroll() + '}';
     }
 }
