@@ -4,16 +4,12 @@ import by.dorozhko.xmlparse.dao.parsers.TariffsBuilder;
 import by.dorozhko.xmlparse.entity.VoiceTariff;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.xml.sax.SAXException;
 
-import javax.xml.XMLConstants;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
 
-import javax.xml.validation.Schema;
-import javax.xml.validation.SchemaFactory;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -42,28 +38,17 @@ public class TariffsStAXBuilder extends TariffsBuilder {
 
     /**
      * build set of tariffs.
-     * @param fileName path to xml on server.
+     *
+     * @param fileName   path to xml on server.
      * @param schemaPath path to schema on server.
      */
     public void buildSetTariffs(final String fileName,
                                 final String schemaPath) {
 
-        String constant = XMLConstants.W3C_XML_SCHEMA_NS_URI;
-        SchemaFactory xsdFactory = SchemaFactory.newInstance(constant);
-        Schema schema = null;
-        try {
-            schema = xsdFactory.newSchema(new File(schemaPath));
-
-        } catch (SAXException e) {
-            logger.error("error to create schema", e);
-        }
-
 
         FileInputStream inputStream = null;
         XMLStreamReader streamReader = null;
 
-
-        //TODO connect schema.
 
         String name;
         try {
@@ -139,7 +124,7 @@ public class TariffsStAXBuilder extends TariffsBuilder {
                             tariff.setParametrs(getXMLParametrs(reader));
                             break;
                         default:
-                            logger.debug("unsupported name", name);
+                            logger.debug(name, "unsupported name");
                     }
                     break;
                 case XMLStreamConstants.END_ELEMENT:
@@ -176,7 +161,7 @@ public class TariffsStAXBuilder extends TariffsBuilder {
                                     .parseInt(getXMLText(reader)));
                             break;
                         default:
-                            logger.debug("unsuppoted name", name);
+                            logger.debug(name, "unsuppoted name");
                     }
                     break;
                 case XMLStreamConstants.END_ELEMENT:
@@ -214,7 +199,7 @@ public class TariffsStAXBuilder extends TariffsBuilder {
                                     .parseDouble(getXMLText(reader)));
                             break;
                         default:
-                            logger.debug("unsupported tag", name);
+                            logger.debug(name, "unsupported tag");
                     }
                     break;
                 case XMLStreamConstants.END_ELEMENT:

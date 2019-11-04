@@ -46,7 +46,7 @@ public class ServiceImpl implements Service {
         String rootCatalog = typeOfParserPathToXMLandRootCatalog.split(";")[2];
         String pathToXSD = getPathToXSDFromProperty(rootCatalog);
 
-        logger.debug("xsd successfully taken", pathToXSD);
+        logger.debug(pathToXSD, "xsd successfully taken");
 
         logger.debug("start xml validation");
 

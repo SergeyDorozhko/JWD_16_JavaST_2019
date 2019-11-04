@@ -37,6 +37,7 @@ public class TariffsHandler extends DefaultHandler {
 
     /**
      * get set of tariffs.
+     *
      * @return set.
      */
     public Set<TariffType> getTariffs() {
@@ -46,23 +47,24 @@ public class TariffsHandler extends DefaultHandler {
     /**
      * take specific actions at the start of each element
      * (such as allocating a new tree node).
-     * @param uri The Namespace URI, or the empty string if the
-     *            element has no Namespace URI or if Namespace
-     *            processing is not being performed.
+     *
+     * @param uri       The Namespace URI, or the empty string if the
+     *                  element has no Namespace URI or if Namespace
+     *                  processing is not being performed.
      * @param localName The local name (without prefix), or the
      *                  empty string if Namespace processing is
      *                  not being performed.
-     * @param qName The qualified name (with prefix), or the
-     *              empty string if qualified names are not
-     *              available.
-     * @param attr The attributes attached to the element.
-     *             If there are no attributes, it shall
-     *             be an empty Attributes object.
+     * @param qName     The qualified name (with prefix), or the
+     *                  empty string if qualified names are not
+     *                  available.
+     * @param attr      The attributes attached to the element.
+     *                  If there are no attributes, it shall
+     *                  be an empty Attributes object.
      */
     @Override
     public void startElement(final String uri, final String localName,
                              final String qName, final Attributes attr) {
-        logger.debug("find tag: ", localName);
+        logger.debug(localName, "find tag: ");
         if ("voice_tariff".equals(localName)) {
             logger.debug("create new tariff.");
             currentTariff = new VoiceTariff();
@@ -84,14 +86,15 @@ public class TariffsHandler extends DefaultHandler {
     /**
      * take specific actions at the end of each element
      * (such as finalising a tree node).
-     * @param uri The Namespace URI, or the empty string
-     *            if the element has no Namespace URI or
-     *            if Namespace processing is not being performed.
+     *
+     * @param uri       The Namespace URI, or the empty string
+     *                  if the element has no Namespace URI or
+     *                  if Namespace processing is not being performed.
      * @param localName The local name (without prefix), or the
      *                  empty string if Namespace processing is
      *                  not being performed.
-     * @param qName The qualified name (with prefix), or the empty
-     *              string if qualified names are not available.
+     * @param qName     The qualified name (with prefix), or the empty
+     *                  string if qualified names are not available.
      */
     @Override
     public void endElement(final String uri,
@@ -110,12 +113,13 @@ public class TariffsHandler extends DefaultHandler {
      * chunk, or they may split it into several chunks; however, all of the
      * characters in any single event must come from the same external entity
      * so that the Locator provides useful information.
-     *
+     * <p>
      * The application must not attempt to read from the array outside of the
      * specified range.
-     * @param ch  the characters from the XML document.
+     *
+     * @param ch     the characters from the XML document.
      * @param start  the start position in the array.
-     * @param length  the number of characters to read from the array
+     * @param length the number of characters to read from the array
      */
     @Override
     public void characters(final char[] ch, final int start, final int length) {
@@ -155,7 +159,7 @@ public class TariffsHandler extends DefaultHandler {
                             .setConnectiong(Integer.parseInt(value));
                     break;
                 default:
-                    logger.debug("not simple tag, nothing to set: ", tagName);
+                    logger.debug(tagName, "not simple tag, nothing to set: ");
             }
         }
 
