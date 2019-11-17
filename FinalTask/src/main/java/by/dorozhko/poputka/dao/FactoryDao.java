@@ -1,7 +1,6 @@
 package by.dorozhko.poputka.dao;
 
-import by.dorozhko.poputka.dao.connectionImpl.ConnectionDaoImpl;
-import by.dorozhko.poputka.dao.user.impl.MySqlUserDao;
+import by.dorozhko.poputka.dao.impl.MySqlUserDao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -10,7 +9,6 @@ public class FactoryDao {
 
     private static final FactoryDao instance = new FactoryDao();
 
-    private ConnectionDAO connectionDAO = new ConnectionDaoImpl();
 
 
     private UserDAO userDAO = new MySqlUserDao();
@@ -21,9 +19,6 @@ public class FactoryDao {
         return instance;
     }
 
-    public ConnectionDAO getConnectionDAO() {
-        return connectionDAO;
-    }
 
     public UserDAO getUserDAO(){
         return userDAO;

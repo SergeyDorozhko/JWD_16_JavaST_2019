@@ -6,21 +6,20 @@ import by.dorozhko.poputka.entity.Entity;
 import java.sql.Connection;
 import java.util.List;
 
-public interface InterfaceDAO {
+public interface InterfaceDAO <Key, Type extends Entity> {
 
-    default Connection setupConnection(String path) throws ExceptionDao {
-     throw new UnsupportedOperationException();
-    }
 
     boolean setConnection(Connection connection);
 
-    boolean create(Entity entity);
+    boolean create(Type entity) throws ExceptionDao;
 
-    boolean delete(int id);
+    boolean delete(Key id);
 
-    boolean delete(Entity entity);
+    boolean delete(Type entity);
 
-    boolean update(Entity entity);
+    Type update(Type entity);
 
-    List<Entity> query(QuerySpecification specification, String actionData) throws ExceptionDao;
+    List<Type> findAll() throws ExceptionDao;
+
+    Type findEntityById(Key id);
 }

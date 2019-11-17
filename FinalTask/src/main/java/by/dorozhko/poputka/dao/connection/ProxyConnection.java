@@ -1,15 +1,32 @@
-package by.dorozhko.poputka.dao.connectionImpl;
+package by.dorozhko.poputka.dao.connection;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.PreparedStatement;
+import java.sql.CallableStatement;
+import java.sql.DatabaseMetaData;
+import java.sql.Struct;
+import java.sql.Array;
+import java.sql.SQLClientInfoException;
+import java.sql.SQLWarning;
+import java.sql.Clob;
+import java.sql.Blob;
+import java.sql.Savepoint;
+import java.sql.NClob;
+import java.sql.SQLXML;
 import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.Executor;
 
 public class ProxyConnection implements Connection {
+    /**
+     * Connection to database.
+     */
     private Connection connection;
 
-    public ProxyConnection(Connection connection) {
-        this.connection = connection;
+    ProxyConnection(final Connection newConnection) {
+        connection = newConnection;
     }
 
     /**
@@ -19,7 +36,7 @@ public class ProxyConnection implements Connection {
      * executed using <code>Statement</code> objects. If the same SQL statement
      * is executed many times, it may be more efficient to use a
      * <code>PreparedStatement</code> object.
-     * <P>
+     * <p>
      * Result sets created using the returned <code>Statement</code>
      * object will by default be type <code>TYPE_FORWARD_ONLY</code>
      * and have a concurrency level of <code>CONCUR_READ_ONLY</code>.
@@ -27,8 +44,8 @@ public class ProxyConnection implements Connection {
      * calling {@link #getHoldability}.
      *
      * @return a new default <code>Statement</code> object
-     * @exception SQLException if a database access error occurs
-     * or this method is called on a closed connection
+     * @throws SQLException if a database access error occurs
+     *                      or this method is called on a closed connection
      */
     @Override
     public Statement createStatement() throws SQLException {
@@ -38,7 +55,7 @@ public class ProxyConnection implements Connection {
     /**
      * Creates a <code>PreparedStatement</code> object for sending
      * parameterized SQL statements to the database.
-     * <P>
+     * <p>
      * A SQL statement with or without IN parameters can be
      * pre-compiled and stored in a <code>PreparedStatement</code> object. This
      * object can then be used to efficiently execute this statement
@@ -53,7 +70,7 @@ public class ProxyConnection implements Connection {
      * not be sent to the database until the <code>PreparedStatement</code>
      * object is executed.  This has no direct effect on users; however, it does
      * affect which methods throw certain <code>SQLException</code> objects.
-     * <P>
+     * <p>
      * Result sets created using the returned <code>PreparedStatement</code>
      * object will by default be type <code>TYPE_FORWARD_ONLY</code>
      * and have a concurrency level of <code>CONCUR_READ_ONLY</code>.
@@ -61,14 +78,14 @@ public class ProxyConnection implements Connection {
      * calling {@link #getHoldability}.
      *
      * @param sql an SQL statement that may contain one or more '?' IN
-     * parameter placeholders
-     * @return a new default <code>PreparedStatement</code> object containing the
-     * pre-compiled SQL statement
-     * @exception SQLException if a database access error occurs
-     * or this method is called on a closed connection
+     *            parameter placeholders
+     * @return a new default <code>PreparedStatement</code>
+     * object containing the pre-compiled SQL statement
+     * @throws SQLException if a database access error occurs
+     *                      or this method is called on a closed connection
      */
     @Override
-    public PreparedStatement prepareStatement(String sql) throws SQLException {
+    public PreparedStatement prepareStatement(final String sql) throws SQLException {
         return connection.prepareStatement(sql);
     }
 
@@ -87,7 +104,7 @@ public class ProxyConnection implements Connection {
      * is executed. This has no
      * direct effect on users; however, it does affect which method
      * throws certain SQLExceptions.
-     * <P>
+     * <p>
      * Result sets created using the returned <code>CallableStatement</code>
      * object will by default be type <code>TYPE_FORWARD_ONLY</code>
      * and have a concurrency level of <code>CONCUR_READ_ONLY</code>.
@@ -95,12 +112,12 @@ public class ProxyConnection implements Connection {
      * calling {@link #getHoldability}.
      *
      * @param sql an SQL statement that may contain one or more '?'
-     * parameter placeholders. Typically this statement is specified using JDBC
-     * call escape syntax.
+     *            parameter placeholders. Typically this statement is specified using JDBC
+     *            call escape syntax.
      * @return a new default <code>CallableStatement</code> object containing the
      * pre-compiled SQL statement
-     * @exception SQLException if a database access error occurs
-     * or this method is called on a closed connection
+     * @throws SQLException if a database access error occurs
+     *                      or this method is called on a closed connection
      */
     @Override
     public CallableStatement prepareCall(String sql) throws SQLException {
@@ -114,10 +131,10 @@ public class ProxyConnection implements Connection {
      * native form of the statement that the driver would have sent.
      *
      * @param sql an SQL statement that may contain one or more '?'
-     * parameter placeholders
+     *            parameter placeholders
      * @return the native form of this statement
-     * @exception SQLException if a database access error occurs
-     * or this method is called on a closed connection
+     * @throws SQLException if a database access error occurs
+     *                      or this method is called on a closed connection
      */
     @Override
     public String nativeSQL(String sql) throws SQLException {
@@ -133,7 +150,7 @@ public class ProxyConnection implements Connection {
      * the method <code>commit</code> or the method <code>rollback</code>.
      * By default, new connections are in auto-commit
      * mode.
-     * <P>
+     * <p>
      * The commit occurs when the statement completes. The time when the statement
      * completes depends on the type of SQL Statement:
      * <ul>
@@ -145,18 +162,18 @@ public class ProxyConnection implements Connection {
      * multiple results, the statement is complete
      * when all of the associated result sets have been closed, and all update
      * counts and output parameters have been retrieved.
-     *</ul>
-     * <P>
+     * </ul>
+     * <p>
      * <B>NOTE:</B>  If this method is called during a transaction and the
      * auto-commit mode is changed, the transaction is committed.  If
      * <code>setAutoCommit</code> is called and the auto-commit mode is
      * not changed, the call is a no-op.
      *
      * @param autoCommit <code>true</code> to enable auto-commit mode;
-     *         <code>false</code> to disable it
-     * @exception SQLException if a database access error occurs,
-     *  setAutoCommit(true) is called while participating in a distributed transaction,
-     * or this method is called on a closed connection
+     *                   <code>false</code> to disable it
+     * @throws SQLException if a database access error occurs,
+     *                      setAutoCommit(true) is called while participating in a distributed transaction,
+     *                      or this method is called on a closed connection
      * @see #getAutoCommit
      */
     @Override
@@ -169,9 +186,9 @@ public class ProxyConnection implements Connection {
      * object.
      *
      * @return the current state of this <code>Connection</code> object's
-     *         auto-commit mode
-     * @exception SQLException if a database access error occurs
-     * or this method is called on a closed connection
+     * auto-commit mode
+     * @throws SQLException if a database access error occurs
+     *                      or this method is called on a closed connection
      * @see #setAutoCommit
      */
     @Override
@@ -186,10 +203,10 @@ public class ProxyConnection implements Connection {
      * This method should be
      * used only when auto-commit mode has been disabled.
      *
-     * @exception SQLException if a database access error occurs,
-     * this method is called while participating in a distributed transaction,
-     * if this method is called on a closed connection or this
-     *            <code>Connection</code> object is in auto-commit mode
+     * @throws SQLException if a database access error occurs,
+     *                      this method is called while participating in a distributed transaction,
+     *                      if this method is called on a closed connection or this
+     *                      <code>Connection</code> object is in auto-commit mode
      * @see #setAutoCommit
      */
     @Override
@@ -203,10 +220,10 @@ public class ProxyConnection implements Connection {
      * by this <code>Connection</code> object. This method should be
      * used only when auto-commit mode has been disabled.
      *
-     * @exception SQLException if a database access error occurs,
-     * this method is called while participating in a distributed transaction,
-     * this method is called on a closed connection or this
-     *            <code>Connection</code> object is in auto-commit mode
+     * @throws SQLException if a database access error occurs,
+     *                      this method is called while participating in a distributed transaction,
+     *                      this method is called on a closed connection or this
+     *                      <code>Connection</code> object is in auto-commit mode
      * @see #setAutoCommit
      */
     @Override
@@ -217,26 +234,26 @@ public class ProxyConnection implements Connection {
     /**
      * Releases this <code>Connection</code> object's database and JDBC resources
      * immediately instead of waiting for them to be automatically released.
-     * <P>
+     * <p>
      * Calling the method <code>close</code> on a <code>Connection</code>
      * object that is already closed is a no-op.
-     * <P>
+     * <p>
      * It is <b>strongly recommended</b> that an application explicitly
      * commits or rolls back an active transaction prior to calling the
      * <code>close</code> method.  If the <code>close</code> method is called
      * and there is an active transaction, the results are implementation-defined.
-     * <P>
+     * <p>
      *
-     * @exception SQLException SQLException if a database access error occurs
+     * @throws SQLException SQLException if a database access error occurs
      */
     @Override
     public void close() throws SQLException {
+        if (!this.getAutoCommit()) {
+            this.setAutoCommit(true);
+        }
         ConnectionPool.getInstance().releaseConnection(this);
 
-        if(!connection.getAutoCommit()) {
-            //TODO auto commit
-            connection.commit();
-        }
+
     }
 
     void realClose() throws SQLException {
@@ -250,15 +267,15 @@ public class ProxyConnection implements Connection {
      * This method is guaranteed to return <code>true</code> only when
      * it is called after the method <code>Connection.close</code> has
      * been called.
-     * <P>
+     * <p>
      * This method generally cannot be called to determine whether a
      * connection to a database is valid or invalid.  A typical client
      * can determine that a connection is invalid by catching any
      * exceptions that might be thrown when an operation is attempted.
      *
      * @return <code>true</code> if this <code>Connection</code> object
-     *         is closed; <code>false</code> if it is still open
-     * @exception SQLException if a database access error occurs
+     * is closed; <code>false</code> if it is still open
+     * @throws SQLException if a database access error occurs
      */
     @Override
     public boolean isClosed() throws SQLException {
@@ -274,9 +291,9 @@ public class ProxyConnection implements Connection {
      * procedures, the capabilities of this connection, and so on.
      *
      * @return a <code>DatabaseMetaData</code> object for this
-     *         <code>Connection</code> object
-     * @exception SQLException if a database access error occurs
-     * or this method is called on a closed connection
+     * <code>Connection</code> object
+     * @throws SQLException if a database access error occurs
+     *                      or this method is called on a closed connection
      */
     @Override
     public DatabaseMetaData getMetaData() throws SQLException {
@@ -290,10 +307,10 @@ public class ProxyConnection implements Connection {
      * <P><B>Note:</B> This method cannot be called during a transaction.
      *
      * @param readOnly <code>true</code> enables read-only mode;
-     *        <code>false</code> disables it
-     * @exception SQLException if a database access error occurs, this
-     *  method is called on a closed connection or this
-     *            method is called during a transaction
+     *                 <code>false</code> disables it
+     * @throws SQLException if a database access error occurs, this
+     *                      method is called on a closed connection or this
+     *                      method is called during a transaction
      */
     @Override
     public void setReadOnly(boolean readOnly) throws SQLException {
@@ -305,9 +322,9 @@ public class ProxyConnection implements Connection {
      * object is in read-only mode.
      *
      * @return <code>true</code> if this <code>Connection</code> object
-     *         is read-only; <code>false</code> otherwise
-     * @exception SQLException SQLException if a database access error occurs
-     * or this method is called on a closed connection
+     * is read-only; <code>false</code> otherwise
+     * @throws SQLException SQLException if a database access error occurs
+     *                      or this method is called on a closed connection
      */
     @Override
     public boolean isReadOnly() throws SQLException {
@@ -318,7 +335,7 @@ public class ProxyConnection implements Connection {
      * Sets the given catalog name in order to select
      * a subspace of this <code>Connection</code> object's database
      * in which to work.
-     * <P>
+     * <p>
      * If the driver does not support catalogs, it will
      * silently ignore this request.
      * <p>
@@ -330,9 +347,9 @@ public class ProxyConnection implements Connection {
      * {@code Statement} is created or prepared.
      *
      * @param catalog the name of a catalog (subspace in this
-     *        <code>Connection</code> object's database) in which to work
-     * @exception SQLException if a database access error occurs
-     * or this method is called on a closed connection
+     *                <code>Connection</code> object's database) in which to work
+     * @throws SQLException if a database access error occurs
+     *                      or this method is called on a closed connection
      * @see #getCatalog
      */
     @Override
@@ -344,8 +361,8 @@ public class ProxyConnection implements Connection {
      * Retrieves this <code>Connection</code> object's current catalog name.
      *
      * @return the current catalog name or <code>null</code> if there is none
-     * @exception SQLException if a database access error occurs
-     * or this method is called on a closed connection
+     * @throws SQLException if a database access error occurs
+     *                      or this method is called on a closed connection
      * @see #setCatalog
      */
     @Override
@@ -358,21 +375,21 @@ public class ProxyConnection implements Connection {
      * <code>Connection</code> object to the one given.
      * The constants defined in the interface <code>Connection</code>
      * are the possible transaction isolation levels.
-     * <P>
+     * <p>
      * <B>Note:</B> If this method is called during a transaction, the result
      * is implementation-defined.
      *
      * @param level one of the following <code>Connection</code> constants:
-     *        <code>Connection.TRANSACTION_READ_UNCOMMITTED</code>,
-     *        <code>Connection.TRANSACTION_READ_COMMITTED</code>,
-     *        <code>Connection.TRANSACTION_REPEATABLE_READ</code>, or
-     *        <code>Connection.TRANSACTION_SERIALIZABLE</code>.
-     *        (Note that <code>Connection.TRANSACTION_NONE</code> cannot be used
-     *        because it specifies that transactions are not supported.)
-     * @exception SQLException if a database access error occurs, this
-     * method is called on a closed connection
-     *            or the given parameter is not one of the <code>Connection</code>
-     *            constants
+     *              <code>Connection.TRANSACTION_READ_UNCOMMITTED</code>,
+     *              <code>Connection.TRANSACTION_READ_COMMITTED</code>,
+     *              <code>Connection.TRANSACTION_REPEATABLE_READ</code>, or
+     *              <code>Connection.TRANSACTION_SERIALIZABLE</code>.
+     *              (Note that <code>Connection.TRANSACTION_NONE</code> cannot be used
+     *              because it specifies that transactions are not supported.)
+     * @throws SQLException if a database access error occurs, this
+     *                      method is called on a closed connection
+     *                      or the given parameter is not one of the <code>Connection</code>
+     *                      constants
      * @see DatabaseMetaData#supportsTransactionIsolationLevel
      * @see #getTransactionIsolation
      */
@@ -386,14 +403,14 @@ public class ProxyConnection implements Connection {
      * transaction isolation level.
      *
      * @return the current transaction isolation level, which will be one
-     *         of the following constants:
-     *        <code>Connection.TRANSACTION_READ_UNCOMMITTED</code>,
-     *        <code>Connection.TRANSACTION_READ_COMMITTED</code>,
-     *        <code>Connection.TRANSACTION_REPEATABLE_READ</code>,
-     *        <code>Connection.TRANSACTION_SERIALIZABLE</code>, or
-     *        <code>Connection.TRANSACTION_NONE</code>.
-     * @exception SQLException if a database access error occurs
-     * or this method is called on a closed connection
+     * of the following constants:
+     * <code>Connection.TRANSACTION_READ_UNCOMMITTED</code>,
+     * <code>Connection.TRANSACTION_READ_COMMITTED</code>,
+     * <code>Connection.TRANSACTION_REPEATABLE_READ</code>,
+     * <code>Connection.TRANSACTION_SERIALIZABLE</code>, or
+     * <code>Connection.TRANSACTION_NONE</code>.
+     * @throws SQLException if a database access error occurs
+     *                      or this method is called on a closed connection
      * @see #setTransactionIsolation
      */
     @Override
@@ -408,7 +425,7 @@ public class ProxyConnection implements Connection {
      * and can be retrieved by calling the method
      * <code>SQLWarning.getNextWarning</code> on the warning
      * that was retrieved previously.
-     * <P>
+     * <p>
      * This method may not be
      * called on a closed connection; doing so will cause an
      * <code>SQLException</code> to be thrown.
@@ -417,9 +434,9 @@ public class ProxyConnection implements Connection {
      * SQLWarning.
      *
      * @return the first <code>SQLWarning</code> object or <code>null</code>
-     *         if there are none
-     * @exception SQLException if a database access error occurs or
-     *            this method is called on a closed connection
+     * if there are none
+     * @throws SQLException if a database access error occurs or
+     *                      this method is called on a closed connection
      * @see SQLWarning
      */
     @Override
@@ -433,8 +450,8 @@ public class ProxyConnection implements Connection {
      * returns <code>null</code> until a new warning is
      * reported for this <code>Connection</code> object.
      *
-     * @exception SQLException SQLException if a database access error occurs
-     * or this method is called on a closed connection
+     * @throws SQLException SQLException if a database access error occurs
+     *                      or this method is called on a closed connection
      */
     @Override
     public void clearWarnings() throws SQLException {
@@ -450,23 +467,23 @@ public class ProxyConnection implements Connection {
      * The holdability of the created result sets can be determined by
      * calling {@link #getHoldability}.
      *
-     * @param resultSetType a result set type; one of
-     *        <code>ResultSet.TYPE_FORWARD_ONLY</code>,
-     *        <code>ResultSet.TYPE_SCROLL_INSENSITIVE</code>, or
-     *        <code>ResultSet.TYPE_SCROLL_SENSITIVE</code>
+     * @param resultSetType        a result set type; one of
+     *                             <code>ResultSet.TYPE_FORWARD_ONLY</code>,
+     *                             <code>ResultSet.TYPE_SCROLL_INSENSITIVE</code>, or
+     *                             <code>ResultSet.TYPE_SCROLL_SENSITIVE</code>
      * @param resultSetConcurrency a concurrency type; one of
-     *        <code>ResultSet.CONCUR_READ_ONLY</code> or
-     *        <code>ResultSet.CONCUR_UPDATABLE</code>
+     *                             <code>ResultSet.CONCUR_READ_ONLY</code> or
+     *                             <code>ResultSet.CONCUR_UPDATABLE</code>
      * @return a new <code>Statement</code> object that will generate
-     *         <code>ResultSet</code> objects with the given type and
-     *         concurrency
-     * @exception SQLException if a database access error occurs, this
-     * method is called on a closed connection
-     *         or the given parameters are not <code>ResultSet</code>
-     *         constants indicating type and concurrency
-     * @exception SQLFeatureNotSupportedException if the JDBC driver does not support
-     * this method or this method is not supported for the specified result
-     * set type and result set concurrency.
+     * <code>ResultSet</code> objects with the given type and
+     * concurrency
+     * @throws SQLException                    if a database access error occurs, this
+     *                                         method is called on a closed connection
+     *                                         or the given parameters are not <code>ResultSet</code>
+     *                                         constants indicating type and concurrency
+     * @throws SQLFeatureNotSupportedException if the JDBC driver does not support
+     *                                         this method or this method is not supported for the specified result
+     *                                         set type and result set concurrency.
      * @since 1.2
      */
     @Override
@@ -475,7 +492,6 @@ public class ProxyConnection implements Connection {
     }
 
     /**
-     *
      * Creates a <code>PreparedStatement</code> object that will generate
      * <code>ResultSet</code> objects with the given type and concurrency.
      * This method is the same as the <code>prepareStatement</code> method
@@ -484,26 +500,26 @@ public class ProxyConnection implements Connection {
      * The holdability of the created result sets can be determined by
      * calling {@link #getHoldability}.
      *
-     * @param sql a <code>String</code> object that is the SQL statement to
-     *            be sent to the database; may contain one or more '?' IN
-     *            parameters
-     * @param resultSetType a result set type; one of
-     *         <code>ResultSet.TYPE_FORWARD_ONLY</code>,
-     *         <code>ResultSet.TYPE_SCROLL_INSENSITIVE</code>, or
-     *         <code>ResultSet.TYPE_SCROLL_SENSITIVE</code>
+     * @param sql                  a <code>String</code> object that is the SQL statement to
+     *                             be sent to the database; may contain one or more '?' IN
+     *                             parameters
+     * @param resultSetType        a result set type; one of
+     *                             <code>ResultSet.TYPE_FORWARD_ONLY</code>,
+     *                             <code>ResultSet.TYPE_SCROLL_INSENSITIVE</code>, or
+     *                             <code>ResultSet.TYPE_SCROLL_SENSITIVE</code>
      * @param resultSetConcurrency a concurrency type; one of
-     *         <code>ResultSet.CONCUR_READ_ONLY</code> or
-     *         <code>ResultSet.CONCUR_UPDATABLE</code>
+     *                             <code>ResultSet.CONCUR_READ_ONLY</code> or
+     *                             <code>ResultSet.CONCUR_UPDATABLE</code>
      * @return a new PreparedStatement object containing the
      * pre-compiled SQL statement that will produce <code>ResultSet</code>
      * objects with the given type and concurrency
-     * @exception SQLException if a database access error occurs, this
-     * method is called on a closed connection
-     *         or the given parameters are not <code>ResultSet</code>
-     *         constants indicating type and concurrency
-     * @exception SQLFeatureNotSupportedException if the JDBC driver does not support
-     * this method or this method is not supported for the specified result
-     * set type and result set concurrency.
+     * @throws SQLException                    if a database access error occurs, this
+     *                                         method is called on a closed connection
+     *                                         or the given parameters are not <code>ResultSet</code>
+     *                                         constants indicating type and concurrency
+     * @throws SQLFeatureNotSupportedException if the JDBC driver does not support
+     *                                         this method or this method is not supported for the specified result
+     *                                         set type and result set concurrency.
      * @since 1.2
      */
     @Override
@@ -520,25 +536,25 @@ public class ProxyConnection implements Connection {
      * The holdability of the created result sets can be determined by
      * calling {@link #getHoldability}.
      *
-     * @param sql a <code>String</code> object that is the SQL statement to
-     *            be sent to the database; may contain on or more '?' parameters
-     * @param resultSetType a result set type; one of
-     *         <code>ResultSet.TYPE_FORWARD_ONLY</code>,
-     *         <code>ResultSet.TYPE_SCROLL_INSENSITIVE</code>, or
-     *         <code>ResultSet.TYPE_SCROLL_SENSITIVE</code>
+     * @param sql                  a <code>String</code> object that is the SQL statement to
+     *                             be sent to the database; may contain on or more '?' parameters
+     * @param resultSetType        a result set type; one of
+     *                             <code>ResultSet.TYPE_FORWARD_ONLY</code>,
+     *                             <code>ResultSet.TYPE_SCROLL_INSENSITIVE</code>, or
+     *                             <code>ResultSet.TYPE_SCROLL_SENSITIVE</code>
      * @param resultSetConcurrency a concurrency type; one of
-     *         <code>ResultSet.CONCUR_READ_ONLY</code> or
-     *         <code>ResultSet.CONCUR_UPDATABLE</code>
+     *                             <code>ResultSet.CONCUR_READ_ONLY</code> or
+     *                             <code>ResultSet.CONCUR_UPDATABLE</code>
      * @return a new <code>CallableStatement</code> object containing the
      * pre-compiled SQL statement that will produce <code>ResultSet</code>
      * objects with the given type and concurrency
-     * @exception SQLException if a database access error occurs, this method
-     * is called on a closed connection
-     *         or the given parameters are not <code>ResultSet</code>
-     *         constants indicating type and concurrency
-     * @exception SQLFeatureNotSupportedException if the JDBC driver does not support
-     * this method or this method is not supported for the specified result
-     * set type and result set concurrency.
+     * @throws SQLException                    if a database access error occurs, this method
+     *                                         is called on a closed connection
+     *                                         or the given parameters are not <code>ResultSet</code>
+     *                                         constants indicating type and concurrency
+     * @throws SQLFeatureNotSupportedException if the JDBC driver does not support
+     *                                         this method or this method is not supported for the specified result
+     *                                         set type and result set concurrency.
      * @since 1.2
      */
     @Override
@@ -554,7 +570,7 @@ public class ProxyConnection implements Connection {
      * <p>
      * You must invoke <code>setTypeMap</code> after making changes to the
      * <code>Map</code> object returned from
-     *  <code>getTypeMap</code> as a JDBC driver may create an internal
+     * <code>getTypeMap</code> as a JDBC driver may create an internal
      * copy of the <code>Map</code> object passed to <code>setTypeMap</code>:
      *
      * <pre>
@@ -562,14 +578,15 @@ public class ProxyConnection implements Connection {
      *      myMap.put("mySchemaName.ATHLETES", Athletes.class);
      *      con.setTypeMap(myMap);
      * </pre>
+     *
      * @return the <code>java.util.Map</code> object associated
-     *         with this <code>Connection</code> object
-     * @exception SQLException if a database access error occurs
-     * or this method is called on a closed connection
-     * @exception SQLFeatureNotSupportedException if the JDBC driver does not support
-     * this method
-     * @since 1.2
+     * with this <code>Connection</code> object
+     * @throws SQLException                    if a database access error occurs
+     *                                         or this method is called on a closed connection
+     * @throws SQLFeatureNotSupportedException if the JDBC driver does not support
+     *                                         this method
      * @see #setTypeMap
+     * @since 1.2
      */
     @Override
     public Map<String, Class<?>> getTypeMap() throws SQLException {
@@ -580,7 +597,7 @@ public class ProxyConnection implements Connection {
      * Installs the given <code>TypeMap</code> object as the type map for
      * this <code>Connection</code> object.  The type map will be used for the
      * custom mapping of SQL structured types and distinct types.
-     *<p>
+     * <p>
      * You must set the the values for the <code>TypeMap</code> prior to
      * callng <code>setMap</code> as a JDBC driver may create an internal copy
      * of the <code>TypeMap</code>:
@@ -590,17 +607,18 @@ public class ProxyConnection implements Connection {
      *      myMap.put("mySchemaName.ATHLETES", Athletes.class);
      *      con.setTypeMap(myMap);
      * </pre>
+     *
      * @param map the <code>java.util.Map</code> object to install
-     *        as the replacement for this <code>Connection</code>
-     *        object's default type map
-     * @exception SQLException if a database access error occurs, this
-     * method is called on a closed connection or
-     *        the given parameter is not a <code>java.util.Map</code>
-     *        object
-     * @exception SQLFeatureNotSupportedException if the JDBC driver does not support
-     * this method
-     * @since 1.2
+     *            as the replacement for this <code>Connection</code>
+     *            object's default type map
+     * @throws SQLException                    if a database access error occurs, this
+     *                                         method is called on a closed connection or
+     *                                         the given parameter is not a <code>java.util.Map</code>
+     *                                         object
+     * @throws SQLFeatureNotSupportedException if the JDBC driver does not support
+     *                                         this method
      * @see #getTypeMap
+     * @since 1.2
      */
     @Override
     public void setTypeMap(Map<String, Class<?>> map) throws SQLException {
@@ -615,12 +633,12 @@ public class ProxyConnection implements Connection {
      * {@link DatabaseMetaData#getResultSetHoldability}.
      *
      * @param holdability a <code>ResultSet</code> holdability constant; one of
-     *        <code>ResultSet.HOLD_CURSORS_OVER_COMMIT</code> or
-     *        <code>ResultSet.CLOSE_CURSORS_AT_COMMIT</code>
-     * @throws SQLException if a database access occurs, this method is called
-     * on a closed connection, or the given parameter
-     *         is not a <code>ResultSet</code> constant indicating holdability
-     * @exception SQLFeatureNotSupportedException if the given holdability is not supported
+     *                    <code>ResultSet.HOLD_CURSORS_OVER_COMMIT</code> or
+     *                    <code>ResultSet.CLOSE_CURSORS_AT_COMMIT</code>
+     * @throws SQLException                    if a database access occurs, this method is called
+     *                                         on a closed connection, or the given parameter
+     *                                         is not a <code>ResultSet</code> constant indicating holdability
+     * @throws SQLFeatureNotSupportedException if the given holdability is not supported
      * @see #getHoldability
      * @see DatabaseMetaData#getResultSetHoldability
      * @see ResultSet
@@ -636,10 +654,10 @@ public class ProxyConnection implements Connection {
      * created using this <code>Connection</code> object.
      *
      * @return the holdability, one of
-     *        <code>ResultSet.HOLD_CURSORS_OVER_COMMIT</code> or
-     *        <code>ResultSet.CLOSE_CURSORS_AT_COMMIT</code>
+     * <code>ResultSet.HOLD_CURSORS_OVER_COMMIT</code> or
+     * <code>ResultSet.CLOSE_CURSORS_AT_COMMIT</code>
      * @throws SQLException if a database access error occurs
-     * or this method is called on a closed connection
+     *                      or this method is called on a closed connection
      * @see #setHoldability
      * @see DatabaseMetaData#getResultSetHoldability
      * @see ResultSet
@@ -654,17 +672,17 @@ public class ProxyConnection implements Connection {
      * Creates an unnamed savepoint in the current transaction and
      * returns the new <code>Savepoint</code> object that represents it.
      *
-     *<p> if setSavepoint is invoked outside of an active transaction, a transaction will be started at this newly created
-     *savepoint.
+     * <p> if setSavepoint is invoked outside of an active transaction, a transaction will be started at this newly created
+     * savepoint.
      *
      * @return the new <code>Savepoint</code> object
-     * @exception SQLException if a database access error occurs,
-     * this method is called while participating in a distributed transaction,
-     * this method is called on a closed connection
-     *            or this <code>Connection</code> object is currently in
-     *            auto-commit mode
-     * @exception SQLFeatureNotSupportedException if the JDBC driver does not support
-     * this method
+     * @throws SQLException                    if a database access error occurs,
+     *                                         this method is called while participating in a distributed transaction,
+     *                                         this method is called on a closed connection
+     *                                         or this <code>Connection</code> object is currently in
+     *                                         auto-commit mode
+     * @throws SQLFeatureNotSupportedException if the JDBC driver does not support
+     *                                         this method
      * @see Savepoint
      * @since 1.4
      */
@@ -678,17 +696,17 @@ public class ProxyConnection implements Connection {
      * and returns the new <code>Savepoint</code> object that represents it.
      *
      * <p> if setSavepoint is invoked outside of an active transaction, a transaction will be started at this newly created
-     *savepoint.
+     * savepoint.
      *
      * @param name a <code>String</code> containing the name of the savepoint
      * @return the new <code>Savepoint</code> object
-     * @exception SQLException if a database access error occurs,
-     * this method is called while participating in a distributed transaction,
-     * this method is called on a closed connection
-     *            or this <code>Connection</code> object is currently in
-     *            auto-commit mode
-     * @exception SQLFeatureNotSupportedException if the JDBC driver does not support
-     * this method
+     * @throws SQLException                    if a database access error occurs,
+     *                                         this method is called while participating in a distributed transaction,
+     *                                         this method is called on a closed connection
+     *                                         or this <code>Connection</code> object is currently in
+     *                                         auto-commit mode
+     * @throws SQLFeatureNotSupportedException if the JDBC driver does not support
+     *                                         this method
      * @see Savepoint
      * @since 1.4
      */
@@ -700,18 +718,18 @@ public class ProxyConnection implements Connection {
     /**
      * Undoes all changes made after the given <code>Savepoint</code> object
      * was set.
-     * <P>
+     * <p>
      * This method should be used only when auto-commit has been disabled.
      *
      * @param savepoint the <code>Savepoint</code> object to roll back to
-     * @exception SQLException if a database access error occurs,
-     * this method is called while participating in a distributed transaction,
-     * this method is called on a closed connection,
-     *            the <code>Savepoint</code> object is no longer valid,
-     *            or this <code>Connection</code> object is currently in
-     *            auto-commit mode
-     * @exception SQLFeatureNotSupportedException if the JDBC driver does not support
-     * this method
+     * @throws SQLException                    if a database access error occurs,
+     *                                         this method is called while participating in a distributed transaction,
+     *                                         this method is called on a closed connection,
+     *                                         the <code>Savepoint</code> object is no longer valid,
+     *                                         or this <code>Connection</code> object is currently in
+     *                                         auto-commit mode
+     * @throws SQLFeatureNotSupportedException if the JDBC driver does not support
+     *                                         this method
      * @see Savepoint
      * @see #rollback
      * @since 1.4
@@ -727,12 +745,12 @@ public class ProxyConnection implements Connection {
      * will cause an <code>SQLException</code> to be thrown.
      *
      * @param savepoint the <code>Savepoint</code> object to be removed
-     * @exception SQLException if a database access error occurs, this
-     *  method is called on a closed connection or
-     *            the given <code>Savepoint</code> object is not a valid
-     *            savepoint in the current transaction
-     * @exception SQLFeatureNotSupportedException if the JDBC driver does not support
-     * this method
+     * @throws SQLException                    if a database access error occurs, this
+     *                                         method is called on a closed connection or
+     *                                         the given <code>Savepoint</code> object is not a valid
+     *                                         savepoint in the current transaction
+     * @throws SQLFeatureNotSupportedException if the JDBC driver does not support
+     *                                         this method
      * @since 1.4
      */
     @Override
@@ -748,29 +766,29 @@ public class ProxyConnection implements Connection {
      * above, but it allows the default result set
      * type, concurrency, and holdability to be overridden.
      *
-     * @param resultSetType one of the following <code>ResultSet</code>
-     *        constants:
-     *         <code>ResultSet.TYPE_FORWARD_ONLY</code>,
-     *         <code>ResultSet.TYPE_SCROLL_INSENSITIVE</code>, or
-     *         <code>ResultSet.TYPE_SCROLL_SENSITIVE</code>
+     * @param resultSetType        one of the following <code>ResultSet</code>
+     *                             constants:
+     *                             <code>ResultSet.TYPE_FORWARD_ONLY</code>,
+     *                             <code>ResultSet.TYPE_SCROLL_INSENSITIVE</code>, or
+     *                             <code>ResultSet.TYPE_SCROLL_SENSITIVE</code>
      * @param resultSetConcurrency one of the following <code>ResultSet</code>
-     *        constants:
-     *         <code>ResultSet.CONCUR_READ_ONLY</code> or
-     *         <code>ResultSet.CONCUR_UPDATABLE</code>
+     *                             constants:
+     *                             <code>ResultSet.CONCUR_READ_ONLY</code> or
+     *                             <code>ResultSet.CONCUR_UPDATABLE</code>
      * @param resultSetHoldability one of the following <code>ResultSet</code>
-     *        constants:
-     *         <code>ResultSet.HOLD_CURSORS_OVER_COMMIT</code> or
-     *         <code>ResultSet.CLOSE_CURSORS_AT_COMMIT</code>
+     *                             constants:
+     *                             <code>ResultSet.HOLD_CURSORS_OVER_COMMIT</code> or
+     *                             <code>ResultSet.CLOSE_CURSORS_AT_COMMIT</code>
      * @return a new <code>Statement</code> object that will generate
-     *         <code>ResultSet</code> objects with the given type,
-     *         concurrency, and holdability
-     * @exception SQLException if a database access error occurs, this
-     * method is called on a closed connection
-     *            or the given parameters are not <code>ResultSet</code>
-     *            constants indicating type, concurrency, and holdability
-     * @exception SQLFeatureNotSupportedException if the JDBC driver does not support
-     * this method or this method is not supported for the specified result
-     * set type, result set holdability and result set concurrency.
+     * <code>ResultSet</code> objects with the given type,
+     * concurrency, and holdability
+     * @throws SQLException                    if a database access error occurs, this
+     *                                         method is called on a closed connection
+     *                                         or the given parameters are not <code>ResultSet</code>
+     *                                         constants indicating type, concurrency, and holdability
+     * @throws SQLFeatureNotSupportedException if the JDBC driver does not support
+     *                                         this method or this method is not supported for the specified result
+     *                                         set type, result set holdability and result set concurrency.
      * @see ResultSet
      * @since 1.4
      */
@@ -783,38 +801,38 @@ public class ProxyConnection implements Connection {
      * Creates a <code>PreparedStatement</code> object that will generate
      * <code>ResultSet</code> objects with the given type, concurrency,
      * and holdability.
-     * <P>
+     * <p>
      * This method is the same as the <code>prepareStatement</code> method
      * above, but it allows the default result set
      * type, concurrency, and holdability to be overridden.
      *
-     * @param sql a <code>String</code> object that is the SQL statement to
-     *            be sent to the database; may contain one or more '?' IN
-     *            parameters
-     * @param resultSetType one of the following <code>ResultSet</code>
-     *        constants:
-     *         <code>ResultSet.TYPE_FORWARD_ONLY</code>,
-     *         <code>ResultSet.TYPE_SCROLL_INSENSITIVE</code>, or
-     *         <code>ResultSet.TYPE_SCROLL_SENSITIVE</code>
+     * @param sql                  a <code>String</code> object that is the SQL statement to
+     *                             be sent to the database; may contain one or more '?' IN
+     *                             parameters
+     * @param resultSetType        one of the following <code>ResultSet</code>
+     *                             constants:
+     *                             <code>ResultSet.TYPE_FORWARD_ONLY</code>,
+     *                             <code>ResultSet.TYPE_SCROLL_INSENSITIVE</code>, or
+     *                             <code>ResultSet.TYPE_SCROLL_SENSITIVE</code>
      * @param resultSetConcurrency one of the following <code>ResultSet</code>
-     *        constants:
-     *         <code>ResultSet.CONCUR_READ_ONLY</code> or
-     *         <code>ResultSet.CONCUR_UPDATABLE</code>
+     *                             constants:
+     *                             <code>ResultSet.CONCUR_READ_ONLY</code> or
+     *                             <code>ResultSet.CONCUR_UPDATABLE</code>
      * @param resultSetHoldability one of the following <code>ResultSet</code>
-     *        constants:
-     *         <code>ResultSet.HOLD_CURSORS_OVER_COMMIT</code> or
-     *         <code>ResultSet.CLOSE_CURSORS_AT_COMMIT</code>
+     *                             constants:
+     *                             <code>ResultSet.HOLD_CURSORS_OVER_COMMIT</code> or
+     *                             <code>ResultSet.CLOSE_CURSORS_AT_COMMIT</code>
      * @return a new <code>PreparedStatement</code> object, containing the
-     *         pre-compiled SQL statement, that will generate
-     *         <code>ResultSet</code> objects with the given type,
-     *         concurrency, and holdability
-     * @exception SQLException if a database access error occurs, this
-     * method is called on a closed connection
-     *            or the given parameters are not <code>ResultSet</code>
-     *            constants indicating type, concurrency, and holdability
-     * @exception SQLFeatureNotSupportedException if the JDBC driver does not support
-     * this method or this method is not supported for the specified result
-     * set type, result set holdability and result set concurrency.
+     * pre-compiled SQL statement, that will generate
+     * <code>ResultSet</code> objects with the given type,
+     * concurrency, and holdability
+     * @throws SQLException                    if a database access error occurs, this
+     *                                         method is called on a closed connection
+     *                                         or the given parameters are not <code>ResultSet</code>
+     *                                         constants indicating type, concurrency, and holdability
+     * @throws SQLFeatureNotSupportedException if the JDBC driver does not support
+     *                                         this method or this method is not supported for the specified result
+     *                                         set type, result set holdability and result set concurrency.
      * @see ResultSet
      * @since 1.4
      */
@@ -830,32 +848,32 @@ public class ProxyConnection implements Connection {
      * above, but it allows the default result set
      * type, result set concurrency type and holdability to be overridden.
      *
-     * @param sql a <code>String</code> object that is the SQL statement to
-     *            be sent to the database; may contain on or more '?' parameters
-     * @param resultSetType one of the following <code>ResultSet</code>
-     *        constants:
-     *         <code>ResultSet.TYPE_FORWARD_ONLY</code>,
-     *         <code>ResultSet.TYPE_SCROLL_INSENSITIVE</code>, or
-     *         <code>ResultSet.TYPE_SCROLL_SENSITIVE</code>
+     * @param sql                  a <code>String</code> object that is the SQL statement to
+     *                             be sent to the database; may contain on or more '?' parameters
+     * @param resultSetType        one of the following <code>ResultSet</code>
+     *                             constants:
+     *                             <code>ResultSet.TYPE_FORWARD_ONLY</code>,
+     *                             <code>ResultSet.TYPE_SCROLL_INSENSITIVE</code>, or
+     *                             <code>ResultSet.TYPE_SCROLL_SENSITIVE</code>
      * @param resultSetConcurrency one of the following <code>ResultSet</code>
-     *        constants:
-     *         <code>ResultSet.CONCUR_READ_ONLY</code> or
-     *         <code>ResultSet.CONCUR_UPDATABLE</code>
+     *                             constants:
+     *                             <code>ResultSet.CONCUR_READ_ONLY</code> or
+     *                             <code>ResultSet.CONCUR_UPDATABLE</code>
      * @param resultSetHoldability one of the following <code>ResultSet</code>
-     *        constants:
-     *         <code>ResultSet.HOLD_CURSORS_OVER_COMMIT</code> or
-     *         <code>ResultSet.CLOSE_CURSORS_AT_COMMIT</code>
+     *                             constants:
+     *                             <code>ResultSet.HOLD_CURSORS_OVER_COMMIT</code> or
+     *                             <code>ResultSet.CLOSE_CURSORS_AT_COMMIT</code>
      * @return a new <code>CallableStatement</code> object, containing the
-     *         pre-compiled SQL statement, that will generate
-     *         <code>ResultSet</code> objects with the given type,
-     *         concurrency, and holdability
-     * @exception SQLException if a database access error occurs, this
-     * method is called on a closed connection
-     *            or the given parameters are not <code>ResultSet</code>
-     *            constants indicating type, concurrency, and holdability
-     * @exception SQLFeatureNotSupportedException if the JDBC driver does not support
-     * this method or this method is not supported for the specified result
-     * set type, result set holdability and result set concurrency.
+     * pre-compiled SQL statement, that will generate
+     * <code>ResultSet</code> objects with the given type,
+     * concurrency, and holdability
+     * @throws SQLException                    if a database access error occurs, this
+     *                                         method is called on a closed connection
+     *                                         or the given parameters are not <code>ResultSet</code>
+     *                                         constants indicating type, concurrency, and holdability
+     * @throws SQLFeatureNotSupportedException if the JDBC driver does not support
+     *                                         this method or this method is not supported for the specified result
+     *                                         set type, result set holdability and result set concurrency.
      * @see ResultSet
      * @since 1.4
      */
@@ -871,7 +889,7 @@ public class ProxyConnection implements Connection {
      * available for retrieval.  This parameter is ignored if the SQL statement
      * is not an <code>INSERT</code> statement, or an SQL statement able to return
      * auto-generated keys (the list of such statements is vendor-specific).
-     * <P>
+     * <p>
      * <B>Note:</B> This method is optimized for handling
      * parametric SQL statements that benefit from precompilation. If
      * the driver supports precompilation,
@@ -881,29 +899,29 @@ public class ProxyConnection implements Connection {
      * not be sent to the database until the <code>PreparedStatement</code>
      * object is executed.  This has no direct effect on users; however, it does
      * affect which methods throw certain SQLExceptions.
-     * <P>
+     * <p>
      * Result sets created using the returned <code>PreparedStatement</code>
      * object will by default be type <code>TYPE_FORWARD_ONLY</code>
      * and have a concurrency level of <code>CONCUR_READ_ONLY</code>.
      * The holdability of the created result sets can be determined by
      * calling {@link #getHoldability}.
      *
-     * @param sql an SQL statement that may contain one or more '?' IN
-     *        parameter placeholders
+     * @param sql               an SQL statement that may contain one or more '?' IN
+     *                          parameter placeholders
      * @param autoGeneratedKeys a flag indicating whether auto-generated keys
-     *        should be returned; one of
-     *        <code>Statement.RETURN_GENERATED_KEYS</code> or
-     *        <code>Statement.NO_GENERATED_KEYS</code>
+     *                          should be returned; one of
+     *                          <code>Statement.RETURN_GENERATED_KEYS</code> or
+     *                          <code>Statement.NO_GENERATED_KEYS</code>
      * @return a new <code>PreparedStatement</code> object, containing the
-     *         pre-compiled SQL statement, that will have the capability of
-     *         returning auto-generated keys
-     * @exception SQLException if a database access error occurs, this
-     *  method is called on a closed connection
-     *         or the given parameter is not a <code>Statement</code>
-     *         constant indicating whether auto-generated keys should be
-     *         returned
-     * @exception SQLFeatureNotSupportedException if the JDBC driver does not support
-     * this method with a constant of Statement.RETURN_GENERATED_KEYS
+     * pre-compiled SQL statement, that will have the capability of
+     * returning auto-generated keys
+     * @throws SQLException                    if a database access error occurs, this
+     *                                         method is called on a closed connection
+     *                                         or the given parameter is not a <code>Statement</code>
+     *                                         constant indicating whether auto-generated keys should be
+     *                                         returned
+     * @throws SQLFeatureNotSupportedException if the JDBC driver does not support
+     *                                         this method with a constant of Statement.RETURN_GENERATED_KEYS
      * @since 1.4
      */
     @Override
@@ -919,12 +937,12 @@ public class ProxyConnection implements Connection {
      * available.  The driver will ignore the array if the SQL statement
      * is not an <code>INSERT</code> statement, or an SQL statement able to return
      * auto-generated keys (the list of such statements is vendor-specific).
-     *<p>
+     * <p>
      * An SQL statement with or without IN parameters can be
      * pre-compiled and stored in a <code>PreparedStatement</code> object. This
      * object can then be used to efficiently execute this statement
      * multiple times.
-     * <P>
+     * <p>
      * <B>Note:</B> This method is optimized for handling
      * parametric SQL statements that benefit from precompilation. If
      * the driver supports precompilation,
@@ -934,26 +952,25 @@ public class ProxyConnection implements Connection {
      * not be sent to the database until the <code>PreparedStatement</code>
      * object is executed.  This has no direct effect on users; however, it does
      * affect which methods throw certain SQLExceptions.
-     * <P>
+     * <p>
      * Result sets created using the returned <code>PreparedStatement</code>
      * object will by default be type <code>TYPE_FORWARD_ONLY</code>
      * and have a concurrency level of <code>CONCUR_READ_ONLY</code>.
      * The holdability of the created result sets can be determined by
      * calling {@link #getHoldability}.
      *
-     * @param sql an SQL statement that may contain one or more '?' IN
-     *        parameter placeholders
+     * @param sql           an SQL statement that may contain one or more '?' IN
+     *                      parameter placeholders
      * @param columnIndexes an array of column indexes indicating the columns
-     *        that should be returned from the inserted row or rows
+     *                      that should be returned from the inserted row or rows
      * @return a new <code>PreparedStatement</code> object, containing the
-     *         pre-compiled statement, that is capable of returning the
-     *         auto-generated keys designated by the given array of column
-     *         indexes
-     * @exception SQLException if a database access error occurs
-     * or this method is called on a closed connection
-     * @exception SQLFeatureNotSupportedException if the JDBC driver does not support
-     * this method
-     *
+     * pre-compiled statement, that is capable of returning the
+     * auto-generated keys designated by the given array of column
+     * indexes
+     * @throws SQLException                    if a database access error occurs
+     *                                         or this method is called on a closed connection
+     * @throws SQLFeatureNotSupportedException if the JDBC driver does not support
+     *                                         this method
      * @since 1.4
      */
     @Override
@@ -969,12 +986,12 @@ public class ProxyConnection implements Connection {
      * The driver will ignore the array if the SQL statement
      * is not an <code>INSERT</code> statement, or an SQL statement able to return
      * auto-generated keys (the list of such statements is vendor-specific).
-     * <P>
+     * <p>
      * An SQL statement with or without IN parameters can be
      * pre-compiled and stored in a <code>PreparedStatement</code> object. This
      * object can then be used to efficiently execute this statement
      * multiple times.
-     * <P>
+     * <p>
      * <B>Note:</B> This method is optimized for handling
      * parametric SQL statements that benefit from precompilation. If
      * the driver supports precompilation,
@@ -984,26 +1001,25 @@ public class ProxyConnection implements Connection {
      * not be sent to the database until the <code>PreparedStatement</code>
      * object is executed.  This has no direct effect on users; however, it does
      * affect which methods throw certain SQLExceptions.
-     * <P>
+     * <p>
      * Result sets created using the returned <code>PreparedStatement</code>
      * object will by default be type <code>TYPE_FORWARD_ONLY</code>
      * and have a concurrency level of <code>CONCUR_READ_ONLY</code>.
      * The holdability of the created result sets can be determined by
      * calling {@link #getHoldability}.
      *
-     * @param sql an SQL statement that may contain one or more '?' IN
-     *        parameter placeholders
+     * @param sql         an SQL statement that may contain one or more '?' IN
+     *                    parameter placeholders
      * @param columnNames an array of column names indicating the columns
-     *        that should be returned from the inserted row or rows
+     *                    that should be returned from the inserted row or rows
      * @return a new <code>PreparedStatement</code> object, containing the
-     *         pre-compiled statement, that is capable of returning the
-     *         auto-generated keys designated by the given array of column
-     *         names
-     * @exception SQLException if a database access error occurs
-     * or this method is called on a closed connection
-     * @exception SQLFeatureNotSupportedException if the JDBC driver does not support
-     * this method
-     *
+     * pre-compiled statement, that is capable of returning the
+     * auto-generated keys designated by the given array of column
+     * names
+     * @throws SQLException                    if a database access error occurs
+     *                                         or this method is called on a closed connection
+     * @throws SQLFeatureNotSupportedException if the JDBC driver does not support
+     *                                         this method
      * @since 1.4
      */
     @Override
@@ -1016,13 +1032,13 @@ public class ProxyConnection implements Connection {
      * returned initially contains no data.  The <code>setAsciiStream</code>,
      * <code>setCharacterStream</code> and <code>setString</code> methods of
      * the <code>Clob</code> interface may be used to add data to the <code>Clob</code>.
-     * @return An object that implements the <code>Clob</code> interface
-     * @throws SQLException if an object that implements the
-     * <code>Clob</code> interface can not be constructed, this method is
-     * called on a closed connection or a database access error occurs.
-     * @exception SQLFeatureNotSupportedException if the JDBC driver does not support
-     * this data type
      *
+     * @return An object that implements the <code>Clob</code> interface
+     * @throws SQLException                    if an object that implements the
+     *                                         <code>Clob</code> interface can not be constructed, this method is
+     *                                         called on a closed connection or a database access error occurs.
+     * @throws SQLFeatureNotSupportedException if the JDBC driver does not support
+     *                                         this data type
      * @since 1.6
      */
     @Override
@@ -1035,13 +1051,13 @@ public class ProxyConnection implements Connection {
      * returned initially contains no data.  The <code>setBinaryStream</code> and
      * <code>setBytes</code> methods of the <code>Blob</code> interface may be used to add data to
      * the <code>Blob</code>.
-     * @return An object that implements the <code>Blob</code> interface
-     * @throws SQLException if an object that implements the
-     * <code>Blob</code> interface can not be constructed, this method is
-     * called on a closed connection or a database access error occurs.
-     * @exception SQLFeatureNotSupportedException if the JDBC driver does not support
-     * this data type
      *
+     * @return An object that implements the <code>Blob</code> interface
+     * @throws SQLException                    if an object that implements the
+     *                                         <code>Blob</code> interface can not be constructed, this method is
+     *                                         called on a closed connection or a database access error occurs.
+     * @throws SQLFeatureNotSupportedException if the JDBC driver does not support
+     *                                         this data type
      * @since 1.6
      */
     @Override
@@ -1054,13 +1070,13 @@ public class ProxyConnection implements Connection {
      * returned initially contains no data.  The <code>setAsciiStream</code>,
      * <code>setCharacterStream</code> and <code>setString</code> methods of the <code>NClob</code> interface may
      * be used to add data to the <code>NClob</code>.
-     * @return An object that implements the <code>NClob</code> interface
-     * @throws SQLException if an object that implements the
-     * <code>NClob</code> interface can not be constructed, this method is
-     * called on a closed connection or a database access error occurs.
-     * @exception SQLFeatureNotSupportedException if the JDBC driver does not support
-     * this data type
      *
+     * @return An object that implements the <code>NClob</code> interface
+     * @throws SQLException                    if an object that implements the
+     *                                         <code>NClob</code> interface can not be constructed, this method is
+     *                                         called on a closed connection or a database access error occurs.
+     * @throws SQLFeatureNotSupportedException if the JDBC driver does not support
+     *                                         this data type
      * @since 1.6
      */
     @Override
@@ -1073,12 +1089,13 @@ public class ProxyConnection implements Connection {
      * returned initially contains no data. The <code>createXmlStreamWriter</code> object and
      * <code>setString</code> method of the <code>SQLXML</code> interface may be used to add data to the <code>SQLXML</code>
      * object.
+     *
      * @return An object that implements the <code>SQLXML</code> interface
-     * @throws SQLException if an object that implements the <code>SQLXML</code> interface can not
-     * be constructed, this method is
-     * called on a closed connection or a database access error occurs.
-     * @exception SQLFeatureNotSupportedException if the JDBC driver does not support
-     * this data type
+     * @throws SQLException                    if an object that implements the <code>SQLXML</code> interface can not
+     *                                         be constructed, this method is
+     *                                         called on a closed connection or a database access error occurs.
+     * @throws SQLFeatureNotSupportedException if the JDBC driver does not support
+     *                                         this data type
      * @since 1.6
      */
     @Override
@@ -1096,18 +1113,17 @@ public class ProxyConnection implements Connection {
      * executed in the context of the current transaction.
      *
      * @param timeout -             The time in seconds to wait for the database operation
-     *                                              used to validate the connection to complete.  If
-     *                                              the timeout period expires before the operation
-     *                                              completes, this method returns false.  A value of
-     *                                              0 indicates a timeout is not applied to the
-     *                                              database operation.
-     * <p>
+     *                used to validate the connection to complete.  If
+     *                the timeout period expires before the operation
+     *                completes, this method returns false.  A value of
+     *                0 indicates a timeout is not applied to the
+     *                database operation.
+     *                <p>
      * @return true if the connection is valid, false otherwise
-     * @exception SQLException if the value supplied for <code>timeout</code>
-     * is less then 0
-     * @since 1.6
-     *
+     * @throws SQLException if the value supplied for <code>timeout</code>
+     *                      is less then 0
      * @see DatabaseMetaData#getClientInfoProperties
+     * @since 1.6
      */
     @Override
     public boolean isValid(int timeout) throws SQLException {
@@ -1156,15 +1172,16 @@ public class ProxyConnection implements Connection {
      *                                                      using the connection is running on.</li>
      * </ul>
      * <p>
-     * @param name          The name of the client info property to set
-     * @param value         The value to set the client info property to.  If the
-     *                                      value is null, the current value of the specified
-     *                                      property is cleared.
-     * <p>
+     *
+     * @param name  The name of the client info property to set
+     * @param value The value to set the client info property to.  If the
+     *              value is null, the current value of the specified
+     *              property is cleared.
+     *              <p>
      * @throws SQLClientInfoException if the database server returns an error while
-     *                      setting the client info value on the database server or this method
-     * is called on a closed connection
-     * <p>
+     *                                setting the client info value on the database server or this method
+     *                                is called on a closed connection
+     *                                <p>
      * @since 1.6
      */
     @Override
@@ -1192,15 +1209,14 @@ public class ProxyConnection implements Connection {
      * set before the error occurred.
      * <p>
      *
-     * @param properties                the list of client info properties to set
-     * <p>
+     * @param properties the list of client info properties to set
+     *                   <p>
+     * @throws SQLClientInfoException if the database server returns an error while
+     *                                setting the clientInfo values on the database server or this method
+     *                                is called on a closed connection
      * @see Connection#setClientInfo(String, String) setClientInfo(String, String)
      * @since 1.6
      * <p>
-     * @throws SQLClientInfoException if the database server returns an error while
-     *                  setting the clientInfo values on the database server or this method
-     * is called on a closed connection
-     *
      */
     @Override
     public void setClientInfo(Properties properties) throws SQLClientInfoException {
@@ -1217,17 +1233,17 @@ public class ProxyConnection implements Connection {
      * Applications may use the <code>DatabaseMetaData.getClientInfoProperties</code>
      * method to determine the client info properties supported by the driver.
      * <p>
-     * @param name          The name of the client info property to retrieve
-     * <p>
+     *
+     * @param name The name of the client info property to retrieve
+     *             <p>
      * @return The value of the client info property specified
      * <p>
-     * @throws SQLException         if the database server returns an error when
-     *                                                      fetching the client info value from the database
-     *or this method is called on a closed connection
-     * <p>
-     * @since 1.6
-     *
+     * @throws SQLException if the database server returns an error when
+     *                      fetching the client info value from the database
+     *                      or this method is called on a closed connection
+     *                      <p>
      * @see DatabaseMetaData#getClientInfoProperties
+     * @since 1.6
      */
     @Override
     public String getClientInfo(String name) throws SQLException {
@@ -1240,13 +1256,14 @@ public class ProxyConnection implements Connection {
      * may be null if the property has not been set and does not have a
      * default value.
      * <p>
+     *
      * @return A <code>Properties</code> object that contains the name and current value of
-     *                      each of the client info properties supported by the driver.
+     * each of the client info properties supported by the driver.
      * <p>
      * @throws SQLException if the database server returns an error when
      *                      fetching the client info values from the database
-     * or this method is called on a closed connection
-     * <p>
+     *                      or this method is called on a closed connection
+     *                      <p>
      * @since 1.6
      */
     @Override
@@ -1256,7 +1273,7 @@ public class ProxyConnection implements Connection {
 
     /**
      * Factory method for creating Array objects.
-     *<p>
+     * <p>
      * <b>Note: </b>When <code>createArrayOf</code> is used to create an array object
      * that maps to a primitive data type, then it is implementation-defined
      * whether the <code>Array</code> object is an array of that primitive
@@ -1271,13 +1288,13 @@ public class ProxyConnection implements Connection {
      * thrown or the driver supports the resulting conversion.
      *
      * @param typeName the SQL name of the type the elements of the array map to. The typeName is a
-     * database-specific name which may be the name of a built-in type, a user-defined type or a standard  SQL type supported by this database. This
-     *  is the value returned by <code>Array.getBaseTypeName</code>
+     *                 database-specific name which may be the name of a built-in type, a user-defined type or a standard  SQL type supported by this database. This
+     *                 is the value returned by <code>Array.getBaseTypeName</code>
      * @param elements the elements that populate the returned object
      * @return an Array object whose elements map to the specified SQL type
-     * @throws SQLException if a database error occurs, the JDBC type is not
-     *  appropriate for the typeName and the conversion is not supported, the typeName is null or this method is called on a closed connection
-     * @throws SQLFeatureNotSupportedException  if the JDBC driver does not support this data type
+     * @throws SQLException                    if a database error occurs, the JDBC type is not
+     *                                         appropriate for the typeName and the conversion is not supported, the typeName is null or this method is called on a closed connection
+     * @throws SQLFeatureNotSupportedException if the JDBC driver does not support this data type
      * @since 1.6
      */
     @Override
@@ -1288,15 +1305,14 @@ public class ProxyConnection implements Connection {
     /**
      * Factory method for creating Struct objects.
      *
-     * @param typeName the SQL type name of the SQL structured type that this <code>Struct</code>
-     * object maps to. The typeName is the name of  a user-defined type that
-     * has been defined for this database. It is the value returned by
-     * <code>Struct.getSQLTypeName</code>.
-
+     * @param typeName   the SQL type name of the SQL structured type that this <code>Struct</code>
+     *                   object maps to. The typeName is the name of  a user-defined type that
+     *                   has been defined for this database. It is the value returned by
+     *                   <code>Struct.getSQLTypeName</code>.
      * @param attributes the attributes that populate the returned object
-     *  @return a Struct object that maps to the given SQL type and is populated with the given attributes
-     * @throws SQLException if a database error occurs, the typeName is null or this method is called on a closed connection
-     * @throws SQLFeatureNotSupportedException  if the JDBC driver does not support this data type
+     * @return a Struct object that maps to the given SQL type and is populated with the given attributes
+     * @throws SQLException                    if a database error occurs, the typeName is null or this method is called on a closed connection
+     * @throws SQLFeatureNotSupportedException if the JDBC driver does not support this data type
      * @since 1.6
      */
     @Override
@@ -1306,7 +1322,7 @@ public class ProxyConnection implements Connection {
 
     /**
      * Sets the given schema name to access.
-     * <P>
+     * <p>
      * If the driver does not support schemas, it will
      * silently ignore this request.
      * <p>
@@ -1318,8 +1334,8 @@ public class ProxyConnection implements Connection {
      * {@code Statement} is created or prepared.
      *
      * @param schema the name of a schema  in which to work
-     * @exception SQLException if a database access error occurs
-     * or this method is called on a closed connection
+     * @throws SQLException if a database access error occurs
+     *                      or this method is called on a closed connection
      * @see #getSchema
      * @since 1.7
      */
@@ -1332,8 +1348,8 @@ public class ProxyConnection implements Connection {
      * Retrieves this <code>Connection</code> object's current schema name.
      *
      * @return the current schema name or <code>null</code> if there is none
-     * @exception SQLException if a database access error occurs
-     * or this method is called on a closed connection
+     * @throws SQLException if a database access error occurs
+     *                      or this method is called on a closed connection
      * @see #setSchema
      * @since 1.7
      */
@@ -1368,12 +1384,13 @@ public class ProxyConnection implements Connection {
      * <code>checkPermission</code> method denies calling <code>abort</code>,
      * this method throws a
      * <code>java.lang.SecurityException</code>.
-     * @param executor  The <code>Executor</code>  implementation which will
-     * be used by <code>abort</code>.
-     * @throws SQLException if a database access error occurs or
-     * the {@code executor} is {@code null},
+     *
+     * @param executor The <code>Executor</code>  implementation which will
+     *                 be used by <code>abort</code>.
+     * @throws SQLException      if a database access error occurs or
+     *                           the {@code executor} is {@code null},
      * @throws SecurityException if a security manager exists and its
-     *    <code>checkPermission</code> method denies calling <code>abort</code>
+     *                           <code>checkPermission</code> method denies calling <code>abort</code>
      * @see SecurityManager#checkPermission
      * @see Executor
      * @since 1.7
@@ -1384,11 +1401,10 @@ public class ProxyConnection implements Connection {
     }
 
     /**
-     *
      * Sets the maximum period a <code>Connection</code> or
      * objects created from the <code>Connection</code>
      * will wait for the database to reply to any one request. If any
-     *  request remains unanswered, the waiting method will
+     * request remains unanswered, the waiting method will
      * return with a <code>SQLException</code>, and the <code>Connection</code>
      * or objects created from the <code>Connection</code>  will be marked as
      * closed. Any subsequent use of
@@ -1419,7 +1435,7 @@ public class ProxyConnection implements Connection {
      * applied always to the response to the API call, or to any
      * single  request made during the API call.
      * <p>
-     *
+     * <p>
      * This method can be invoked more than once, such as to set a limit for an
      * area of JDBC code, and to reset to the default on exit from this area.
      * Invocation of this method has no impact on already outstanding
@@ -1435,12 +1451,12 @@ public class ProxyConnection implements Connection {
      * problems, the connection will be marked as closed, any resources held by
      * the connection will be released and both the connection and
      * statement will be unusable.
-     *<p>
+     * <p>
      * When the driver determines that the {@code setNetworkTimeout} timeout
      * value has expired, the JDBC driver marks the connection
      * closed and releases any resources held by the connection.
      * <p>
-     *
+     * <p>
      * This method checks to see that there is an <code>SQLPermission</code>
      * object before allowing the method to proceed.  If a
      * <code>SecurityManager</code> exists and its
@@ -1448,24 +1464,24 @@ public class ProxyConnection implements Connection {
      * <code>setNetworkTimeout</code>, this method throws a
      * <code>java.lang.SecurityException</code>.
      *
-     * @param executor  The <code>Executor</code>  implementation which will
-     * be used by <code>setNetworkTimeout</code>.
+     * @param executor     The <code>Executor</code>  implementation which will
+     *                     be used by <code>setNetworkTimeout</code>.
      * @param milliseconds The time in milliseconds to wait for the database
-     * operation
-     *  to complete.  If the JDBC driver does not support milliseconds, the
-     * JDBC driver will round the value up to the nearest second.  If the
-     * timeout period expires before the operation
-     * completes, a SQLException will be thrown.
-     * A value of 0 indicates that there is not timeout for database operations.
-     * @throws SQLException if a database access error occurs, this
-     * method is called on a closed connection,
-     * the {@code executor} is {@code null},
-     * or the value specified for <code>seconds</code> is less than 0.
-     * @throws SecurityException if a security manager exists and its
-     *    <code>checkPermission</code> method denies calling
-     * <code>setNetworkTimeout</code>.
-     * @exception SQLFeatureNotSupportedException if the JDBC driver does not support
-     * this method
+     *                     operation
+     *                     to complete.  If the JDBC driver does not support milliseconds, the
+     *                     JDBC driver will round the value up to the nearest second.  If the
+     *                     timeout period expires before the operation
+     *                     completes, a SQLException will be thrown.
+     *                     A value of 0 indicates that there is not timeout for database operations.
+     * @throws SQLException                    if a database access error occurs, this
+     *                                         method is called on a closed connection,
+     *                                         the {@code executor} is {@code null},
+     *                                         or the value specified for <code>seconds</code> is less than 0.
+     * @throws SecurityException               if a security manager exists and its
+     *                                         <code>checkPermission</code> method denies calling
+     *                                         <code>setNetworkTimeout</code>.
+     * @throws SQLFeatureNotSupportedException if the JDBC driver does not support
+     *                                         this method
      * @see SecurityManager#checkPermission
      * @see Statement#setQueryTimeout
      * @see #getNetworkTimeout
@@ -1485,11 +1501,11 @@ public class ProxyConnection implements Connection {
      * <code>SQLException</code> is thrown.
      *
      * @return the current timeout limit in milliseconds; zero means there is
-     *         no limit
-     * @throws SQLException if a database access error occurs or
-     * this method is called on a closed <code>Connection</code>
-     * @exception SQLFeatureNotSupportedException if the JDBC driver does not support
-     * this method
+     * no limit
+     * @throws SQLException                    if a database access error occurs or
+     *                                         this method is called on a closed <code>Connection</code>
+     * @throws SQLFeatureNotSupportedException if the JDBC driver does not support
+     *                                         this method
      * @see #setNetworkTimeout
      * @since 1.7
      */
@@ -1501,7 +1517,7 @@ public class ProxyConnection implements Connection {
     /**
      * Returns an object that implements the given interface to allow access to
      * non-standard methods, or standard methods not exposed by the proxy.
-     *
+     * <p>
      * If the receiver implements the interface then the result is the receiver
      * or a proxy for the receiver. If the receiver is a wrapper
      * and the wrapped object implements the interface then the result is the
@@ -1531,8 +1547,8 @@ public class ProxyConnection implements Connection {
      *
      * @param iface a Class defining an interface.
      * @return true if this implements the interface or directly or indirectly wraps an object that does.
-     * @throws SQLException  if an error occurs while determining whether this is a wrapper
-     * for an object with the given interface.
+     * @throws SQLException if an error occurs while determining whether this is a wrapper
+     *                      for an object with the given interface.
      * @since 1.6
      */
     @Override

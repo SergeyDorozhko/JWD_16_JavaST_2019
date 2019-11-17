@@ -1,9 +1,9 @@
 package by.dorozhko.poputka;
 
 import by.dorozhko.poputka.dao.FactoryDao;
-import by.dorozhko.poputka.dao.InterfaceDAO;
-import by.dorozhko.poputka.dao.SpecificationProvider;
-import by.dorozhko.poputka.dao.connectionImpl.ConnectionPool;
+import by.dorozhko.poputka.dao.Transaction;
+import by.dorozhko.poputka.dao.TransactionFactory;
+import by.dorozhko.poputka.dao.UserDAO;
 import by.dorozhko.poputka.dao.exception.ExceptionDao;
 import by.dorozhko.poputka.securityMOVEtoSERVICE.HashingPBKDF2;
 import by.dorozhko.poputka.entity.Car;
@@ -18,7 +18,10 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) throws ExceptionDao {
 
+        testDB();
         testHashPwd();
+
+
 
     }
 
@@ -55,20 +58,25 @@ public class Main {
 
     }
 
-    public static void testDB() throws ExceptionDao{
+    public static void testDB(){
         FactoryDao factoryDao = FactoryDao.getInstance();
 
-//        InterfaceDAO connect = factoryDao.getConnectionDAO();
-//        Connection connection = connect.setupConnection("no need");
+//        ConnectionPool pool = ConnectionPool.getInstance();
+//        Connection connection = pool.takeConnection();
 
-        ConnectionPool pool = ConnectionPool.getInstance();
 
-        Connection connection = pool.takeConnection();
+        UserDAO userDAO  = factoryDao.getUserDAO();
+   //     userDAO.setConnection(connection);
 
-        InterfaceDAO userDAO  = factoryDao.getUserDAO();
-        userDAO.setConnection(connection);
-        SpecificationProvider provider = SpecificationProvider.getInstance();
-        List<Entity> result = userDAO.query(provider.getSpecification("showAllUsers"), "no add info");
+
+        Transaction transaction = TransactionFactory.getInstance().getTransaction();
+        transaction.begin(userDAO);
+        List<User> result = null;
+        try {
+            result = userDAO.findAll();
+        } catch (ExceptionDao exceptionDao) {
+            exceptionDao.printStackTrace();
+        }
 
         for(Entity user: result) {
             System.out.println(user);
@@ -90,10 +98,18 @@ public class Main {
         user.setPhoneNumber("+375298005060");
         user.setEmail("gav@tut.by");
 
-        System.out.println(userDAO.create(user));
+        try {
+            System.out.println(userDAO.create(user));
+            transaction.commit();
+        } catch (ExceptionDao exceptionDao) {
+            transaction.rollback();
+            exceptionDao.printStackTrace();
+        }
 
-        pool.releaseConnection(connection);
-        pool.closePool();
+        transaction.end();
+
+//        pool.releaseConnection(connection);
+//        pool.closePool();
 
     }
 

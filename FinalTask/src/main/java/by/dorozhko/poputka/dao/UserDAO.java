@@ -1,4 +1,7 @@
 package by.dorozhko.poputka.dao;
 
-public interface UserDAO extends InterfaceDAO {
+import by.dorozhko.poputka.entity.User;
+
+public interface UserDAO extends InterfaceDAO <Integer, User> {
+
 }
