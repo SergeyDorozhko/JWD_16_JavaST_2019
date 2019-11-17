@@ -1,4 +1,4 @@
-package by.dorozhko.poputka.controller;
+package by.dorozhko.poputka.controller.web;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

@@ -1,4 +1,4 @@
-package by.dorozhko.poputka.securityMOVEtoSERVICE;
+package by.dorozhko.poputka.services.security;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;

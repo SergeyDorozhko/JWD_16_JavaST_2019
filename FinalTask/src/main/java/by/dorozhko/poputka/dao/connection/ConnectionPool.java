@@ -14,27 +14,61 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class ConnectionPool {
+public final class ConnectionPool {
+    /**
+     * Logger of class.
+     */
+    private final Logger logger = LogManager.getLogger(getClass().getName());
 
-    private final Logger logger = LogManager.getLogger(getClass().getSimpleName());
+    /**
+     * static variable single_instance of type ConnectionPool.
+     */
     private static ConnectionPool instance;
-
+    /**
+     * Pool of available compounds with database.
+     */
     private BlockingQueue<ProxyConnection> availableConnections;
-
+    /**
+     * Pool of using compounds with database.
+     */
     private BlockingQueue<ProxyConnection> usedConnections;
 
+    /**
+     * A reentrant mutual exclusion Lock with the same basic
+     * behavior and semantics as the implicit monitor lock
+     * accessed using synchronized methods and statements,
+     * but with extended capabilities.
+     */
     private static ReentrantLock locker = new ReentrantLock();
 
+    /**
+     * Identifier which shows was this class created before or no.
+     * If it was initialised identifier has value true, otherwise
+     * false.
+     */
     private static AtomicBoolean isCreated = new AtomicBoolean(false);
-
+    /**
+     * Value of database location.
+     */
     private String jdbcUrl;
+    /**
+     * Login to database.
+     */
     private String userLogin;
+    /**
+     * Password to database.
+     */
     private String pwd;
+    /**
+     * default size of pool of connections to database.
+     */
     private int poolSize;
+    /**
+     * driver for using database.
+     */
     private String driver;
 
     private ConnectionPool() {
-        System.out.println("pool--------------------");
         getProperties();
 
         try {
@@ -43,7 +77,6 @@ public class ConnectionPool {
         } catch (ClassNotFoundException e) {
             logger.error(e);
         }
-        //TODO driver register and check creation of connections.
 
         init();
 
@@ -61,7 +94,8 @@ public class ConnectionPool {
         for (int i = 0; i < poolSize; i++) {
             try {
 
-                ProxyConnection proxyConnection = new ProxyConnection(DriverManager.getConnection(jdbcUrl, userLogin, pwd));
+                ProxyConnection proxyConnection = new ProxyConnection(
+                        DriverManager.getConnection(jdbcUrl, userLogin, pwd));
                 availableConnections.add(proxyConnection);
             } catch (SQLException ex) {
                 logger.error(ex);
@@ -73,11 +107,13 @@ public class ConnectionPool {
      * Method get properties to pool of connections from property file.
      */
     private void getProperties() {
-        ResourceBundle resourceBundle = ResourceBundle.getBundle("dbresource.database");
+        ResourceBundle resourceBundle
+                = ResourceBundle.getBundle("dbresource.database");
         jdbcUrl = resourceBundle.getString("db.url");
         userLogin = resourceBundle.getString("db.login");
         pwd = resourceBundle.getString("db.password");
-        poolSize = Integer.parseInt(resourceBundle.getString("db.poolsize").trim());
+        poolSize = Integer.parseInt(
+                resourceBundle.getString("db.poolsize").trim());
         driver = resourceBundle.getString("db.driver");
     }
 
@@ -93,6 +129,10 @@ public class ConnectionPool {
         }
     }
 
+    /**
+     * Access to single instance of type ConnectionPool.
+     * @return link to instance of class.
+     */
     public static ConnectionPool getInstance() {
 
         if (!isCreated.get()) {
@@ -109,7 +149,10 @@ public class ConnectionPool {
         return instance;
     }
 
-
+    /**
+     * Take connection to database method.
+     * @return connection to database.
+     */
     public Connection takeConnection() {
         ProxyConnection connection = null;
         try {
@@ -122,10 +165,12 @@ public class ConnectionPool {
         return connection;
     }
 
-    public void releaseConnection(Connection connection) {
-        ProxyConnection checkType = new ProxyConnection(connection);
-        System.out.println("RELEASE");
-        if (connection.getClass() == checkType.getClass()) {
+    /**
+     * Return connection to pool after use.
+     * @param connection using connection of pool.
+     */
+    public void releaseConnection(final Connection connection) {
+        if (connection instanceof ProxyConnection) {
             ProxyConnection proxyConnection = (ProxyConnection) connection;
 
             usedConnections.remove(proxyConnection);
@@ -133,17 +178,21 @@ public class ConnectionPool {
         }
     }
 
-
+    /**
+     * Clothing pool method which clothe all connections
+     * and then deregister drivers.
+     */
     public void closePool() {
         for (int i = 0; i < poolSize; i++) {
             try {
                 ProxyConnection connection = availableConnections.take();
-                try {
-                    connection.realClose();
-                } catch (SQLException e) {
-                    logger.error(e);
-                }
+
+                connection.realClose();
+
             } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                logger.error(e);
+            } catch (SQLException e) {
                 logger.error(e);
             }
         }

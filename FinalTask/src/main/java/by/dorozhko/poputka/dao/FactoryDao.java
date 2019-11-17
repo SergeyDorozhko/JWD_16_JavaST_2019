@@ -1,27 +1,39 @@
 package by.dorozhko.poputka.dao;
 
-import by.dorozhko.poputka.dao.impl.MySqlUserDao;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-public class FactoryDao {
-    private final Logger logger = LogManager.getLogger(getClass().getSimpleName());
-
-    private static final FactoryDao instance = new FactoryDao();
+import by.dorozhko.poputka.dao.mysql.MySqlUserDao;
 
 
+public final class FactoryDao {
+    /**
+     * static variable single_instance of type FactoryDao.
+     */
+    private static final FactoryDao INSTANCE = new FactoryDao();
 
-    private UserDAO userDAO = new MySqlUserDao();
+    //TODO may be need in any case make new obgect of USERDAO?
 
-    private FactoryDao(){}
-
-    public static FactoryDao getInstance(){
-        return instance;
+    /**
+     *
+     */
+    //  private UserDAO userDAO = new MySqlUserDao();
+    private FactoryDao() {
     }
 
+    /**
+     * Access to single instance of type FactoryDao.
+     *
+     * @return link to instance of class.
+     */
+    public static FactoryDao getInstance() {
+        return INSTANCE;
+    }
 
-    public UserDAO getUserDAO(){
-        return userDAO;
+    /**
+     * Take access to userDAO.
+     *
+     * @return link to userDao.
+     */
+    public UserDAO getUserDAO() {
+        return new MySqlUserDao();
     }
 
 }

@@ -32,7 +32,7 @@ public class Car extends Entity {
     /**
      * Constructs car with not null value of parameters.
      *
-     * @param id Id of Entity.
+     * @param id                Id of Entity.
      * @param brandName         Name of brand.
      * @param modelName         Value of model.
      * @param yearOfCarProduce  Year when car was produced.
@@ -40,7 +40,7 @@ public class Car extends Entity {
      *                          air conditioner, otherwise false.
      */
     public Car(final int id,
-            final String brandName,
+               final String brandName,
                final String modelName,
                final int yearOfCarProduce,
                final boolean hasAirConditioner) {
@@ -51,15 +51,6 @@ public class Car extends Entity {
         airConditioner = hasAirConditioner;
     }
 
-    @Override
-    public int getId (){
-        return super.getId();
-    }
-
-    @Override
-    public void setId(int id) {
-        super.setId(id);
-    }
 
     /**
      * Get name of car's brand method.
@@ -151,7 +142,7 @@ public class Car extends Entity {
             return false;
         }
 
-        if(!super.equals(o)) {
+        if (!super.equals(o)) {
             return false;
         }
         Car car = (Car) o;
@@ -170,7 +161,11 @@ public class Car extends Entity {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), brand, model, yearOfProduce, airConditioner);
+        return Objects.hash(super.hashCode(),
+                brand,
+                model,
+                yearOfProduce,
+                airConditioner);
     }
 
     /**

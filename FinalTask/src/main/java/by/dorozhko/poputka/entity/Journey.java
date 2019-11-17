@@ -36,15 +36,7 @@ public class Journey extends Entity {
         this.additionalInformation = additionalInformation;
     }
 
-    @Override
-    public int getId() {
-        return super.getId();
-    }
 
-    @Override
-    public void setId(int id) {
-        super.setId(id);
-    }
 
     public User getDriver() {
         return driver;

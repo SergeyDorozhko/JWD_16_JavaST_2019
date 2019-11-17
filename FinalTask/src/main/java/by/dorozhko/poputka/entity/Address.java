@@ -68,15 +68,9 @@ public class Address extends Entity {
         this.houseNumber = houseNumberValue;
     }
 
-    @Override
-    public int getId() {
-        return super.getId();
-    }
 
-    @Override
-    public void setId(int id) {
-        super.setId(id);
-    }
+
+
 
     /**
      * Get country name method.
@@ -227,7 +221,6 @@ public class Address extends Entity {
 
         Address address = (Address) o;
         return Objects.equals(country, address.country)
-                && Objects.equals(country, address.country)
                 && Objects.equals(regionalCenter, address.regionalCenter)
                 && Objects.equals(districtCenter, address.districtCenter)
                 && Objects.equals(city, address.city)

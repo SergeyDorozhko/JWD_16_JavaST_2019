@@ -1,5 +1,7 @@
 package by.dorozhko.poputka.entity;
 
+
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class User extends Entity {
@@ -9,9 +11,10 @@ public class User extends Entity {
     private String name;
     private String surname;
     private byte gender;
-    private String birthday;
+    private LocalDate birthday;
     private String country;
     private String passportNumber;
+    //TODO LocalDate
     private String passportDateOfIssue;
     private String phoneNumber;
     private String email;
@@ -28,7 +31,7 @@ public class User extends Entity {
         this.name = name;
         this.surname = surname;
         this.gender = gender;
-        this.birthday = birthday;
+        this.birthday = LocalDate.parse(birthday);
         this.country = country;
         this.passportNumber = passportNumber;
         this.passportDateOfIssue = passportDateOfIssue;
@@ -43,7 +46,7 @@ public class User extends Entity {
         this.name = name;
         this.surname = surname;
         this.gender = gender;
-        this.birthday = birthday;
+        this.birthday = LocalDate.parse(birthday);
         this.country = country;
         this.passportNumber = passportNumber;
         this.passportDateOfIssue = passportDateOfIssue;
@@ -59,7 +62,7 @@ public class User extends Entity {
         this.name = name;
         this.surname = surname;
         this.gender = gender;
-        this.birthday = birthday;
+        this.birthday = LocalDate.parse(birthday);
         this.country = country;
         this.passportNumber = passportNumber;
         this.passportDateOfIssue = passportDateOfIssue;
@@ -73,7 +76,7 @@ public class User extends Entity {
         this.name = name;
         this.surname = surname;
         this.gender = gender;
-        this.birthday = birthday;
+        this.birthday = LocalDate.parse(birthday);
         this.country = country;
         this.passportNumber = passportNumber;
         this.passportDateOfIssue = passportDateOfIssue;
@@ -131,12 +134,12 @@ public class User extends Entity {
         this.gender = gender;
     }
 
-    public String getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
     public void setBirthday(String birthday) {
-        this.birthday = birthday;
+        this.birthday = LocalDate.parse(birthday);
     }
 
     public String getCountry() {
