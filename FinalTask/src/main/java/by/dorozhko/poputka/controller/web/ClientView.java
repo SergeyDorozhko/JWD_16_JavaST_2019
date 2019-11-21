@@ -49,12 +49,10 @@ public class ClientView extends HttpServlet {
                          final HttpServletResponse resp)
             throws ServletException, IOException {
 
-        System.out.println("HERE");
-
-        logger.warn("HERE");
+        logger.debug("start doGet method");
 
         String action = req.getParameter("action");
-        logger.warn(action);
+        logger.debug(action);
 
 
         System.out.println(action);
@@ -64,7 +62,8 @@ public class ClientView extends HttpServlet {
                     .getAction(action).execute(req, resp);
             requestDispatcher = req.getRequestDispatcher(page);
         } else {
-            requestDispatcher = req.getRequestDispatcher("/WEB-INF/jsp/main.jsp");
+            requestDispatcher
+                    = req.getRequestDispatcher("/WEB-INF/jsp/main.jsp");
         }
 
 
@@ -78,14 +77,15 @@ public class ClientView extends HttpServlet {
     public void destroy() {
         super.destroy();
         ServiceFactory.getInstance().getConnectionService().closeConnectionPool();
-        System.out.println("closing pool.");
+        logger.debug("closing pool.");
     }
 
     @Override
     public void init() throws ServletException {
         super.init();
-        ServiceFactory.getInstance().getConnectionService().initConnectionPool();
-        System.out.println("pool init with starting app");
+        ServiceFactory.getInstance().
+                getConnectionService().initConnectionPool();
+        logger.debug("Pool init with starting app");
     }
 
 

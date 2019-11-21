@@ -25,7 +25,7 @@ public class HashingPBKDF2 {
     private SecretKeyFactory secretKeyFactory;
     private byte[] hash;
 
-    private HashingPBKDF2(){
+    private HashingPBKDF2() {
         random = new SecureRandom();
         salt = new byte[16];
         try {
@@ -35,9 +35,9 @@ public class HashingPBKDF2 {
         }
     }
 
-    public static HashingPBKDF2 getInstance(){
+    public static HashingPBKDF2 getInstance() {
 
-        if(!isCreated.get()) {
+        if (!isCreated.get()) {
             try {
                 lock.lock();
                 if (instance == null) {
@@ -57,7 +57,7 @@ public class HashingPBKDF2 {
         System.out.println(Arrays.toString(salt));
     }
 
-    public String generatePwdHash(String pwd){
+    public String generatePwdHash(String pwd) {
         spec = new PBEKeySpec(pwd.toCharArray(), salt, 65536, 128);
         System.out.println(Arrays.toString(hash));
 
@@ -70,7 +70,7 @@ public class HashingPBKDF2 {
         System.out.println(Arrays.toString(hash));
 
         Formatter formatter = new Formatter();
-        for(int i = 0; i < hash.length; i++) {
+        for (int i = 0; i < hash.length; i++) {
             formatter.format("%02X", hash[i]);
         }
         String hashPBKDF2 = formatter.toString();
