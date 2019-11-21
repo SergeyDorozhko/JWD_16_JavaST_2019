@@ -773,7 +773,8 @@ public class ProxyConnection implements Connection {
      * @since 1.4
      */
     @Override
-    public void releaseSavepoint(final Savepoint savepoint) throws SQLException {
+    public void releaseSavepoint(final Savepoint savepoint)
+            throws SQLException {
         connection.releaseSavepoint(savepoint);
     }
 
@@ -788,7 +789,8 @@ public class ProxyConnection implements Connection {
      * @param resultSetType        one of the following <code>ResultSet</code>
      *                             constants:
      *                             <code>ResultSet.TYPE_FORWARD_ONLY</code>,
-     *                             <code>ResultSet.TYPE_SCROLL_INSENSITIVE</code>, or
+     *                             <code>ResultSet.TYPE_SCROLL_INSENSITIVE
+     *                             </code>, or
      *                             <code>ResultSet.TYPE_SCROLL_SENSITIVE</code>
      * @param resultSetConcurrency one of the following <code>ResultSet</code>
      *                             constants:
@@ -796,24 +798,29 @@ public class ProxyConnection implements Connection {
      *                             <code>ResultSet.CONCUR_UPDATABLE</code>
      * @param resultSetHoldability one of the following <code>ResultSet</code>
      *                             constants:
-     *                             <code>ResultSet.HOLD_CURSORS_OVER_COMMIT</code> or
-     *                             <code>ResultSet.CLOSE_CURSORS_AT_COMMIT</code>
+     *                             <code>ResultSet.HOLD_CURSORS_OVER_COMMIT
+     *                             </code> or
+     *                             <code>ResultSet.CLOSE_CURSORS_AT_COMMIT
+     *                             </code>
      * @return a new <code>Statement</code> object that will generate
      * <code>ResultSet</code> objects with the given type,
      * concurrency, and holdability
-     * @throws SQLException                    if a database access error occurs, this
-     *                                         method is called on a closed connection
-     *                                         or the given parameters are not <code>ResultSet</code>
-     *                                         constants indicating type, concurrency, and holdability
-     * @throws SQLFeatureNotSupportedException if the JDBC driver does not support
-     *                                         this method or this method is not supported for the specified result
-     *                                         set type, result set holdability and result set concurrency.
-     * @see ResultSet
+     * @throws SQLException if a database access error occurs, this
+     *                      method is called on a closed connection
+     *                      or the given parameters are not
+     *                      <code>ResultSet</code>
+     *                      constants indicating type, concurrency,
+     *                      and holdability
      * @since 1.4
      */
     @Override
-    public Statement createStatement(int resultSetType, int resultSetConcurrency, int resultSetHoldability) throws SQLException {
-        return connection.createStatement(resultSetType, resultSetConcurrency, resultSetHoldability);
+    public Statement createStatement(final int resultSetType,
+                                     final int resultSetConcurrency,
+                                     final int resultSetHoldability)
+            throws SQLException {
+        return connection.createStatement(resultSetType,
+                resultSetConcurrency,
+                resultSetHoldability);
     }
 
     /**
@@ -825,13 +832,15 @@ public class ProxyConnection implements Connection {
      * above, but it allows the default result set
      * type, concurrency, and holdability to be overridden.
      *
-     * @param sql                  a <code>String</code> object that is the SQL statement to
-     *                             be sent to the database; may contain one or more '?' IN
-     *                             parameters
+     * @param sql                  a <code>String</code> object that is the
+     *                             SQL statement to
+     *                             be sent to the database; may contain one
+     *                             or more '?' IN parameters
      * @param resultSetType        one of the following <code>ResultSet</code>
      *                             constants:
      *                             <code>ResultSet.TYPE_FORWARD_ONLY</code>,
-     *                             <code>ResultSet.TYPE_SCROLL_INSENSITIVE</code>, or
+     *                             <code>ResultSet.TYPE_SCROLL_INSENSITIVE
+     *                             </code>, or
      *                             <code>ResultSet.TYPE_SCROLL_SENSITIVE</code>
      * @param resultSetConcurrency one of the following <code>ResultSet</code>
      *                             constants:
@@ -839,25 +848,30 @@ public class ProxyConnection implements Connection {
      *                             <code>ResultSet.CONCUR_UPDATABLE</code>
      * @param resultSetHoldability one of the following <code>ResultSet</code>
      *                             constants:
-     *                             <code>ResultSet.HOLD_CURSORS_OVER_COMMIT</code> or
-     *                             <code>ResultSet.CLOSE_CURSORS_AT_COMMIT</code>
+     *                             <code>ResultSet.HOLD_CURSORS_OVER_COMMIT
+     *                             </code> or
+     *                             <code>ResultSet.CLOSE_CURSORS_AT_COMMIT
+     *                             </code>
      * @return a new <code>PreparedStatement</code> object, containing the
      * pre-compiled SQL statement, that will generate
      * <code>ResultSet</code> objects with the given type,
      * concurrency, and holdability
-     * @throws SQLException                    if a database access error occurs, this
-     *                                         method is called on a closed connection
-     *                                         or the given parameters are not <code>ResultSet</code>
-     *                                         constants indicating type, concurrency, and holdability
-     * @throws SQLFeatureNotSupportedException if the JDBC driver does not support
-     *                                         this method or this method is not supported for the specified result
-     *                                         set type, result set holdability and result set concurrency.
-     * @see ResultSet
+     * @throws SQLException if a database access error occurs, this
+     *                      method is called on a closed connection
+     *                      or the given parameters are not
+     *                      <code>ResultSet</code>
+     *                      constants indicating type, concurrency,
+     *                      and holdability
      * @since 1.4
      */
     @Override
-    public PreparedStatement prepareStatement(String sql, int resultSetType, int resultSetConcurrency, int resultSetHoldability) throws SQLException {
-        return connection.prepareStatement(sql, resultSetType, resultSetConcurrency, resultSetHoldability);
+    public PreparedStatement prepareStatement(final String sql,
+                                              final int resultSetType,
+                                              final int resultSetConcurrency,
+                                              final int resultSetHoldability)
+            throws SQLException {
+        return connection.prepareStatement(sql, resultSetType,
+                resultSetConcurrency, resultSetHoldability);
     }
 
     /**
@@ -867,38 +881,46 @@ public class ProxyConnection implements Connection {
      * above, but it allows the default result set
      * type, result set concurrency type and holdability to be overridden.
      *
-     * @param sql                  a <code>String</code> object that is the SQL statement to
-     *                             be sent to the database; may contain on or more '?' parameters
+     * @param sql                  a <code>String</code> object that is the SQL
+     *                             statement to
+     *                             be sent to the database; may contain on or
+     *                             more '?' parameters
      * @param resultSetType        one of the following <code>ResultSet</code>
      *                             constants:
      *                             <code>ResultSet.TYPE_FORWARD_ONLY</code>,
-     *                             <code>ResultSet.TYPE_SCROLL_INSENSITIVE</code>, or
-     *                             <code>ResultSet.TYPE_SCROLL_SENSITIVE</code>
+     *                             <code>ResultSet.TYPE_SCROLL_INSENSITIVE
+     *                             </code>, or <code>ResultSet
+     *                             .TYPE_SCROLL_SENSITIVE</code>
      * @param resultSetConcurrency one of the following <code>ResultSet</code>
      *                             constants:
      *                             <code>ResultSet.CONCUR_READ_ONLY</code> or
      *                             <code>ResultSet.CONCUR_UPDATABLE</code>
      * @param resultSetHoldability one of the following <code>ResultSet</code>
      *                             constants:
-     *                             <code>ResultSet.HOLD_CURSORS_OVER_COMMIT</code> or
-     *                             <code>ResultSet.CLOSE_CURSORS_AT_COMMIT</code>
+     *                             <code>ResultSet.HOLD_CURSORS_OVER_COMMIT
+     *                             </code> or
+     *                             <code>ResultSet.CLOSE_CURSORS_AT_COMMIT
+     *                             </code>
      * @return a new <code>CallableStatement</code> object, containing the
      * pre-compiled SQL statement, that will generate
      * <code>ResultSet</code> objects with the given type,
      * concurrency, and holdability
-     * @throws SQLException                    if a database access error occurs, this
-     *                                         method is called on a closed connection
-     *                                         or the given parameters are not <code>ResultSet</code>
-     *                                         constants indicating type, concurrency, and holdability
-     * @throws SQLFeatureNotSupportedException if the JDBC driver does not support
-     *                                         this method or this method is not supported for the specified result
-     *                                         set type, result set holdability and result set concurrency.
-     * @see ResultSet
+     * @throws SQLException if a database access error occurs, this
+     *                      method is called on a closed connection
+     *                      or the given parameters are not
+     *                      <code>ResultSet</code>
+     *                      constants indicating type, concurrency,
+     *                      and holdability
      * @since 1.4
      */
     @Override
-    public CallableStatement prepareCall(String sql, int resultSetType, int resultSetConcurrency, int resultSetHoldability) throws SQLException {
-        return connection.prepareCall(sql, resultSetType, resultSetConcurrency, resultSetHoldability);
+    public CallableStatement prepareCall(final String sql,
+                                         final int resultSetType,
+                                         final int resultSetConcurrency,
+                                         final int resultSetHoldability)
+            throws SQLException {
+        return connection.prepareCall(sql, resultSetType,
+                resultSetConcurrency, resultSetHoldability);
     }
 
     /**
@@ -906,7 +928,8 @@ public class ProxyConnection implements Connection {
      * the capability to retrieve auto-generated keys. The given constant
      * tells the driver whether it should make auto-generated keys
      * available for retrieval.  This parameter is ignored if the SQL statement
-     * is not an <code>INSERT</code> statement, or an SQL statement able to return
+     * is not an <code>INSERT</code> statement, or an SQL statement able to
+     * return
      * auto-generated keys (the list of such statements is vendor-specific).
      * <p>
      * <B>Note:</B> This method is optimized for handling
@@ -925,8 +948,8 @@ public class ProxyConnection implements Connection {
      * The holdability of the created result sets can be determined by
      * calling {@link #getHoldability}.
      *
-     * @param sql               an SQL statement that may contain one or more '?' IN
-     *                          parameter placeholders
+     * @param sql               an SQL statement that may contain one or
+     *                          more '?'IN parameter placeholders
      * @param autoGeneratedKeys a flag indicating whether auto-generated keys
      *                          should be returned; one of
      *                          <code>Statement.RETURN_GENERATED_KEYS</code> or
@@ -934,17 +957,18 @@ public class ProxyConnection implements Connection {
      * @return a new <code>PreparedStatement</code> object, containing the
      * pre-compiled SQL statement, that will have the capability of
      * returning auto-generated keys
-     * @throws SQLException                    if a database access error occurs, this
-     *                                         method is called on a closed connection
-     *                                         or the given parameter is not a <code>Statement</code>
-     *                                         constant indicating whether auto-generated keys should be
-     *                                         returned
-     * @throws SQLFeatureNotSupportedException if the JDBC driver does not support
-     *                                         this method with a constant of Statement.RETURN_GENERATED_KEYS
+     * @throws SQLException if a database access error occurs, this
+     *                      method is called on a closed connection
+     *                      or the given parameter is not a
+     *                      <code>Statement</code>
+     *                      constant indicating whether auto-generated
+     *                      keys should be returned
      * @since 1.4
      */
     @Override
-    public PreparedStatement prepareStatement(String sql, int autoGeneratedKeys) throws SQLException {
+    public PreparedStatement prepareStatement(final String sql,
+                                              final int autoGeneratedKeys)
+            throws SQLException {
         return connection.prepareStatement(sql, autoGeneratedKeys);
     }
 
@@ -954,9 +978,9 @@ public class ProxyConnection implements Connection {
      * This array contains the indexes of the columns in the target
      * table that contain the auto-generated keys that should be made
      * available.  The driver will ignore the array if the SQL statement
-     * is not an <code>INSERT</code> statement, or an SQL statement able to return
-     * auto-generated keys (the list of such statements is vendor-specific).
-     * <p>
+     * is not an <code>INSERT</code> statement, or an SQL statement able
+     * to return auto-generated keys (the list of such statements
+     * is vendor-specific).<p>
      * An SQL statement with or without IN parameters can be
      * pre-compiled and stored in a <code>PreparedStatement</code> object. This
      * object can then be used to efficiently execute this statement
@@ -981,19 +1005,20 @@ public class ProxyConnection implements Connection {
      * @param sql           an SQL statement that may contain one or more '?' IN
      *                      parameter placeholders
      * @param columnIndexes an array of column indexes indicating the columns
-     *                      that should be returned from the inserted row or rows
+     *                      that should be returned from the inserted row
+     *                      or rows
      * @return a new <code>PreparedStatement</code> object, containing the
      * pre-compiled statement, that is capable of returning the
      * auto-generated keys designated by the given array of column
      * indexes
-     * @throws SQLException                    if a database access error occurs
-     *                                         or this method is called on a closed connection
-     * @throws SQLFeatureNotSupportedException if the JDBC driver does not support
-     *                                         this method
+     * @throws SQLException if a database access error occurs
+     *                      or this method is called on a closed connection
      * @since 1.4
      */
     @Override
-    public PreparedStatement prepareStatement(String sql, int[] columnIndexes) throws SQLException {
+    public PreparedStatement prepareStatement(final String sql,
+                                              final int[] columnIndexes)
+            throws SQLException {
         return connection.prepareStatement(sql, columnIndexes);
     }
 
@@ -1003,7 +1028,8 @@ public class ProxyConnection implements Connection {
      * This array contains the names of the columns in the target
      * table that contain the auto-generated keys that should be returned.
      * The driver will ignore the array if the SQL statement
-     * is not an <code>INSERT</code> statement, or an SQL statement able to return
+     * is not an <code>INSERT</code> statement, or an SQL statement able to
+     * return
      * auto-generated keys (the list of such statements is vendor-specific).
      * <p>
      * An SQL statement with or without IN parameters can be
@@ -1035,29 +1061,30 @@ public class ProxyConnection implements Connection {
      * pre-compiled statement, that is capable of returning the
      * auto-generated keys designated by the given array of column
      * names
-     * @throws SQLException                    if a database access error occurs
-     *                                         or this method is called on a closed connection
-     * @throws SQLFeatureNotSupportedException if the JDBC driver does not support
-     *                                         this method
+     * @throws SQLException if a database access error occurs
+     *                      or this method is called on a closed connection
      * @since 1.4
      */
     @Override
-    public PreparedStatement prepareStatement(String sql, String[] columnNames) throws SQLException {
+    public PreparedStatement prepareStatement(final String sql,
+                                              final String[] columnNames)
+            throws SQLException {
         return connection.prepareStatement(sql, columnNames);
     }
 
     /**
-     * Constructs an object that implements the <code>Clob</code> interface. The object
+     * Constructs an object that implements the <code>Clob</code> interface.
+     * The object
      * returned initially contains no data.  The <code>setAsciiStream</code>,
      * <code>setCharacterStream</code> and <code>setString</code> methods of
-     * the <code>Clob</code> interface may be used to add data to the <code>Clob</code>.
+     * the <code>Clob</code> interface may be used to add data to the <code>
+     * Clob</code>.
      *
      * @return An object that implements the <code>Clob</code> interface
-     * @throws SQLException                    if an object that implements the
-     *                                         <code>Clob</code> interface can not be constructed, this method is
-     *                                         called on a closed connection or a database access error occurs.
-     * @throws SQLFeatureNotSupportedException if the JDBC driver does not support
-     *                                         this data type
+     * @throws SQLException if an object that implements the
+     *                      <code>Clob</code> interface can not be constructed,
+     *                      this method is called on a closed connection or a
+     *                      database access error occurs.
      * @since 1.6
      */
     @Override
@@ -1066,17 +1093,17 @@ public class ProxyConnection implements Connection {
     }
 
     /**
-     * Constructs an object that implements the <code>Blob</code> interface. The object
-     * returned initially contains no data.  The <code>setBinaryStream</code> and
-     * <code>setBytes</code> methods of the <code>Blob</code> interface may be used to add data to
+     * Constructs an object that implements the <code>Blob</code> interface.
+     * The object returned initially contains no data.  The
+     * <code>setBinaryStream</code> and <code>setBytes</code> methods of
+     * the <code>Blob</code> interface may be used to add data to
      * the <code>Blob</code>.
      *
      * @return An object that implements the <code>Blob</code> interface
-     * @throws SQLException                    if an object that implements the
-     *                                         <code>Blob</code> interface can not be constructed, this method is
-     *                                         called on a closed connection or a database access error occurs.
-     * @throws SQLFeatureNotSupportedException if the JDBC driver does not support
-     *                                         this data type
+     * @throws SQLException if an object that implements the
+     *                      <code>Blob</code> interface can not be constructed,
+     *                      this method is called on a closed connection or a
+     *                      database access error occurs.
      * @since 1.6
      */
     @Override
@@ -1085,17 +1112,18 @@ public class ProxyConnection implements Connection {
     }
 
     /**
-     * Constructs an object that implements the <code>NClob</code> interface. The object
-     * returned initially contains no data.  The <code>setAsciiStream</code>,
-     * <code>setCharacterStream</code> and <code>setString</code> methods of the <code>NClob</code> interface may
+     * Constructs an object that implements the <code>NClob</code> interface.
+     * The object returned initially contains no data.  The
+     * <code>setAsciiStream</code>, <code>setCharacterStream</code> and
+     * <code>setString</code> methods of the <code>NClob</code> interface may
      * be used to add data to the <code>NClob</code>.
      *
      * @return An object that implements the <code>NClob</code> interface
-     * @throws SQLException                    if an object that implements the
-     *                                         <code>NClob</code> interface can not be constructed, this method is
-     *                                         called on a closed connection or a database access error occurs.
-     * @throws SQLFeatureNotSupportedException if the JDBC driver does not support
-     *                                         this data type
+     * @throws SQLException if an object that implements the
+     *                      <code>NClob</code> interface can not be
+     *                      constructed, this method is
+     *                      called on a closed connection or a database
+     *                      access error occurs.
      * @since 1.6
      */
     @Override
@@ -1104,17 +1132,17 @@ public class ProxyConnection implements Connection {
     }
 
     /**
-     * Constructs an object that implements the <code>SQLXML</code> interface. The object
-     * returned initially contains no data. The <code>createXmlStreamWriter</code> object and
-     * <code>setString</code> method of the <code>SQLXML</code> interface may be used to add data to the <code>SQLXML</code>
-     * object.
+     * Constructs an object that implements the <code>SQLXML</code> interface.
+     * The object returned initially contains no data. The
+     * <code>createXmlStreamWriter</code> object and
+     * <code>setString</code> method of the <code>SQLXML</code> interface
+     * may be used to add data to the <code>SQLXML</code> object.
      *
      * @return An object that implements the <code>SQLXML</code> interface
-     * @throws SQLException                    if an object that implements the <code>SQLXML</code> interface can not
-     *                                         be constructed, this method is
-     *                                         called on a closed connection or a database access error occurs.
-     * @throws SQLFeatureNotSupportedException if the JDBC driver does not support
-     *                                         this data type
+     * @throws SQLException if an object that implements the <code>SQLXML</code>
+     *                      interface can not be constructed, this method is
+     *                      called on a closed connection or a database access
+     *                      error occurs.
      * @since 1.6
      */
     @Override
@@ -1131,7 +1159,7 @@ public class ProxyConnection implements Connection {
      * The query submitted by the driver to validate the connection shall be
      * executed in the context of the current transaction.
      *
-     * @param timeout -             The time in seconds to wait for the database operation
+     * @param timeout - The time in seconds to wait for the database operation
      *                used to validate the connection to complete.  If
      *                the timeout period expires before the operation
      *                completes, this method returns false.  A value of
@@ -1145,7 +1173,7 @@ public class ProxyConnection implements Connection {
      * @since 1.6
      */
     @Override
-    public boolean isValid(int timeout) throws SQLException {
+    public boolean isValid(final int timeout) throws SQLException {
         return connection.isValid(timeout);
     }
 
@@ -1153,7 +1181,8 @@ public class ProxyConnection implements Connection {
      * Sets the value of the client info property specified by name to the
      * value specified by value.
      * <p>
-     * Applications may use the <code>DatabaseMetaData.getClientInfoProperties</code>
+     * Applications may use the <code>DatabaseMetaData.
+     * getClientInfoProperties</code>
      * method to determine the client info properties supported by the driver
      * and the maximum length that may be specified for each property.
      * <p>
@@ -1171,9 +1200,9 @@ public class ProxyConnection implements Connection {
      * <p>
      * If the value specified to this method is greater than the maximum
      * length for the property the driver may either truncate the value and
-     * generate a warning or generate a <code>SQLClientInfoException</code>.  If the driver
-     * generates a <code>SQLClientInfoException</code>, the value specified was not set on the
-     * connection.
+     * generate a warning or generate a <code>SQLClientInfoException</code>.
+     * If the driver generates a <code>SQLClientInfoException</code>, the
+     * value specified was not set on the connection.
      * <p>
      * The following are standard client info properties.  Drivers are not
      * required to support these properties however if the driver supports a
@@ -1181,14 +1210,14 @@ public class ProxyConnection implements Connection {
      * properties, the standard property name should be used.
      *
      * <ul>
-     * <li>ApplicationName  -       The name of the application currently utilizing
+     * <li>ApplicationName  - The name of the application currently utilizing
      *                                                      the connection</li>
-     * <li>ClientUser               -       The name of the user that the application using
-     *                                                      the connection is performing work for.  This may
-     *                                                      not be the same as the user name that was used
-     *                                                      in establishing the connection.</li>
-     * <li>ClientHostname   -       The hostname of the computer the application
-     *                                                      using the connection is running on.</li>
+     * <li>ClientUser       - The name of the user that the application using
+     *                        the connection is performing work for.  This may
+     *                        not be the same as the user name that was used
+     *                                 in establishing the connection.</li>
+     * <li>ClientHostname   - The hostname of the computer the application
+     *                              using the connection is running on.</li>
      * </ul>
      * <p>
      *
@@ -1197,32 +1226,35 @@ public class ProxyConnection implements Connection {
      *              value is null, the current value of the specified
      *              property is cleared.
      *              <p>
-     * @throws SQLClientInfoException if the database server returns an error while
-     *                                setting the client info value on the database server or this method
-     *                                is called on a closed connection
+     * @throws SQLClientInfoException if the database server returns an error
+     *                                while setting the client info value on the
+     *                                database server or this method is called
+     *                                on a closed connection
      *                                <p>
      * @since 1.6
      */
     @Override
-    public void setClientInfo(String name, String value) throws SQLClientInfoException {
+    public void setClientInfo(final String name, final String value)
+            throws SQLClientInfoException {
         connection.setClientInfo(name, value);
     }
 
     /**
      * Sets the value of the connection's client info properties.  The
-     * <code>Properties</code> object contains the names and values of the client info
-     * properties to be set.  The set of client info properties contained in
-     * the properties list replaces the current set of client info properties
-     * on the connection.  If a property that is currently set on the
-     * connection is not present in the properties list, that property is
-     * cleared.  Specifying an empty properties list will clear all of the
-     * properties on the connection.  See <code>setClientInfo (String, String)</code> for
-     * more information.
+     * <code>Properties</code> object contains the names and values of
+     * the client info properties to be set.  The set of client info
+     * properties contained in the properties list replaces the current
+     * set of client info properties on the connection.  If a property
+     * that is currently set on the connection is not present in the
+     * properties list, that property is cleared.  Specifying an empty
+     * properties list will clear all of the properties on the connection.
+     * See <code>setClientInfo (String, String)</code> for more information.
      * <p>
      * If an error occurs in setting any of the client info properties, a
-     * <code>SQLClientInfoException</code> is thrown. The <code>SQLClientInfoException</code>
-     * contains information indicating which client info properties were not set.
-     * The state of the client information is unknown because
+     * <code>SQLClientInfoException</code> is thrown.
+     * The <code>SQLClientInfoException</code>
+     * contains information indicating which client info properties were
+     * not set. The state of the client information is unknown because
      * some databases do not allow multiple client info properties to be set
      * atomically.  For those databases, one or more properties may have been
      * set before the error occurred.
@@ -1230,15 +1262,16 @@ public class ProxyConnection implements Connection {
      *
      * @param properties the list of client info properties to set
      *                   <p>
-     * @throws SQLClientInfoException if the database server returns an error while
-     *                                setting the clientInfo values on the database server or this method
+     * @throws SQLClientInfoException if the database server returns an error
+     *                                while setting the clientInfo values on the
+     *                                database server or this method
      *                                is called on a closed connection
-     * @see Connection#setClientInfo(String, String) setClientInfo(String, String)
      * @since 1.6
      * <p>
      */
     @Override
-    public void setClientInfo(Properties properties) throws SQLClientInfoException {
+    public void setClientInfo(final Properties properties)
+            throws SQLClientInfoException {
         connection.setClientInfo(properties);
     }
 
@@ -1249,7 +1282,8 @@ public class ProxyConnection implements Connection {
      * return null if the specified client info property name is not supported
      * by the driver.
      * <p>
-     * Applications may use the <code>DatabaseMetaData.getClientInfoProperties</code>
+     * Applications may use the <code>DatabaseMetaData.
+     * getClientInfoProperties</code>
      * method to determine the client info properties supported by the driver.
      * <p>
      *
@@ -1265,7 +1299,7 @@ public class ProxyConnection implements Connection {
      * @since 1.6
      */
     @Override
-    public String getClientInfo(String name) throws SQLException {
+    public String getClientInfo(final String name) throws SQLException {
         return connection.getClientInfo(name);
     }
 
@@ -1276,8 +1310,9 @@ public class ProxyConnection implements Connection {
      * default value.
      * <p>
      *
-     * @return A <code>Properties</code> object that contains the name and current value of
-     * each of the client info properties supported by the driver.
+     * @return A <code>Properties</code> object that contains the name and
+     * current value of each of the client info properties supported by
+     * the driver.
      * <p>
      * @throws SQLException if the database server returns an error when
      *                      fetching the client info values from the database
@@ -1293,49 +1328,58 @@ public class ProxyConnection implements Connection {
     /**
      * Factory method for creating Array objects.
      * <p>
-     * <b>Note: </b>When <code>createArrayOf</code> is used to create an array object
-     * that maps to a primitive data type, then it is implementation-defined
-     * whether the <code>Array</code> object is an array of that primitive
-     * data type or an array of <code>Object</code>.
+     * <b>Note: </b>When <code>createArrayOf</code> is used to create an
+     * array object that maps to a primitive data type, then it is
+     * implementation-defined whether the <code>Array</code> object is an
+     * array of that primitive data type or an array of <code>Object</code>.
      * <p>
      * <b>Note: </b>The JDBC driver is responsible for mapping the elements
      * <code>Object</code> array to the default JDBC SQL type defined in
      * java.sql.Types for the given class of <code>Object</code>. The default
      * mapping is specified in Appendix B of the JDBC specification.  If the
-     * resulting JDBC type is not the appropriate type for the given typeName then
-     * it is implementation defined whether an <code>SQLException</code> is
+     * resulting JDBC type is not the appropriate type for the given typeName
+     * then it is implementation defined whether an <code>SQLException</code> is
      * thrown or the driver supports the resulting conversion.
      *
-     * @param typeName the SQL name of the type the elements of the array map to. The typeName is a
-     *                 database-specific name which may be the name of a built-in type, a user-defined type or a standard  SQL type supported by this database. This
-     *                 is the value returned by <code>Array.getBaseTypeName</code>
+     * @param typeName the SQL name of the type the elements of the array map
+     *                 to. The typeName is a database-specific name which may
+     *                 be the name of a built-in type, a user-defined type or
+     *                 a standard SQL type supported by this database. This is
+     *                 the value returned by <code>Array.getBaseTypeName</code>
      * @param elements the elements that populate the returned object
      * @return an Array object whose elements map to the specified SQL type
-     * @throws SQLException                    if a database error occurs, the JDBC type is not
-     *                                         appropriate for the typeName and the conversion is not supported, the typeName is null or this method is called on a closed connection
-     * @throws SQLFeatureNotSupportedException if the JDBC driver does not support this data type
+     * @throws SQLException if a database error occurs, the JDBC type is not
+     *                      appropriate for the typeName and the conversion
+     *                      is not supported, the typeName is null or this
+     *                      method is called on a closed connection
      * @since 1.6
      */
     @Override
-    public Array createArrayOf(String typeName, Object[] elements) throws SQLException {
+    public Array createArrayOf(final String typeName,
+                               final Object[] elements)
+            throws SQLException {
         return connection.createArrayOf(typeName, elements);
     }
 
     /**
      * Factory method for creating Struct objects.
      *
-     * @param typeName   the SQL type name of the SQL structured type that this <code>Struct</code>
-     *                   object maps to. The typeName is the name of  a user-defined type that
-     *                   has been defined for this database. It is the value returned by
+     * @param typeName   the SQL type name of the SQL structured type that this
+     *                   <code>Struct</code> object maps to. The typeName is the
+     *                   name of  a user-defined type that has been defined for
+     *                   this database. It is the value returned by
      *                   <code>Struct.getSQLTypeName</code>.
      * @param attributes the attributes that populate the returned object
-     * @return a Struct object that maps to the given SQL type and is populated with the given attributes
-     * @throws SQLException                    if a database error occurs, the typeName is null or this method is called on a closed connection
-     * @throws SQLFeatureNotSupportedException if the JDBC driver does not support this data type
+     * @return a Struct object that maps to the given SQL type and is populated
+     * with the given attributes
+     * @throws SQLException if a database error occurs, the typeName is null or
+     *                      this method is called on a closed connection
      * @since 1.6
      */
     @Override
-    public Struct createStruct(String typeName, Object[] attributes) throws SQLException {
+    public Struct createStruct(final String typeName,
+                               final Object[] attributes)
+            throws SQLException {
         return connection.createStruct(typeName, attributes);
     }
 
@@ -1359,7 +1403,7 @@ public class ProxyConnection implements Connection {
      * @since 1.7
      */
     @Override
-    public void setSchema(String schema) throws SQLException {
+    public void setSchema(final String schema) throws SQLException {
         connection.setSchema(schema);
     }
 
@@ -1393,9 +1437,9 @@ public class ProxyConnection implements Connection {
      * <p>
      * It is possible that the aborting and releasing of the resources that are
      * held by the connection can take an extended period of time.  When the
-     * <code>abort</code> method returns, the connection will have been marked as
-     * closed and the <code>Executor</code> that was passed as a parameter to abort
-     * may still be executing tasks to release resources.
+     * <code>abort</code> method returns, the connection will have been marked
+     * as closed and the <code>Executor</code> that was passed as a parameter
+     * to abort may still be executing tasks to release resources.
      * <p>
      * This method checks to see that there is an <code>SQLPermission</code>
      * object before allowing the method to proceed.  If a
@@ -1409,13 +1453,14 @@ public class ProxyConnection implements Connection {
      * @throws SQLException      if a database access error occurs or
      *                           the {@code executor} is {@code null},
      * @throws SecurityException if a security manager exists and its
-     *                           <code>checkPermission</code> method denies calling <code>abort</code>
+     *                           <code>checkPermission</code> method denies
+     *                           calling <code>abort</code>
      * @see SecurityManager#checkPermission
      * @see Executor
      * @since 1.7
      */
     @Override
-    public void abort(Executor executor) throws SQLException {
+    public void abort(final Executor executor) throws SQLException {
         connection.abort(executor);
     }
 
@@ -1460,15 +1505,15 @@ public class ProxyConnection implements Connection {
      * Invocation of this method has no impact on already outstanding
      * requests.
      * <p>
-     * The {@code Statement.setQueryTimeout()} timeout value is independent of the
-     * timeout value specified in {@code setNetworkTimeout}. If the query timeout
-     * expires  before the network timeout then the
+     * The {@code Statement.setQueryTimeout()} timeout value is independent of
+     * the timeout value specified in {@code setNetworkTimeout}. If the query
+     * timeout expires  before the network timeout then the
      * statement execution will be canceled. If the network is still
      * active the result will be that both the statement and connection
      * are still usable. However if the network timeout expires before
      * the query timeout or if the statement timeout fails due to network
-     * problems, the connection will be marked as closed, any resources held by
-     * the connection will be released and both the connection and
+     * problems, the connection will be marked as closed, any resources held
+     * by the connection will be released and both the connection and
      * statement will be unusable.
      * <p>
      * When the driver determines that the {@code setNetworkTimeout} timeout
@@ -1487,20 +1532,21 @@ public class ProxyConnection implements Connection {
      *                     be used by <code>setNetworkTimeout</code>.
      * @param milliseconds The time in milliseconds to wait for the database
      *                     operation
-     *                     to complete.  If the JDBC driver does not support milliseconds, the
-     *                     JDBC driver will round the value up to the nearest second.  If the
-     *                     timeout period expires before the operation
-     *                     completes, a SQLException will be thrown.
-     *                     A value of 0 indicates that there is not timeout for database operations.
-     * @throws SQLException                    if a database access error occurs, this
-     *                                         method is called on a closed connection,
-     *                                         the {@code executor} is {@code null},
-     *                                         or the value specified for <code>seconds</code> is less than 0.
-     * @throws SecurityException               if a security manager exists and its
-     *                                         <code>checkPermission</code> method denies calling
-     *                                         <code>setNetworkTimeout</code>.
-     * @throws SQLFeatureNotSupportedException if the JDBC driver does not support
-     *                                         this method
+     *                     to complete.  If the JDBC driver does not support
+     *                     milliseconds, the JDBC driver will round the value up
+     *                     to the nearest second.  If the timeout period expires
+     *                     before the operation completes, a SQLException will
+     *                     be thrown.
+     *                     A value of 0 indicates that there is not timeout for
+     *                     database operations.
+     * @throws SQLException      if a database access error occurs, this
+     *                           method is called on a closed connection,
+     *                           the {@code executor} is {@code null},
+     *                           or the value specified for <code>seconds</code>
+     *                           is less than 0.
+     * @throws SecurityException if a security manager exists and its
+     *                           <code>checkPermission</code> method denies
+     *                           calling <code>setNetworkTimeout</code>.
      * @see SecurityManager#checkPermission
      * @see Statement#setQueryTimeout
      * @see #getNetworkTimeout
@@ -1509,7 +1555,9 @@ public class ProxyConnection implements Connection {
      * @since 1.7
      */
     @Override
-    public void setNetworkTimeout(Executor executor, int milliseconds) throws SQLException {
+    public void setNetworkTimeout(final Executor executor,
+                                  final int milliseconds)
+            throws SQLException {
         connection.setNetworkTimeout(executor, milliseconds);
     }
 
@@ -1521,10 +1569,9 @@ public class ProxyConnection implements Connection {
      *
      * @return the current timeout limit in milliseconds; zero means there is
      * no limit
-     * @throws SQLException                    if a database access error occurs or
-     *                                         this method is called on a closed <code>Connection</code>
-     * @throws SQLFeatureNotSupportedException if the JDBC driver does not support
-     *                                         this method
+     * @throws SQLException if a database access error occurs or
+     *                      this method is called on a closed
+     *                      <code>Connection</code>
      * @see #setNetworkTimeout
      * @since 1.7
      */
@@ -1541,32 +1588,41 @@ public class ProxyConnection implements Connection {
      * or a proxy for the receiver. If the receiver is a wrapper
      * and the wrapped object implements the interface then the result is the
      * wrapped object or a proxy for the wrapped object. Otherwise return the
-     * the result of calling <code>unwrap</code> recursively on the wrapped object
-     * or a proxy for that result. If the receiver is not a
-     * wrapper and does not implement the interface, then an <code>SQLException</code> is thrown.
+     * the result of calling <code>unwrap</code> recursively on the wrapped
+     * object or a proxy for that result. If the receiver is not a
+     * wrapper and does not implement the interface, then an
+     * <code>SQLException</code> is thrown.
      *
-     * @param iface A Class defining an interface that the result must implement.
-     * @return an object that implements the interface. May be a proxy for the actual implementing object.
+     * @param iface A Class defining an interface that the result must
+     *              implement.
+     * @return an object that implements the interface. May be a proxy for
+     * the actual implementing object.
      * @throws SQLException If no object found that implements the interface
      * @since 1.6
      */
     @Override
-    public <T> T unwrap(Class<T> iface) throws SQLException {
+    public <T> T unwrap(final Class<T> iface) throws SQLException {
         return connection.unwrap(iface);
     }
 
     /**
-     * Returns true if this either implements the interface argument or is directly or indirectly a wrapper
-     * for an object that does. Returns false otherwise. If this implements the interface then return true,
-     * else if this is a wrapper then return the result of recursively calling <code>isWrapperFor</code> on the wrapped
-     * object. If this does not implement the interface and is not a wrapper, return false.
-     * This method should be implemented as a low-cost operation compared to <code>unwrap</code> so that
-     * callers can use this method to avoid expensive <code>unwrap</code> calls that may fail. If this method
-     * returns true then calling <code>unwrap</code> with the same argument should succeed.
+     * Returns true if this either implements the interface argument or
+     * is directly or indirectly a wrapper for an object that does.
+     * Returns false otherwise. If this implements the interface then return
+     * true, else if this is a wrapper then return the result of recursively
+     * calling <code>isWrapperFor</code> on the wrapped object. If this does
+     * not implement the interface and is not a wrapper, return false.
+     * This method should be implemented as a low-cost operation compared to
+     * <code>unwrap</code> so that callers can use this method to avoid
+     * expensive <code>unwrap</code> calls that may fail. If this method
+     * returns true then calling <code>unwrap</code> with the same argument
+     * should succeed.
      *
      * @param iface a Class defining an interface.
-     * @return true if this implements the interface or directly or indirectly wraps an object that does.
-     * @throws SQLException if an error occurs while determining whether this is a wrapper
+     * @return true if this implements the interface or directly or indirectly
+     * wraps an object that does.
+     * @throws SQLException if an error occurs while determining whether this
+     *                      is a wrapper
      *                      for an object with the given interface.
      * @since 1.6
      */

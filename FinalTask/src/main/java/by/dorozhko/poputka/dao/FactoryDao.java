@@ -1,5 +1,6 @@
 package by.dorozhko.poputka.dao;
 
+import by.dorozhko.poputka.dao.connection.ConnectionPool;
 import by.dorozhko.poputka.dao.mysql.MySqlUserDao;
 
 
@@ -12,9 +13,9 @@ public final class FactoryDao {
     //TODO may be need in any case make new obgect of USERDAO?
 
     /**
-     *
+     * Cunstructing
      */
-    //  private UserDAO userDAO = new MySqlUserDao();
+    // TODO private UserDAO userDAO = new MySqlUserDao();
     private FactoryDao() {
     }
 
@@ -36,4 +37,11 @@ public final class FactoryDao {
         return new MySqlUserDao();
     }
 
+    public void initConnectionPool() {
+        ConnectionPool.getInstance();
+    }
+
+    public void closeConnectionPool() {
+        ConnectionPool.getInstance().closePool();
+    }
 }

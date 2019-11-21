@@ -2,21 +2,36 @@ package by.dorozhko.poputka.dao;
 
 import by.dorozhko.poputka.dao.connection.EntityTransaction;
 
-public class TransactionFactory {
-    private static final TransactionFactory instance = new TransactionFactory();
+public final class TransactionFactory {
 
-    private Transaction transaction = new EntityTransaction();
+    /**
+     * static variable single_instance of type TransactionFactory.
+     */
+    private static final TransactionFactory INSTANCE = new TransactionFactory();
 
-    private TransactionFactory(){
+
+    private TransactionFactory() {
 
     }
 
+    /**
+     * Access to single instance of type TransactionFactory.
+     *
+     * @return link to instance of class.
+     */
     public static TransactionFactory getInstance() {
-        return instance;
+        return INSTANCE;
     }
 
-    public Transaction getTransaction(){
-        return transaction;
+    //TODO access to create only one object?
+
+    /**
+     * Create new transaction.
+     *
+     * @return link to transaction.
+     */
+    public Transaction getTransaction() {
+        return new EntityTransaction();
     }
 
 }

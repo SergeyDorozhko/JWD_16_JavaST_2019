@@ -44,7 +44,7 @@ public class Main {
         user.setPhoneNumber("+375295608860");
         user.setEmail("mavr@tut.by");
 
-        UserService service = new ServiceFactory().getUserService();
+        UserService service = ServiceFactory.getInstance().getUserService();
         System.out.println("is user added - " + service.add(user));
     }
 
