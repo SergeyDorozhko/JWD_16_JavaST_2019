@@ -1,4 +1,6 @@
 package by.dorozhko.poputka.dao;
 
-public interface JourneyDAO extends InterfaceDAO {
+import by.dorozhko.poputka.entity.Journey;
+
+public interface JourneyDAO extends InterfaceDAO<Integer, Journey> {
 }

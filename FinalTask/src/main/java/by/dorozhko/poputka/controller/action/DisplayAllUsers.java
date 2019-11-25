@@ -1,6 +1,6 @@
-package by.dorozhko.poputka.controller.action.impl;
+package by.dorozhko.poputka.controller.action;
 
-import by.dorozhko.poputka.controller.action.Action;
+import by.dorozhko.poputka.controller.Action;
 import by.dorozhko.poputka.entity.User;
 import by.dorozhko.poputka.services.ServiceFactory;
 import by.dorozhko.poputka.services.UserService;

@@ -1,18 +1,22 @@
 package by.dorozhko.poputka;
 
-import by.dorozhko.poputka.dao.FactoryDao;
-import by.dorozhko.poputka.dao.Transaction;
-import by.dorozhko.poputka.dao.TransactionFactory;
-import by.dorozhko.poputka.dao.UserDAO;
+import by.dorozhko.poputka.dao.*;
 import by.dorozhko.poputka.dao.exception.ExceptionDao;
+import by.dorozhko.poputka.dao.mysql.MySqlJourneyDAO;
 import by.dorozhko.poputka.entity.Car;
 import by.dorozhko.poputka.entity.Entity;
+import by.dorozhko.poputka.entity.Journey;
 import by.dorozhko.poputka.entity.User;
+import by.dorozhko.poputka.services.JourneyService;
+import by.dorozhko.poputka.services.Service;
 import by.dorozhko.poputka.services.ServiceFactory;
 import by.dorozhko.poputka.services.UserService;
+import by.dorozhko.poputka.services.impl.JourneyServiceImpl;
 import by.dorozhko.poputka.services.impl.UserServiceImpl;
 import sun.util.resources.LocaleData;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -23,12 +27,10 @@ public class Main {
     public static void main(String[] args) throws ExceptionDao {
 
 
-        testFindAllUserService();
-        testAddUserService();
-        testFindAllUserService();
+        testFindAllJourneyService();
     }
 
-    public static void testAddUserService(){
+    public static void testAddUserService() {
         User user = new User();
         user.setLogin("Mavr");
         user.setPassword("Mavr");
@@ -50,10 +52,16 @@ public class Main {
 
     public static void testFindAllUserService() {
         UserService service = new UserServiceImpl();
-        List<User> list= service.findAll();
-        for(User user: list){
+        List<User> list = service.findAll();
+        for (User user : list) {
             System.out.println("user id = " + user.getId() + ", user login = " + user.getLogin());
         }
+    }
+
+    public static void testFindAllJourneyService() throws ExceptionDao {
+        JourneyService service = new JourneyServiceImpl();
+        System.out.println(service.findAllJourneyShort());
+
     }
 
     public static void testInClass() {

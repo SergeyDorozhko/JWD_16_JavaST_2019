@@ -1,4 +1,4 @@
-package by.dorozhko.poputka.controller.action;
+package by.dorozhko.poputka.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

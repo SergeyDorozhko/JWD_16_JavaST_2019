@@ -1,6 +1,7 @@
 package by.dorozhko.poputka.dao;
 
 import by.dorozhko.poputka.dao.connection.ConnectionPool;
+import by.dorozhko.poputka.dao.mysql.MySqlJourneyDAO;
 import by.dorozhko.poputka.dao.mysql.MySqlUserDao;
 
 
@@ -35,6 +36,10 @@ public final class FactoryDao {
      */
     public UserDAO getUserDAO() {
         return new MySqlUserDao();
+    }
+
+    public JourneyDAO getJourneyDAO() {
+        return new MySqlJourneyDAO();
     }
 
     public void initConnectionPool() {

@@ -1,6 +1,7 @@
 package by.dorozhko.poputka.services;
 
 import by.dorozhko.poputka.services.impl.ConnectionServiceImpl;
+import by.dorozhko.poputka.services.impl.JourneyServiceImpl;
 import by.dorozhko.poputka.services.impl.UserServiceImpl;
 
 public final class ServiceFactory {
@@ -33,6 +34,10 @@ public final class ServiceFactory {
      */
     public UserService getUserService() {
         return new UserServiceImpl();
+    }
+
+    public JourneyService getJoureyService() {
+        return new JourneyServiceImpl();
     }
 
     public ConnectionService getConnectionService() {

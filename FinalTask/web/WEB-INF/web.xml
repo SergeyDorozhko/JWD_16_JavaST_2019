@@ -10,7 +10,7 @@
 <!--    </welcome-file-list>-->
 <!--    <servlet>-->
 <!--        <servlet-name>ClientServlet</servlet-name>-->
-<!--        <servlet-class>by.dorozhko.poputka.controller.web.ClientView</servlet-class>-->
+<!--        <servlet-class>by.dorozhko.poputka.controller.ClientView</servlet-class>-->
 <!--    </servlet>-->
 <!--    <servlet-mapping>-->
 <!--        <servlet-name>ClientServlet</servlet-name>-->

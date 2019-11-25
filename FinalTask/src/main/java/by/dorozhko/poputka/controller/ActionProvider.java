@@ -1,6 +1,7 @@
-package by.dorozhko.poputka.controller.action;
+package by.dorozhko.poputka.controller;
 
-import by.dorozhko.poputka.controller.action.impl.DisplayAllUsers;
+import by.dorozhko.poputka.controller.action.DisplayAllUsers;
+import by.dorozhko.poputka.controller.action.JourneyListForMainPage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -24,7 +25,8 @@ public final class ActionProvider {
                 actionByQuery = new DisplayAllUsers();
                 break;
             default:
-                logger.warn("This Action does not exist: ", action);
+                actionByQuery = new JourneyListForMainPage();
+                logger.warn("Default, show main page");
         }
         return actionByQuery;
     }

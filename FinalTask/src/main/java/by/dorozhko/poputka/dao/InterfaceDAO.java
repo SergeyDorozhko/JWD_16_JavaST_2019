@@ -64,5 +64,5 @@ public interface InterfaceDAO<K, T extends Entity> {
      * @param id - identity of target entity.
      * @return - entity which corresponds to identity.
      */
-    T findEntityById(K id);
+    T findEntityById(K id) throws ExceptionDao;
 }

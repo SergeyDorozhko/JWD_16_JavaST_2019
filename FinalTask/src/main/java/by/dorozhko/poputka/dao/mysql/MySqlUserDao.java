@@ -32,9 +32,9 @@ public class MySqlUserDao implements UserDAO {
     private static final String SELECT_ALL_USERS
             = "SELECT users.id, users.login from users";
 
-    //TODO optimize query
-    private static final String SELECT_ALL_USER_INFO
-            = "SELECT user_info.id, users.login, user_info.surname, user_info.name, user_info.birthday, user_info.gender, user_info.country, user_info.passport_number, user_info.passport_date_of_issue, user_info.phone, user_info.email, user_info.car_id, user_info.driving_experience_since from user_info inner join users ON user_info.user_id = users.id";
+    private static final String SELECT_USER_NAME_BY_ID
+            = " SELECT user_info.name FROM user_info"
+            + " WHERE id = ?;";
     /**
      * Query to mySQL database to insert new user to users database table.
      */
@@ -187,8 +187,20 @@ public class MySqlUserDao implements UserDAO {
      * @return - entity which corresponds to identity.
      */
     @Override
-    public User findEntityById(final Integer id) {
-        //TODO realisation
-        return null;
+    public User findEntityById(final Integer id) throws ExceptionDao {
+        User user = null;
+
+        try (PreparedStatement statement = connection.prepareStatement(SELECT_USER_NAME_BY_ID);) {
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                user = new User();
+                user.setName(resultSet.getString("name"));
+            }
+        } catch (SQLException e) {
+            logger.error(e);
+            throw new ExceptionDao(e);
+        }
+        return user;
     }
 }

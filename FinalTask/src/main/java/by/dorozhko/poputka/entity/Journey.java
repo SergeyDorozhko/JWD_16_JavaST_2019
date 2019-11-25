@@ -1,5 +1,7 @@
 package by.dorozhko.poputka.entity;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -8,8 +10,8 @@ public class Journey extends Entity {
     private User driver;
     private Address startAddress;
     private Address destinationAddress;
-    private String departureTime; //hh:mm
-    private String date; //dd-mm-yyyy
+    private LocalTime departureTime; //hh:mm
+    private LocalDate departureDate; //yyyy-mm-dd
     private double cost;
     private String currency;
     private int passengersNumber;
@@ -26,8 +28,8 @@ public class Journey extends Entity {
         this.driver = driver;
         this.startAddress = startAddress;
         this.destinationAddress = destinationAddress;
-        this.departureTime = departureTime;
-        this.date = date;
+        this.departureTime = LocalTime.parse(departureTime);
+        this.departureDate = LocalDate.parse(date);
         this.cost = cost;
         this.currency = currency;
         this.passengersNumber = numberOfPassengers;
@@ -62,20 +64,20 @@ public class Journey extends Entity {
         this.destinationAddress = destinationAddress;
     }
 
-    public String getDepartureTime() {
+    public LocalTime getDepartureTime() {
         return departureTime;
     }
 
-    public void setDepartureTime(String departureTime) {
-        this.departureTime = departureTime;
+    public void setDepartureTime(final String time) {
+        departureTime = LocalTime.parse(time);
     }
 
-    public String getDate() {
-        return date;
+    public LocalDate getDepartureDate() {
+        return departureDate;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setDepartureDate(final String date) {
+        this.departureDate = LocalDate.parse(date);
     }
 
     public double getCost() {
@@ -144,7 +146,7 @@ public class Journey extends Entity {
                 Objects.equals(startAddress, journey.startAddress) &&
                 Objects.equals(destinationAddress, journey.destinationAddress) &&
                 Objects.equals(departureTime, journey.departureTime) &&
-                Objects.equals(date, journey.date) &&
+                Objects.equals(departureDate, journey.departureDate) &&
                 Objects.equals(currency, journey.currency) &&
                 Objects.equals(passengers, journey.passengers) &&
                 Objects.equals(additionalInformation, journey.additionalInformation);
@@ -152,7 +154,7 @@ public class Journey extends Entity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), driver, startAddress, destinationAddress, departureTime, date, cost, currency, passengersNumber, passengers, canTakeBaggage, additionalInformation);
+        return Objects.hash(super.hashCode(), driver, startAddress, destinationAddress, departureTime, departureDate, cost, currency, passengersNumber, passengers, canTakeBaggage, additionalInformation);
     }
 
     @Override
@@ -163,7 +165,7 @@ public class Journey extends Entity {
                 ", startAddress=" + startAddress +
                 ", destinationAddress=" + destinationAddress +
                 ", departureTime='" + departureTime + '\'' +
-                ", date='" + date + '\'' +
+                ", date='" + departureDate + '\'' +
                 ", cost=" + cost +
                 ", currency='" + currency + '\'' +
                 ", passengersNumber=" + passengersNumber +

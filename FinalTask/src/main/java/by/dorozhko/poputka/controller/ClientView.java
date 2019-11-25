@@ -1,6 +1,5 @@
-package by.dorozhko.poputka.controller.web;
+package by.dorozhko.poputka.controller;
 
-import by.dorozhko.poputka.controller.action.ActionProvider;
 import by.dorozhko.poputka.services.ServiceFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -56,14 +55,17 @@ public class ClientView extends HttpServlet {
 
 
         System.out.println(action);
+        String page = null;
         RequestDispatcher requestDispatcher;
         if (action != null) {
-            String page = ActionProvider.getInstance()
+            page = ActionProvider.getInstance()
                     .getAction(action).execute(req, resp);
             requestDispatcher = req.getRequestDispatcher(page);
         } else {
+            action = "default";
+            page = ActionProvider.getInstance().getAction(action).execute(req, resp);
             requestDispatcher
-                    = req.getRequestDispatcher("/WEB-INF/jsp/main.jsp");
+                    = req.getRequestDispatcher(page);
         }
 
 
