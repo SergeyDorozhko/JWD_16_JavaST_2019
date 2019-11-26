@@ -8,10 +8,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Result</title>
+    <title>Poputka</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -80,159 +81,19 @@
         <div class="container" style="background: silver">
 
             <div class="row">
-                <div class="col-sm-4">
-
-                    <div class="card" style="width: 21rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">Minsk - Moscow</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">15-12-2019 14-00</h6>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of the
-                                card's content.</p>
-                            <a href="#" class="card-link">View details</a>
-                            <a href="#" class="card-link">Another link</a>
-                        </div>
-                    </div>
 
 
-                </div>
-
-                <div class="col-sm-4">
-
-                    <div class="card" style="width: 21rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of the
-                                card's content.</p>
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-4">
-
-                    <div class="card" style="width: 21rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of the
-                                card's content.</p>
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-4">
-
-                    <div class="card" style="width: 21rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of the
-                                card's content.</p>
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                        </div>
-                    </div>
-
-
-                </div>
-
-                <div class="col-sm-4">
-
-                    <div class="card" style="width: 21rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of the
-                                card's content.</p>
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-4">
-
-                    <div class="card" style="width: 21rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of the
-                                card's content.</p>
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-4">
-
-                    <div class="card" style="width: 21rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of the
-                                card's content.</p>
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                        </div>
-                    </div>
-
-
-                </div>
-
-                <div class="col-sm-4">
-
-                    <div class="card" style="width: 21rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of the
-                                card's content.</p>
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-4">
-
-                    <div class="card" style="width: 21rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of the
-                                card's content.</p>
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                        </div>
-                    </div>
-                </div>
-
-                <c:forEach var="element" items="${journeyList}" end = "9">
+                <c:forEach var="element" items="${journeyList}" end = "8">
 
                     <div class="col-sm-4">
 
-                        <div class="card" style="width: 21rem;">
+                        <div class="card mb-1" style="width: 21rem;">
                             <div class="card-body">
                                 <h5 class="card-title"><c:out value="${element.startAddress.city}"/> - <c:out value="${element.destinationAddress.city}"/></h5>
                                 <h6 class="card-subtitle mb-2 text-muted">Отправление:</h6>
                                 <h6 class="card-subtitle mb-2 text-muted">Дата: <c:out value="${element.departureDate}"/>, Время: <c:out value="${element.departureTime}"/> </h6>
                                 <p class="card-text">Цена поездки: <c:out value="${element.cost}"/> <c:out value="${element.currency}"/></p>
-                                <a href="#" class="card-link">Card link</a>
-                                <a href="#" class="card-link">Another link</a>
+                                <a href="#" class="card-link">More information</a>
                             </div>
                         </div>
                     </div>
@@ -242,12 +103,12 @@
             </div>
 
 
-            <form method="get">
+            <form action="listOfJourneys.html" method="get">
                 <div class="col-sm-4">
                 </div>
                 <div class="col-sm-12">
 
-                    <button type="submit" class="btn btn-warning btn-lg btn-block" name="action" value="list">View more
+                    <button type="submit" class="btn btn-warning btn-lg btn-block">View more
                         suggestions
                     </button>
                 </div>
@@ -257,6 +118,7 @@
         </div>
     </div>
 </div>
+
 
 
 <c:import url="endOfPages.jsp"/>

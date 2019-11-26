@@ -10,14 +10,5 @@
 <html><body>
 
 
-<%--<form action="main">--%>
-<%--    <div class="row">--%>
-<%--        <button type="submit" class="btn btn-primary btn-md">Parse menu</button>--%>
-<%--    </div>--%>
-
-<%--</form>--%>
-<%--<c:out value="Welcome to JSTL"/>--%>
-
-<%--<с:redirect url="/main"></с:redirect>--%>
-<jsp:forward page="WEB-INF/jsp/main.jsp"></jsp:forward>
+<jsp:forward page="WEB-INF/jsp/main.html"></jsp:forward>
 </body></html>

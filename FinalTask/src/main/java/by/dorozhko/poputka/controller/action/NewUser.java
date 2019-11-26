@@ -5,7 +5,7 @@ import by.dorozhko.poputka.controller.Action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class NewUser implements Action {
+public class NewUser extends AllUsersAction {
 //TODO realise
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {

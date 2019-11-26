@@ -7,10 +7,15 @@ import by.dorozhko.poputka.dao.UserDAO;
 import by.dorozhko.poputka.dao.exception.ExceptionDao;
 import by.dorozhko.poputka.entity.User;
 import by.dorozhko.poputka.services.UserService;
+import by.dorozhko.poputka.services.exception.ExceptionService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
+    private final Logger logger = LogManager.getLogger(getClass().getName());
+
     /**
      * Show all users saved in database.
      *
@@ -53,8 +58,30 @@ public class UserServiceImpl implements UserService {
      * @return User with user params if find one.
      */
     @Override
-    public User singIn(String login, String password) {
-        return null;
+    public User singIn(final String login,
+                       final String password)
+            throws ExceptionService {
+        Transaction transaction = TransactionFactory
+                .getInstance().getTransaction();
+        UserDAO userDAO = FactoryDao.getInstance().getUserDAO();
+
+        transaction.begin(userDAO);
+
+        User user = null;
+        try {
+            user = userDAO.findUserByLoginAndPassword(login, password);
+            transaction.commit();
+        } catch (ExceptionDao exceptionDao) {
+            logger.error(exceptionDao);
+            transaction.rollback();
+            throw new ExceptionService(exceptionDao);
+        } finally {
+            transaction.end();
+        }
+
+
+        return user;
+
     }
 
     /**

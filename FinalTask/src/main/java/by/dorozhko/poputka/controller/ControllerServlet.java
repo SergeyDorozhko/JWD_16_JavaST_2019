@@ -13,9 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("")
+//@WebServlet("*.html")
 @MultipartConfig
-public class ClientView extends HttpServlet {
+public class ControllerServlet extends HttpServlet {
 
 
     /**
@@ -50,20 +50,19 @@ public class ClientView extends HttpServlet {
 
         logger.debug("start doGet method");
 
-        String action = req.getParameter("action");
+        Action action = (Action) req.getAttribute("action");
+
         logger.debug(action);
 
 
-        System.out.println(action);
         String page = null;
         RequestDispatcher requestDispatcher;
         if (action != null) {
-            page = ActionProvider.getInstance()
-                    .getAction(action).execute(req, resp);
+            page = action.execute(req, resp);
             requestDispatcher = req.getRequestDispatcher(page);
         } else {
-            action = "default";
-            page = ActionProvider.getInstance().getAction(action).execute(req, resp);
+            String defaultAction = "default";
+            page = ActionProvider.getInstance().getAction(defaultAction).execute(req, resp);
             requestDispatcher
                     = req.getRequestDispatcher(page);
         }

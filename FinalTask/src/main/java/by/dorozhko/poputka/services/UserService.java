@@ -1,6 +1,7 @@
 package by.dorozhko.poputka.services;
 
 import by.dorozhko.poputka.entity.User;
+import by.dorozhko.poputka.services.exception.ExceptionService;
 
 import java.util.List;
 
@@ -24,7 +25,7 @@ public interface UserService extends Service {
      * @param password User password.
      * @return User with user params if find one.
      */
-    User singIn(String login, String password);
+    User singIn(String login, String password) throws ExceptionService;
 
     /**
      * Save user info into database.

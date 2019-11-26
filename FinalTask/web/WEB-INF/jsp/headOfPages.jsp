@@ -1,33 +1,36 @@
-<%--&lt;%&ndash;--%>
-<%--  Created by IntelliJ IDEA.--%>
-<%--  User: sergd--%>
-<%--  Date: 20.11.2019--%>
-<%--  Time: 14:28--%>
-<%--  To change this template use File | Settings | File Templates.--%>
-<%--&ndash;%&gt;--%>
-<%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%>
-<%--<html>--%>
-<%--<head>--%>
-<%--    <title>Title</title>--%>
-<%--</head>--%>
-<%--<body>--%>
 
-<%--</body>--%>
-<%--</html>--%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 
-<%--<body style="color: #4B0082; background-color: #696969" background="images/background.jpg">--%>
-
-<%--<div class="container">--%>
 <header id="header" style="height: 40px"/>
 <div class="row">
     <nav class="navbar navbar-expand-sm bg-dark justify-content-center navbar-dark fixed-top">
         <lu class="navbar-brand">
             <img src="images/mainPage/logo2.png" alt="Logo" style="width:40px; position:absolute; left:200px" ;>
+
+            <div class="dropdown" style="position:absolute; top:15px; left:300px;">
+                <button class="btn btn-outline-warning btn-sm dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Menu
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <form action="main.html" method="get">
+                    <button class="dropdown-item" type="submit">Home</button>
+                    </form>
+                        <form action="listOfUsers.html" method="get">
+                    <button class="dropdown-item" type="submit">All users</button>
+                    </form>
+                </div>
+            </div>
+
+
+
+
             <lo class="nav-item">
-                <h4 style="color:orange;">Попутчик. <em>С нами удобно!</em></h4>
+                <div class="mx-auto" style="width: 200px;">
+
+                    <h4 style="color:orange;">Попутчик. <small><i><em>С нами удобно!</em></i></small></h4>
+                </div>
             </lo>
             <lo class="nav-item">
 

@@ -3,6 +3,7 @@ package by.dorozhko.poputka;
 import by.dorozhko.poputka.dao.*;
 import by.dorozhko.poputka.dao.exception.ExceptionDao;
 import by.dorozhko.poputka.dao.mysql.MySqlJourneyDAO;
+import by.dorozhko.poputka.dao.mysql.MySqlUserDao;
 import by.dorozhko.poputka.entity.Car;
 import by.dorozhko.poputka.entity.Entity;
 import by.dorozhko.poputka.entity.Journey;
@@ -26,8 +27,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) throws ExceptionDao {
 
-
-        testFindAllJourneyService();
+        testLogin();
     }
 
     public static void testAddUserService() {
@@ -148,6 +148,32 @@ public class Main {
 
 //        pool.releaseConnection(connection);
 //        pool.closePool();
+
+    }
+
+
+
+    public static void testLogin(){
+        FactoryDao factoryDao = FactoryDao.getInstance();
+
+
+
+        UserDAO userDAO = factoryDao.getUserDAO();
+
+
+
+        Transaction transaction = TransactionFactory.getInstance().getTransaction();
+        transaction.begin(userDAO);
+
+        try {
+            User user = userDAO.findUserByLoginAndPassword("admin", "admin");
+            System.out.println(user.getLogin() + user.getRole());
+            transaction.commit();
+        } catch (ExceptionDao exceptionDao) {
+            transaction.rollback();
+            exceptionDao.printStackTrace();
+        }
+        transaction.end();
 
     }
 

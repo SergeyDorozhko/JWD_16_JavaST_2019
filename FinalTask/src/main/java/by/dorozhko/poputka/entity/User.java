@@ -7,15 +7,14 @@ import java.util.Objects;
 public class User extends Entity {
     private String login;
     private String password;
-    private int role;
+    private Role role;
     private String name;
     private String surname;
-    private byte gender;
+    private Gender gender;
     private LocalDate birthday;
     private String country;
     private String passportNumber;
-    //TODO LocalDate
-    private String passportDateOfIssue;
+    private LocalDate passportDateOfIssue;
     private String phoneNumber;
     private String email;
     private int drivingExperience;
@@ -24,62 +23,62 @@ public class User extends Entity {
     public User() {
     }
 
-    public User(final int id, String login, String password, String name, String surname, byte gender, String birthday, String country, String passportNumber, String passportDateOfIssue, String phoneNumber, String email) {
+    public User(final int id, String login, String password, String name, String surname, int gender, String birthday, String country, String passportNumber, String passportDateOfIssue, String phoneNumber, String email) {
         super(id);
         this.login = login;
         this.password = password;
         this.name = name;
         this.surname = surname;
-        this.gender = gender;
+        this.gender = Gender.getById(gender);
         this.birthday = LocalDate.parse(birthday);
         this.country = country;
         this.passportNumber = passportNumber;
-        this.passportDateOfIssue = passportDateOfIssue;
+        this.passportDateOfIssue = LocalDate.parse(passportDateOfIssue);
         this.phoneNumber = phoneNumber;
         this.email = email;
     }
 
-    public User(final int id, String login, String password, String name, String surname, byte gender, String birthday, String country, String passportNumber, String passportDateOfIssue, String phoneNumber, String email, int drivingExperience, Car car) {
+    public User(final int id, String login, String password, String name, String surname, int gender, String birthday, String country, String passportNumber, String passportDateOfIssue, String phoneNumber, String email, int drivingExperience, Car car) {
         super(id);
         this.login = login;
         this.password = password;
         this.name = name;
         this.surname = surname;
-        this.gender = gender;
+        this.gender = Gender.getById(gender);
         this.birthday = LocalDate.parse(birthday);
         this.country = country;
         this.passportNumber = passportNumber;
-        this.passportDateOfIssue = passportDateOfIssue;
+        this.passportDateOfIssue = LocalDate.parse(passportDateOfIssue);
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.drivingExperience = drivingExperience;
         this.car = car;
     }
 
-    public User(final int id, String login, String name, String surname, byte gender, String birthday, String country, String passportNumber, String passportDateOfIssue, String phoneNumber, String email) {
+    public User(final int id, String login, String name, String surname, int gender, String birthday, String country, String passportNumber, String passportDateOfIssue, String phoneNumber, String email) {
         super(id);
         this.login = login;
         this.name = name;
         this.surname = surname;
-        this.gender = gender;
+        this.gender = Gender.getById(gender);
         this.birthday = LocalDate.parse(birthday);
         this.country = country;
         this.passportNumber = passportNumber;
-        this.passportDateOfIssue = passportDateOfIssue;
+        this.passportDateOfIssue = LocalDate.parse(passportDateOfIssue);
         this.phoneNumber = phoneNumber;
         this.email = email;
     }
 
-    public User(final int id, String login, String name, String surname, byte gender, String birthday, String country, String passportNumber, String passportDateOfIssue, String phoneNumber, String email, int drivingExperience, Car car) {
+    public User(final int id, String login, String name, String surname, int gender, String birthday, String country, String passportNumber, String passportDateOfIssue, String phoneNumber, String email, int drivingExperience, Car car) {
         super(id);
         this.login = login;
         this.name = name;
         this.surname = surname;
-        this.gender = gender;
+        this.gender = Gender.getById(gender);
         this.birthday = LocalDate.parse(birthday);
         this.country = country;
         this.passportNumber = passportNumber;
-        this.passportDateOfIssue = passportDateOfIssue;
+        this.passportDateOfIssue = LocalDate.parse(passportDateOfIssue);
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.drivingExperience = drivingExperience;
@@ -102,12 +101,12 @@ public class User extends Entity {
         this.password = password;
     }
 
-    public int getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(int role) {
-        this.role = role;
+    public void setRole(final int newRole) {
+        this.role = Role.getById(newRole);
     }
 
     public String getName() {
@@ -126,12 +125,12 @@ public class User extends Entity {
         this.surname = surname;
     }
 
-    public byte getGender() {
+    public Gender getGender() {
         return gender;
     }
 
-    public void setGender(byte gender) {
-        this.gender = gender;
+    public void setGender(final int gender) {
+        this.gender = Gender.getById(gender);
     }
 
     public LocalDate getBirthday() {
@@ -158,12 +157,12 @@ public class User extends Entity {
         this.passportNumber = passportNumber;
     }
 
-    public String getPassportDateOfIssue() {
+    public LocalDate getPassportDateOfIssue() {
         return passportDateOfIssue;
     }
 
     public void setPassportDateOfIssue(String passportDateOfIssue) {
-        this.passportDateOfIssue = passportDateOfIssue;
+        this.passportDateOfIssue = LocalDate.parse(passportDateOfIssue);
     }
 
     public String getPhoneNumber() {

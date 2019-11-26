@@ -1,4 +1,4 @@
-package by.dorozhko.poputka.controller.action;
+package by.dorozhko.poputka.controller.action.administrator;
 
 import by.dorozhko.poputka.controller.Action;
 import by.dorozhko.poputka.entity.User;
@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-public class DisplayAllUsers implements Action {
+public class DisplayAllUsers extends AdminAction {
+
+    @Override
     public String execute(final HttpServletRequest req,
                           final HttpServletResponse resp) {
         UserService userService = ServiceFactory.getInstance().getUserService();
