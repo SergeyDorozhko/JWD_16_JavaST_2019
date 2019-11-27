@@ -36,6 +36,11 @@ public class MySqlUserDao implements UserDAO {
             = " SELECT user_info.name FROM user_info"
             + " WHERE id = ?;";
 
+    private static final String SELECT_SALT_BY_LOGIN
+            = "SELECT salt FROM users" +
+            " WHERE login = ?;";
+
+
     private static final String SELECT_USER_BY_LOGIN_PWD
             = "SELECT login, role FROM users" +
             " WHERE login = ? and password = ?;";
@@ -220,6 +225,27 @@ public class MySqlUserDao implements UserDAO {
             throw new ExceptionDao(e);
         }
         return user;
+    }
+
+    @Override
+    public String getSalt(final String login) throws ExceptionDao {
+        String salt = null;
+
+        try (PreparedStatement statement
+                     = connection.prepareStatement(SELECT_SALT_BY_LOGIN);) {
+            statement.setString(1, login);
+
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                salt = resultSet.getString("salt");
+
+            }
+        } catch (SQLException e) {
+            logger.error(e);
+            throw new ExceptionDao(e);
+        }
+
+        return salt;
     }
 
     @Override

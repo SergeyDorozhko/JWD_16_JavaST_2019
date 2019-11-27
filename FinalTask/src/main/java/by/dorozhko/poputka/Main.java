@@ -14,6 +14,7 @@ import by.dorozhko.poputka.services.ServiceFactory;
 import by.dorozhko.poputka.services.UserService;
 import by.dorozhko.poputka.services.impl.JourneyServiceImpl;
 import by.dorozhko.poputka.services.impl.UserServiceImpl;
+import by.dorozhko.poputka.services.security.HashingPBKDF2;
 import sun.util.resources.LocaleData;
 
 import java.io.FileNotFoundException;
@@ -27,7 +28,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) throws ExceptionDao {
 
-        testLogin();
+        testHashPwd();
     }
 
     public static void testAddUserService() {
@@ -178,23 +179,23 @@ public class Main {
     }
 
 
-//    public static void testHashPwd() {
-//        HashingPBKDF2 hashingPBKDF2 = HashingPBKDF2.getInstance();
-//        //generate salt
-//        hashingPBKDF2.generateSalt();
-//
-//        //generate pwd in hash in hex string value.
-//        String pwd = hashingPBKDF2.generatePwdHash("Admin");
-//
-//        //make byte array hash of pwd (from string in hash).
-//        byte[] val = new byte[pwd.length() / 2];
-//        for (int i = 0; i < val.length; i++) {
-//            int index = i * 2;
-//            int j = Integer.parseInt(pwd.substring(index, index + 2), 16);
-//            val[i] = (byte) j;
-//        }
-//
-//
-//        System.out.println(Arrays.toString(val));
-//    }
+    public static void testHashPwd() {
+        HashingPBKDF2 hashingPBKDF2 = HashingPBKDF2.getInstance();
+        //generate salt
+        hashingPBKDF2.generateSalt();
+
+        //generate pwd in hash in hex string value.
+        String pwd = hashingPBKDF2.generatePwdHash("Admin");
+
+        //make byte array hash of pwd (from string in hash).
+        byte[] val = new byte[pwd.length() / 2];
+        for (int i = 0; i < val.length; i++) {
+            int index = i * 2;
+            int j = Integer.parseInt(pwd.substring(index, index + 2), 16);
+            val[i] = (byte) j;
+        }
+
+
+        System.out.println(Arrays.toString(val));
+    }
 }

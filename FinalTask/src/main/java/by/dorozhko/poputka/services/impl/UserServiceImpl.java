@@ -8,6 +8,7 @@ import by.dorozhko.poputka.dao.exception.ExceptionDao;
 import by.dorozhko.poputka.entity.User;
 import by.dorozhko.poputka.services.UserService;
 import by.dorozhko.poputka.services.exception.ExceptionService;
+import by.dorozhko.poputka.services.security.HashingPBKDF2;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -69,7 +70,14 @@ public class UserServiceImpl implements UserService {
 
         User user = null;
         try {
-            user = userDAO.findUserByLoginAndPassword(login, password);
+            String salt = userDAO.getSalt(login);
+
+            HashingPBKDF2 hashingPBKDF2 = HashingPBKDF2.getInstance();
+            hashingPBKDF2.setSalt(salt);
+            logger.debug(String.format("salt - %s", salt));
+            String passwordHash = hashingPBKDF2.generatePwdHash(password);
+            logger.debug(String.format("pwd - %s", passwordHash));
+            user = userDAO.findUserByLoginAndPassword(login, passwordHash);
             transaction.commit();
         } catch (ExceptionDao exceptionDao) {
             logger.error(exceptionDao);

@@ -1,8 +1,7 @@
 package by.dorozhko.poputka.controller;
 
+import by.dorozhko.poputka.controller.action.*;
 import by.dorozhko.poputka.controller.action.administrator.DisplayAllUsers;
-import by.dorozhko.poputka.controller.action.JourneyList;
-import by.dorozhko.poputka.controller.action.JourneyListForMainPage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -27,6 +26,15 @@ public final class ActionProvider {
                 break;
             case "/listOfJourneys":
                 actionByQuery = new JourneyList();
+                break;
+            case "/loginPage":
+                actionByQuery = new LoginPage();
+                break;
+            case "/autorisation":
+                actionByQuery = new AutorisationAction();
+                break;
+            case "/logout":
+                actionByQuery = new LogOutAction();
                 break;
             default:
                 actionByQuery = new JourneyListForMainPage();

@@ -18,10 +18,16 @@ public class SecurityFilter implements Filter {
     private final Logger logger = LogManager.getLogger(getClass().getName());
 
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        if (servletRequest instanceof HttpServletRequest && servletResponse instanceof HttpServletResponse) {
-            HttpServletRequest httpRequest = (HttpServletRequest) servletRequest;
-            HttpServletResponse httpResponse = (HttpServletResponse) servletResponse;
+    public void doFilter(final ServletRequest servletRequest,
+                         final ServletResponse servletResponse,
+                         final FilterChain filterChain)
+            throws IOException, ServletException {
+        if (servletRequest instanceof HttpServletRequest
+                && servletResponse instanceof HttpServletResponse) {
+            HttpServletRequest httpRequest
+                    = (HttpServletRequest) servletRequest;
+            HttpServletResponse httpResponse
+                    = (HttpServletResponse) servletResponse;
             Action action = (Action) httpRequest.getAttribute("action");
             logger.debug(action.getClass().getSimpleName());
             Set<Role> allowRoles = action.getAllowRoles();
@@ -35,9 +41,12 @@ public class SecurityFilter implements Filter {
                     user = new User();
                     user.setLogin(userName);
                     user.setRole(Role.GUEST.getId());
+                    session.setAttribute("authorizedUser", user);
+
                 }
                 action.setUserOfAction(user);
-                String errorMessage = (String) session.getAttribute("SecurityFilterMessage");
+                String errorMessage =
+                        (String) session.getAttribute("SecurityFilterMessage");
                 if (errorMessage != null) {
                     httpRequest.setAttribute("message", errorMessage);
                     session.removeAttribute("SecurityFilterMessage");
@@ -58,7 +67,7 @@ public class SecurityFilter implements Filter {
                 }
                 servletRequest.getServletContext().getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(servletRequest, servletResponse);
 
-//                httpResponse.sendRedirect(httpRequest.getContextPath() + "/login.html");
+//                httpResponse.sendRedirect(httpRequest.getContextPath() + "/login.jsp");
             }
         } else {
             logger.error("It is impossible to use HTTP filter");

@@ -51,15 +51,23 @@ public class HashingPBKDF2 {
         return instance;
     }
 
-    public void generateSalt() {
-        System.out.println(Arrays.toString(salt));
+    public String generateSalt() {
+        System.out.println("salt - " + Arrays.toString(salt));
         random.nextBytes(salt);
-        System.out.println(Arrays.toString(salt));
+        System.out.println("salt after - " + Arrays.toString(salt));
+
+        Formatter formatter = new Formatter();
+        for (int i = 0; i < salt.length; i++) {
+            formatter.format("%02X", salt[i]);
+        }
+        String hashSalt = formatter.toString();
+        System.out.println("salt hash -> " + hashSalt);
+        return hashSalt;
     }
 
     public String generatePwdHash(String pwd) {
         spec = new PBEKeySpec(pwd.toCharArray(), salt, 65536, 128);
-        System.out.println(Arrays.toString(hash));
+        System.out.println(pwd + " -> " + Arrays.toString(hash));
 
         try {
             hash = secretKeyFactory.generateSecret(spec).getEncoded();
@@ -67,14 +75,26 @@ public class HashingPBKDF2 {
             e.printStackTrace();
         }
 
-        System.out.println(Arrays.toString(hash));
+        System.out.println(pwd + " -> " + Arrays.toString(hash));
 
         Formatter formatter = new Formatter();
         for (int i = 0; i < hash.length; i++) {
             formatter.format("%02X", hash[i]);
         }
         String hashPBKDF2 = formatter.toString();
-        System.out.println(hashPBKDF2);
+        System.out.println(pwd + " hash -> " + hashPBKDF2);
         return hashPBKDF2;
     }
+
+    public void setSalt(String newSalt) {
+        byte[] val = new byte[newSalt.length() / 2];
+        for (int i = 0; i < val.length; i++) {
+            int index = i * 2;
+            int j = Integer.parseInt(newSalt.substring(index, index + 2), 16);
+            val[i] = (byte) j;
+        }
+
+        salt = val;
+    }
+
 }
