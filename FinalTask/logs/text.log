@@ -1,0 +1,95 @@
+2019-11-14 05:27:25.130 [main] DEBUG SpecificationProvider - showAllUsers
+2019-11-14 05:49:42.527 [main] DEBUG SpecificationProvider - showAllUsers
+2019-11-14 05:52:06.940 [main] DEBUG SpecificationProvider - showAllUsers
+2019-11-14 05:52:32.819 [main] DEBUG SpecificationProvider - showAllUsers
+2019-11-14 05:53:06.086 [main] DEBUG SpecificationProvider - showAllUsers
+2019-11-14 06:01:44.723 [main] DEBUG SpecificationProvider - showAllUsers
+2019-11-14 06:05:40.787 [main] DEBUG SpecificationProvider - showAllUsers
+2019-11-14 06:05:53.840 [main] DEBUG SpecificationProvider - showAllUsers
+2019-11-14 06:10:44.250 [main] DEBUG SpecificationProvider - showAllUsers
+2019-11-14 07:03:18.816 [main] DEBUG SpecificationProvider - showAllUsers
+2019-11-14 07:06:06.501 [main] DEBUG SpecificationProvider - showAllUsers
+2019-11-14 20:11:41.185 [main] DEBUG SpecificationProvider - showAllUsers
+2019-11-14 20:13:25.773 [main] DEBUG SpecificationProvider - showAllUsers
+2019-11-14 20:14:11.616 [main] DEBUG SpecificationProvider - showAllUsers
+2019-11-14 20:14:28.561 [main] DEBUG SpecificationProvider - showAllUsers
+2019-11-14 20:16:45.435 [main] DEBUG SpecificationProvider - showAllUsers
+2019-11-14 20:19:20.634 [main] DEBUG SpecificationProvider - showAllUsers
+2019-11-14 20:21:16.477 [main] DEBUG SpecificationProvider - showAllUsers
+2019-11-14 20:24:43.088 [main] DEBUG SpecificationProvider - showAllUsers
+2019-11-14 20:25:40.995 [main] DEBUG SpecificationProvider - showAllUsers
+2019-11-14 20:27:19.227 [main] DEBUG SpecificationProvider - showAllUsers
+2019-11-14 20:28:36.385 [main] DEBUG SpecificationProvider - showAllUsers
+2019-11-14 20:30:10.889 [main] DEBUG SpecificationProvider - showAllUsers
+2019-11-14 20:32:44.931 [main] DEBUG SpecificationProvider - showAllUsers
+2019-11-14 20:42:32.026 [main] DEBUG SpecificationProvider - showAllUsers
+2019-11-14 20:44:06.909 [main] DEBUG SpecificationProvider - showAllUsers
+2019-11-14 21:28:03.620 [main] DEBUG SpecificationProvider - showAllUsers
+2019-11-14 21:42:53.866 [main] DEBUG SpecificationProvider - showAllUsers
+2019-11-14 21:44:19.440 [main] DEBUG SpecificationProvider - showAllUsers
+2019-11-14 21:49:46.222 [main] DEBUG SpecificationProvider - showAllUsers
+2019-11-14 21:50:07.107 [main] DEBUG SpecificationProvider - showAllUsers
+2019-11-14 21:53:29.252 [main] DEBUG SpecificationProvider - showAllUsers
+2019-11-15 00:07:07.864 [main] DEBUG SpecificationProvider - showAllUsers
+2019-11-15 03:43:33.040 [main] DEBUG SpecificationProvider - showAllUsers
+2019-11-15 03:52:33.619 [main] DEBUG SpecificationProvider - showAllUsers
+2019-11-17 13:19:47.968 [main] DEBUG ConnectionPool - pool is correct
+2019-11-17 13:31:58.954 [main] DEBUG ConnectionPool - pool is correct
+2019-11-17 13:44:45.779 [main] DEBUG ConnectionPool - pool is correct
+2019-11-17 14:51:24.723 [main] DEBUG ConnectionPool - pool is correct
+2019-11-17 15:25:50.950 [main] DEBUG ConnectionPool - pool is correct
+2019-11-17 15:28:36.867 [main] DEBUG ConnectionPool - pool is correct
+2019-11-17 15:30:41.763 [main] DEBUG ConnectionPool - pool is correct
+2019-11-17 15:30:41.799 [main] ERROR MySqlUserDao - java.sql.SQLException: Column 'id' not found.
+2019-11-17 15:31:41.934 [main] DEBUG ConnectionPool - pool is correct
+2019-11-17 15:52:15.110 [main] DEBUG ConnectionPool - pool is correct
+2019-11-17 16:38:58.282 [main] DEBUG ConnectionPool - pool is correct
+2019-11-17 16:54:13.118 [main] DEBUG ConnectionPool - pool is correct
+2019-11-17 16:54:52.136 [main] DEBUG ConnectionPool - pool is correct
+2019-11-17 16:58:49.586 [main] DEBUG ConnectionPool - pool is correct
+2019-11-17 16:58:58.878 [main] DEBUG ConnectionPool - pool is correct
+2019-11-17 17:02:18.440 [main] DEBUG ConnectionPool - pool is correct
+2019-11-17 17:02:18.770 [main] ERROR MySqlUserDao - java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'Mavr' for key 'login'
+2019-11-17 17:02:45.941 [main] DEBUG ConnectionPool - pool is correct
+2019-11-17 17:02:45.996 [main] ERROR MySqlUserDao - java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'Mavr' for key 'login'
+2019-11-17 17:04:03.590 [main] DEBUG ConnectionPool - pool is correct
+2019-11-17 17:04:03.651 [main] ERROR dorozhko.poputka.dao.mysql.MySqlUserDao - java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'Mavr' for key 'login'
+2019-11-17 17:08:23.153 [main] DEBUG ConnectionPool - pool is correct
+2019-11-17 17:08:23.228 [main] ERROR dorozhko.poputka.dao.mysql.MySqlUserDao - java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'Mavr' for key 'login'
+2019-11-17 19:03:18.429 [main] DEBUG dorozhko.poputka.dao.connection.ConnectionPool - pool is correct
+2019-11-17 19:03:18.492 [main] ERROR dorozhko.poputka.dao.mysql.MySqlUserDao - java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'Mavr' for key 'login'
+2019-11-17 19:09:42.099 [main] DEBUG dorozhko.poputka.dao.connection.ConnectionPool - pool is correct
+2019-11-17 19:09:42.200 [main] ERROR dorozhko.poputka.dao.mysql.MySqlUserDao - java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'Mavr' for key 'login'
+2019-11-20 05:38:47.001 [main] DEBUG dorozhko.poputka.dao.connection.ConnectionPool - pool is correct
+2019-11-20 05:38:47.173 [main] ERROR dorozhko.poputka.dao.mysql.MySqlUserDao - java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'Mavr' for key 'login'
+2019-11-23 23:16:01.826 [main] DEBUG dorozhko.poputka.dao.connection.ConnectionPool - pool is correct
+2019-11-23 23:16:01.934 [main] ERROR dorozhko.poputka.dao.mysql.MySqlJourneyDAO - java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'JOIN currencies AS c ON journey.currency_id = c.id' at line 1
+2019-11-23 23:17:32.283 [main] DEBUG dorozhko.poputka.dao.connection.ConnectionPool - pool is correct
+2019-11-23 23:17:32.755 [main] ERROR dorozhko.poputka.dao.mysql.MySqlJourneyDAO - java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'JOIN currencies AS c ON journey.currency_id = c.id' at line 1
+2019-11-23 23:21:00.154 [main] DEBUG dorozhko.poputka.dao.connection.ConnectionPool - pool is correct
+2019-11-23 23:21:00.180 [main] ERROR dorozhko.poputka.dao.mysql.MySqlJourneyDAO - java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'JOIN currencies ON journey.currency_id = currencies.id' at line 1
+2019-11-23 23:21:58.609 [main] DEBUG dorozhko.poputka.dao.connection.ConnectionPool - pool is correct
+2019-11-23 23:21:58.641 [main] ERROR dorozhko.poputka.dao.mysql.MySqlJourneyDAO - java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'currencies ON journey.currency_id = currencies.id' at line 1
+2019-11-23 23:22:29.150 [main] DEBUG dorozhko.poputka.dao.connection.ConnectionPool - pool is correct
+2019-11-23 23:22:29.253 [main] ERROR dorozhko.poputka.dao.mysql.MySqlJourneyDAO - java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'JOIN regions r ON countries.id = r.country_idINNER JOIN cities c ON r.id = c.reg' at line 1
+2019-11-23 23:23:02.935 [main] DEBUG dorozhko.poputka.dao.connection.ConnectionPool - pool is correct
+2019-11-23 23:23:02.974 [main] ERROR dorozhko.poputka.dao.mysql.MySqlJourneyDAO - java.sql.SQLException: Before start of result set
+2019-11-23 23:23:34.440 [main] DEBUG dorozhko.poputka.dao.connection.ConnectionPool - pool is correct
+2019-11-23 23:23:34.477 [main] ERROR dorozhko.poputka.dao.mysql.MySqlJourneyDAO - java.sql.SQLException: Before start of result set
+2019-11-23 23:25:49.330 [main] DEBUG dorozhko.poputka.dao.connection.ConnectionPool - pool is correct
+2019-11-23 23:25:49.364 [main] DEBUG dorozhko.poputka.dao.mysql.MySqlJourneyDAO - here query
+2019-11-23 23:25:49.447 [main] ERROR dorozhko.poputka.dao.mysql.MySqlJourneyDAO - java.sql.SQLException: Before start of result set
+2019-11-23 23:27:48.593 [main] DEBUG dorozhko.poputka.dao.connection.ConnectionPool - pool is correct
+2019-11-23 23:27:48.639 [main] DEBUG dorozhko.poputka.dao.mysql.MySqlJourneyDAO - here query
+2019-11-23 23:29:04.675 [main] DEBUG dorozhko.poputka.dao.connection.ConnectionPool - pool is correct
+2019-11-23 23:29:29.574 [main] DEBUG dorozhko.poputka.dao.connection.ConnectionPool - pool is correct
+2019-11-23 23:31:25.565 [main] DEBUG dorozhko.poputka.dao.connection.ConnectionPool - pool is correct
+2019-11-23 23:32:17.462 [main] DEBUG dorozhko.poputka.dao.connection.ConnectionPool - pool is correct
+2019-11-23 23:33:41.643 [main] DEBUG dorozhko.poputka.dao.connection.ConnectionPool - pool is correct
+2019-11-24 00:10:23.779 [main] DEBUG dorozhko.poputka.dao.connection.ConnectionPool - pool is correct
+2019-11-24 00:12:00.812 [main] DEBUG dorozhko.poputka.dao.connection.ConnectionPool - pool is correct
+2019-11-24 00:22:41.176 [main] DEBUG dorozhko.poputka.dao.connection.ConnectionPool - pool is correct
+2019-11-26 21:28:28.457 [main] DEBUG dorozhko.poputka.dao.connection.ConnectionPool - pool is correct
+2019-11-26 21:28:28.514 [main] ERROR dorozhko.poputka.dao.mysql.MySqlUserDao - java.sql.SQLException: Column 'name' not found.
+2019-11-26 21:29:14.117 [main] DEBUG dorozhko.poputka.dao.connection.ConnectionPool - pool is correct
+2019-11-26 21:30:36.252 [main] DEBUG dorozhko.poputka.dao.connection.ConnectionPool - pool is correct
