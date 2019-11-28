@@ -28,7 +28,7 @@ To change this template use File | Settings | File Templates.
 
             <div class="col-sm-3"></div>
 
-            <div class="col-sm-6" style="background: silver; border-radius: 3px">
+            <div class="col-sm-6" style="background: #f2f2f2; border-radius: 3px">
                 <form action="autorisation.html" class="was-validated" method="post" >
 
 

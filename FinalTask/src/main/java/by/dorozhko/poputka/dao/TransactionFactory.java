@@ -1,5 +1,6 @@
 package by.dorozhko.poputka.dao;
 
+import by.dorozhko.poputka.dao.connection.ConnectionPool;
 import by.dorozhko.poputka.dao.connection.EntityTransaction;
 
 public final class TransactionFactory {
@@ -34,4 +35,11 @@ public final class TransactionFactory {
         return new EntityTransaction();
     }
 
+    public void initConnectionPool() {
+        ConnectionPool.getInstance();
+    }
+
+    public void closeConnectionPool() {
+        ConnectionPool.getInstance().closePool();
+    }
 }

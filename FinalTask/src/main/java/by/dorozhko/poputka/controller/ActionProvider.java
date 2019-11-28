@@ -36,6 +36,9 @@ public final class ActionProvider {
             case "/logout":
                 actionByQuery = new LogOutAction();
                 break;
+            case "/registrationPage":
+                actionByQuery = new RegistrationPage();
+                break;
             default:
                 actionByQuery = new MainPage();
                 logger.warn("Default, show main page");

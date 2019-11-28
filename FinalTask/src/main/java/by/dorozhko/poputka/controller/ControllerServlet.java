@@ -79,7 +79,7 @@ public class ControllerServlet extends HttpServlet {
     @Override
     public void destroy() {
         super.destroy();
-        ServiceFactory.getInstance().getConnectionService().closeConnectionPool();
+        ServiceFactory.getInstance().getConnectionService().closeConnection();
         logger.debug("closing pool.");
     }
 
@@ -87,7 +87,7 @@ public class ControllerServlet extends HttpServlet {
     public void init() throws ServletException {
         super.init();
         ServiceFactory.getInstance().
-                getConnectionService().initConnectionPool();
+                getConnectionService().initConnection();
         logger.debug("Pool init with starting app");
     }
 

@@ -1,6 +1,5 @@
 package by.dorozhko.poputka.dao;
 
-import by.dorozhko.poputka.dao.connection.ConnectionPool;
 import by.dorozhko.poputka.dao.mysql.MySqlJourneyDAO;
 import by.dorozhko.poputka.dao.mysql.MySqlUserDao;
 
@@ -42,11 +41,5 @@ public final class FactoryDao {
         return new MySqlJourneyDAO();
     }
 
-    public void initConnectionPool() {
-        ConnectionPool.getInstance();
-    }
 
-    public void closeConnectionPool() {
-        ConnectionPool.getInstance().closePool();
-    }
 }

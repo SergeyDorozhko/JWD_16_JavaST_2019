@@ -190,8 +190,8 @@ public final class ConnectionPool {
                 connection.realClose();
 
             } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
                 logger.error(e);
+                Thread.currentThread().interrupt();
             } catch (SQLException e) {
                 logger.error(e);
             }
