@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-public class JourneyListForMainPage extends AllUsersAction {
+public class MainPage extends AllUsersAction {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         JourneyService journeyService

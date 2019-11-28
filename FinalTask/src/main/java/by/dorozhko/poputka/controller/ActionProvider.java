@@ -37,7 +37,7 @@ public final class ActionProvider {
                 actionByQuery = new LogOutAction();
                 break;
             default:
-                actionByQuery = new JourneyListForMainPage();
+                actionByQuery = new MainPage();
                 logger.warn("Default, show main page");
         }
         return actionByQuery;

@@ -32,7 +32,7 @@ To change this template use File | Settings | File Templates.
                 <form action="autorisation.html" class="was-validated" method="post" >
 
 
-                    <label style="background-color: B82303; font-size: 25px">${errorLoginPassMessage}</label>
+                    <label style="background-color: B82303; font-size: 25px">${message}</label>
 
                     <div class="form-group has-feedback">
                         <label for="uname" class="control-label col-xs-3" style="font-size: 25px;">Username:</label>

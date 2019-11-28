@@ -15,12 +15,8 @@ import by.dorozhko.poputka.services.UserService;
 import by.dorozhko.poputka.services.impl.JourneyServiceImpl;
 import by.dorozhko.poputka.services.impl.UserServiceImpl;
 import by.dorozhko.poputka.services.security.HashingPBKDF2;
-import sun.util.resources.LocaleData;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -185,7 +181,7 @@ public class Main {
         hashingPBKDF2.generateSalt();
 
         //generate pwd in hash in hex string value.
-        String pwd = hashingPBKDF2.generatePwdHash("Admin");
+        String pwd = hashingPBKDF2.generatePwdHash("gav");
 
         //make byte array hash of pwd (from string in hash).
         byte[] val = new byte[pwd.length() / 2];

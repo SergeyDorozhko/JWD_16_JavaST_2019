@@ -9,10 +9,8 @@ public class LogOutAction extends AllUsersAction {
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession(false);
         if (session != null) {
-            System.out.println("here");
-//            session.removeAttribute("authorizedUser");
             session.invalidate();
         }
-        return new JourneyListForMainPage().execute(request, response);
+        return request.getContextPath() + "/main.html";
     }
 }

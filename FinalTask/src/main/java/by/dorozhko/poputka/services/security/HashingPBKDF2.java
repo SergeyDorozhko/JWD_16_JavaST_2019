@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.Formatter;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.ReentrantLock;
-
+//TODO REMOVE THIS CLASS, NOT USED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! now is for generation salt and hash to users from BD
 public class HashingPBKDF2 {
 
     private static HashingPBKDF2 instance;

@@ -33,8 +33,12 @@ public class ActionFromUriFilter implements Filter {
             try {
                 Action action = ActionProvider.getInstance()
                         .getAction(actionName);
+                logger.debug(String.format("get action ok %s", action));
                 httpRequest.setAttribute("action", action);
+                logger.debug("set atribut ok");
+
                 filterChain.doFilter(servletRequest, servletResponse);
+                logger.debug("go net filter ok");
             } catch (NullPointerException e) {
                 logger.error("It is impossible to create action handler object", e);
                 httpRequest.setAttribute("error", String.format("Запрошенный адрес %s не может быть обработан сервером", uri));

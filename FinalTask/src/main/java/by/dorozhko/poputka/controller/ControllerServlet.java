@@ -66,8 +66,11 @@ public class ControllerServlet extends HttpServlet {
                     = req.getRequestDispatcher(page);
         }
 
-
-        requestDispatcher.forward(req, resp);
+        if (page.contains(".jsp")) {
+            requestDispatcher.forward(req, resp);
+        } else {
+            resp.sendRedirect(page);
+        }
 
     }
 

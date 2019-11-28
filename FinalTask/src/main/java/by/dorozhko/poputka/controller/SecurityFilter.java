@@ -24,16 +24,20 @@ public class SecurityFilter implements Filter {
             throws IOException, ServletException {
         if (servletRequest instanceof HttpServletRequest
                 && servletResponse instanceof HttpServletResponse) {
+            logger.debug("start security filter");
             HttpServletRequest httpRequest
                     = (HttpServletRequest) servletRequest;
             HttpServletResponse httpResponse
                     = (HttpServletResponse) servletResponse;
+
             Action action = (Action) httpRequest.getAttribute("action");
             logger.debug(action.getClass().getSimpleName());
             Set<Role> allowRoles = action.getAllowRoles();
             logger.debug(allowRoles);
             String userName = "unauthorized user";
+            logger.debug("");
             HttpSession session = httpRequest.getSession(false);
+            logger.debug("get session ok");
             User user = null;
             if (session != null) {
                 user = (User) session.getAttribute("authorizedUser");
@@ -46,24 +50,28 @@ public class SecurityFilter implements Filter {
                 }
                 action.setUserOfAction(user);
                 String errorMessage =
-                        (String) session.getAttribute("SecurityFilterMessage");
+                        (String) session.getAttribute("SecurityMessage");
                 if (errorMessage != null) {
                     httpRequest.setAttribute("message", errorMessage);
-                    session.removeAttribute("SecurityFilterMessage");
+                    session.removeAttribute("SecurityMessage");
                 }
             }
+            logger.debug("set user to session ok");
             boolean canExecute = allowRoles == null;
+
             if (user != null) {
-                userName = "\"" + user.getLogin() + "\" user";
                 canExecute = canExecute || allowRoles.contains(user.getRole());
+                logger.debug(user.getRole());
+            } else {
+                canExecute = allowRoles.contains(Role.GUEST);
             }
-            logger.debug(user.getRole());
+
             if (canExecute) {
                 filterChain.doFilter(servletRequest, servletResponse);
             } else {
                 logger.info(String.format("Trying of %s access to forbidden resource", userName));
                 if (session != null && !(action instanceof AllUsersAction)) {
-                    session.setAttribute("SecurityFilterMessage", "Доступ запрещён");
+                    session.setAttribute("SecurityMessage", "Доступ запрещён");
                 }
                 servletRequest.getServletContext().getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(servletRequest, servletResponse);
 

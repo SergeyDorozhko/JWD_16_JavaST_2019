@@ -27,7 +27,7 @@
 
 <div class="container" style="background: silver">
     <div class="container" style="background: silver">
-        <div class="row" style="position:center" >
+        <div class="row" style="position:center">
             <div class="col-sm-1">
             </div>
 
@@ -83,17 +83,25 @@
             <div class="row">
 
 
-                <c:forEach var="element" items="${journeyList}" end = "8">
+                <c:forEach var="element" items="${journeyList}" end="8">
 
                     <div class="col-sm-4">
 
                         <div class="card mb-1" style="width: 21rem;">
                             <div class="card-body">
-                                <h5 class="card-title"><c:out value="${element.startAddress.city}"/> - <c:out value="${element.destinationAddress.city}"/></h5>
+                                <h5 class="card-title"><c:out value="${element.startAddress.city}"/> - <c:out
+                                        value="${element.destinationAddress.city}"/></h5>
                                 <h6 class="card-subtitle mb-2 text-muted">Отправление:</h6>
-                                <h6 class="card-subtitle mb-2 text-muted">Дата: <c:out value="${element.departureDate}"/>, Время: <c:out value="${element.departureTime}"/> </h6>
-                                <p class="card-text">Цена поездки: <c:out value="${element.cost}"/> <c:out value="${element.currency}"/></p>
-                                <a href="#" class="card-link">More information</a>
+                                <h6 class="card-subtitle mb-2 text-muted">Дата: <c:out
+                                        value="${element.departureDate}"/>, Время: <c:out
+                                        value="${element.departureTime}"/></h6>
+                                <p class="card-text">Цена поездки: <c:out value="${element.cost}"/> <c:out
+                                        value="${element.currency}"/></p>
+                                <c:if test="${authorizedUser.role.id!=2 and authorizedUser!=null}">
+
+                                    <a href="#" class="card-link">More information</a>
+                                </c:if>
+
                             </div>
                         </div>
                     </div>
@@ -101,7 +109,6 @@
                 </c:forEach>
 
             </div>
-
 
             <form action="listOfJourneys.html" method="get">
                 <div class="col-sm-4">
@@ -118,7 +125,6 @@
         </div>
     </div>
 </div>
-
 
 
 <c:import url="endOfPages.jsp"/>

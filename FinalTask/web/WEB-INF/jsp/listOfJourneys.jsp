@@ -43,7 +43,8 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-sm-4">
-                                        <h5 class="card-subtitle" style="color: orange">Водитель: <c:out value="${element.driver.name}"/></h5>
+                                        <h5 class="card-subtitle" style="color: orange">Водитель: <c:out
+                                                value="${element.driver.name}"/></h5>
                                         <h6 class="card-subtitle mb-2 text-muted">Отправление:</h6>
                                         <h6 class="card-subtitle mb-2 text-muted">Дата: <c:out
                                                 value="${element.departureDate}"/>,
@@ -54,12 +55,18 @@
                                                 value="${element.currency}"/></p>
                                     </div>
                                     <div class="col-sm-4">
-                                        <p class="card-text" style="color: black">Занято мест: <big style="color: red"><c:out value="${element.passengers.size()}"/>/<c:out value="${element.passengersNumber}"/></big></p>
+                                        <p class="card-text" style="color: black">Занято мест: <big
+                                                style="color: red"><c:out value="${element.passengers.size()}"/>/<c:out
+                                                value="${element.passengersNumber}"/></big></p>
                                     </div>
                                 </div>
                                 <div class="mx-auto" style="width: 400px;">
-                                    <a href="#" class="card-link">More information</a>
-                                    <a href="#" class="card-link">Reserve seat</a>
+                                    <c:if test="${authorizedUser.role.id!=2 and authorizedUser!=null}">
+                                        <a href="#" class="card-link">More information</a>
+                                    </c:if>
+                                    <c:if test="${authorizedUser.role.id==1}">
+                                        <a href="#" class="card-link">Reserve seat</a>
+                                    </c:if>
                                 </div>
                             </div>
                         </div>

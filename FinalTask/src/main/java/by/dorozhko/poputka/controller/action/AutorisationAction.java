@@ -1,7 +1,6 @@
 package by.dorozhko.poputka.controller.action;
 
 import by.dorozhko.poputka.entity.User;
-import by.dorozhko.poputka.services.JourneyService;
 import by.dorozhko.poputka.services.ServiceFactory;
 import by.dorozhko.poputka.services.UserService;
 import by.dorozhko.poputka.services.exception.ExceptionService;
@@ -34,11 +33,11 @@ public class AutorisationAction extends AllUsersAction {
         if (user != null) {
             session.setAttribute("authorizedUser",
                     user);
-           return new JourneyListForMainPage().execute(request, response);
+           return request.getContextPath() + "/main.html";
         }
 
-        request.setAttribute("errorLoginPassMessage", "Неверный логин или пароль");
+        request.getSession().setAttribute("SecurityMessage", "Неверный логин или пароль");
 
-        return "/WEB-INF/jsp/login.jsp";
+        return request.getContextPath() + "/loginPage.html";
     }
 }
