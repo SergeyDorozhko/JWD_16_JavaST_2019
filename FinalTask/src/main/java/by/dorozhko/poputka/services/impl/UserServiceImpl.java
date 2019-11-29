@@ -34,7 +34,8 @@ public class UserServiceImpl implements UserService {
     public List<User> findAll() {
         List<User> userList = null;
         UserDAO userDAO = FactoryDao.getInstance().getUserDAO();
-        Transaction transaction = TransactionFactory.getInstance().getTransaction();
+        Transaction transaction = TransactionFactory
+                .getInstance().getTransaction();
         transaction.begin(userDAO);
         try {
             userList = userDAO.findAll();
@@ -106,25 +107,33 @@ public class UserServiceImpl implements UserService {
      * @return true if successfully saved, otherwise false.
      */
     @Override
-    public boolean add(User user) {
-        Transaction transaction = TransactionFactory.getInstance().getTransaction();
+    public User add(final User user) throws ExceptionService {
+        Transaction transaction = TransactionFactory
+                .getInstance().getTransaction();
         UserDAO userDAO = FactoryDao.getInstance().getUserDAO();
 
         transaction.begin(userDAO);
         boolean result = false;
+
+        HashingPBKDF2 hashingPBKDF2 = new HashingPBKDF2();
+        user.setSalt(hashingPBKDF2.generateSalt());
+        String passwordHash = hashingPBKDF2
+                .generatePwdHash(user.getPassword());
+        user.setPassword(passwordHash);
+
+        User regestedUser = null;
         try {
-            userDAO.create(user);
+            regestedUser = userDAO.create(user);
             transaction.commit();
-            result = true;
         } catch (ExceptionDao exceptionDao) {
             System.out.println(exceptionDao);
             transaction.rollback();
-            result = false;
+            throw new ExceptionService(exceptionDao);
         }
 
         transaction.end();
 
-        return result;
+        return regestedUser;
     }
 
     /**

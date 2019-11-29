@@ -60,6 +60,7 @@ public class ControllerServlet extends HttpServlet {
             page = action.execute(req, resp);
             requestDispatcher = req.getRequestDispatcher(page);
         } else {
+            logger.debug("go to main page");
             String defaultAction = "default";
             page = ActionProvider.getInstance().getAction(defaultAction).execute(req, resp);
             requestDispatcher

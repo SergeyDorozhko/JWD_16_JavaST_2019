@@ -7,10 +7,11 @@ import java.util.Objects;
 public class User extends Entity {
     private String login;
     private String password;
+    private String salt;
     private Role role;
     private String name;
     private String surname;
-    private Gender gender;
+    private String gender;
     private LocalDate birthday;
     private String country;
     private String passportNumber;
@@ -23,13 +24,12 @@ public class User extends Entity {
     public User() {
     }
 
-    public User(final int id, String login, String password, String name, String surname, int gender, String birthday, String country, String passportNumber, String passportDateOfIssue, String phoneNumber, String email) {
-        super(id);
+    public User(String login, String password, String name, String surname, String gender, String birthday, String country, String passportNumber, String passportDateOfIssue, String phoneNumber, String email) {
         this.login = login;
         this.password = password;
         this.name = name;
         this.surname = surname;
-        this.gender = Gender.getById(gender);
+        this.gender = gender;
         this.birthday = LocalDate.parse(birthday);
         this.country = country;
         this.passportNumber = passportNumber;
@@ -38,13 +38,12 @@ public class User extends Entity {
         this.email = email;
     }
 
-    public User(final int id, String login, String password, String name, String surname, int gender, String birthday, String country, String passportNumber, String passportDateOfIssue, String phoneNumber, String email, int drivingExperience, Car car) {
-        super(id);
+    public User(String login, String password, String name, String surname, String gender, String birthday, String country, String passportNumber, String passportDateOfIssue, String phoneNumber, String email, int drivingExperience, Car car) {
         this.login = login;
         this.password = password;
         this.name = name;
         this.surname = surname;
-        this.gender = Gender.getById(gender);
+        this.gender = gender;
         this.birthday = LocalDate.parse(birthday);
         this.country = country;
         this.passportNumber = passportNumber;
@@ -55,12 +54,11 @@ public class User extends Entity {
         this.car = car;
     }
 
-    public User(final int id, String login, String name, String surname, int gender, String birthday, String country, String passportNumber, String passportDateOfIssue, String phoneNumber, String email) {
-        super(id);
+    public User(String login, String name, String surname, String gender, String birthday, String country, String passportNumber, String passportDateOfIssue, String phoneNumber, String email) {
         this.login = login;
         this.name = name;
         this.surname = surname;
-        this.gender = Gender.getById(gender);
+        this.gender = gender;
         this.birthday = LocalDate.parse(birthday);
         this.country = country;
         this.passportNumber = passportNumber;
@@ -69,12 +67,11 @@ public class User extends Entity {
         this.email = email;
     }
 
-    public User(final int id, String login, String name, String surname, int gender, String birthday, String country, String passportNumber, String passportDateOfIssue, String phoneNumber, String email, int drivingExperience, Car car) {
-        super(id);
+    public User(String login, String name, String surname, String gender, String birthday, String country, String passportNumber, String passportDateOfIssue, String phoneNumber, String email, int drivingExperience, Car car) {
         this.login = login;
         this.name = name;
         this.surname = surname;
-        this.gender = Gender.getById(gender);
+        this.gender = gender;
         this.birthday = LocalDate.parse(birthday);
         this.country = country;
         this.passportNumber = passportNumber;
@@ -113,6 +110,22 @@ public class User extends Entity {
         return name;
     }
 
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
+    }
+
+    public void setPassportDateOfIssue(LocalDate passportDateOfIssue) {
+        this.passportDateOfIssue = passportDateOfIssue;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -125,12 +138,12 @@ public class User extends Entity {
         this.surname = surname;
     }
 
-    public Gender getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(final int gender) {
-        this.gender = Gender.getById(gender);
+    public void setGender(final String gender) {
+        this.gender = gender;
     }
 
     public LocalDate getBirthday() {
@@ -201,22 +214,20 @@ public class User extends Entity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) {
-            return false;
-        }
+        if (!super.equals(o)) return false;
         User user = (User) o;
-        return gender == user.gender &&
-                phoneNumber == user.phoneNumber &&
-                drivingExperience == user.drivingExperience &&
-                Objects.equals(login, user.login) &&
-                Objects.equals(name, user.name) &&
-                Objects.equals(surname, user.surname) &&
-                Objects.equals(birthday, user.birthday) &&
-                Objects.equals(country, user.country) &&
-                Objects.equals(passportNumber, user.passportNumber) &&
-                Objects.equals(passportDateOfIssue, user.passportDateOfIssue) &&
-                Objects.equals(email, user.email) &&
-                Objects.equals(car, user.car);
+        return drivingExperience == user.drivingExperience &&
+                login.equals(user.login) &&
+                name.equals(user.name) &&
+                surname.equals(user.surname) &&
+                gender.equals(user.gender) &&
+                birthday.equals(user.birthday) &&
+                country.equals(user.country) &&
+                passportNumber.equals(user.passportNumber) &&
+                passportDateOfIssue.equals(user.passportDateOfIssue) &&
+                phoneNumber.equals(user.phoneNumber) &&
+                email.equals(user.email) &&
+                car.equals(user.car);
     }
 
     @Override
@@ -226,19 +237,18 @@ public class User extends Entity {
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + "{"
-                + "id=" + getId()
-                + ", login='" + login + '\'' +
+        return getClass().getSimpleName() +
+                "login='" + login + '\'' +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", gendor=" + gender +
-                ", birthday='" + birthday + '\'' +
+                ", gender='" + gender + '\'' +
+                ", birthday=" + birthday +
                 ", country='" + country + '\'' +
                 ", passportNumber='" + passportNumber + '\'' +
-                ", passportDateOfIssue='" + passportDateOfIssue + '\'' +
-                ", phoneNumber=" + phoneNumber +
+                ", passportDateOfIssue=" + passportDateOfIssue +
+                ", phoneNumber='" + phoneNumber + '\'' +
                 ", email='" + email + '\'' +
-                ", driving_experience=" + drivingExperience +
+                ", drivingExperience=" + drivingExperience +
                 ", car=" + car +
                 '}';
     }

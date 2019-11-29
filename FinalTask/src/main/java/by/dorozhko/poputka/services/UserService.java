@@ -32,7 +32,7 @@ public interface UserService extends Service {
      * @param user User.
      * @return true if successfully saved, otherwise false.
      */
-    boolean add(User user);
+    User add(User user) throws ExceptionService;
     /**
      * Update user info into database.
      * @param user User.

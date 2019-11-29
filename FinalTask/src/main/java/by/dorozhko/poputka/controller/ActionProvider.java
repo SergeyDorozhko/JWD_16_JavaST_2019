@@ -39,6 +39,9 @@ public final class ActionProvider {
             case "/registrationPage":
                 actionByQuery = new RegistrationPage();
                 break;
+            case "/createAccount":
+                actionByQuery = new CreateAccount();
+                break;
             default:
                 actionByQuery = new MainPage();
                 logger.warn("Default, show main page");

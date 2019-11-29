@@ -12,6 +12,7 @@ import by.dorozhko.poputka.services.JourneyService;
 import by.dorozhko.poputka.services.Service;
 import by.dorozhko.poputka.services.ServiceFactory;
 import by.dorozhko.poputka.services.UserService;
+import by.dorozhko.poputka.services.exception.ExceptionService;
 import by.dorozhko.poputka.services.impl.JourneyServiceImpl;
 import by.dorozhko.poputka.services.impl.UserServiceImpl;
 import by.dorozhko.poputka.services.security.HashingPBKDF2;
@@ -37,14 +38,18 @@ public class Main {
         user.setBirthday("1985-10-17");
         user.setCountry("Belarus");
         byte gendor = 1;
-        user.setGender(gendor);
+        user.setGender("Famale");
         user.setPassportNumber("MP2454622");
         user.setPassportDateOfIssue("2015-03-28");
         user.setPhoneNumber("+375295608860");
         user.setEmail("mavr@tut.by");
 
         UserService service = ServiceFactory.getInstance().getUserService();
-        System.out.println("is user added - " + service.add(user));
+        try {
+            System.out.println("is user added - " + service.add(user));
+        } catch (ExceptionService exceptionService) {
+            exceptionService.printStackTrace();
+        }
     }
 
     public static void testFindAllUserService() {
@@ -127,7 +132,7 @@ public class Main {
         user.setBirthday("1963-08-17");
         user.setCountry("Belarus");
         byte gendor = 1;
-        user.setGender(gendor);
+        user.setGender("gendor");
         user.setPassportNumber("MP24645682");
         user.setPassportDateOfIssue("2013-02-03");
         user.setPhoneNumber("+375298005060");

@@ -54,8 +54,8 @@ public class MySqlJourneyDAO implements JourneyDAO {
      *                      with existed in database.
      */
     @Override
-    public boolean create(Journey entity) throws ExceptionDao {
-        return false;
+    public Journey create(Journey entity) throws ExceptionDao {
+        return entity;
     }
 
     /**

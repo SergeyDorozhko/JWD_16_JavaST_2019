@@ -23,7 +23,7 @@ public interface InterfaceDAO<K, T extends Entity> {
      * @throws ExceptionDao - generating if some values conflicts
      *                      with existed in database.
      */
-    boolean create(T entity) throws ExceptionDao;
+    T create(T entity) throws ExceptionDao;
 
     /**
      * Remove entity from database.
