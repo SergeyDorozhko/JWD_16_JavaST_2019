@@ -61,27 +61,28 @@ To change this template use File | Settings | File Templates.
                 <div class="valid-feedback">Valid.</div>
                 <div class="invalid-feedback">Please fill out this field.</div>
             </div>
-            <label style="background-color: B82303; font-size: 25px">${duplicateLogin}</label>
+            <label style="background-color: B82303; font-size: 25px">${errorLogin}</label>
         </div>
         <div class="form-group row">
             <label for="firstName" class="col-sm-3 control-label">First Name*</label>
             <div class="col-sm-9">
                 <input type="text" id="firstName" name="firstName" placeholder="First Name" class="form-control" value="${userFirstName}" required autofocus>
             </div>
+            <label style="background-color: B82303; font-size: 25px">${errorFirstName}</label>
         </div>
         <div class="form-group row">
             <label for="lastName" class="col-sm-3 control-label">Last Name*</label>
             <div class="col-sm-9">
                 <input type="text" id="lastName" name="lastName" placeholder="Last Name" class="form-control" value="${userLastName}" required autofocus>
             </div>
+            <label style="background-color: B82303; font-size: 25px">${errorLastName}</label>
         </div>
-
         <div class="form-group row">
             <label for="email" class="col-sm-3 control-label">Email* </label>
             <div class="col-sm-9">
                 <input type="email" id="email" name="email" placeholder="Email" class="form-control" name="email" value="${userEmail}" required autofocus>
             </div>
-            <label style="background-color: B82303; font-size: 25px">${duplicateEmail}</label>
+            <label style="background-color: B82303; font-size: 25px">${errorEmail}</label>
         </div>
         <div class="form-group row">
             <label for="password" class="col-sm-3 control-label">Password*</label>
@@ -89,7 +90,7 @@ To change this template use File | Settings | File Templates.
                 <input type="password" id="password" name="password" placeholder="Password" class="form-control" required autofocus>
             </div>
         </div>
-        <label style="background-color: B82303; font-size: 25px">${passwordNotEqual}</label>
+        <label style="background-color: B82303; font-size: 25px">${errorPassword}</label>
         <div class="form-group row">
             <label for="confirmPassword" class="col-sm-3 control-label">Confirm Password*</label>
             <div class="col-sm-9">
@@ -101,35 +102,38 @@ To change this template use File | Settings | File Templates.
             <div class="col-sm-4">
                 <input type="date" id="birthDate" name="birthDate" class="form-control" value="${userBirthday}" required autofocus>
             </div>
+            <label style="background-color: B82303; font-size: 25px">${errorBirthday}</label>
         </div>
         <div class="form-group row">
             <label for="phoneNumber" class="col-sm-3 control-label">Phone number*</label>
             <div class="col-sm-6">
                 <input type="phoneNumber" id="phoneNumber" name="phoneNumber" placeholder="375XXYYYYYYY" class="form-control" value="${userPhoneNumber}" pattern="[0-9]{12}" required>
             </div>
-            <label style="background-color: B82303; font-size: 25px">${duplicatePhone}</label>
+            <label style="background-color: B82303; font-size: 25px">${errorPhoneNumber}</label>
         </div>
         <div class="form-group row">
             <label for="country" class="col-sm-3 control-label">Country*</label>
             <div class="col-sm-6">
                 <input type="text" id="country" name="country" placeholder="Country" class="form-control" value="${userCountry}" required autofocus>
             </div>
+            <label style="background-color: B82303; font-size: 25px">${errorCountry}</label>
         </div>
         <div class="form-group row">
             <label for="passportNumber" class="col-sm-3 control-label">Passport number*</label>
             <div class="col-sm-6">
                 <input type="tel" id="passportNumber" name="passportNumber" placeholder="Passport Number" class="form-control" value="${userPassportNumber}" required autofocus>
-                <label style="background-color: B82303; font-size: 25px">${duplicatePassport}</label>
             </div>
+            <label style="background-color: B82303; font-size: 25px">${errorPassportNumber}</label>
         </div>
         <div class="form-group row">
             <label for="passportDate" class="col-sm-3 control-label">Passport date of ussue*</label>
             <div class="col-sm-4">
                 <input type="date" id="passportDate" name="passportDate" class="form-control" value="${userPassportDate}" required autofocus>
             </div>
+            <label style="background-color: B82303; font-size: 25px">${errorPassportDate}</label>
         </div>
         <div class="form-group row">
-            <label for="sex" class="col-sm-3 control-label">Select Gender:</label>
+            <label for="sex" class="col-sm-3 control-label">Select Gender*:</label>
             <div class="col-sm-4">
                 <select class="form-control" id="sex" name="sex" required>
                     <option></option>
@@ -138,6 +142,7 @@ To change this template use File | Settings | File Templates.
                     </c:forEach>
                 </select>
             </div>
+            <label style="background-color: B82303; font-size: 25px">${errorSex}</label>
         </div>
 
         <div class="form-group">
