@@ -53,85 +53,88 @@ To change this template use File | Settings | File Templates.
     <%--    <div class="row">--%>
     <form action="createAccount.html" role="form" class="needs-validation" novalidate>
         <h2>Registration</h2>
+        <label style="background-color: B82303; font-size: 25px">${unknownError}</label>
         <div class="form-group row">
             <label for="login" class="col-sm-3 control-label">Login*</label>
             <div class="col-sm-9 some-form__line">
-                <input type="text" id="login" name="login" placeholder="Login" class="form-control" required>
+                <input type="text" id="login" name="login" placeholder="Login" class="form-control" value="${userLogin}" required>
                 <div class="valid-feedback">Valid.</div>
                 <div class="invalid-feedback">Please fill out this field.</div>
             </div>
+            <label style="background-color: B82303; font-size: 25px">${duplicateLogin}</label>
         </div>
         <div class="form-group row">
             <label for="firstName" class="col-sm-3 control-label">First Name*</label>
             <div class="col-sm-9">
-                <input type="text" id="firstName" name="firstName" placeholder="First Name" class="form-control" autofocus>
+                <input type="text" id="firstName" name="firstName" placeholder="First Name" class="form-control" value="${userFirstName}" required autofocus>
             </div>
         </div>
         <div class="form-group row">
             <label for="lastName" class="col-sm-3 control-label">Last Name*</label>
             <div class="col-sm-9">
-                <input type="text" id="lastName" name="lastName" placeholder="Last Name" class="form-control" autofocus>
+                <input type="text" id="lastName" name="lastName" placeholder="Last Name" class="form-control" value="${userLastName}" required autofocus>
             </div>
         </div>
 
         <div class="form-group row">
             <label for="email" class="col-sm-3 control-label">Email* </label>
             <div class="col-sm-9">
-                <input type="email" id="email" name="email" placeholder="Email" class="form-control" name="email">
+                <input type="email" id="email" name="email" placeholder="Email" class="form-control" name="email" value="${userEmail}" required autofocus>
             </div>
+            <label style="background-color: B82303; font-size: 25px">${duplicateEmail}</label>
         </div>
         <div class="form-group row">
             <label for="password" class="col-sm-3 control-label">Password*</label>
             <div class="col-sm-9">
-                <input type="password" id="password" name="password" placeholder="Password" class="form-control">
+                <input type="password" id="password" name="password" placeholder="Password" class="form-control" required autofocus>
             </div>
         </div>
         <label style="background-color: B82303; font-size: 25px">${passwordNotEqual}</label>
         <div class="form-group row">
             <label for="confirmPassword" class="col-sm-3 control-label">Confirm Password*</label>
             <div class="col-sm-9">
-                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" class="form-control">
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" class="form-control" required autofocus>
             </div>
         </div>
         <div class="form-group row">
             <label for="birthDate" class="col-sm-3 control-label">Date of Birth*</label>
             <div class="col-sm-4">
-                <input type="date" id="birthDate" name="birthDate" class="form-control">
+                <input type="date" id="birthDate" name="birthDate" class="form-control" value="${userBirthday}" required autofocus>
             </div>
         </div>
         <div class="form-group row">
             <label for="phoneNumber" class="col-sm-3 control-label">Phone number*</label>
             <div class="col-sm-6">
-                <input type="phoneNumber" id="phoneNumber" name="phoneNumber" placeholder="375XXYYYYYYY" class="form-control" pattern="[0-9]{12}" required>
+                <input type="phoneNumber" id="phoneNumber" name="phoneNumber" placeholder="375XXYYYYYYY" class="form-control" value="${userPhoneNumber}" pattern="[0-9]{12}" required>
             </div>
+            <label style="background-color: B82303; font-size: 25px">${duplicatePhone}</label>
         </div>
         <div class="form-group row">
             <label for="country" class="col-sm-3 control-label">Country*</label>
             <div class="col-sm-6">
-                <input type="text" id="country" name="country" placeholder="Country" class="form-control">
+                <input type="text" id="country" name="country" placeholder="Country" class="form-control" value="${userCountry}" required autofocus>
             </div>
         </div>
         <div class="form-group row">
             <label for="passportNumber" class="col-sm-3 control-label">Passport number*</label>
             <div class="col-sm-6">
-                <input type="tel" id="passportNumber" name="passportNumber" placeholder="Passport Number" class="form-control">
+                <input type="tel" id="passportNumber" name="passportNumber" placeholder="Passport Number" class="form-control" value="${userPassportNumber}" required autofocus>
+                <label style="background-color: B82303; font-size: 25px">${duplicatePassport}</label>
             </div>
         </div>
         <div class="form-group row">
             <label for="passportDate" class="col-sm-3 control-label">Passport date of ussue*</label>
             <div class="col-sm-4">
-                <input type="date" id="passportDate" name="passportDate" class="form-control" required>
+                <input type="date" id="passportDate" name="passportDate" class="form-control" value="${userPassportDate}" required autofocus>
             </div>
         </div>
         <div class="form-group row">
             <label for="sex" class="col-sm-3 control-label">Select Gender:</label>
             <div class="col-sm-4">
-                <select class="form-control" id="sex" name="sex" required pattern="Male|Famale">
-                    <option disabled>Choose</option>
-<%--                    <option>Female</option>--%>
-<%--                    <option>Male</option>--%>
+                <select class="form-control" id="sex" name="sex" required>
+                    <option></option>
                     <c:forEach var="gender" items="${gendersMap}">
-                        <option value="${gender.getKey()}">${gender.value}</option>
+                        <option value="${gender.getKey()}" <c:if test="${gender.getKey() == userSex}">selected</c:if>>${gender.value}</option>
                     </c:forEach>
                 </select>
             </div>

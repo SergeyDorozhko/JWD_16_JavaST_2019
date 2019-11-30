@@ -19,53 +19,23 @@ public class CreateAccount extends AllUsersAction {
         logger.debug("start CreateAccount ok");
 
         HttpSession session = request.getSession(false);
-        logger.debug("take session ok");
 
         UserService userService
                 = ServiceFactory.getInstance().getUserService();
 
         String login = request.getParameter("login");
-        logger.debug(String.format("take login ok - %s", login));
-
         String firstName = request.getParameter("firstName");
-        logger.debug(String.format("take firstName ok - %s", firstName));
-
         String lastName = request.getParameter("lastName");
-        logger.debug(String.format("take lastName ok - %s", lastName));
-
         String email = request.getParameter("email");
-        logger.debug(String.format("take email ok - %s", email));
-
         String password = request.getParameter("password");
         String confirmPassword = request.getParameter("confirmPassword");
-        logger.debug(String.format("take password ok - %s", "XXXX"));
-
         String birthday = request.getParameter("birthDate");
-        logger.debug(String.format("take birthday ok - %s", birthday));
-
         String phoneNumber = request.getParameter("phoneNumber");
-        logger.debug(String.format("take phoneNumber ok - %s", phoneNumber));
-
         String country = request.getParameter("country");
-        logger.debug(String.format("take country ok - %s", country));
-
         String passportNumber = request.getParameter("passportNumber");
-        logger.debug(String.format("take passportNumber ok - %s", passportNumber));
         String passportDate = request.getParameter("passportDate");
-        logger.debug(String.format("take passportDate ok - %s", passportDate));
-        String sex2 = request.getParameter("sex");
-        String sex = null;
-        if (sex2 != null) {
-            logger.debug("sex taken");
-            logger.debug(sex2);
+        String sex = request.getParameter("sex");
 
-            logger.debug(sex2.getClass());
-            sex = (String) sex2;
-        } else {
-            sex = "1";
-            logger.debug(" sex taken default ");
-
-        }
         logger.debug("all params take ok");
 
         if (!password.equals(confirmPassword)) {
@@ -80,7 +50,32 @@ public class CreateAccount extends AllUsersAction {
         try {
             regestedUser = userService.add(user);
         } catch (ExceptionService exceptionService) {
-            exceptionService.printStackTrace();
+            logger.error(String.format("sqlmsg : %s",
+                    exceptionService.getMessage()));
+            String msg = exceptionService.getMessage();
+            if (msg.contains("login")) {
+                request.getSession().setAttribute("duplicateLogin", "пользователь с таким логином существует");
+            } else if (msg.contains("passport_number")) {
+                request.getSession().setAttribute("duplicatePassport", "пользователь с таким паспортом существует");
+            } else if (msg.contains("phone")) {
+                request.getSession().setAttribute("duplicatePhone", "пользователь с таким номером телефона существует");
+            } else if (msg.contains("email")) {
+                request.getSession().setAttribute("duplicateEmail", "пользователь с такой почной существует");
+            } else {
+                request.getSession().setAttribute("unknownError", "что-то пошло не так, попробуйте снова");
+            }
+
+            request.getSession().setAttribute("userLogin", login);
+            request.getSession().setAttribute("userFirstName", firstName);
+            request.getSession().setAttribute("userLastName", lastName);
+            request.getSession().setAttribute("userEmail", email);
+            request.getSession().setAttribute("userBirthday", birthday);
+            request.getSession().setAttribute("userPhoneNumber", phoneNumber);
+            request.getSession().setAttribute("userCountry", country);
+            request.getSession().setAttribute("userPassportNumber", passportNumber);
+            request.getSession().setAttribute("userPassportDate", passportDate);
+            request.getSession().setAttribute("userSex", sex);
+
         }
 
         logger.debug("get answer from service - OK");
@@ -92,7 +87,7 @@ public class CreateAccount extends AllUsersAction {
             return request.getContextPath() + "/main.html";
         }
 
-  //      request.getSession().setAttribute("SecurityMessage", "Неверный логин или пароль");
+        //      request.getSession().setAttribute("SecurityMessage", "Неверный логин или пароль");
 
         return request.getContextPath() + "/registrationPage.html";
     }
