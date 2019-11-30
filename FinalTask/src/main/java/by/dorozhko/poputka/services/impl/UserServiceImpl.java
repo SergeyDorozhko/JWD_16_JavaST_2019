@@ -71,6 +71,12 @@ public class UserServiceImpl implements UserService {
     public User singIn(final String login,
                        final String password)
             throws ExceptionService {
+        Validator validator = new Validator();
+        if (validator.validateAutorisationData(login, password)) {
+            String msg = "incorrect login or password";
+            logger.error(msg);
+            throw new ExceptionService(msg);
+        }
         Transaction transaction = TransactionFactory
                 .getInstance().getTransaction();
         UserDAO userDAO = FactoryDao.getInstance().getUserDAO();
@@ -113,7 +119,6 @@ public class UserServiceImpl implements UserService {
         UserDAO userDAO = FactoryDao.getInstance().getUserDAO();
 
         transaction.begin(userDAO);
-        boolean result = false;
 
         HashingPBKDF2 hashingPBKDF2 = new HashingPBKDF2();
         user.setSalt(hashingPBKDF2.generateSalt());
