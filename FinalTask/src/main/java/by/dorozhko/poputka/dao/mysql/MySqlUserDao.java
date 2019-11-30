@@ -9,9 +9,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class MySqlUserDao implements UserDAO {
     /**
@@ -67,8 +65,8 @@ public class MySqlUserDao implements UserDAO {
             + " car_id, driving_experience_since)"
             + " values (?,?,?,?,?,?,?,?,?,?,?,?)";
 
-    private static final String SELECT_ALL_GENDERS
-            = "SELECT id, gender FROM gender;";
+//    private static final String SELECT_ALL_GENDERS
+//            = "SELECT id, gender FROM gender;";
 
     /**
      * Method take connection to database and set it to realisation of Dao.
@@ -80,26 +78,26 @@ public class MySqlUserDao implements UserDAO {
         connection = newConnection;
     }
 
-    @Override
-    public Map<Integer, String> getGenderList() throws ExceptionDao {
-        Map<Integer, String> map = new HashMap<>();
-
-        try (ResultSet resultSet = connection.createStatement()
-                .executeQuery(SELECT_ALL_GENDERS);) {
-            while (resultSet.next()) {
-
-                Integer key = Integer.parseInt(resultSet.getString("id"));
-                String value = resultSet.getString("gender");
-                map.put(key, value);
-            }
-
-        } catch (SQLException e) {
-            logger.error(e);
-            throw new ExceptionDao(e);
-        }
-
-        return map;
-    }
+//    @Override
+//    public Map<Integer, String> getGenderList() throws ExceptionDao {
+//        Map<Integer, String> map = new HashMap<>();
+//
+//        try (ResultSet resultSet = connection.createStatement()
+//                .executeQuery(SELECT_ALL_GENDERS);) {
+//            while (resultSet.next()) {
+//
+//                Integer key = Integer.parseInt(resultSet.getString("id"));
+//                String value = resultSet.getString("gender");
+//                map.put(key, value);
+//            }
+//
+//        } catch (SQLException e) {
+//            logger.error(e);
+//            throw new ExceptionDao(e);
+//        }
+//
+//        return map;
+//    }
 
     /**
      * Save new user to database.

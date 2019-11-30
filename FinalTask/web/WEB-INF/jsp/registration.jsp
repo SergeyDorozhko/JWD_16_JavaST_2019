@@ -51,7 +51,7 @@ To change this template use File | Settings | File Templates.
 
 <div class="container">
     <%--    <div class="row">--%>
-    <form action="createAccount.html" role="form" class="needs-validation" novalidate>
+    <form action="createAccount.html" role="form" class="needs-validation" novalidate method="post">
         <h2>Registration</h2>
         <label style="background-color: B82303; font-size: 25px">${unknownError}</label>
         <div class="form-group row">
@@ -114,10 +114,21 @@ To change this template use File | Settings | File Templates.
         <div class="form-group row">
             <label for="country" class="col-sm-3 control-label">Country*</label>
             <div class="col-sm-6">
-                <input type="text" id="country" name="country" placeholder="Country" class="form-control" value="${userCountry}" required autofocus>
-            </div>
+                <select class="form-control" id="country" name="country" required>
+                    <option></option>
+                    <c:forEach var="countries" items="${countriesMap}">
+                        <option value="${countries.getKey()}" <c:if test="${countries.getKey() == userCountry}">selected</c:if>>${countries.value}</option>
+                    </c:forEach>
+                </select>            </div>
             <label style="background-color: B82303; font-size: 25px">${errorCountry}</label>
         </div>
+<%--        <div class="form-group row">--%>
+<%--            <label for="country" class="col-sm-3 control-label">Country*</label>--%>
+<%--            <div class="col-sm-6">--%>
+<%--                <input type="text" id="country" name="country" placeholder="Country" class="form-control" value="${userCountry}" required autofocus>--%>
+<%--            </div>--%>
+<%--            <label style="background-color: B82303; font-size: 25px">${errorCountry}</label>--%>
+<%--        </div>--%>
         <div class="form-group row">
             <label for="passportNumber" class="col-sm-3 control-label">Passport number*</label>
             <div class="col-sm-6">

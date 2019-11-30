@@ -37,8 +37,9 @@ To change this template use File | Settings | File Templates.
                     <div class="form-group has-feedback">
                         <label for="uname" class="control-label col-xs-3" style="font-size: 25px;">Username:</label>
                         <input type="text" class="form-control" id="uname" placeholder="Enter username"
-                               name="login" required pattern="[\w]{2,}">
+                               name="login" value="${userLogin}" required pattern="[\w]{2,}">
                         <div class="valid-feedback">Valid.</div>
+                        <label style="background-color: B82303; font-size: 25px">${errorLogin}</label>
                     </div>
 
                     <div class="form-group">
@@ -46,6 +47,7 @@ To change this template use File | Settings | File Templates.
                         <input type="password" class="form-control" id="pwd"
                                placeholder="Enter password" name="password" required>
                         <div class="valid-feedback">Valid.</div>
+                        <label style="background-color: B82303; font-size: 25px">${errorPassword}</label>
                     </div>
 
                     <div class="mx-auto">

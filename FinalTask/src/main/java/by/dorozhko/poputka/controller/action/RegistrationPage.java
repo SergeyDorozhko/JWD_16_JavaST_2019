@@ -16,9 +16,12 @@ public class RegistrationPage extends AllUsersAction {
     public String execute(HttpServletRequest request, HttpServletResponse response) {
 
         attributesData(request);
-        Map<Integer, String> gendors = ServiceFactory.getInstance().getCatalogService().getGendors();
+        Map<Integer, String> gendors = ServiceFactory.getInstance().getCatalogService().getGenders();
+        Map<Integer, String> countries = ServiceFactory.getInstance().getCatalogService().getCountries();
 
         request.setAttribute("gendersMap", gendors);
+        request.setAttribute("countriesMap", countries);
+
         return "/WEB-INF/jsp/registration.jsp";
     }
 

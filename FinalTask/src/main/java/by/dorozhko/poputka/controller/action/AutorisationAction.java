@@ -14,30 +14,63 @@ import javax.servlet.http.HttpSession;
 public class AutorisationAction extends AllUsersAction {
     private final Logger logger = LogManager.getLogger(getClass().getName());
 
+    private String login;
+    private String password;
+    private HttpSession session;
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        HttpSession session = request.getSession(false);
+        session = request.getSession(false);
 
         UserService userService
                 = ServiceFactory.getInstance().getUserService();
-        String login = request.getParameter("login");
-        String password = request.getParameter("password");
+        getAllAttributes(request);
         logger.debug(String.format("Login : %s , password: %s", login, password));
         User user = null;
-        try {
-            user = userService.singIn(login, password);
-        } catch (ExceptionService exceptionService) {
-            exceptionService.printStackTrace();
+        if (checkData()) {
+            try {
+                user = userService.singIn(login, password);
+            } catch (ExceptionService exceptionService) {
+                logger.error(exceptionService);
+            }
         }
-
         if (user != null) {
             session.setAttribute("authorizedUser",
                     user);
-           return request.getContextPath() + "/main.html";
+            return request.getContextPath() + "/main.html";
         }
-
-        request.getSession().setAttribute("SecurityMessage", "Неверный логин или пароль");
+        setUserInputData();
+        session.setAttribute("errorLogin", "Неверный логин или пароль");
 
         return request.getContextPath() + "/loginPage.html";
     }
+
+    private void getAllAttributes(HttpServletRequest request) {
+        login = request.getParameter("login");
+        password = request.getParameter("password");
+        logger.debug("all params take ok");
+    }
+
+    private boolean checkData() {
+        logger.debug("check data start");
+        int countErrors = 0;
+        logger.debug(String.format("login: %s", login));
+        if (login.length() == 0) {
+            session.setAttribute("errorLogin", "поле не может быть пустым");
+            countErrors++;
+        }
+
+        if (password.length() == 0) {
+            session.setAttribute("errorPassword", "поле не может быть пустым");
+            countErrors++;
+        }
+
+        logger.debug(String.format("find %d errors", countErrors));
+        return countErrors == 0;
+    }
+
+    private void setUserInputData() {
+        session.setAttribute("userLogin", login);
+    }
+
 }

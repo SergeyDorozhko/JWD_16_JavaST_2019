@@ -38,7 +38,7 @@ public class CreateAccount extends AllUsersAction {
         UserService userService
                 = ServiceFactory.getInstance().getUserService();
 
-        getAllAttributes(request, response);
+        getAllAttributes(request);
         User regestedUser = null;
         if (checkData()) {
             logger.debug("passwords are equal");
@@ -67,7 +67,7 @@ public class CreateAccount extends AllUsersAction {
         return request.getContextPath() + "/registrationPage.html";
     }
 
-    private void getAllAttributes(HttpServletRequest request, HttpServletResponse response) {
+    private void getAllAttributes(HttpServletRequest request) {
         login = request.getParameter("login");
         firstName = request.getParameter("firstName");
         lastName = request.getParameter("lastName");
@@ -86,7 +86,6 @@ public class CreateAccount extends AllUsersAction {
 
     private boolean checkData() {
         logger.debug("check data start");
-        boolean result = false;
         int countErrors = 0;
         logger.debug(String.format("login: %s", login));
         logger.debug(String.format("data: %s", passportDate));

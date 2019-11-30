@@ -1,5 +1,6 @@
 package by.dorozhko.poputka.dao;
 
+import by.dorozhko.poputka.dao.mysql.MySqlCatalogDAO;
 import by.dorozhko.poputka.dao.mysql.MySqlJourneyDAO;
 import by.dorozhko.poputka.dao.mysql.MySqlUserDao;
 
@@ -39,6 +40,10 @@ public final class FactoryDao {
 
     public JourneyDAO getJourneyDAO() {
         return new MySqlJourneyDAO();
+    }
+
+    public CatalogDAO getCatalogDAO() {
+        return new MySqlCatalogDAO();
     }
 
 
