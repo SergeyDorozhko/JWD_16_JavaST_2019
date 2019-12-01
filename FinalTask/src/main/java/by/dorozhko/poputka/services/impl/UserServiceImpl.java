@@ -72,7 +72,7 @@ public class UserServiceImpl implements UserService {
                        final String password)
             throws ExceptionService {
         Validator validator = new Validator();
-        if (validator.validateAutorisationData(login, password)) {
+        if (!validator.validateAutorisationData(login, password)) {
             String msg = "incorrect login or password";
             logger.error(msg);
             throw new ExceptionService(msg);
