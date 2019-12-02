@@ -1,18 +1,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<%@ taglib prefix="ds" uri="dorozhkoTag" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 
 <header id="header" style="height: 40px"/>
-<c:choose>
-    <c:when test="${lang != null}">
-        <c:set var="language" value="${lang}"/>
-    </c:when>
-    <c:when test="${lang == null}">
-        <c:set var="language" value="${cookie['lang'].value}"/>
-    </c:when>
-</c:choose>
+
+<c:set var="language" value="${ds:localeValue(lang, cookie['lang'].value)}"/>
 <fmt:setLocale value="${language}"/>
 <fmt:bundle basename="pagecontent" prefix="">
     <div class="row">
@@ -42,7 +36,7 @@
                         <button class="dropdown-item" type="submit"><fmt:message
                                 key="headOfPages.button.home"/></button>
                     </form>
-                    <form action="listOfUsers.html" method="get">
+                    <form action="addCar.html" method="get">
                         <button class="dropdown-item" type="submit"><fmt:message
                                 key="headOfPages.button.allUsers"/></button>
                     </form>

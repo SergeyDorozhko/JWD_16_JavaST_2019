@@ -18,7 +18,6 @@ public class User extends Entity {
     private LocalDate passportDateOfIssue;
     private String phoneNumber;
     private String email;
-    private int drivingExperience;
     private Car car;
 
     public User() {
@@ -38,7 +37,7 @@ public class User extends Entity {
         this.email = email;
     }
 
-    public User(String login, String password, String name, String surname, String gender, String birthday, String country, String passportNumber, String passportDateOfIssue, String phoneNumber, String email, int drivingExperience, Car car) {
+    public User(String login, String password, String name, String surname, String gender, String birthday, String country, String passportNumber, String passportDateOfIssue, String phoneNumber, String email, Car car) {
         this.login = login;
         this.password = password;
         this.name = name;
@@ -50,7 +49,6 @@ public class User extends Entity {
         this.passportDateOfIssue = LocalDate.parse(passportDateOfIssue);
         this.phoneNumber = phoneNumber;
         this.email = email;
-        this.drivingExperience = drivingExperience;
         this.car = car;
     }
 
@@ -67,7 +65,7 @@ public class User extends Entity {
         this.email = email;
     }
 
-    public User(String login, String name, String surname, String gender, String birthday, String country, String passportNumber, String passportDateOfIssue, String phoneNumber, String email, int drivingExperience, Car car) {
+    public User(String login, String name, String surname, String gender, String birthday, String country, String passportNumber, String passportDateOfIssue, String phoneNumber, String email, Car car) {
         this.login = login;
         this.name = name;
         this.surname = surname;
@@ -78,7 +76,6 @@ public class User extends Entity {
         this.passportDateOfIssue = LocalDate.parse(passportDateOfIssue);
         this.phoneNumber = phoneNumber;
         this.email = email;
-        this.drivingExperience = drivingExperience;
         this.car = car;
     }
 
@@ -118,13 +115,6 @@ public class User extends Entity {
         this.salt = salt;
     }
 
-    public void setBirthday(LocalDate birthday) {
-        this.birthday = birthday;
-    }
-
-    public void setPassportDateOfIssue(LocalDate passportDateOfIssue) {
-        this.passportDateOfIssue = passportDateOfIssue;
-    }
 
     public void setName(String name) {
         this.name = name;
@@ -194,14 +184,6 @@ public class User extends Entity {
         this.email = email;
     }
 
-    public int getDrivingExperience() {
-        return drivingExperience;
-    }
-
-    public void setDrivingExperience(int drivingExperience) {
-        this.drivingExperience = drivingExperience;
-    }
-
     public Car getCar() {
         return car;
     }
@@ -216,8 +198,7 @@ public class User extends Entity {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         User user = (User) o;
-        return drivingExperience == user.drivingExperience &&
-                login.equals(user.login) &&
+        return login.equals(user.login) &&
                 name.equals(user.name) &&
                 surname.equals(user.surname) &&
                 gender.equals(user.gender) &&
@@ -232,7 +213,7 @@ public class User extends Entity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), login, name, surname, gender, birthday, country, passportNumber, passportDateOfIssue, phoneNumber, email, drivingExperience, car);
+        return Objects.hash(super.hashCode(), login, name, surname, gender, birthday, country, passportNumber, passportDateOfIssue, phoneNumber, email, car);
     }
 
     @Override
@@ -248,7 +229,6 @@ public class User extends Entity {
                 ", passportDateOfIssue=" + passportDateOfIssue +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", email='" + email + '\'' +
-                ", drivingExperience=" + drivingExperience +
                 ", car=" + car +
                 '}';
     }

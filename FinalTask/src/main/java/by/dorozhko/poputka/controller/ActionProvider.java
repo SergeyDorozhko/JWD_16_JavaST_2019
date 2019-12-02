@@ -2,6 +2,8 @@ package by.dorozhko.poputka.controller;
 
 import by.dorozhko.poputka.controller.action.*;
 import by.dorozhko.poputka.controller.action.administrator.DisplayAllUsers;
+import by.dorozhko.poputka.controller.action.user.AddCarPage;
+import by.dorozhko.poputka.controller.action.user.SaveCar;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -42,6 +44,15 @@ public final class ActionProvider {
             case "/createAccount":
                 actionByQuery = new CreateAccount();
                 break;
+            case "/addCar":
+                actionByQuery = new AddCarPage();
+                break;
+            case "/saveCar":
+                actionByQuery = new SaveCar();
+                break;
+//            case "/viewProfile":
+//                actionByQuery = new ViewProfile();
+//                break;
             default:
                 actionByQuery = new MainPage();
                 logger.warn("Default, show main page");

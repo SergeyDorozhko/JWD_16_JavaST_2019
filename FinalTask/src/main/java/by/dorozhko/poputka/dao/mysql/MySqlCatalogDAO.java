@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -22,6 +23,63 @@ public class MySqlCatalogDAO implements CatalogDAO {
 
     private static final String SELECT_ALL_COUNTRIES
             = "SELECT id, country_name FROM countries;";
+
+    private static final String SELECT_ALL_CAR_BRANDS
+            = "SELECT id, brand FROM car_brands";
+
+    private static final String SELECT_ALL_CAR_MODELS_OF_BRAND
+            = "SELECT id, model FROM car_models"
+            + " WHERE brand_id = ?;";
+
+    private static final String SELECT_ALL_CAR_CLIMATE
+            = "SELECT id, climate_type FROM car_climate";
+
+    private static final String SELECT_GENDER_BY_ID
+            = "SELECT gender FROM gender WHERE id = ?";
+
+    @Override
+    public Map<Integer, String> getCarClimateTypesList() throws ExceptionDao {
+        Map<Integer, String> map = new HashMap<>();
+
+        try (ResultSet resultSet = connection.createStatement()
+                .executeQuery(SELECT_ALL_CAR_CLIMATE);) {
+            while (resultSet.next()) {
+
+                Integer key = Integer.parseInt(resultSet.getString("id"));
+                String value = resultSet.getString("climate_type");
+                map.put(key, value);
+            }
+
+        } catch (SQLException e) {
+            logger.error(e);
+            throw new ExceptionDao(e);
+        }
+
+        return map;
+    }
+
+    @Override
+    public Map<Integer, String> getCarModelList(int brand) throws ExceptionDao {
+        Map<Integer, String> map = new HashMap<>();
+
+        try (PreparedStatement statement
+                     = connection.prepareStatement(SELECT_ALL_CAR_MODELS_OF_BRAND);) {
+            statement.setInt(1, brand);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+
+                Integer key = Integer.parseInt(resultSet.getString("id"));
+                String value = resultSet.getString("model");
+                map.put(key, value);
+            }
+
+        } catch (SQLException e) {
+            logger.error(e);
+            throw new ExceptionDao(e);
+        }
+
+        return map;
+    }
 
     @Override
     public Map<Integer, String> getCountryList() throws ExceptionDao {
@@ -63,6 +121,44 @@ public class MySqlCatalogDAO implements CatalogDAO {
         }
 
         return map;
+    }
+
+    @Override
+    public Map<Integer, String> getCarBrandList() throws ExceptionDao {
+        Map<Integer, String> map = new HashMap<>();
+
+        try (ResultSet resultSet = connection.createStatement()
+                .executeQuery(SELECT_ALL_CAR_BRANDS);) {
+            while (resultSet.next()) {
+
+                Integer key = Integer.parseInt(resultSet.getString("id"));
+                String value = resultSet.getString("brand");
+                map.put(key, value);
+            }
+
+        } catch (SQLException e) {
+            logger.error(e);
+            throw new ExceptionDao(e);
+        }
+
+        return map;
+    }
+
+    @Override
+    public String getGender(int id) throws ExceptionDao {
+        String result = null;
+        try (PreparedStatement statement = connection.prepareStatement(SELECT_GENDER_BY_ID)) {
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                result = resultSet.getString("gender");
+            }
+            logger.debug("gender taken");
+        } catch (SQLException ex) {
+            logger.error(ex);
+            throw new ExceptionDao(ex);
+        }
+        return result;
     }
 
     /**

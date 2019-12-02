@@ -17,7 +17,6 @@ class Validator {
     private static final String PASSPORT_NUMBER_PATTERN = "^[A-Z0-9]{1,10}$";
     private static final String PHONE_PATTERN = "^[0-9]{7-15}$";
     private static final String EMAIL_PATTERN = "^[-\\w.]+@([A-z0-9][-A-z0-9]+\\.)+[A-z]{2,4}$";
-    private static final int MAX_DRIVEN_EXPERIENCE = 100;
     private Pattern pattern;
     private Matcher matcher;
 
@@ -130,12 +129,7 @@ class Validator {
         if (user.getCar() != null) {
 
         }
-        if (user.getDrivingExperience() != 0) {
-            if (user.getDrivingExperience() >= MAX_DRIVEN_EXPERIENCE && user.getDrivingExperience() < 0) {
-                return false;
-            }
 
-        }
         return true;
 
     }

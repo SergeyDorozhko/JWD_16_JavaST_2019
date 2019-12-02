@@ -18,14 +18,21 @@ import by.dorozhko.poputka.services.impl.UserServiceImpl;
 import by.dorozhko.poputka.services.security.HashingPBKDF2;
 
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws ExceptionDao {
+        try {
+            LocalDate date = LocalDate.parse("5");
+        } catch (DateTimeParseException ex) {
+            System.out.println(ex);
+        }
 
-        testHashPwd();
+        int i = Integer.parseInt("sdsa");
     }
 
     public static void testAddUserService() {

@@ -1,9 +1,6 @@
 package by.dorozhko.poputka.services.impl;
 
-import by.dorozhko.poputka.dao.FactoryDao;
-import by.dorozhko.poputka.dao.Transaction;
-import by.dorozhko.poputka.dao.TransactionFactory;
-import by.dorozhko.poputka.dao.UserDAO;
+import by.dorozhko.poputka.dao.*;
 import by.dorozhko.poputka.dao.exception.ExceptionDao;
 import by.dorozhko.poputka.entity.User;
 import by.dorozhko.poputka.services.UserService;
@@ -163,10 +160,29 @@ public class UserServiceImpl implements UserService {
         return false;
     }
 
+    @Override
+    public User addCar(User user) throws ExceptionService {
+        User userInfo = null;
+        Transaction transaction = TransactionFactory.getInstance().getTransaction();
+        UserDAO userDAO = FactoryDao.getInstance().getUserDAO();
+        CatalogDAO catalogDAO = FactoryDao.getInstance().getCatalogDAO();
+
+        transaction.begin(userDAO, catalogDAO);
+        try {
+            userInfo = userDAO.addCar(user);
+            userInfo.setGender(catalogDAO.getGender(Integer.parseInt(userInfo.getGender())));
+            transaction.commit();
+        } catch (ExceptionDao exceptionDao) {
+            transaction.rollback();
+            logger.error(exceptionDao);
+            throw new ExceptionService(exceptionDao);
+        } finally {
+            transaction.end();
+        }
+        return userInfo;
+    }
 
     private class HashingPBKDF2 {
-
-
         private SecureRandom random;
         private byte[] salt;
         private KeySpec spec;
@@ -231,4 +247,6 @@ public class UserServiceImpl implements UserService {
         }
 
     }
+
+
 }

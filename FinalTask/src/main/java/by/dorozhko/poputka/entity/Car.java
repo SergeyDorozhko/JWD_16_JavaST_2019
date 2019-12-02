@@ -21,7 +21,7 @@ public class Car extends Entity {
     /**
      * Has value true if car has an air conditioner, otherwise false.
      */
-    private boolean airConditioner;
+    private String airConditioner;
 
     /**
      * Constructs an object of this class with null value of parameters.
@@ -32,23 +32,20 @@ public class Car extends Entity {
     /**
      * Constructs car with not null value of parameters.
      *
-     * @param id                Id of Entity.
-     * @param brandName         Name of brand.
-     * @param modelName         Value of model.
-     * @param yearOfCarProduce  Year when car was produced.
-     * @param hasAirConditioner Has value true if car has an
-     *                          air conditioner, otherwise false.
+     * @param brandName          Name of brand.
+     * @param modelName          Value of model.
+     * @param yearOfCarProduce   Year when car was produced.
+     * @param airConditionerType Has value true if car has an
+     *                           air conditioner, otherwise false.
      */
-    public Car(final int id,
-               final String brandName,
+    public Car(final String brandName,
                final String modelName,
                final int yearOfCarProduce,
-               final boolean hasAirConditioner) {
-        super(id);
+               final String airConditionerType) {
         brand = brandName;
         model = modelName;
         yearOfProduce = yearOfCarProduce;
-        airConditioner = hasAirConditioner;
+        airConditioner = airConditionerType;
     }
 
 
@@ -112,18 +109,18 @@ public class Car extends Entity {
      * @return Value true if car has an
      * air conditioner, otherwise false.
      */
-    public boolean isAirConditioner() {
+    public String getAirConditioner() {
         return airConditioner;
     }
 
     /**
      * Set or update information about car air conditioner.
      *
-     * @param hasAirConditioner Has value true if car has an
-     *                          air conditioner, otherwise false.
+     * @param airConditionerType Has value true if car has an
+     *                           air conditioner, otherwise false.
      */
-    public void setAirConditioner(final boolean hasAirConditioner) {
-        airConditioner = hasAirConditioner;
+    public void setAirConditioner(final String airConditionerType) {
+        airConditioner = airConditionerType;
     }
 
     /**

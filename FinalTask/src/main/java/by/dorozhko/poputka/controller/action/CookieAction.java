@@ -1,6 +1,5 @@
 package by.dorozhko.poputka.controller.action;
 
-import by.dorozhko.poputka.controller.Action;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

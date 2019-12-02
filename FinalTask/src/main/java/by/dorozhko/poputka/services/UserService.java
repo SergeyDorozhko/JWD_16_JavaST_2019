@@ -45,4 +45,6 @@ public interface UserService extends Service {
      * @return true if successfully deleted, otherwise false.
      */
     boolean delete(int id);
+
+    User addCar(User user) throws ExceptionService;
 }
