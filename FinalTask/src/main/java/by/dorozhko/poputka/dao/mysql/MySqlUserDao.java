@@ -57,7 +57,7 @@ public class MySqlUserDao implements UserDAO {
      */
     private static final String INSERT_INTO_USER_INFO
             = "INSERT INTO user_info(user_id, surname, name, birthday, gender_id,"
-            + "country, passport_number, passport_date_of_issue, phone, email)"
+            + "country_id, passport_number, passport_date_of_issue, phone, email)"
             + " values (?,?,?,?,?,?,?,?,?,?)";
 
     private static final String INSERT_INTO_CARS
@@ -65,7 +65,7 @@ public class MySqlUserDao implements UserDAO {
             + "climate_type_id) values (?,?,?)";
     private static final String UPDATE_CAR_INTO_USER_INFO
             = "UPDATE user_info SET car_id = ? WHERE user_id = ?;";
-    private static final String SELECT_ALL_USER_INFO_BY_ID
+    private static final String SELECT_ALL_USER_INFO_WITH_CAR_BY_ID
             = " SELECT login, surname, name, birthday, gender_id, country_name,"
             + " passport_number, passport_date_of_issue, phone, email, brand, model, year_of_produce, climate_type"
             + " from cars, users, user_info, car_climate, countries, car_models, car_brands"
@@ -77,6 +77,25 @@ public class MySqlUserDao implements UserDAO {
             + " AND car_models.brand_id = car_brands.id"
             + " AND cars.climate_type_id = car_climate.id;";
 
+    private static final String SELECT_ALL_USER_INFO_WITHOUT_CAR_BY_ID
+            = " SELECT login, surname, name, birthday, gender_id, country_name,"
+            + " passport_number, passport_date_of_issue, phone, email"
+            + " from users, user_info, countries"
+            + " WHERE user_info.user_id = ? "
+            + " AND user_info.user_id = users.id"
+            + " AND user_info.country_id = countries.id";
+
+    private static final String CHECK_HAS_USER_CAR =
+            "SELECT user_id,"
+                    + " IFNULL(car_id, 'no car') AS car"
+                    + " FROM user_info"
+                    + " where user_id = ?";
+    private static final String NO_CAR_VALUE = "no car";
+
+    private static final String DELETE_CAR
+            = "DELETE FROM cars  WHERE id IN"
+            + "(SELECT user_info.car_id FROM user_info WHERE user_id = ? );";
+
     /**
      * Method take connection to database and set it to realisation of Dao.
      *
@@ -87,26 +106,6 @@ public class MySqlUserDao implements UserDAO {
         connection = newConnection;
     }
 
-//    @Override
-//    public Map<Integer, String> getGenderList() throws ExceptionDao {
-//        Map<Integer, String> map = new HashMap<>();
-//
-//        try (ResultSet resultSet = connection.createStatement()
-//                .executeQuery(SELECT_ALL_GENDERS);) {
-//            while (resultSet.next()) {
-//
-//                Integer key = Integer.parseInt(resultSet.getString("id"));
-//                String value = resultSet.getString("gender");
-//                map.put(key, value);
-//            }
-//
-//        } catch (SQLException e) {
-//            logger.error(e);
-//            throw new ExceptionDao(e);
-//        }
-//
-//        return map;
-//    }
 
     /**
      * Save new user to database.
@@ -149,7 +148,7 @@ public class MySqlUserDao implements UserDAO {
             statementUserInf.setString(3, entity.getName());
             statementUserInf.setString(4, entity.getBirthday().toString());
             statementUserInf.setInt(5, Integer.parseInt(entity.getGender()));
-            statementUserInf.setString(6, entity.getCountry());
+            statementUserInf.setInt(6, Integer.parseInt(entity.getCountry()));
             statementUserInf.setString(7, entity.getPassportNumber());
             statementUserInf.setString(8, entity.getPassportDateOfIssue().toString());
             statementUserInf.setString(9, entity.getPhoneNumber());
@@ -318,13 +317,14 @@ public class MySqlUserDao implements UserDAO {
     public User addCar(final User user) throws ExceptionDao {
         int carId = -1;
         Car car = user.getCar();
-        User userInfo = null;
         try (PreparedStatement statement
-                     = connection.prepareStatement(INSERT_INTO_CARS, Statement.RETURN_GENERATED_KEYS);
+                     = connection.prepareStatement(INSERT_INTO_CARS,
+                Statement.RETURN_GENERATED_KEYS);
              PreparedStatement statementUserInfUpdate
                      = connection.prepareStatement(UPDATE_CAR_INTO_USER_INFO);
-             PreparedStatement statementTakeUser
-                     = connection.prepareStatement(SELECT_ALL_USER_INFO_BY_ID)) {
+        ) {
+
+            deleteCar(user);
 
             statement.setString(1, car.getModel());
             statement.setInt(2, car.getYearOfProduce());
@@ -345,37 +345,6 @@ public class MySqlUserDao implements UserDAO {
 
             statementUserInfUpdate.executeUpdate();
 
-            connection.commit();
-
-            statementTakeUser.setInt(1, user.getId());
-            ResultSet resultSet = statementTakeUser.executeQuery();
-            while (resultSet.next()) {
-                logger.debug(String.format("new user take from db: %d", 2));
-
-                userInfo = new User();
-                userInfo.setLogin(resultSet.getString("login"));
-                userInfo.setSurname(resultSet.getString("surname"));
-                userInfo.setName(resultSet.getString("name"));
-                userInfo.setBirthday(resultSet.getString("birthday"));
-                userInfo.setGender(resultSet.getString("gender_id"));
-                userInfo.setCountry(resultSet.getString("country_name"));
-                userInfo.setPassportNumber(resultSet.getString("passport_number"));
-                userInfo.setPassportDateOfIssue(resultSet.getString("passport_date_of_issue"));
-                userInfo.setPhoneNumber(resultSet.getString("phone"));
-                userInfo.setEmail(resultSet.getString("email"));
-                logger.debug("user data ok creating car");
-                Car userCar = new Car();
-                userCar.setBrand(resultSet.getString("brand"));
-                logger.debug("get brand OK");
-                userCar.setModel(resultSet.getString("model"));
-                userCar.setYearOfProduce(Integer.parseInt(resultSet.getString("year_of_produce").split("-")[0]));
-                userCar.setAirConditioner(resultSet.getString("climate_type"));
-
-                userInfo.setCar(userCar);
-                logger.debug(String.format("new user created: role: %s", userInfo));
-
-            }
-
 
         } catch (SQLException e) {
             logger.error(e);
@@ -383,6 +352,113 @@ public class MySqlUserDao implements UserDAO {
         }
 
 
+        return user;
+    }
+
+    @Override
+    public User deleteCar(User user) throws ExceptionDao {
+        try (PreparedStatement statementDeleteCarIfExist
+                     = connection.prepareStatement(DELETE_CAR);) {
+
+
+            logger.debug(String.format("user id (del car): %s", user.getId()));
+            statementDeleteCarIfExist.setInt(1, user.getId());
+            statementDeleteCarIfExist.executeUpdate();
+        } catch (SQLException ex) {
+            logger.error(ex);
+            throw new ExceptionDao(ex);
+        }
+        return user;
+    }
+
+    @Override
+    public User findAllUserInfoById(int id) throws ExceptionDao {
+        User user = null;
+        PreparedStatement userInfoStatement = null;
+        try (PreparedStatement statement = connection.prepareStatement(CHECK_HAS_USER_CAR)) {
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            boolean hasCar = false;
+            while (resultSet.next()) {
+                String carExist = resultSet.getString("car");
+                hasCar = !carExist.equals(NO_CAR_VALUE);
+            }
+            if (hasCar) {
+                userInfoStatement = connection.prepareStatement(SELECT_ALL_USER_INFO_WITH_CAR_BY_ID);
+                userInfoStatement.setInt(1, id);
+                resultSet = userInfoStatement.executeQuery();
+                user = createUserWithCarFromResultSet(resultSet);
+            } else {
+                userInfoStatement = connection.prepareStatement(SELECT_ALL_USER_INFO_WITHOUT_CAR_BY_ID);
+                userInfoStatement.setInt(1, id);
+                resultSet = userInfoStatement.executeQuery();
+                user = createUserWithoutCarFromResultSet(resultSet);
+            }
+        } catch (SQLException ex) {
+            logger.error(ex);
+            throw new ExceptionDao(ex);
+        } finally {
+            try {
+                userInfoStatement.close();
+            } catch (SQLException e) {
+                logger.error(e);
+            }
+        }
+        return user;
+    }
+
+    private User createUserWithCarFromResultSet(ResultSet resultSet) throws SQLException {
+        User userInfo = null;
+        while (resultSet.next()) {
+            logger.debug(String.format("new user take from db: %d", 2));
+
+            userInfo = new User();
+            userInfo.setLogin(resultSet.getString("login"));
+            userInfo.setSurname(resultSet.getString("surname"));
+            userInfo.setName(resultSet.getString("name"));
+            userInfo.setBirthday(resultSet.getString("birthday"));
+            userInfo.setGender(resultSet.getString("gender_id"));
+            userInfo.setCountry(resultSet.getString("country_name"));
+            userInfo.setPassportNumber(resultSet.getString("passport_number"));
+            userInfo.setPassportDateOfIssue(resultSet.getString("passport_date_of_issue"));
+            userInfo.setPhoneNumber(resultSet.getString("phone"));
+            userInfo.setEmail(resultSet.getString("email"));
+            logger.debug("user data ok creating car");
+            Car userCar = new Car();
+            userCar.setBrand(resultSet.getString("brand"));
+            logger.debug("get brand OK");
+            userCar.setModel(resultSet.getString("model"));
+            userCar.setYearOfProduce(Integer.parseInt(resultSet.getString("year_of_produce").split("-")[0]));
+            userCar.setAirConditioner(resultSet.getString("climate_type"));
+
+            userInfo.setCar(userCar);
+            logger.debug(String.format("new user created: role: %s", userInfo));
+
+        }
+        return userInfo;
+    }
+
+    private User createUserWithoutCarFromResultSet(ResultSet resultSet) throws SQLException {
+        User userInfo = null;
+        while (resultSet.next()) {
+            logger.debug(String.format("new user take from db: %d", 2));
+
+            userInfo = new User();
+            userInfo.setLogin(resultSet.getString("login"));
+            userInfo.setSurname(resultSet.getString("surname"));
+            userInfo.setName(resultSet.getString("name"));
+            userInfo.setBirthday(resultSet.getString("birthday"));
+            userInfo.setGender(resultSet.getString("gender_id"));
+            userInfo.setCountry(resultSet.getString("country_name"));
+            userInfo.setPassportNumber(resultSet.getString("passport_number"));
+            userInfo.setPassportDateOfIssue(resultSet.getString("passport_date_of_issue"));
+            userInfo.setPhoneNumber(resultSet.getString("phone"));
+            userInfo.setEmail(resultSet.getString("email"));
+            logger.debug("user data ok");
+
+            logger.debug(String.format("new user created: role: %s", userInfo));
+
+        }
         return userInfo;
     }
 

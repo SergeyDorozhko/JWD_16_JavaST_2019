@@ -1,4 +1,4 @@
-package by.dorozhko.poputka.controller.action.user;
+package by.dorozhko.poputka.controller.action.autorized_user.user;
 
 import by.dorozhko.poputka.controller.Action;
 import by.dorozhko.poputka.entity.Role;

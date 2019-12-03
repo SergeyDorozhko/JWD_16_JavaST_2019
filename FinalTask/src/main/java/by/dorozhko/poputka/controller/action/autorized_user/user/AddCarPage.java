@@ -1,4 +1,4 @@
-package by.dorozhko.poputka.controller.action.user;
+package by.dorozhko.poputka.controller.action.autorized_user.user;
 
 import by.dorozhko.poputka.services.ServiceFactory;
 import org.apache.logging.log4j.LogManager;

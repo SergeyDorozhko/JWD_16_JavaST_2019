@@ -61,7 +61,7 @@ public class CreateAccount extends AllUsersAction {
                     regestedUser);
             logger.debug(String.format("USER NOT NULL : %s", regestedUser));
 
-            return request.getContextPath() + "/main.html";
+            return request.getContextPath() + "/viewUserProfile.html";
         }
         setUserInputData();
         return request.getContextPath() + "/registrationPage.html";

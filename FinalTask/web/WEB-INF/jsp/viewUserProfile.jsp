@@ -106,17 +106,19 @@ To change this template use File | Settings | File Templates.
                 <div class="col-sm-6">
                     <input type="country" id="country"
                            class="form-control" value="${userData.country}" readonly>
-                    </div>
+                </div>
             </div>
             <div class="form-group row">
-                <label for="passportNumber" class="col-sm-3 control-label"><fmt:message key="fields.passportNumber"/></label>
+                <label for="passportNumber" class="col-sm-3 control-label"><fmt:message
+                        key="fields.passportNumber"/></label>
                 <div class="col-sm-6">
                     <input type="passportNumber" id="passportNumber"
                            class="form-control" value="${userData.passportNumber}" readonly>
                 </div>
             </div>
             <div class="form-group row">
-                <label for="passportDate" class="col-sm-3 control-label"><fmt:message key="fields.passportDateOfIssue"/></label>
+                <label for="passportDate" class="col-sm-3 control-label"><fmt:message
+                        key="fields.passportDateOfIssue"/></label>
                 <div class="col-sm-4">
                     <input type="date" id="passportDate" class="form-control"
                            value="${userData.passportDateOfIssue}" readonly>
@@ -135,7 +137,15 @@ To change this template use File | Settings | File Templates.
         </form> <!-- /form -->
             <%--    </div>--%>
 
-
+        <c:choose>
+            <c:when test="${ empty userData.car}">
+                <form action="addCar.html" role="form" method="post">
+                    <div class="mx-auto-center">
+                        <button type="submit" class="btn btn-primary"><fmt:message key="button.addCar"/></button>
+                    </div>
+                </form>
+            </c:when>
+            <c:otherwise>
                 <form action="editCar.html" role="form" method="post">
                     <div class="form-group row">
                         <label for="brand" class="col-sm-3 control-label"><fmt:message key="fields.carBrand"/></label>
@@ -152,14 +162,16 @@ To change this template use File | Settings | File Templates.
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="yearOfProduce" class="col-sm-3 control-label"><fmt:message key="fields.carYearOfProduce"/></label>
+                        <label for="yearOfProduce" class="col-sm-3 control-label"><fmt:message
+                                key="fields.carYearOfProduce"/></label>
                         <div class="col-sm-9">
                             <input type="yearOfProduce" id="yearOfProduce" class="form-control"
                                    value="${userData.car.yearOfProduce}" readonly>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="airConditioner" class="col-sm-3 control-label"><fmt:message key="fields.carClimate"/></label>
+                        <label for="airConditioner" class="col-sm-3 control-label"><fmt:message
+                                key="fields.carClimate"/></label>
                         <div class="col-sm-9">
                             <input type="airConditioner" id="airConditioner" class="form-control"
                                    value="${userData.car.airConditioner}" readonly>
@@ -169,17 +181,23 @@ To change this template use File | Settings | File Templates.
                         <button type="submit" class="btn btn-primary"><fmt:message key="button.editCar"/></button>
                     </div>
                 </form>
-
-                <form action="changePassword.html" role="form" method="post">
+                <form action="deleteCar.html" role="form" method="post">
                     <div class="mx-auto-center">
-                        <button type="submit" class="btn btn-primary"><fmt:message key="button.changePassword"/></button>
+                        <button type="submit" class="btn btn-warning"><fmt:message key="button.deleteCar"/></button>
                     </div>
                 </form>
-                <form action="deleteUser.html" role="form" method="post">
-                    <div class="mx-auto-center">
-                        <button type="submit" class="btn btn-primary"><fmt:message key="button.deleteProfile"/></button>
-                    </div>
-                </form>
+            </c:otherwise>
+        </c:choose>
+        <form action="changePassword.html" role="form" method="post">
+            <div class="mx-auto-center">
+                <button type="submit" class="btn btn-primary"><fmt:message key="button.changePassword"/></button>
+            </div>
+        </form>
+        <form action="deleteUser.html" role="form" method="post">
+            <div class="mx-auto-center">
+                <button type="submit" class="btn btn-danger"><fmt:message key="button.deleteProfile"/></button>
+            </div>
+        </form>
     </div>
     </div> <!-- ./container -->
 

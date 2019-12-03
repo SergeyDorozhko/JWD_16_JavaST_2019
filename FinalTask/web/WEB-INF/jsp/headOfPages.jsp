@@ -36,7 +36,7 @@
                         <button class="dropdown-item" type="submit"><fmt:message
                                 key="headOfPages.button.home"/></button>
                     </form>
-                    <form action="addCar.html" method="get">
+                    <form action="listOfUsers.html" method="get">
                         <button class="dropdown-item" type="submit"><fmt:message
                                 key="headOfPages.button.allUsers"/></button>
                     </form>
@@ -59,7 +59,7 @@
                 <c:when test="${role}">
                     <div class="btn-group" style="position:absolute; top:15px; right:200px;">
 
-                        <form action="loginPage.html" method="get">
+                        <form action="viewUserProfile.html" method="get">
                             <button type="submit" class="btn btn-outline-warning btn-sm">
                                 <fmt:message key="headOfPages.button.viewAccount"/> ${authorizedUser.getLogin()}
                             </button>

@@ -17,7 +17,7 @@ public interface UserService extends Service {
      * @param id identity of user.
      * @return user if find.
      */
-    User findById(int id);
+    User findById(int id) throws ExceptionService;
 
     /**
      * Method try to login in app, checking user login and password.
@@ -47,4 +47,5 @@ public interface UserService extends Service {
     boolean delete(int id);
 
     User addCar(User user) throws ExceptionService;
+    User deteleCar(User user) throws ExceptionService;
 }

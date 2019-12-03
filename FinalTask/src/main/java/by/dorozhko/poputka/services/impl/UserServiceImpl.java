@@ -53,8 +53,26 @@ public class UserServiceImpl implements UserService {
      * @return user if find.
      */
     @Override
-    public User findById(int id) {
-        return null;
+    public User findById(int id) throws ExceptionService {
+
+        User userInfo = null;
+        Transaction transaction = TransactionFactory.getInstance().getTransaction();
+        UserDAO userDAO = FactoryDao.getInstance().getUserDAO();
+        CatalogDAO catalogDAO = FactoryDao.getInstance().getCatalogDAO();
+
+        transaction.begin(userDAO, catalogDAO);
+        try {
+            userInfo = userDAO.findAllUserInfoById(id);
+            userInfo.setGender(catalogDAO.getGender(Integer.parseInt(userInfo.getGender())));
+            transaction.commit();
+        } catch (ExceptionDao exceptionDao) {
+            transaction.rollback();
+            logger.error(exceptionDao);
+            throw new ExceptionService(exceptionDao);
+        } finally {
+            transaction.end();
+        }
+        return userInfo;
     }
 
     /**
@@ -165,12 +183,11 @@ public class UserServiceImpl implements UserService {
         User userInfo = null;
         Transaction transaction = TransactionFactory.getInstance().getTransaction();
         UserDAO userDAO = FactoryDao.getInstance().getUserDAO();
-        CatalogDAO catalogDAO = FactoryDao.getInstance().getCatalogDAO();
 
-        transaction.begin(userDAO, catalogDAO);
+        transaction.begin(userDAO);
         try {
             userInfo = userDAO.addCar(user);
-            userInfo.setGender(catalogDAO.getGender(Integer.parseInt(userInfo.getGender())));
+
             transaction.commit();
         } catch (ExceptionDao exceptionDao) {
             transaction.rollback();
@@ -180,6 +197,24 @@ public class UserServiceImpl implements UserService {
             transaction.end();
         }
         return userInfo;
+    }
+
+    @Override
+    public User deteleCar(User user) throws ExceptionService {
+        Transaction transaction = TransactionFactory.getInstance().getTransaction();
+        UserDAO userDAO = FactoryDao.getInstance().getUserDAO();
+        transaction.begin(userDAO);
+
+        try {
+            userDAO.deleteCar(user);
+            transaction.commit();
+        } catch (ExceptionDao exceptionDao) {
+            logger.error(exceptionDao);
+            transaction.rollback();
+            throw new ExceptionService(exceptionDao);
+        }
+
+        return user;
     }
 
     private class HashingPBKDF2 {

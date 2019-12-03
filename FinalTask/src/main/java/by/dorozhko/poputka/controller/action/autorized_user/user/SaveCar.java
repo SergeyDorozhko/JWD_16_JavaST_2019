@@ -1,4 +1,4 @@
-package by.dorozhko.poputka.controller.action.user;
+package by.dorozhko.poputka.controller.action.autorized_user.user;
 
 import by.dorozhko.poputka.entity.Car;
 import by.dorozhko.poputka.entity.User;
@@ -43,10 +43,9 @@ public class SaveCar extends UserAction {
 
             UserService userService = ServiceFactory.getInstance().getUserService();
             try {
-                user = userService.addCar(user);
-                request.setAttribute("userData", user);
+                userService.addCar(user);
                 logger.debug(user);
-                return "/WEB-INF/jsp/viewUserProfile.jsp";
+                return request.getContextPath() + "/viewUserProfile.html";
             } catch (ExceptionService exceptionService) {
                 logger.error(exceptionService);
                 //TODO exception parsing to show answer.
