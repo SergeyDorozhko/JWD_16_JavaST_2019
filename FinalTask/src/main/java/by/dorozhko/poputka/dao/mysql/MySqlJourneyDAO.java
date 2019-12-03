@@ -69,16 +69,6 @@ public class MySqlJourneyDAO implements JourneyDAO {
         return false;
     }
 
-    /**
-     * Remove entity from database.
-     *
-     * @param entity - entity which needed to be removed.
-     * @return - true value if successfully removed, otherwise false.
-     */
-    @Override
-    public boolean delete(Journey entity) {
-        return false;
-    }
 
     /**
      * Update entity values.

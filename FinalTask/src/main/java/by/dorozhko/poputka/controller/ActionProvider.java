@@ -2,9 +2,7 @@ package by.dorozhko.poputka.controller;
 
 import by.dorozhko.poputka.controller.action.*;
 import by.dorozhko.poputka.controller.action.autorized_user.administrator.DisplayAllUsers;
-import by.dorozhko.poputka.controller.action.autorized_user.user.AddCarPage;
-import by.dorozhko.poputka.controller.action.autorized_user.user.DeleteCarAction;
-import by.dorozhko.poputka.controller.action.autorized_user.user.SaveCar;
+import by.dorozhko.poputka.controller.action.autorized_user.user.*;
 import by.dorozhko.poputka.controller.action.autorized_user.ViewProfilePage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -53,11 +51,20 @@ public final class ActionProvider {
             case "/saveCar":
                 actionByQuery = new SaveCar();
                 break;
+            case "/deleteCar":
+                actionByQuery = new DeleteCarAction();
+                break;
+            case "/editProfile":
+                actionByQuery = new EditProfilePage();
+                break;
+            case "/deleteUser":
+                actionByQuery = new DeleteProfileAction();
+                break;
             case "/viewUserProfile":
                 actionByQuery = new ViewProfilePage();
                 break;
-            case "/deleteCar":
-                actionByQuery = new DeleteCarAction();
+            case "/updateProfile":
+                actionByQuery = new UpdateProfileAction();
                 break;
             default:
                 actionByQuery = new MainPage();

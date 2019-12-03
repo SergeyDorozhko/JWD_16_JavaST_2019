@@ -1,6 +1,5 @@
 package by.dorozhko.poputka.controller.action.autorized_user.user;
 
-import by.dorozhko.poputka.dao.FactoryDao;
 import by.dorozhko.poputka.entity.User;
 import by.dorozhko.poputka.services.ServiceFactory;
 import by.dorozhko.poputka.services.UserService;
@@ -22,7 +21,7 @@ public class DeleteCarAction extends UserAction {
         UserService service = ServiceFactory.getInstance().getUserService();
 
         try {
-            service.deteleCar(user);
+            service.deleteCar(user);
         } catch (ExceptionService exceptionService) {
             logger.error(exceptionService);
         }

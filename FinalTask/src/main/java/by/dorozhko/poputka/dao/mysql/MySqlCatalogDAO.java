@@ -195,16 +195,6 @@ public class MySqlCatalogDAO implements CatalogDAO {
         throw new UnsupportedOperationException();
     }
 
-    /**
-     * Remove entity from database.
-     *
-     * @param entity - entity which needed to be removed.
-     * @return - true value if successfully removed, otherwise false.
-     */
-    @Override
-    public boolean delete(Entity entity) {
-        throw new UnsupportedOperationException();
-    }
 
     /**
      * Update entity values.

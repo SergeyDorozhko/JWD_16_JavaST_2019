@@ -12,4 +12,7 @@ public interface UserDAO extends InterfaceDAO<Integer, User> {
     User deleteCar(User user) throws ExceptionDao;
 
     User findAllUserInfoById(int id) throws ExceptionDao;
+
+    User findAllUserInfoByIdForEdit(int id) throws ExceptionDao;
+
 }

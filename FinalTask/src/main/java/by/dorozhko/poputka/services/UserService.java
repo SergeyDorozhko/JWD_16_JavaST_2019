@@ -35,17 +35,14 @@ public interface UserService extends Service {
     User add(User user) throws ExceptionService;
     /**
      * Update user info into database.
-     * @param user User.
+     * @param user User .
      * @return true if successfully saved, otherwise false.
      */
-    boolean update(User user);
-    /**
-     * Delete user by identity.
-     * @param id Identity of user.
-     * @return true if successfully deleted, otherwise false.
-     */
-    boolean delete(int id);
+    User update(User user) throws ExceptionService;
 
+
+    User takeDataForEditProfile(int id) throws ExceptionService;
     User addCar(User user) throws ExceptionService;
-    User deteleCar(User user) throws ExceptionService;
+    User deleteCar(User user) throws ExceptionService;
+    boolean deleteUser(User user) throws ExceptionService;
 }

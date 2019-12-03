@@ -31,15 +31,8 @@ public interface InterfaceDAO<K, T extends Entity> {
      * @param id - identity of removing entity.
      * @return - true value if successfully removed, otherwise false.
      */
-    boolean delete(K id);
+    boolean delete(K id) throws ExceptionDao;
 
-    /**
-     * Remove entity from database.
-     *
-     * @param entity - entity which needed to be removed.
-     * @return - true value if successfully removed, otherwise false.
-     */
-    boolean delete(T entity);
 
     /**
      * Update entity values.
@@ -48,7 +41,7 @@ public interface InterfaceDAO<K, T extends Entity> {
      *               with new params.
      * @return - entity with new params.
      */
-    T update(T entity);
+    T update(T entity) throws ExceptionDao;
 
     /**
      * Find all entity from current data table.

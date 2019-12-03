@@ -3,6 +3,7 @@ package by.dorozhko.poputka.services.impl;
 import by.dorozhko.poputka.dao.*;
 import by.dorozhko.poputka.dao.exception.ExceptionDao;
 import by.dorozhko.poputka.entity.User;
+import by.dorozhko.poputka.services.AbstractService;
 import by.dorozhko.poputka.services.UserService;
 import by.dorozhko.poputka.services.exception.ExceptionService;
 import org.apache.logging.log4j.LogManager;
@@ -19,7 +20,7 @@ import java.util.Formatter;
 import java.util.List;
 
 
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends AbstractService implements UserService {
     private final Logger logger = LogManager.getLogger(getClass().getName());
 
     /**
@@ -31,8 +32,7 @@ public class UserServiceImpl implements UserService {
     public List<User> findAll() {
         List<User> userList = null;
         UserDAO userDAO = FactoryDao.getInstance().getUserDAO();
-        Transaction transaction = TransactionFactory
-                .getInstance().getTransaction();
+
         transaction.begin(userDAO);
         try {
             userList = userDAO.findAll();
@@ -56,7 +56,6 @@ public class UserServiceImpl implements UserService {
     public User findById(int id) throws ExceptionService {
 
         User userInfo = null;
-        Transaction transaction = TransactionFactory.getInstance().getTransaction();
         UserDAO userDAO = FactoryDao.getInstance().getUserDAO();
         CatalogDAO catalogDAO = FactoryDao.getInstance().getCatalogDAO();
 
@@ -92,8 +91,7 @@ public class UserServiceImpl implements UserService {
             logger.error(msg);
             throw new ExceptionService(msg);
         }
-        Transaction transaction = TransactionFactory
-                .getInstance().getTransaction();
+
         UserDAO userDAO = FactoryDao.getInstance().getUserDAO();
 
         transaction.begin(userDAO);
@@ -129,8 +127,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public User add(final User user) throws ExceptionService {
-        Transaction transaction = TransactionFactory
-                .getInstance().getTransaction();
+
         UserDAO userDAO = FactoryDao.getInstance().getUserDAO();
 
         transaction.begin(userDAO);
@@ -159,29 +156,47 @@ public class UserServiceImpl implements UserService {
     /**
      * Update user info into database.
      *
-     * @param user User.
+     * @param user User .
      * @return true if successfully saved, otherwise false.
      */
     @Override
-    public boolean update(User user) {
-        return false;
+    public User update(User user) throws ExceptionService {
+        UserDAO userDAO = FactoryDao.getInstance().getUserDAO();
+        transaction.begin(userDAO);
+
+        try {
+            user = userDAO.update(user);
+            transaction.commit();
+        } catch (ExceptionDao exceptionDao) {
+            logger.error(exceptionDao);
+            transaction.rollback();
+            throw new ExceptionService(exceptionDao);
+        } finally {
+            transaction.end();
+        }
+        return user;
     }
 
-    /**
-     * Delete user by identity.
-     *
-     * @param id Identity of user.
-     * @return true if successfully deleted, otherwise false.
-     */
     @Override
-    public boolean delete(int id) {
-        return false;
+    public User takeDataForEditProfile(int id) throws ExceptionService {
+
+        User user = null;
+        UserDAO userDAO = FactoryDao.getInstance().getUserDAO();
+        transaction.begin(userDAO);
+
+        try {
+            user = userDAO.findAllUserInfoByIdForEdit(id);
+        } catch (ExceptionDao exceptionDao) {
+            logger.error(exceptionDao);
+            throw new ExceptionService(exceptionDao);
+        }
+        return user;
     }
+
 
     @Override
     public User addCar(User user) throws ExceptionService {
         User userInfo = null;
-        Transaction transaction = TransactionFactory.getInstance().getTransaction();
         UserDAO userDAO = FactoryDao.getInstance().getUserDAO();
 
         transaction.begin(userDAO);
@@ -200,8 +215,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User deteleCar(User user) throws ExceptionService {
-        Transaction transaction = TransactionFactory.getInstance().getTransaction();
+    public User deleteCar(User user) throws ExceptionService {
         UserDAO userDAO = FactoryDao.getInstance().getUserDAO();
         transaction.begin(userDAO);
 
@@ -215,6 +229,26 @@ public class UserServiceImpl implements UserService {
         }
 
         return user;
+    }
+
+    @Override
+    public boolean deleteUser(User user) throws ExceptionService {
+        UserDAO userDAO = FactoryDao.getInstance().getUserDAO();
+        singIn(user.getLogin(), user.getPassword());
+        transaction.begin(userDAO);
+
+        try {
+
+            userDAO.delete(user.getId());
+            transaction.commit();
+        } catch (ExceptionDao exceptionDao) {
+            logger.error(exceptionDao);
+            transaction.rollback();
+        } finally {
+            transaction.end();
+        }
+
+        return true;
     }
 
     private class HashingPBKDF2 {

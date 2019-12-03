@@ -65,6 +65,11 @@ public class MySqlUserDao implements UserDAO {
             + "climate_type_id) values (?,?,?)";
     private static final String UPDATE_CAR_INTO_USER_INFO
             = "UPDATE user_info SET car_id = ? WHERE user_id = ?;";
+    private static final String UPDATE_USER_INFO
+            = "UPDATE user_info, users SET users.login = ?, name = ?,"
+            + " surname = ?, email = ?, birthday = ?, phone = ?,"
+            + " country_id = ?, passport_number = ?, passport_date_of_issue = ?,"
+            + " gender_id = ?  WHERE users.id = ? AND user_info.user_id = ?;";
     private static final String SELECT_ALL_USER_INFO_WITH_CAR_BY_ID
             = " SELECT login, surname, name, birthday, gender_id, country_name,"
             + " passport_number, passport_date_of_issue, phone, email, brand, model, year_of_produce, climate_type"
@@ -85,6 +90,13 @@ public class MySqlUserDao implements UserDAO {
             + " AND user_info.user_id = users.id"
             + " AND user_info.country_id = countries.id";
 
+    private static final String SELECT_ALL_USER_INFO_FOR_EDIT_BY_ID
+            = " SELECT login, surname, name, birthday, gender_id, country_id,"
+            + " passport_number, passport_date_of_issue, phone, email"
+            + " from users, user_info"
+            + " WHERE user_info.user_id = ? "
+            + " AND user_info.user_id = users.id";
+
     private static final String CHECK_HAS_USER_CAR =
             "SELECT user_id,"
                     + " IFNULL(car_id, 'no car') AS car"
@@ -95,6 +107,9 @@ public class MySqlUserDao implements UserDAO {
     private static final String DELETE_CAR
             = "DELETE FROM cars  WHERE id IN"
             + "(SELECT user_info.car_id FROM user_info WHERE user_id = ? );";
+
+    private static final String DELETE_USER_BY_ID
+            = "DELETE FROM users WHERE id = ?";
 
     /**
      * Method take connection to database and set it to realisation of Dao.
@@ -188,20 +203,18 @@ public class MySqlUserDao implements UserDAO {
      * @return - true value if successfully removed, otherwise false.
      */
     @Override
-    public boolean delete(final Integer id) {
-        return false;
+    public boolean delete(final Integer id) throws ExceptionDao {
+
+        try (PreparedStatement statement = connection.prepareStatement(DELETE_USER_BY_ID)) {
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            logger.error(ex);
+            throw new ExceptionDao(ex);
+        }
+        return true;
     }
 
-    /**
-     * Remove user from database.
-     *
-     * @param entity - user which needed to be removed.
-     * @return - true value if successfully removed, otherwise false.
-     */
-    @Override
-    public boolean delete(final User entity) {
-        return false;
-    }
 
     /**
      * Update user values.
@@ -211,8 +224,32 @@ public class MySqlUserDao implements UserDAO {
      * @return - user with new params.
      */
     @Override
-    public User update(final User entity) {
-        return null;
+    public User update(final User entity) throws ExceptionDao {
+
+        try (PreparedStatement statement = connection.prepareStatement(UPDATE_USER_INFO)) {
+            setStatementDataToUpdateUser(statement, entity);
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            logger.error(ex);
+            throw new ExceptionDao(ex);
+        }
+        return entity;
+    }
+
+    private void setStatementDataToUpdateUser(PreparedStatement statement, User user) throws SQLException {
+        logger.debug(user);
+        statement.setString(1, user.getLogin());
+        statement.setString(2, user.getName());
+        statement.setString(3, user.getSurname());
+        statement.setString(4, user.getEmail());
+        statement.setString(5, user.getBirthday().toString());
+        statement.setString(6, user.getPhoneNumber());
+        statement.setInt(7, Integer.parseInt(user.getCountry()));
+        statement.setString(8, user.getPassportNumber());
+        statement.setString(9, user.getPassportDateOfIssue().toString());
+        statement.setInt(10, Integer.parseInt(user.getGender()));
+        statement.setInt(11, user.getId());
+        statement.setInt(12, user.getId());
     }
 
     /**
@@ -462,4 +499,31 @@ public class MySqlUserDao implements UserDAO {
         return userInfo;
     }
 
+    @Override
+    public User findAllUserInfoByIdForEdit(int id) throws ExceptionDao {
+        User userInfo = null;
+        try (PreparedStatement statement = connection.prepareStatement(SELECT_ALL_USER_INFO_FOR_EDIT_BY_ID)) {
+
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+
+                userInfo = new User();
+                userInfo.setLogin(resultSet.getString("login"));
+                userInfo.setSurname(resultSet.getString("surname"));
+                userInfo.setName(resultSet.getString("name"));
+                userInfo.setBirthday(resultSet.getString("birthday"));
+                userInfo.setGender(resultSet.getString("gender_id"));
+                userInfo.setCountry(resultSet.getString("country_id"));
+                userInfo.setPassportNumber(resultSet.getString("passport_number"));
+                userInfo.setPassportDateOfIssue(resultSet.getString("passport_date_of_issue"));
+                userInfo.setPhoneNumber(resultSet.getString("phone"));
+                userInfo.setEmail(resultSet.getString("email"));
+            }
+        } catch (SQLException ex) {
+            logger.error(ex);
+            throw new ExceptionDao(ex);
+        }
+        return userInfo;
+    }
 }
