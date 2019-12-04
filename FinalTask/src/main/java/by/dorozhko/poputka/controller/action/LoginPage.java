@@ -1,7 +1,6 @@
 package by.dorozhko.poputka.controller.action;
 
-import by.dorozhko.poputka.services.JourneyService;
-import by.dorozhko.poputka.services.ServiceFactory;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

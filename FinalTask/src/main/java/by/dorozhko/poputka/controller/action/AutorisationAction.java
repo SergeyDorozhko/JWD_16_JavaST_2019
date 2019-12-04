@@ -10,6 +10,7 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.ResourceBundle;
 
 public class AutorisationAction extends AllUsersAction {
     private final Logger logger = LogManager.getLogger(getClass().getName());
@@ -26,7 +27,8 @@ public class AutorisationAction extends AllUsersAction {
                 = ServiceFactory.getInstance().getUserService();
         getAllAttributes(request);
         User user = null;
-        if (checkData()) {
+        ResourceBundle resourceBundle = takeLocale(request);
+        if (checkData(resourceBundle)) {
             try {
                 user = userService.singIn(login, password);
             } catch (ExceptionService exceptionService) {
@@ -39,7 +41,7 @@ public class AutorisationAction extends AllUsersAction {
             return request.getContextPath() + "/main.html";
         }
         setUserInputData();
-        session.setAttribute("errorLogin", "Неверный логин или пароль");
+        session.setAttribute("errorLogin", resourceBundle.getString("back.errors.unknownError"));
 
         return request.getContextPath() + "/loginPage.html";
     }
@@ -50,16 +52,16 @@ public class AutorisationAction extends AllUsersAction {
         logger.debug("all params take ok");
     }
 
-    private boolean checkData() {
+    private boolean checkData(ResourceBundle resourceBundle) {
         logger.debug("check data start");
         int countErrors = 0;
         if (login.length() == 0) {
-            session.setAttribute("errorLogin", "поле не может быть пустым");
+            session.setAttribute("errorLogin", resourceBundle.getString("back.errors.fieldIsEmptyError"));
             countErrors++;
         }
 
         if (password.length() == 0) {
-            session.setAttribute("errorPassword", "поле не может быть пустым");
+            session.setAttribute("errorPassword", resourceBundle.getString("back.errors.fieldIsEmptyError"));
             countErrors++;
         }
 

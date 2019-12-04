@@ -10,6 +10,7 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.ResourceBundle;
 
 public class DeleteProfileAction extends UserAction {
     private final Logger logger = LogManager.getLogger(getClass().getName());
@@ -43,14 +44,16 @@ public class DeleteProfileAction extends UserAction {
                     session.invalidate();
                     return request.getContextPath() + "/main.html";
                 }
+
             } catch (ExceptionService exceptionService) {
                 logger.error(String.format("sqlmsg : %s",
                         exceptionService.getMessage()));
 
             }
-
+            ResourceBundle resourceBundle = takeLocale(request);
+            session.setAttribute("unknownError", resourceBundle.getString("back.errors.incorrectPassword"));
         }
-        session.setAttribute("unknownError", "что-то пошло не так, попробуйте снова");
+
         return request.getContextPath() + "/viewUserProfile.html";
 
     }

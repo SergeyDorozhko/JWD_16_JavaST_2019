@@ -10,6 +10,7 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.ResourceBundle;
 
 public class CreateAccount extends AllUsersAction {
     private final Logger logger = LogManager.getLogger(getClass().getName());
@@ -40,7 +41,8 @@ public class CreateAccount extends AllUsersAction {
 
         getAllAttributes(request);
         User regestedUser = null;
-        if (checkData()) {
+        ResourceBundle resourceBundle = takeLocale(request);
+        if (checkData(resourceBundle)) {
             logger.debug("passwords are equal");
             User user = new User(login, password, firstName, lastName, sex, birthday, country, passportNumber, passportDate, phoneNumber, email);
 
@@ -50,7 +52,7 @@ public class CreateAccount extends AllUsersAction {
             } catch (ExceptionService exceptionService) {
                 logger.error(String.format("sqlmsg : %s",
                         exceptionService.getMessage()));
-                getErrorMessage(exceptionService.getMessage());
+                getErrorMessage(exceptionService.getMessage(), resourceBundle);
             }
 
             logger.debug("get answer from service");
@@ -84,7 +86,7 @@ public class CreateAccount extends AllUsersAction {
         logger.debug("all params take ok");
     }
 
-    private boolean checkData() {
+    private boolean checkData(ResourceBundle resourceBundle) {
         logger.debug("check data start");
         int countErrors = 0;
         logger.debug(String.format("login: %s", login));
@@ -92,69 +94,75 @@ public class CreateAccount extends AllUsersAction {
         logger.debug(String.format("sex: %s", sex));
 
         if (login.length() == 0) {
-            session.setAttribute("errorLogin", "поле не может быть пустым");
+            session.setAttribute("errorLogin",  resourceBundle.getString("back.errors.fieldIsEmptyError"));
             countErrors++;
         }
         if (firstName.length() == 0) {
-            session.setAttribute("errorFirstName", "поле не может быть пустым");
+            session.setAttribute("errorFirstName",  resourceBundle.getString("back.errors.fieldIsEmptyError"));
             countErrors++;
         }
         if (lastName.length() == 0) {
-            session.setAttribute("errorLastName", "поле не может быть пустым");
+            session.setAttribute("errorLastName",  resourceBundle.getString("back.errors.fieldIsEmptyError"));
             countErrors++;
         }
         if (email.length() == 0) {
-            session.setAttribute("errorEmail", "поле не может быть пустым");
+            session.setAttribute("errorEmail",  resourceBundle.getString("back.errors.fieldIsEmptyError"));
             countErrors++;
         }
         if (password.length() == 0 || confirmPassword.length() == 0) {
-            session.setAttribute("errorPassword", "оба поля с поролями должны быть заполнены");
+            session.setAttribute("errorPassword",  resourceBundle.getString("back.errors.fieldIsEmptyError"));
             countErrors++;
         } else {
             if (!password.equals(confirmPassword)) {
-                session.setAttribute("errorPassword", "passwordsNotEqual");
+                session.setAttribute("errorPassword",  resourceBundle.getString("back.errors.fieldIsEmptyError"));
                 countErrors++;
             }
         }
         if (birthday.length() == 0) {
-            session.setAttribute("errorBirthday", "поле не может быть пустым");
+            session.setAttribute("errorBirthday",  resourceBundle.getString("back.errors.fieldIsEmptyError"));
             countErrors++;
         }
         if (phoneNumber.length() == 0) {
-            session.setAttribute("errorPhoneNumber", "поле не может быть пустым");
+            session.setAttribute("errorPhoneNumber",  resourceBundle.getString("back.errors.fieldIsEmptyError"));
             countErrors++;
         }
         if (country.length() == 0) {
-            session.setAttribute("errorCountry", "поле не может быть пустым");
+            session.setAttribute("errorCountry",  resourceBundle.getString("back.errors.fieldIsEmptyError"));
             countErrors++;
         }
         if (passportNumber.length() == 0) {
-            session.setAttribute("errorPassportNumber", "поле не может быть пустым");
+            session.setAttribute("errorPassportNumber",  resourceBundle.getString("back.errors.fieldIsEmptyError"));
             countErrors++;
         }
         if (passportDate.length() == 0) {
-            session.setAttribute("errorPassportDate", "поле не может быть пустым");
+            session.setAttribute("errorPassportDate",  resourceBundle.getString("back.errors.fieldIsEmptyError"));
             countErrors++;
         }
         if (sex.length() == 0) {
-            session.setAttribute("errorSex", "поле не может быть пустым");
+            session.setAttribute("errorSex",  resourceBundle.getString("back.errors.fieldIsEmptyError"));
             countErrors++;
         }
         logger.debug(String.format("find %d errors", countErrors));
         return countErrors == 0;
     }
 
-    private void getErrorMessage(String msg) {
+    private void getErrorMessage(String msg, ResourceBundle resourceBundle) {
+
         if (msg.contains("login")) {
-            session.setAttribute("errorLogin", "пользователь с таким логином существует");
+            session.setAttribute("errorLogin", resourceBundle
+                    .getString("back.errors.dublicatedLogin"));
         } else if (msg.contains("passport_number")) {
-            session.setAttribute("errorPassportNumber", "пользователь с таким паспортом существует");
+            session.setAttribute("errorPassportNumber",
+                    resourceBundle.getString("back.errors.dublicatedPassport"));
         } else if (msg.contains("phone")) {
-            session.setAttribute("errorPhoneNumber", "пользователь с таким номером телефона существует");
+            session.setAttribute("errorPhoneNumber",
+                    resourceBundle.getString("back.errors.dublicatedPhone"));
         } else if (msg.contains("email")) {
-            session.setAttribute("errorEmail", "пользователь с такой почной существует");
+            session.setAttribute("errorEmail",
+                    resourceBundle.getString("back.errors.dublicatedEmail"));
         } else {
-            session.setAttribute("unknownError", "что-то пошло не так, попробуйте снова");
+            session.setAttribute("unknownError",
+                    resourceBundle.getString("back.errors.unknownError"));
         }
 
     }

@@ -30,9 +30,8 @@ public class ViewProfilePage extends AuthorizedUser {
         } catch (ExceptionService exceptionService) {
             logger.error(exceptionService);
         }
-//TODO DELETE LOGGER, exist for check pwd.
-        logger.debug(String.format("user data set pwd action: %s, pwd: %s", user, user.getPassword()));
 
+        logger.debug("done without mistakes.");
         attributesData(request);
         return "/WEB-INF/jsp/viewUserProfile.jsp";
     }

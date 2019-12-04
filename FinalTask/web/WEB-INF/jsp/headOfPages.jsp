@@ -18,8 +18,8 @@
                 <lo class="nav-item">
                     <div class="mx-auto" style="width: 200px;">
 
-                        <h4 style="color:orange;"><fmt:message key="headOfPages.titel.brand"/>
-                            <small><i><em><fmt:message key="headOfPages.titel.tagline"/></em></i></small></h4>
+                        <h4 style="color:orange;"><fmt:message key="mainPage.titel.brand"/>
+                            <small><i><em><fmt:message key="mainPage.titel.tagline"/></em></i></small></h4>
                     </div>
                 </lo>
                 <lo class="nav-item">
@@ -29,16 +29,16 @@
             <div class="dropdown" style="position:absolute; top:15px; left:300px; height: 30px;">
                 <button class="btn btn-outline-warning btn-sm dropdown-toggle" type="button" id="dropdownMenu2"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <fmt:message key="headOfPages.button.menu"/>
+                    <fmt:message key="mainPage.button.menu"/>
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                     <form action="main.html" method="get">
                         <button class="dropdown-item" type="submit"><fmt:message
-                                key="headOfPages.button.home"/></button>
+                                key="mainPage.button.home"/></button>
                     </form>
                     <form action="listOfUsers.html" method="get">
                         <button class="dropdown-item" type="submit"><fmt:message
-                                key="headOfPages.button.allUsers"/></button>
+                                key="mainPage.button.allUsers"/></button>
                     </form>
                 </div>
             </div>
@@ -61,12 +61,12 @@
 
                         <form action="viewUserProfile.html" method="get">
                             <button type="submit" class="btn btn-outline-warning btn-sm">
-                                <fmt:message key="headOfPages.button.viewAccount"/> ${authorizedUser.getLogin()}
+                                <fmt:message key="mainPage.button.viewAccount"/> ${authorizedUser.getLogin()}
                             </button>
                         </form>
                         <form action="logout.html" method="post">
                             <button type="submit" class="btn btn-outline-warning btn-sm">
-                                <fmt:message key="headOfPages.button.logOut"/>
+                                <fmt:message key="mainPage.button.logOut"/>
                             </button>
                         </form>
                     </div>
@@ -76,13 +76,13 @@
                         <form action="loginPage.html" method="get">
                             <button type="submit" class="btn btn-outline-warning btn-sm">
                                     <%--                                style="position:absolute; top:15px; right:300px;"--%>
-                                <fmt:message key="headOfPages.button.singIn"/>
+                                <fmt:message key="mainPage.button.singIn"/>
                             </button>
                         </form>
                         <form action="registrationPage.html" method="post">
                             <button type="submit" class="btn btn-outline-warning btn-sm">
                                     <%--                                style="position:absolute; top:15px; right:200px;"--%>
-                                <fmt:message key="headOfPages.button.registration"/>
+                                <fmt:message key="mainPage.button.registration"/>
                             </button>
                         </form>
                     </div>
