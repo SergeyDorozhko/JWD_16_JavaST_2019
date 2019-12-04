@@ -202,7 +202,7 @@ public class UserServiceImpl extends AbstractService implements UserService {
         transaction.begin(userDAO);
 
         try {
-            user = userDAO.findAllUserInfoByIdForEdit(id);
+            user = userDAO.findUserInfoWithoutCar(id);
         } catch (ExceptionDao exceptionDao) {
             logger.error(exceptionDao);
             throw new ExceptionService(exceptionDao);

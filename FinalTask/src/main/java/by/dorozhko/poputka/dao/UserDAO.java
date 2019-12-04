@@ -3,8 +3,6 @@ package by.dorozhko.poputka.dao;
 import by.dorozhko.poputka.dao.exception.ExceptionDao;
 import by.dorozhko.poputka.entity.User;
 
-import java.sql.SQLException;
-
 
 public interface UserDAO extends InterfaceDAO<Integer, User> {
 
@@ -19,8 +17,6 @@ public interface UserDAO extends InterfaceDAO<Integer, User> {
     User findUserInfoWithCar(int id) throws ExceptionDao;
 
     User findUserInfoWithoutCar(int id) throws ExceptionDao;
-
-    User findAllUserInfoByIdForEdit(int id) throws ExceptionDao;
 
     boolean hasUserCar(int id) throws ExceptionDao;
 }

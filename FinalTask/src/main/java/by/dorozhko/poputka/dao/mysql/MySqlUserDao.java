@@ -78,18 +78,8 @@ public class MySqlUserDao implements UserDAO {
             + " AND user_info.user_id = users.id"
             + " AND user_info.car_id =cars.id";
 
-//              = " SELECT login, surname, name, birthday, gender_id, country_id,"
-//                      + " passport_number, passport_date_of_issue, phone, email, brand, model, year_of_produce, climate_type"
-//                      + " from cars, users, user_info, car_climate, car_models, car_brands"
-//                      + " WHERE user_info.user_id = ? "
-//                      + " AND user_info.user_id = users.id"
-//                      + " AND user_info.car_id =cars.id"
-//                      + " AND cars.brand_and_model_id = car_models.id"
-//                      + " AND car_models.brand_id = car_brands.id"
-//                      + " AND cars.climate_type_id = car_climate.id;";
 
-
-    private static final String SELECT_ALL_USER_INFO_FOR_EDIT_BY_ID
+    private static final String SELECT_ALL_USER_INFO_WITHOUT_CAR_BY_ID
             = " SELECT login, surname, name, birthday, gender_id, country_id,"
             + " passport_number, passport_date_of_issue, phone, email"
             + " from users, user_info"
@@ -469,7 +459,7 @@ public class MySqlUserDao implements UserDAO {
         User userInfo = null;
 
         logger.debug(String.format("new user take from db: %d", 2));
-        try (PreparedStatement userInfoStatement = connection.prepareStatement(SELECT_ALL_USER_INFO_FOR_EDIT_BY_ID);) {
+        try (PreparedStatement userInfoStatement = connection.prepareStatement(SELECT_ALL_USER_INFO_WITHOUT_CAR_BY_ID);) {
             userInfoStatement.setInt(1, id);
             ResultSet resultSet = userInfoStatement.executeQuery();
             while (resultSet.next()) {
@@ -496,31 +486,4 @@ public class MySqlUserDao implements UserDAO {
         }
     }
 
-    @Override
-    public User findAllUserInfoByIdForEdit(int id) throws ExceptionDao {
-        User userInfo = null;
-        try (PreparedStatement statement = connection.prepareStatement(SELECT_ALL_USER_INFO_FOR_EDIT_BY_ID)) {
-
-            statement.setInt(1, id);
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-
-                userInfo = new User();
-                userInfo.setLogin(resultSet.getString("login"));
-                userInfo.setSurname(resultSet.getString("surname"));
-                userInfo.setName(resultSet.getString("name"));
-                userInfo.setBirthday(resultSet.getString("birthday"));
-                userInfo.setGender(resultSet.getString("gender_id"));
-                userInfo.setCountry(resultSet.getString("country_id"));
-                userInfo.setPassportNumber(resultSet.getString("passport_number"));
-                userInfo.setPassportDateOfIssue(resultSet.getString("passport_date_of_issue"));
-                userInfo.setPhoneNumber(resultSet.getString("phone"));
-                userInfo.setEmail(resultSet.getString("email"));
-            }
-        } catch (SQLException ex) {
-            logger.error(ex);
-            throw new ExceptionDao(ex);
-        }
-        return userInfo;
-    }
 }
