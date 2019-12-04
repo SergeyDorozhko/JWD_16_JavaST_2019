@@ -29,11 +29,6 @@ public class MySqlJourneyDAO implements JourneyDAO {
             + " FROM journey"
             + " INNER JOIN currencies ON journey.currency_id = currencies.id";
 
-    private static final String SELECT_ADDRESS_BY_CITY_ID
-            = "SELECT countries.country_name, region_name, city_name"
-            + " FROM countries"
-            + " INNER JOIN regions r ON countries.id = r.country_id"
-            + " INNER JOIN cities c ON r.id = c.region_id WHERE c.id = ?;";
 
     /**
      * Method take connection to database and set it to realisation of Dao.
@@ -94,8 +89,7 @@ public class MySqlJourneyDAO implements JourneyDAO {
         List<Journey> list = new ArrayList<>();
 
         try (ResultSet journeyQuery = connection.createStatement()
-                .executeQuery(SELECT_ALL_JOURNEYS);
-             PreparedStatement getAddress = connection.prepareStatement(SELECT_ADDRESS_BY_CITY_ID)) {
+                .executeQuery(SELECT_ALL_JOURNEYS);) {
             while (journeyQuery.next()) {
                 Journey journey = new Journey();
 
@@ -103,32 +97,18 @@ public class MySqlJourneyDAO implements JourneyDAO {
                 User driver = new User();
                 driver.setId(Integer.parseInt(journeyQuery.getString("driver_id")));
                 journey.setDriver(driver);
-                getAddress.setInt(1, journeyQuery.getInt("start_address_id"));
-                ResultSet addressQuery = getAddress.executeQuery();
+
 
                 Address startAddress = new Address();
-                while (addressQuery.next()) {
-                    startAddress.setCountry(
-                            addressQuery.getString("country_name"));
-                    startAddress.setRegionalCenter(
-                            addressQuery.getString("region_name"));
-                    startAddress.setCity(addressQuery.getString("city_name"));
-                }
+                startAddress.setCity(journeyQuery.getString("start_address_id"));
+
+
                 journey.setStartAddress(startAddress);
 
-                getAddress.setInt(1,
-                        journeyQuery.getInt("destination_address_id"));
-                addressQuery = getAddress.executeQuery();
 
                 Address destinationAddress = new Address();
-                while (addressQuery.next()) {
-                    destinationAddress.setCountry(
-                            addressQuery.getString("country_name"));
-                    destinationAddress.setRegionalCenter(
-                            addressQuery.getString("region_name"));
-                    destinationAddress.setCity(
-                            addressQuery.getString("city_name"));
-                }
+                destinationAddress.setCity(journeyQuery.getString("destination_address_id"));
+
 
                 journey.setDestinationAddress(destinationAddress);
 

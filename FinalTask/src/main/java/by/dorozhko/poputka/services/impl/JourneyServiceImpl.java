@@ -18,13 +18,19 @@ public class JourneyServiceImpl implements JourneyService {
         List<Journey> list = null;
         JourneyDAO journeyDAO = FactoryDao.getInstance().getJourneyDAO();
         UserDAO userDAO = FactoryDao.getInstance().getUserDAO();
+        CatalogDAO catalogDAO = FactoryDao.getInstance().getCatalogDAO();
         Transaction transaction = TransactionFactory.getInstance().getTransaction();
-        transaction.begin(journeyDAO, userDAO);
+        transaction.begin(journeyDAO, userDAO, catalogDAO);
         try {
             list = journeyDAO.findAll();
             for (Journey journey : list) {
                 User user = userDAO.findEntityById(journey.getDriver().getId());
                 journey.getDriver().setName(user.getName());
+                journey.setStartAddress(catalogDAO.getAddressByCityId(
+                        Integer.parseInt(journey.getStartAddress().getCity())));
+                journey.setDestinationAddress(catalogDAO.getAddressByCityId(
+                        Integer.parseInt(journey
+                                .getDestinationAddress().getCity())));
             }
 
             transaction.commit();

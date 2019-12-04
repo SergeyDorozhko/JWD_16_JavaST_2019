@@ -2,6 +2,7 @@ package by.dorozhko.poputka.services.impl;
 
 import by.dorozhko.poputka.dao.*;
 import by.dorozhko.poputka.dao.exception.ExceptionDao;
+import by.dorozhko.poputka.entity.Car;
 import by.dorozhko.poputka.entity.User;
 import by.dorozhko.poputka.services.AbstractService;
 import by.dorozhko.poputka.services.UserService;
@@ -61,8 +62,24 @@ public class UserServiceImpl extends AbstractService implements UserService {
 
         transaction.begin(userDAO, catalogDAO);
         try {
-            userInfo = userDAO.findAllUserInfoById(id);
+            boolean hasCar = userDAO.hasUserCar(id);
+            if (hasCar) {
+                logger.debug("user has car");
+                userInfo = userDAO.findUserInfoWithCar(id);
+                Car car = catalogDAO.getCar(Integer.parseInt(
+                        userInfo.getCar().getModel()));
+                userInfo.getCar().setBrand(car.getBrand());
+                userInfo.getCar().setModel(car.getModel());
+                userInfo.getCar().setAirConditioner(catalogDAO
+                        .getClimateType(Integer.parseInt(userInfo
+                                .getCar().getAirConditioner())));
+            } else {
+                logger.debug("user without car");
+                userInfo = userDAO.findUserInfoWithoutCar(id);
+            }
             userInfo.setGender(catalogDAO.getGender(Integer.parseInt(userInfo.getGender())));
+            userInfo.setCountry(catalogDAO.getCountry(Integer.parseInt(userInfo.getCountry())));
+
             transaction.commit();
         } catch (ExceptionDao exceptionDao) {
             transaction.rollback();

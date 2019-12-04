@@ -1,6 +1,8 @@
 package by.dorozhko.poputka.dao;
 
 import by.dorozhko.poputka.dao.exception.ExceptionDao;
+import by.dorozhko.poputka.entity.Address;
+import by.dorozhko.poputka.entity.Car;
 
 import java.util.Map;
 
@@ -15,6 +17,10 @@ public interface CatalogDAO extends InterfaceDAO {
 
     Map<Integer, String> getCarClimateTypesList() throws ExceptionDao;
     String getGender(int id) throws ExceptionDao;
+    String getCountry(int id) throws ExceptionDao;
+    String getClimateType(int id) throws ExceptionDao;
+    Car getCar(int modelId) throws ExceptionDao;
+    Address getAddressByCityId(int id) throws ExceptionDao;
 
 
 }
