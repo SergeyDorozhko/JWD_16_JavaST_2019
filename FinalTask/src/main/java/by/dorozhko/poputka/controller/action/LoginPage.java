@@ -14,8 +14,7 @@ public class LoginPage extends AllUsersAction {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        getCookieAction().setCookie(request, response);
-
+        setLocaleToCookie(request, response);
         attributesData(request);
         return "/WEB-INF/jsp/login.jsp";
     }

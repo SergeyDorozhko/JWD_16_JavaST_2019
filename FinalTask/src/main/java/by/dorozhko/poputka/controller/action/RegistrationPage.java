@@ -14,7 +14,7 @@ public class RegistrationPage extends AllUsersAction {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        getCookieAction().setCookie(request, response);
+        setLocaleToCookie(request, response);
 
         attributesData(request);
         Map<Integer, String> gendors = ServiceFactory.getInstance().getCatalogService().getGenders();

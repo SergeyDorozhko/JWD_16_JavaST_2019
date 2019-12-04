@@ -19,12 +19,14 @@ public class EditProfilePage extends UserAction {
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         logger.debug("start edit profile page");
         HttpSession session = request.getSession(false);
-        getCookieAction().setCookie(request, response);
+        setLocaleToCookie(request, response);
         attributesData(request);
 
         UserService service = ServiceFactory.getInstance().getUserService();
-        User user = (User) session.getAttribute("authorizedUser");
-
+        User actionUser = (User) session.getAttribute("authorizedUser");
+        User user = new User();
+        user.setId(actionUser.getId());
+        user.setLogin(actionUser.getLogin());
         Map<Integer, String> gendors = ServiceFactory.getInstance().getCatalogService().getGenders();
         Map<Integer, String> countries = ServiceFactory.getInstance().getCatalogService().getCountries();
 

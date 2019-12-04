@@ -18,5 +18,7 @@ public interface UserDAO extends InterfaceDAO<Integer, User> {
 
     User findUserInfoWithoutCar(int id) throws ExceptionDao;
 
+    boolean updateUserPassword(User user) throws ExceptionDao;
+
     boolean hasUserCar(int id) throws ExceptionDao;
 }

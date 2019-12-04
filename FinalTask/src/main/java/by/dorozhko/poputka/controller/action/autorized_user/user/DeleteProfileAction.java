@@ -30,24 +30,28 @@ public class DeleteProfileAction extends UserAction {
         getAllAttributes(request);
         if (checkData()) {
             User actionUser = (User) session.getAttribute("authorizedUser");
-            actionUser.setPassword(password);
-            logger.debug(String.format("user data collected: %s", actionUser));
+            User user = new User();
+            user.setId(actionUser.getId());
+            user.setLogin(actionUser.getLogin());
+            user.setPassword(password);
+            logger.debug(String.format("user data collected: %s", user));
             try {
                 logger.debug("start delete user");
-                userService.deleteUser(actionUser);
+                boolean result = userService.deleteUser(user);
                 logger.debug("take answer from service");
-
+                if (result) {
+                    session.invalidate();
+                    return request.getContextPath() + "/main.html";
+                }
             } catch (ExceptionService exceptionService) {
                 logger.error(String.format("sqlmsg : %s",
                         exceptionService.getMessage()));
-                session.setAttribute("unknownError", "что-то пошло не так, попробуйте снова");
-                return request.getContextPath() + "/editProfile.html";
+
             }
 
-
         }
-        session.invalidate();
-        return request.getContextPath() + "/main.html";
+        session.setAttribute("unknownError", "что-то пошло не так, попробуйте снова");
+        return request.getContextPath() + "/viewUserProfile.html";
 
     }
 

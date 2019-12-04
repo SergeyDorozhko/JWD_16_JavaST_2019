@@ -195,6 +195,32 @@ public class UserServiceImpl extends AbstractService implements UserService {
     }
 
     @Override
+    public boolean updateUserPassword(User user, String newPassword) throws ExceptionService {
+        UserDAO userDAO = FactoryDao.getInstance().getUserDAO();
+        if (singIn(user.getLogin(), user.getPassword()) != null) {
+            transaction.begin(userDAO);
+
+            try {
+                HashingPBKDF2 hashingPBKDF2 = new HashingPBKDF2();
+                user.setSalt(hashingPBKDF2.generateSalt());
+                String passwordHash = hashingPBKDF2
+                        .generatePwdHash(newPassword);
+                user.setPassword(passwordHash);
+
+                userDAO.updateUserPassword(user);
+                transaction.commit();
+            } catch (ExceptionDao exceptionDao) {
+                logger.error(exceptionDao);
+                transaction.rollback();
+            } finally {
+                transaction.end();
+            }
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     public User takeDataForEditProfile(int id) throws ExceptionService {
 
         User user = null;
@@ -251,21 +277,22 @@ public class UserServiceImpl extends AbstractService implements UserService {
     @Override
     public boolean deleteUser(User user) throws ExceptionService {
         UserDAO userDAO = FactoryDao.getInstance().getUserDAO();
-        singIn(user.getLogin(), user.getPassword());
-        transaction.begin(userDAO);
+        if (singIn(user.getLogin(), user.getPassword()) != null) {
+            transaction.begin(userDAO);
 
-        try {
+            try {
 
-            userDAO.delete(user.getId());
-            transaction.commit();
-        } catch (ExceptionDao exceptionDao) {
-            logger.error(exceptionDao);
-            transaction.rollback();
-        } finally {
-            transaction.end();
+                userDAO.delete(user.getId());
+                transaction.commit();
+            } catch (ExceptionDao exceptionDao) {
+                logger.error(exceptionDao);
+                transaction.rollback();
+            } finally {
+                transaction.end();
+            }
+            return true;
         }
-
-        return true;
+        return false;
     }
 
     private class HashingPBKDF2 {

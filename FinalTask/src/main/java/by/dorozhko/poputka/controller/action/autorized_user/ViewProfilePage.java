@@ -14,20 +14,40 @@ import javax.servlet.http.HttpSession;
 
 public class ViewProfilePage extends AuthorizedUser {
     private final Logger logger = LogManager.getLogger(getClass().getName());
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession(false);
-        getCookieAction().setCookie(request, response);
+        setLocaleToCookie(request, response);
         UserService service = ServiceFactory.getInstance().getUserService();
-        User user = (User) session.getAttribute("authorizedUser");
+        User actionUser = (User) session.getAttribute("authorizedUser");
+        User user = new User();
+        user.setId(actionUser.getId());
+        user.setLogin(actionUser.getLogin());
         try {
             User userData = service.findById(user.getId());
             request.setAttribute("userData", userData);
         } catch (ExceptionService exceptionService) {
             logger.error(exceptionService);
-            //todo think about false action.
+        }
+//TODO DELETE LOGGER, exist for check pwd.
+        logger.debug(String.format("user data set pwd action: %s, pwd: %s", user, user.getPassword()));
+
+        attributesData(request);
+        return "/WEB-INF/jsp/viewUserProfile.jsp";
+    }
+
+    private void attributesData(final HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        logger.debug("check attributes start");
+        logger.debug(request.getAttributeNames());
+
+        String unknownError =
+                (String) session.getAttribute("unknownError");
+        if (unknownError != null) {
+            request.setAttribute("unknownError", unknownError);
+            session.removeAttribute("unknownError");
         }
 
-        return "/WEB-INF/jsp/viewUserProfile.jsp";
     }
 }

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 public class JourneyList extends AllUsersAction {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        getCookieAction().setCookie(request, response);
+        setLocaleToCookie(request, response);
 
         JourneyService journeyService
                 = ServiceFactory.getInstance().getJoureyService();

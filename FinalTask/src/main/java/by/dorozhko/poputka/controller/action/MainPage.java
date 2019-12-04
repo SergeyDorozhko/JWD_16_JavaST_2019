@@ -19,7 +19,7 @@ public class MainPage extends AllUsersAction {
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         JourneyService journeyService
                 = ServiceFactory.getInstance().getJoureyService();
-        getCookieAction().setCookie(request, response);
+        setLocaleToCookie(request, response);
         logger.debug(String.format("local: %s", request.getParameter("local")));
 
         request.setAttribute("journeyList",

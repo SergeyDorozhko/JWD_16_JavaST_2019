@@ -15,7 +15,7 @@ public class AddCarPage extends UserAction {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        getCookieAction().setCookie(request, response);
+        setLocaleToCookie(request, response);
         Map<Integer, String> brands = ServiceFactory.getInstance().getCatalogService().getCarBrands();
         request.setAttribute("brandsMap", brands);
         Map<Integer, String> climate = ServiceFactory.getInstance().getCatalogService().getCarClimateTypes();

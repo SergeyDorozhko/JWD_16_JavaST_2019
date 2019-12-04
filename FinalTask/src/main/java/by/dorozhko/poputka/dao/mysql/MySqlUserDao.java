@@ -100,6 +100,9 @@ public class MySqlUserDao implements UserDAO {
     private static final String DELETE_USER_BY_ID
             = "DELETE FROM users WHERE id = ?";
 
+    private static final String UPDATE_USER_PASSWORD
+            = "UPDATE users SET password = ?, salt = ? WHERE id = ?";
+
     /**
      * Method take connection to database and set it to realisation of Dao.
      *
@@ -486,4 +489,17 @@ public class MySqlUserDao implements UserDAO {
         }
     }
 
+    @Override
+    public boolean updateUserPassword(User user) throws ExceptionDao {
+        try (PreparedStatement statement = connection.prepareStatement(UPDATE_USER_PASSWORD)) {
+            statement.setString(1, user.getPassword());
+            statement.setString(2, user.getSalt());
+            statement.setInt(3, user.getId());
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            logger.error(ex);
+            throw new ExceptionDao(ex);
+        }
+        return true;
+    }
 }

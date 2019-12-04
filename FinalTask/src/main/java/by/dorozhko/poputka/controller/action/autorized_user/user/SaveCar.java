@@ -8,11 +8,9 @@ import by.dorozhko.poputka.services.exception.ExceptionService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class SaveCar extends UserAction {
@@ -23,8 +21,7 @@ public class SaveCar extends UserAction {
     private String climate;
     private String produced;
 
-    private String localeCountry;
-    private String localeLanguage;
+
     private HttpSession session;
 
     @Override
@@ -35,7 +32,10 @@ public class SaveCar extends UserAction {
         logger.debug(String.format("check: %s", checkData(request)));
 
         if (checkData(request)) {
-            User user = (User) session.getAttribute("authorizedUser");
+            User actionUser = (User) session.getAttribute("authorizedUser");
+            User user = new User();
+            user.setId(actionUser.getId());
+            user.setLogin(actionUser.getLogin());
             logger.debug(String.format("user: %s", user));
             Car car = new Car(brand, model, Integer.parseInt(produced), climate);
             user.setCar(car);
@@ -70,9 +70,8 @@ public class SaveCar extends UserAction {
     private boolean checkData(HttpServletRequest request) {
         logger.debug("check data start");
         int countErrors = 0;
-        takeLocal(request);
-        Locale current = new Locale(localeLanguage, localeCountry);
-        ResourceBundle resourceBundle = ResourceBundle.getBundle("pagecontent", current);
+        ResourceBundle resourceBundle = takeLocale(request);
+
         if (brand.length() == 0) {
             countErrors++;
         } else {
@@ -119,17 +118,6 @@ public class SaveCar extends UserAction {
         return countErrors == 0;
     }
 
-    private void takeLocal(HttpServletRequest request) {
-        Cookie[] cookies = request.getCookies();
-        String locale = null;
-        for (int i = 0; i < cookies.length; i++) {
-            if (cookies[i].getName().equals("lang")) {
-                locale = cookies[i].getValue();
-                localeLanguage = locale.split("-")[0];
-                localeCountry = locale.split("-")[1];
-            }
-        }
-    }
 
     private void setUserInputData() {
         logger.debug(String.format("set user attributes: %s, %s, %s, %s",

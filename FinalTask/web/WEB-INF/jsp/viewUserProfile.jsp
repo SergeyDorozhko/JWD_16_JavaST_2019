@@ -192,16 +192,69 @@ To change this template use File | Settings | File Templates.
         </c:choose>
         <form action="changePassword.html" role="form" method="post">
             <div class="mx-auto-center">
-                <button type="submit" class="btn btn-primary"><fmt:message key="button.changePassword"/></button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalChangePassword"><fmt:message key="button.changePassword"/></button>
+            </div>
+
+            <!-- The Modal -->
+            <div class="modal" id="modalChangePassword">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h2 class="modal-title"><fmt:message key="titel.modalChangePassword"/></h2>
+                            <button type="button" class="close" data-dismiss="modal">×</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <div class="form-group row">
+                                <label for="oldPassword" class="col-sm-3 control-label"><fmt:message
+                                        key="fields.oldPassword"/>:*</label>
+                                <div class="col-sm-9">
+                                    <input type="password" id="oldPassword" name="oldPassword"
+                                           placeholder="<fmt:message key="fields.oldPassword"/>" class="form-control"
+                                           required autofocus>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="newPassword" class="col-sm-3 control-label"><fmt:message
+                                        key="fields.newPassword"/>:*</label>
+                                <div class="col-sm-9">
+                                    <input type="password" id="newPassword" name="newPassword"
+                                           placeholder="<fmt:message key="fields.newPassword"/>" class="form-control"
+                                           required autofocus>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="comfirmNewPassword" class="col-sm-3 control-label">:*<fmt:message
+                                        key="fields.comfirmNewPassword"/>*</label>
+                                <div class="col-sm-9">
+                                    <input type="password" id="comfirmNewPassword" name="comfirmNewPassword"
+                                           placeholder="<fmt:message key="fields.comfirmNewPassword"/>" class="form-control"
+                                           required autofocus>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-danger"><fmt:message
+                                    key="button.changePassword"/></button>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </form>
+
         <form action="deleteUser.html" role="form" method="post">
             <div class="mx-auto-center">
-                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal"><fmt:message
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDelProfile"><fmt:message
                         key="button.deleteProfile"/></button>
             </div>
             <!-- The Modal -->
-            <div class="modal" id="myModal">
+            <div class="modal" id="modalDelProfile">
                 <div class="modal-dialog">
                     <div class="modal-content">
 

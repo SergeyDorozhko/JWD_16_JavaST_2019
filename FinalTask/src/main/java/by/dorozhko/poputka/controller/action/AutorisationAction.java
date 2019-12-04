@@ -25,7 +25,6 @@ public class AutorisationAction extends AllUsersAction {
         UserService userService
                 = ServiceFactory.getInstance().getUserService();
         getAllAttributes(request);
-        logger.debug(String.format("Login : %s , password: %s", login, password));
         User user = null;
         if (checkData()) {
             try {
@@ -54,7 +53,6 @@ public class AutorisationAction extends AllUsersAction {
     private boolean checkData() {
         logger.debug("check data start");
         int countErrors = 0;
-        logger.debug(String.format("login: %s", login));
         if (login.length() == 0) {
             session.setAttribute("errorLogin", "поле не может быть пустым");
             countErrors++;
