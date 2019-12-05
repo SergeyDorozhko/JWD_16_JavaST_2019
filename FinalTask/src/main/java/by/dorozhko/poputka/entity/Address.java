@@ -11,26 +11,11 @@ public class Address extends Entity {
      * Name of region main city.
      */
     private String regionalCenter;
-    /**
-     * Name of district center.
-     */
-    private String districtCenter;
+
     /**
      * Name of city.
      */
     private String city;
-    /**
-     * Name of city's district.
-     */
-    private String districtOfCity;
-    /**
-     * Street name.
-     */
-    private String street;
-    /**
-     * number of house.
-     */
-    private String houseNumber;
 
     /**
      * Constructs object with null value of parameters.
@@ -41,31 +26,17 @@ public class Address extends Entity {
     /**
      * Constructs Address with not null value.
      *
-     * @param id                 id of Entity.
      * @param countryName        name of country.
      * @param regionalCenterName name of region main city.
-     * @param districtCenterName Name of district center.
      * @param cityName           Name of city.
-     * @param districtOfCityName Name of city's district.
-     * @param streetName         name of street.
-     * @param houseNumberValue   number of house.
      */
-    public Address(final int id,
+    public Address(
                    final String countryName,
                    final String regionalCenterName,
-                   final String districtCenterName,
-                   final String cityName,
-                   final String districtOfCityName,
-                   final String streetName,
-                   final String houseNumberValue) {
-        super(id);
+                   final String cityName) {
         this.country = countryName;
         this.regionalCenter = regionalCenterName;
-        this.districtCenter = districtCenterName;
         this.city = cityName;
-        this.districtOfCity = districtOfCityName;
-        this.street = streetName;
-        this.houseNumber = houseNumberValue;
     }
 
 
@@ -108,23 +79,6 @@ public class Address extends Entity {
         this.regionalCenter = regionalCenterName;
     }
 
-    /**
-     * Get name of district center method.
-     *
-     * @return Name of district center.
-     */
-    public String getDistrictCenter() {
-        return districtCenter;
-    }
-
-    /**
-     * Set or update name of district center method.
-     *
-     * @param districtCenterName name of district center.
-     */
-    public void setDistrictCenter(final String districtCenterName) {
-        districtCenter = districtCenterName;
-    }
 
     /**
      * Get name of city method.
@@ -144,59 +98,6 @@ public class Address extends Entity {
         city = cityName;
     }
 
-    /**
-     * Get name of city's district method.
-     *
-     * @return Name of city's district.
-     */
-    public String getDistrictOfCity() {
-        return districtOfCity;
-    }
-
-    /**
-     * Set or update name of city's district method.
-     *
-     * @param districtOfCityName Name of city's district.
-     */
-    public void setDistrictOfCity(final String districtOfCityName) {
-        districtOfCity = districtOfCityName;
-    }
-
-    /**
-     * Get name of street method.
-     *
-     * @return name of street.
-     */
-    public String getStreet() {
-        return street;
-    }
-
-    /**
-     * Set or update name of street method.
-     *
-     * @param streetName name of street.
-     */
-    public void setStreet(final String streetName) {
-        street = streetName;
-    }
-
-    /**
-     * Get house number method.
-     *
-     * @return number of house.
-     */
-    public String getHouseNumber() {
-        return houseNumber;
-    }
-
-    /**
-     * Set or update number of house.
-     *
-     * @param numberOfHouse number of house.
-     */
-    public void setHouseNumber(final String numberOfHouse) {
-        houseNumber = numberOfHouse;
-    }
 
     /**
      * Indicates whether some other object is "equal to" this one.
@@ -222,11 +123,7 @@ public class Address extends Entity {
         Address address = (Address) o;
         return Objects.equals(country, address.country)
                 && Objects.equals(regionalCenter, address.regionalCenter)
-                && Objects.equals(districtCenter, address.districtCenter)
-                && Objects.equals(city, address.city)
-                && Objects.equals(districtOfCity, address.districtOfCity)
-                && Objects.equals(street, address.street)
-                && Objects.equals(houseNumber, address.houseNumber);
+                && Objects.equals(city, address.city);
     }
 
     /**
@@ -241,11 +138,7 @@ public class Address extends Entity {
         return Objects.hash(super.hashCode(),
                 country,
                 regionalCenter,
-                districtCenter,
-                city,
-                districtOfCity,
-                street,
-                houseNumber);
+                city);
     }
 
 
@@ -263,11 +156,7 @@ public class Address extends Entity {
                 + "id=" + getId()
                 + "country='" + country + '\''
                 + ", regionalCenter='" + regionalCenter + '\''
-                + ", districtCenter='" + districtCenter + '\''
                 + ", City='" + city + '\''
-                + ", districtOfCity='" + districtOfCity + '\''
-                + ", street='" + street + '\''
-                + ", houseNumber='" + houseNumber + '\''
                 + '}';
     }
 }

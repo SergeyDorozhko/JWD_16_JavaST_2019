@@ -28,8 +28,9 @@ public class SaveCar extends UserAction {
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         logger.debug("start");
         session = request.getSession(false);
+
         getAllAttributes(request);
-        logger.debug(String.format("check: %s", checkData(request)));
+
 
         if (checkData(request)) {
             User actionUser = (User) session.getAttribute("authorizedUser");
@@ -52,10 +53,11 @@ public class SaveCar extends UserAction {
             }
         }
 
-        logger.debug(String.format("button.menu %s", request.getAttribute("main")));
         setUserInputData();
         //todo GO to account if success.
         return request.getContextPath() + "/addCar.html";
+
+
     }
 
 

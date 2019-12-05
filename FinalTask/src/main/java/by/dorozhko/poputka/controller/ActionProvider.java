@@ -70,6 +70,12 @@ public final class ActionProvider {
             case "/updateProfile":
                 actionByQuery = new UpdateProfileAction();
                 break;
+            case "/addTrip":
+                actionByQuery = new AddTripPage();
+                break;
+            case "/addTripComfirm":
+                actionByQuery = new AddTripAction();
+                break;
             default:
                 actionByQuery = new MainPage();
                 logger.warn("Default, show main page");

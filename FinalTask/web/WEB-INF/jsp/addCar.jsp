@@ -115,7 +115,6 @@ To change this template use File | Settings | File Templates.
             <div class="mx-auto-center">
                 <button type="submit" class="btn btn-primary" name="button" value="saveCar"><fmt:message key="button.save"/></button>
                 <button type="reset" class="btn btn-danger"><fmt:message key="button.reset"/></button>
-                <button type="submit" class="btn btn-primary" name="button" value="main"><fmt:message key="button.home"/></button>
             </div>
         </form> <!-- /form -->
             <%--    </div>--%>

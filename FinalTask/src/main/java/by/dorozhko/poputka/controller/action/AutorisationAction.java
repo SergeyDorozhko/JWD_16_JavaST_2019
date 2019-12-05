@@ -41,7 +41,7 @@ public class AutorisationAction extends AllUsersAction {
             return request.getContextPath() + "/main.html";
         }
         setUserInputData();
-        session.setAttribute("errorLogin", resourceBundle.getString("back.errors.unknownError"));
+        session.setAttribute("errorLogin", resourceBundle.getString("back.errors.incorrectLoginOrPassword"));
 
         return request.getContextPath() + "/loginPage.html";
     }

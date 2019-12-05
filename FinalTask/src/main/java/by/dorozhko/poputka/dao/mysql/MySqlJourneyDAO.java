@@ -5,6 +5,7 @@ import by.dorozhko.poputka.dao.exception.ExceptionDao;
 import by.dorozhko.poputka.entity.Address;
 import by.dorozhko.poputka.entity.Journey;
 import by.dorozhko.poputka.entity.User;
+import by.dorozhko.poputka.services.AbstractService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -29,6 +30,11 @@ public class MySqlJourneyDAO implements JourneyDAO {
             + " FROM journey"
             + " INNER JOIN currencies ON journey.currency_id = currencies.id";
 
+    private static final String INSERT_NEW_JOURNEY
+            = " INSERT INTO journey (driver_id, start_address_id,"
+            + " destination_address_id, departure_time, departure_date, cost,"
+            + " currency_id, number_of_passengers, additional_information)"
+            + " VALUES (?,?,?,?,?,?,?,?,?);";
 
     /**
      * Method take connection to database and set it to realisation of Dao.
@@ -50,6 +56,31 @@ public class MySqlJourneyDAO implements JourneyDAO {
      */
     @Override
     public Journey create(Journey entity) throws ExceptionDao {
+        try (PreparedStatement statement = connection.prepareStatement(INSERT_NEW_JOURNEY)) {
+            logger.debug(entity.getDriver().getId());
+            statement.setInt(1, entity.getDriver().getId());
+            logger.debug(entity.getStartAddress().getCity());
+            statement.setInt(2, Integer.parseInt(entity.getStartAddress().getCity()));
+            logger.debug(entity.getDestinationAddress().getCity());
+            statement.setInt(3, Integer.parseInt(entity.getDestinationAddress().getCity()));
+            logger.debug(entity.getDepartureTime().toString());
+            statement.setString(4, entity.getDepartureTime().toString());
+            logger.debug(entity.getDepartureDate());
+            statement.setString(5, entity.getDepartureDate().toString());
+            logger.debug(entity.getCost());
+            statement.setDouble(6, entity.getCost());
+            logger.debug(entity.getCurrency());
+            statement.setInt(7, Integer.parseInt(entity.getCurrency()));
+            logger.debug(entity.getPassengersNumber());
+            statement.setInt(8, entity.getPassengersNumber());
+            logger.debug(entity.getAdditionalInformation());
+            statement.setString(9, entity.getAdditionalInformation());
+            int i = statement.executeUpdate();
+            logger.debug(String.format("execute : %d", i));
+        } catch (SQLException ex) {
+            logger.error(ex);
+            throw new ExceptionDao(ex);
+        }
         return entity;
     }
 

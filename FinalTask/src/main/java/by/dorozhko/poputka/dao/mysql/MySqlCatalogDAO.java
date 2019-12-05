@@ -12,7 +12,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +25,11 @@ public class MySqlCatalogDAO implements CatalogDAO {
 
     private static final String SELECT_ALL_COUNTRIES
             = "SELECT id, country_name FROM countries ORDER BY country_name ASC ;";
+    private static final String SELECT_ALL_REGIONS_OF_COUNTRY
+            = "SELECT id, region_name FROM regions WHERE country_id = ? ORDER BY region_name ASC ;";
 
+    private static final String SELECT_ALL_CITIES_OF_REGION
+            = "SELECT id, city_name FROM cities WHERE region_id = ? ORDER BY city_name ASC ;";
     private static final String SELECT_ALL_CAR_BRANDS
             = "SELECT id, brand FROM car_brands ORDER BY brand ASC ";
 
@@ -37,6 +40,9 @@ public class MySqlCatalogDAO implements CatalogDAO {
     private static final String SELECT_ALL_CAR_CLIMATE
             = "SELECT id, climate_type FROM car_climate ORDER BY climate_type ASC";
 
+    private static final String SELECT_ALL_CURRENCIES
+            = "SELECT id, currency FROM currencies ORDER BY currency ASC";
+
     private static final String SELECT_GENDER_BY_ID
             = "SELECT gender FROM gender WHERE id = ?";
 
@@ -45,6 +51,7 @@ public class MySqlCatalogDAO implements CatalogDAO {
 
     private static final String SELECT_CLIMATE_TYPE_BY_ID
             = "SELECT climate_type FROM car_climate WHERE id = ?";
+
     private static final String SELECT_ADDRESS_BY_CITY_ID
             = "SELECT countries.country_name, region_name, city_name"
             + " FROM countries"
@@ -122,6 +129,47 @@ public class MySqlCatalogDAO implements CatalogDAO {
     }
 
     @Override
+    public Map<Integer, String> getRegionOfCountryList(int countryId) throws ExceptionDao {
+        Map<Integer, String> map = new LinkedHashMap<>();
+
+        try (PreparedStatement statement = connection.prepareStatement(SELECT_ALL_REGIONS_OF_COUNTRY);) {
+            statement.setInt(1, countryId);
+
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+
+                Integer key = Integer.parseInt(resultSet.getString("id"));
+                String value = resultSet.getString("region_name");
+                map.put(key, value);
+            }
+
+        } catch (SQLException e) {
+            logger.error(e);
+            throw new ExceptionDao(e);
+        }
+
+        return map;
+    }
+
+    @Override
+    public Map<Integer, String> getCitiesOfRegionList(int regionId) throws ExceptionDao {
+        Map<Integer, String> map = new LinkedHashMap<>();
+        try (PreparedStatement statement = connection.prepareStatement(SELECT_ALL_CITIES_OF_REGION)) {
+            statement.setInt(1, regionId);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Integer key = Integer.parseInt(resultSet.getString("id"));
+                String value = resultSet.getString("city_name");
+                map.put(key, value);
+            }
+        } catch (SQLException ex) {
+            logger.error(ex);
+            throw new ExceptionDao(ex);
+        }
+        return map;
+    }
+
+    @Override
     public Map<Integer, String> getGenderList() throws ExceptionDao {
         Map<Integer, String> map = new LinkedHashMap<>();
 
@@ -164,6 +212,27 @@ public class MySqlCatalogDAO implements CatalogDAO {
     }
 
     @Override
+    public Map<Integer, String> getCurrenciesList() throws ExceptionDao {
+        Map<Integer, String> map = new LinkedHashMap<>();
+
+        try (ResultSet resultSet = connection.createStatement()
+                .executeQuery(SELECT_ALL_CURRENCIES);) {
+            while (resultSet.next()) {
+
+                Integer key = Integer.parseInt(resultSet.getString("id"));
+                String value = resultSet.getString("currency");
+                map.put(key, value);
+            }
+
+        } catch (SQLException e) {
+            logger.error(e);
+            throw new ExceptionDao(e);
+        }
+
+        return map;
+    }
+
+    @Override
     public String getGender(int id) throws ExceptionDao {
 
         return takeDataByQuery(SELECT_GENDER_BY_ID, "gender", id);
@@ -180,6 +249,8 @@ public class MySqlCatalogDAO implements CatalogDAO {
 
         return takeDataByQuery(SELECT_CLIMATE_TYPE_BY_ID, "climate_type", id);
     }
+
+
 
     private String takeDataByQuery(String query, String expectedValue, int id) throws ExceptionDao {
         String result = null;

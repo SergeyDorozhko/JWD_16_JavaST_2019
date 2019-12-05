@@ -25,4 +25,10 @@
         <function-class>by.dorozhko.poputka.view.LocaleTag</function-class>
         <function-signature>java.lang.String localeValue(java.lang.String, java.lang.String)</function-signature>
     </function>
+
+    <function>
+        <name>equalsValue</name>
+        <function-class>by.dorozhko.poputka.view.EqualsTag</function-class>
+        <function-signature>java.lang.Boolean equalsValue(java.lang.String, java.lang.Integer)</function-signature>
+    </function>
 </taglib>

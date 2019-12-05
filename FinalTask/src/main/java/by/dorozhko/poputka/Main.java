@@ -19,6 +19,7 @@ import by.dorozhko.poputka.services.security.HashingPBKDF2;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,7 +33,29 @@ public class Main {
             System.out.println(ex);
         }
 
-        int i = Integer.parseInt("sdsa");
+        try {
+            LocalTime time = LocalTime.parse("10:00");
+        } catch (DateTimeParseException ex) {
+            System.out.println(ex);
+        }
+
+        try {
+            double i = Double.parseDouble("1");
+            System.out.println(i);
+        } catch (NumberFormatException ex){
+            System.out.println(ex);
+        }
+
+        try {
+            double i = Double.parseDouble("sdsa");
+        } catch (NumberFormatException ex){
+            System.out.println(ex);
+        }
+        try {
+            int i = Integer.parseInt("sdsa");
+        } catch (NumberFormatException ex){
+            System.out.println(ex);
+        }
     }
 
     public static void testAddUserService() {
@@ -161,14 +184,11 @@ public class Main {
     }
 
 
-
-    public static void testLogin(){
+    public static void testLogin() {
         FactoryDao factoryDao = FactoryDao.getInstance();
 
 
-
         UserDAO userDAO = factoryDao.getUserDAO();
-
 
 
         Transaction transaction = TransactionFactory.getInstance().getTransaction();

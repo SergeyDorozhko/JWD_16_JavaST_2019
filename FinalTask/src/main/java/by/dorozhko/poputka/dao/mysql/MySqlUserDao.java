@@ -5,6 +5,7 @@ import by.dorozhko.poputka.dao.UserDAO;
 import by.dorozhko.poputka.dao.exception.ExceptionDao;
 import by.dorozhko.poputka.entity.Car;
 import by.dorozhko.poputka.entity.User;
+import by.dorozhko.poputka.services.exception.ExceptionService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -102,6 +103,9 @@ public class MySqlUserDao implements UserDAO {
 
     private static final String UPDATE_USER_PASSWORD
             = "UPDATE users SET password = ?, salt = ? WHERE id = ?";
+
+    private static final String SELECT_USER_INFO_ID_BY_USERS_ID
+            = "SELECT id FROM user_info WHERE user_id = ?";
 
     /**
      * Method take connection to database and set it to realisation of Dao.
@@ -501,5 +505,22 @@ public class MySqlUserDao implements UserDAO {
             throw new ExceptionDao(ex);
         }
         return true;
+    }
+
+    @Override
+    public int findUserInfoIdByUsersId(int usersId) throws ExceptionDao {
+        int userInfoId = 0;
+        try (PreparedStatement statement = connection.prepareStatement(SELECT_USER_INFO_ID_BY_USERS_ID)) {
+            statement.setInt(1, usersId);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                userInfoId = resultSet.getInt("id");
+            }
+        }catch (SQLException ex) {
+            logger.error(ex);
+            throw new ExceptionDao(ex);
+        }
+
+        return userInfoId;
     }
 }

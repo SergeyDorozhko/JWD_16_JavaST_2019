@@ -16,15 +16,13 @@ public class Journey extends Entity {
     private String currency;
     private int passengersNumber;
     private List<User> passengers;
-    private boolean canTakeBaggage;
     private String additionalInformation;
 
     public Journey() {
         passengers = new ArrayList<>();
     }
 
-    public Journey(final int id, User driver, Address startAddress, Address destinationAddress, String departureTime, String date, double cost, String currency, int numberOfPassengers, boolean canTakeBaggage, String additionalInformation) {
-        super(id);
+    public Journey(User driver, Address startAddress, Address destinationAddress, String departureTime, String date, double cost, String currency, int numberOfPassengers, String additionalInformation) {
         this.driver = driver;
         this.startAddress = startAddress;
         this.destinationAddress = destinationAddress;
@@ -34,10 +32,8 @@ public class Journey extends Entity {
         this.currency = currency;
         this.passengersNumber = numberOfPassengers;
         passengers = new ArrayList<>();
-        this.canTakeBaggage = canTakeBaggage;
         this.additionalInformation = additionalInformation;
     }
-
 
 
     public User getDriver() {
@@ -115,14 +111,6 @@ public class Journey extends Entity {
         }
     }
 
-    public boolean isCanTakeBaggage() {
-        return canTakeBaggage;
-    }
-
-    public void setCanTakeBaggage(boolean canTakeBaggage) {
-        this.canTakeBaggage = canTakeBaggage;
-    }
-
     public String getAdditionalInformation() {
         return additionalInformation;
     }
@@ -141,7 +129,6 @@ public class Journey extends Entity {
         Journey journey = (Journey) o;
         return Double.compare(journey.cost, cost) == 0 &&
                 passengersNumber == journey.passengersNumber &&
-                canTakeBaggage == journey.canTakeBaggage &&
                 Objects.equals(driver, journey.driver) &&
                 Objects.equals(startAddress, journey.startAddress) &&
                 Objects.equals(destinationAddress, journey.destinationAddress) &&
@@ -154,7 +141,7 @@ public class Journey extends Entity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), driver, startAddress, destinationAddress, departureTime, departureDate, cost, currency, passengersNumber, passengers, canTakeBaggage, additionalInformation);
+        return Objects.hash(super.hashCode(), driver, startAddress, destinationAddress, departureTime, departureDate, cost, currency, passengersNumber, passengers, additionalInformation);
     }
 
     @Override
@@ -170,7 +157,6 @@ public class Journey extends Entity {
                 ", currency='" + currency + '\'' +
                 ", passengersNumber=" + passengersNumber +
                 ", passengers=" + passengers +
-                ", canTakeBaggage=" + canTakeBaggage +
                 ", additionalInformation='" + additionalInformation + '\'' +
                 '}';
     }

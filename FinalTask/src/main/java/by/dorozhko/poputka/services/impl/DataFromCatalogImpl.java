@@ -2,14 +2,16 @@ package by.dorozhko.poputka.services.impl;
 
 import by.dorozhko.poputka.dao.*;
 import by.dorozhko.poputka.dao.exception.ExceptionDao;
+import by.dorozhko.poputka.services.AbstractService;
 import by.dorozhko.poputka.services.DataFromCatalogService;
+import by.dorozhko.poputka.services.exception.ExceptionService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class DataFromCatalogImpl implements DataFromCatalogService {
+public class DataFromCatalogImpl extends AbstractService implements DataFromCatalogService {
     private final Logger logger = LogManager.getLogger(getClass().getName());
     private Map<Integer, String> map = new HashMap<>();
 
@@ -52,6 +54,41 @@ public class DataFromCatalogImpl implements DataFromCatalogService {
         return map;
     }
 
+    @Override
+    public Map<Integer, String> getRegionsOfCountry(int countryId) {
+        Map<Integer, String> map = null;
+        CatalogDAO catalogDAO = FactoryDao.getInstance().getCatalogDAO();
+        transaction.begin(catalogDAO);
+        try {
+            map = catalogDAO.getRegionOfCountryList(countryId);
+            transaction.commit();
+        } catch (ExceptionDao exceptionDao) {
+            logger.error(exceptionDao);
+            transaction.rollback();
+        } finally {
+            transaction.end();
+        }
+
+        return map;
+    }
+
+    @Override
+    public Map<Integer, String> getCitiesOfRegion(int regionId) {
+        Map<Integer, String> map = null;
+        CatalogDAO catalogDAO = FactoryDao.getInstance().getCatalogDAO();
+        transaction.begin(catalogDAO);
+        try {
+            map = catalogDAO.getCitiesOfRegionList(regionId);
+            transaction.commit();
+        } catch (ExceptionDao exceptionDao) {
+            logger.error(exceptionDao);
+            transaction.rollback();
+        } finally {
+            transaction.end();
+        }
+
+        return map;
+    }
 
     @Override
     public Map<Integer, String> getCarBrands() {
@@ -109,4 +146,22 @@ public class DataFromCatalogImpl implements DataFromCatalogService {
 
         return map;
     }
+
+    @Override
+    public Map<Integer, String> getCurrencies() {
+        CatalogDAO catalogDAO = FactoryDao.getInstance().getCatalogDAO();
+        Transaction transaction = TransactionFactory.getInstance().getTransaction();
+        transaction.begin(catalogDAO);
+        try {
+            map = catalogDAO.getCurrenciesList();
+            transaction.commit();
+        } catch (ExceptionDao exceptionDao) {
+            transaction.rollback();
+            logger.error(exceptionDao);
+        } finally {
+            transaction.end();
+        }
+
+
+        return map;    }
 }

@@ -36,10 +36,20 @@
                         <button class="dropdown-item" type="submit"><fmt:message
                                 key="mainPage.button.home"/></button>
                     </form>
-                    <form action="listOfUsers.html" method="get">
-                        <button class="dropdown-item" type="submit"><fmt:message
-                                key="mainPage.button.allUsers"/></button>
-                    </form>
+                    <c:choose>
+                        <c:when test="${authorizedUser.role.id == 1}">
+                            <form action="addTrip.html" method="get">
+                                <button class="dropdown-item" type="submit"><fmt:message
+                                        key="mainPage.button.addTrip"/></button>
+                            </form>
+                        </c:when>
+                        <c:when test="${authorizedUser.role.id == 0}">
+                            <form action="listOfUsers.html" method="get">
+                                <button class="dropdown-item" type="submit"><fmt:message
+                                        key="mainPage.button.allUsers"/></button>
+                            </form>
+                        </c:when>
+                    </c:choose>
                 </div>
             </div>
 
