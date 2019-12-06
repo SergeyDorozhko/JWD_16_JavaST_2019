@@ -11,7 +11,7 @@ To change this template use File | Settings | File Templates.
 <%@ taglib prefix="ds" uri="dorozhkoTag" %>
 <c:set var="language" value="${ds:localeValue(lang, cookie['lang'].value)}"/>
 <fmt:setLocale value="${language}"/>
-<fmt:bundle basename="pagecontent" prefix="addTrip.">
+<fmt:bundle basename="pagecontent" prefix="journey.">
     <html>
     <head>
         <title><fmt:message key="titel.head"/></title>

@@ -2,6 +2,7 @@ package by.dorozhko.poputka.controller;
 
 import by.dorozhko.poputka.controller.action.*;
 import by.dorozhko.poputka.controller.action.autorized_user.ChangePasswordAction;
+import by.dorozhko.poputka.controller.action.autorized_user.ViewJourney;
 import by.dorozhko.poputka.controller.action.autorized_user.administrator.DisplayAllUsers;
 import by.dorozhko.poputka.controller.action.autorized_user.user.*;
 import by.dorozhko.poputka.controller.action.autorized_user.ViewProfilePage;
@@ -75,6 +76,9 @@ public final class ActionProvider {
                 break;
             case "/addTripComfirm":
                 actionByQuery = new AddTripAction();
+                break;
+            case "/viewJourney":
+                actionByQuery = new ViewJourney();
                 break;
             default:
                 actionByQuery = new MainPage();

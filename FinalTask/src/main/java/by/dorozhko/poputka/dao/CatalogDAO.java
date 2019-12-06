@@ -24,6 +24,8 @@ public interface CatalogDAO extends InterfaceDAO {
     String getGender(int id) throws ExceptionDao;
     String getCountry(int id) throws ExceptionDao;
     String getClimateType(int id) throws ExceptionDao;
+    String getCurrency(int id) throws ExceptionDao;
+
     Car getCar(int modelId) throws ExceptionDao;
     Address getAddressByCityId(int id) throws ExceptionDao;
 

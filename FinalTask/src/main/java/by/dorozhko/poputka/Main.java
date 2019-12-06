@@ -2,14 +2,10 @@ package by.dorozhko.poputka;
 
 import by.dorozhko.poputka.dao.*;
 import by.dorozhko.poputka.dao.exception.ExceptionDao;
-import by.dorozhko.poputka.dao.mysql.MySqlJourneyDAO;
-import by.dorozhko.poputka.dao.mysql.MySqlUserDao;
 import by.dorozhko.poputka.entity.Car;
 import by.dorozhko.poputka.entity.Entity;
-import by.dorozhko.poputka.entity.Journey;
 import by.dorozhko.poputka.entity.User;
 import by.dorozhko.poputka.services.JourneyService;
-import by.dorozhko.poputka.services.Service;
 import by.dorozhko.poputka.services.ServiceFactory;
 import by.dorozhko.poputka.services.UserService;
 import by.dorozhko.poputka.services.exception.ExceptionService;
@@ -92,7 +88,7 @@ public class Main {
 
     public static void testFindAllJourneyService() throws ExceptionDao {
         JourneyService service = new JourneyServiceImpl();
-        System.out.println(service.findAllJourneyShort());
+        System.out.println(service.findAllActualForMainPage());
 
     }
 

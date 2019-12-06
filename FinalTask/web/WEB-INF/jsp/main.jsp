@@ -44,21 +44,24 @@
                                 <img src="images/mainPage/scroll1.jpg" class="img-thumbnail" alt="Cinque Terre">
                                 <div class="carousel-caption d-none d-md-block">
                                     <h2></h2>
-                                    <h1 style="color: orange; -webkit-text-stroke: 1px black;"><fmt:message key="picture.waiting"/></h1>
+                                    <h1 style="color: orange; -webkit-text-stroke: 1px black;"><fmt:message
+                                            key="picture.waiting"/></h1>
                                 </div>
                             </div>
                             <div class="carousel-item" data-interval="3000">
                                 <img src="images/mainPage/scroll2.jpg" class="img-thumbnail" alt="Cinque Terre">
                                 <div class="carousel-caption d-none d-md-block">
                                     <h2></h2>
-                                    <h1 style="color: orange; -webkit-text-stroke: 1px black;"><fmt:message key="picture.boring"/></h1>
+                                    <h1 style="color: orange; -webkit-text-stroke: 1px black;"><fmt:message
+                                            key="picture.boring"/></h1>
                                 </div>
                             </div>
                             <div class="carousel-item" data-interval="3000">
                                 <img src="images/mainPage/scroll3.jpg" class="img-thumbnail" alt="Cinque Terre">
                                 <div class="carousel-caption d-none d-md-block">
                                     <h2></h2>
-                                    <h1 style="color: orange; -webkit-text-stroke: 1px black;"><fmt:message key="picture.goodChoise"/></h1>
+                                    <h1 style="color: orange; -webkit-text-stroke: 1px black;"><fmt:message
+                                            key="picture.goodChoise"/></h1>
                                 </div>
                             </div>
                         </div>
@@ -85,32 +88,69 @@
 
                 <div class="row">
 
+                    <c:choose>
+                        <c:when test="${authorizedUser.role.id!=2 and authorizedUser!=null}">
+                            <c:forEach var="element" items="${journeyList}">
+                                <form action="viewJourney.html" method="get">
+                                    <div class="col-sm-4">
 
-                    <c:forEach var="element" items="${journeyList}" end="8">
+                                        <div class="card mb-1" style="width: 21rem;">
+                                            <div class="card-body">
+                                                <div>
+                                                        <input type="hidden" id="journeyId" name="journeyId" class="form-control"
+                                                               value="${element.id}" readonly>
+                                                </div>
+                                                <h5 class="card-title"><c:out value="${element.startAddress.city}"/> -
+                                                    <c:out
+                                                            value="${element.destinationAddress.city}"/></h5>
+                                                <h6 class="card-subtitle mb-2 text-muted"><fmt:message
+                                                        key="fields.departure"/></h6>
+                                                <h6 class="card-subtitle mb-2 text-muted"><fmt:message
+                                                        key="fields.date"/><c:out
+                                                        value="${element.departureDate}"/>, <fmt:message
+                                                        key="fields.time"/><c:out
+                                                        value="${element.departureTime}"/></h6>
+                                                <p class="card-text"><fmt:message key="fields.price"/><c:out
+                                                        value="${element.cost}"/>
+                                                    <c:out
+                                                            value="${element.currency}"/></p>
+                                                <button type="submit" class="btn btn-primary btn-sm"><fmt:message key="button.moreInfo"/></button>
 
-                        <div class="col-sm-4">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </c:forEach>
+                        </c:when>
 
-                            <div class="card mb-1" style="width: 21rem;">
-                                <div class="card-body">
-                                    <h5 class="card-title"><c:out value="${element.startAddress.city}"/> - <c:out
-                                            value="${element.destinationAddress.city}"/></h5>
-                                    <h6 class="card-subtitle mb-2 text-muted"><fmt:message key="fields.departure"/></h6>
-                                    <h6 class="card-subtitle mb-2 text-muted"><fmt:message key="fields.date"/><c:out
-                                            value="${element.departureDate}"/>, <fmt:message key="fields.time"/><c:out
-                                            value="${element.departureTime}"/></h6>
-                                    <p class="card-text"><fmt:message key="fields.price"/><c:out value="${element.cost}"/> <c:out
-                                            value="${element.currency}"/></p>
-                                    <c:if test="${authorizedUser.role.id!=2 and authorizedUser!=null}">
+                        <c:otherwise>
+                            <c:forEach var="element" items="${journeyList}">
 
-                                        <a href="#" class="card-link"><fmt:message key="fields.moreInfo"/></a>
-                                    </c:if>
+                                <div class="col-sm-4">
 
+                                    <div class="card mb-1" style="width: 21rem;">
+                                        <div class="card-body">
+                                            <h5 class="card-title"><c:out value="${element.startAddress.city}"/> -
+                                                <c:out
+                                                        value="${element.destinationAddress.city}"/></h5>
+                                            <h6 class="card-subtitle mb-2 text-muted"><fmt:message
+                                                    key="fields.departure"/></h6>
+                                            <h6 class="card-subtitle mb-2 text-muted"><fmt:message
+                                                    key="fields.date"/><c:out
+                                                    value="${element.departureDate}"/>, <fmt:message
+                                                    key="fields.time"/><c:out
+                                                    value="${element.departureTime}"/></h6>
+                                            <p class="card-text"><fmt:message key="fields.price"/><c:out
+                                                    value="${element.cost}"/> <c:out
+                                                    value="${element.currency}"/></p>
+
+
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-
-                    </c:forEach>
-
+                            </c:forEach>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
 
                 <form action="listOfJourneys.html" method="get">
@@ -118,7 +158,8 @@
                     </div>
                     <div class="col-sm-12">
 
-                        <button type="submit" class="btn btn-warning btn-lg btn-block"><fmt:message key="button.moreSuggestions"/>
+                        <button type="submit" class="btn btn-warning btn-lg btn-block"><fmt:message
+                                key="button.moreSuggestions"/>
                         </button>
                     </div>
                     <div class="col-sm-4">

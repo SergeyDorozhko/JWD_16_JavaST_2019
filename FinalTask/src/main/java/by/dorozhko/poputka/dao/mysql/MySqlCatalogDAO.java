@@ -51,7 +51,8 @@ public class MySqlCatalogDAO implements CatalogDAO {
 
     private static final String SELECT_CLIMATE_TYPE_BY_ID
             = "SELECT climate_type FROM car_climate WHERE id = ?";
-
+    private static final String SELECT_CURRENCY_BY_ID
+            = "SELECT currency FROM currencies WHERE id = ?";
     private static final String SELECT_ADDRESS_BY_CITY_ID
             = "SELECT countries.country_name, region_name, city_name"
             + " FROM countries"
@@ -159,6 +160,10 @@ public class MySqlCatalogDAO implements CatalogDAO {
         return takeDataByQuery(SELECT_CLIMATE_TYPE_BY_ID, "climate_type", id);
     }
 
+    @Override
+    public String getCurrency(int id) throws ExceptionDao {
+        return takeDataByQuery(SELECT_CURRENCY_BY_ID, "currency", id);
+    }
 
     private String takeDataByQuery(String query, String columnName, int id) throws ExceptionDao {
         String result = null;

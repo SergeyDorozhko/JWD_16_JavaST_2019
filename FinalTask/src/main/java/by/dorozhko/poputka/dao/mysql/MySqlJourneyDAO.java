@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +22,14 @@ public class MySqlJourneyDAO implements JourneyDAO {
 
     private Connection connection;
     //TODO only actual and sort by date then time.
+    private static final String SELECT_ACTUAL_TRIPS_WITH_LIMIT
+            = " SELECT id, driver_id, start_address_id, destination_address_id, "
+            + " departure_time, departure_date, cost, currency_id, number_of_passengers, "
+            + " additional_information FROM journey "
+            + " WHERE departure_date > ? "
+            + " ORDER BY departure_date, departure_time ASC "
+            + " limit ?, ? ";
+
     private static final String SELECT_ALL_JOURNEYS
             = "SELECT journey.id, journey.driver_id, journey.start_address_id,"
             + " journey.destination_address_id, journey.departure_time,"
@@ -34,6 +43,12 @@ public class MySqlJourneyDAO implements JourneyDAO {
             + " destination_address_id, departure_time, departure_date, cost,"
             + " currency_id, number_of_passengers, additional_information)"
             + " VALUES (?,?,?,?,?,?,?,?,?);";
+
+    private static final String SELECT_JOURNEY_BY_ID
+            = " SELECT id, driver_id, start_address_id, destination_address_id,"
+            + " departure_time, departure_date, cost, currency_id,"
+            + " number_of_passengers, additional_information FROM journey"
+            + " WHERE id = ? ;";
 
     /**
      * Method take connection to database and set it to realisation of Dao.
@@ -56,26 +71,16 @@ public class MySqlJourneyDAO implements JourneyDAO {
     @Override
     public Journey create(Journey entity) throws ExceptionDao {
         try (PreparedStatement statement = connection.prepareStatement(INSERT_NEW_JOURNEY)) {
-            logger.debug(entity.getDriver().getId());
             statement.setInt(1, entity.getDriver().getId());
-            logger.debug(entity.getStartAddress().getCity());
             statement.setInt(2, Integer.parseInt(entity.getStartAddress().getCity()));
-            logger.debug(entity.getDestinationAddress().getCity());
             statement.setInt(3, Integer.parseInt(entity.getDestinationAddress().getCity()));
-            logger.debug(entity.getDepartureTime().toString());
             statement.setString(4, entity.getDepartureTime().toString());
-            logger.debug(entity.getDepartureDate());
             statement.setString(5, entity.getDepartureDate().toString());
-            logger.debug(entity.getCost());
             statement.setDouble(6, entity.getCost());
-            logger.debug(entity.getCurrency());
             statement.setInt(7, Integer.parseInt(entity.getCurrency()));
-            logger.debug(entity.getPassengersNumber());
             statement.setInt(8, entity.getPassengersNumber());
-            logger.debug(entity.getAdditionalInformation());
             statement.setString(9, entity.getAdditionalInformation());
-            int i = statement.executeUpdate();
-            logger.debug(String.format("execute : %d", i));
+            statement.executeUpdate();
         } catch (SQLException ex) {
             logger.error(ex);
             throw new ExceptionDao(ex);
@@ -121,38 +126,8 @@ public class MySqlJourneyDAO implements JourneyDAO {
         try (ResultSet journeyQuery = connection.createStatement()
                 .executeQuery(SELECT_ALL_JOURNEYS);) {
             while (journeyQuery.next()) {
-                Journey journey = new Journey();
 
-                journey.setId(Integer.parseInt(journeyQuery.getString("id")));
-                User driver = new User();
-                driver.setId(Integer.parseInt(journeyQuery.getString("driver_id")));
-                journey.setDriver(driver);
-
-
-                Address startAddress = new Address();
-                startAddress.setCity(journeyQuery.getString("start_address_id"));
-
-
-                journey.setStartAddress(startAddress);
-
-
-                Address destinationAddress = new Address();
-                destinationAddress.setCity(journeyQuery.getString("destination_address_id"));
-
-
-                journey.setDestinationAddress(destinationAddress);
-
-                journey.setDepartureTime(
-                        journeyQuery.getString("departure_time"));
-                journey.setDepartureDate(
-                        journeyQuery.getString("departure_date"));
-
-                journey.setCost(Double.parseDouble(
-                        journeyQuery.getString("cost")));
-                journey.setCurrency(journeyQuery.getString("currency"));
-                journey.setPassengersNumber(Integer.parseInt(
-                        journeyQuery.getString("number_of_passengers")));
-
+                Journey journey = createJourney(journeyQuery);
                 list.add(journey);
             }
 
@@ -164,6 +139,41 @@ public class MySqlJourneyDAO implements JourneyDAO {
         return list;
     }
 
+    private Journey createJourney(ResultSet resultSet) throws SQLException {
+        Journey journey = new Journey();
+
+        journey.setId(Integer.parseInt(resultSet.getString("id")));
+        User driver = new User();
+        driver.setId(Integer.parseInt(resultSet.getString("driver_id")));
+        journey.setDriver(driver);
+
+
+        Address startAddress = new Address();
+        startAddress.setCity(resultSet.getString("start_address_id"));
+
+
+        journey.setStartAddress(startAddress);
+
+
+        Address destinationAddress = new Address();
+        destinationAddress.setCity(resultSet.getString("destination_address_id"));
+
+
+        journey.setDestinationAddress(destinationAddress);
+
+        journey.setDepartureTime(
+                resultSet.getString("departure_time"));
+        journey.setDepartureDate(
+                resultSet.getString("departure_date"));
+
+        journey.setCost(Double.parseDouble(
+                resultSet.getString("cost")));
+        journey.setCurrency(resultSet.getString("currency_id"));
+        journey.setPassengersNumber(Integer.parseInt(
+                resultSet.getString("number_of_passengers")));
+        return journey;
+    }
+
     /**
      * Find entity of target type by identity.
      *
@@ -171,7 +181,63 @@ public class MySqlJourneyDAO implements JourneyDAO {
      * @return - entity which corresponds to identity.
      */
     @Override
-    public Journey findEntityById(Integer id) {
-        return null;
+    public Journey findEntityById(Integer id) throws ExceptionDao {
+        ResultSet resultSet = null;
+        Journey journey = null;
+        try (PreparedStatement statement = connection.prepareStatement(SELECT_JOURNEY_BY_ID)) {
+            statement.setInt(1, id);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                journey = createJourney(resultSet);
+                journey.setAdditionalInformation(resultSet.getString("additional_information"));
+            }
+        } catch (SQLException ex) {
+            logger.error(ex);
+            throw new ExceptionDao(ex);
+        } finally {
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    logger.error(e);
+                }
+            }
+        }
+
+
+        return journey;
+    }
+
+
+    @Override
+    public List<Journey> takeListOfNearestTripForMain(final LocalDate today, int limitFrom, int limitTo) throws ExceptionDao {
+        List<Journey> list = new ArrayList<>();
+        ResultSet resultSet = null;
+        try (PreparedStatement statement = connection.prepareStatement(SELECT_ACTUAL_TRIPS_WITH_LIMIT);) {
+            statement.setString(1, today.toString());
+            statement.setInt(2, limitFrom);
+            statement.setInt(3, limitTo);
+
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+
+                Journey journey = createJourney(resultSet);
+                list.add(journey);
+            }
+
+        } catch (SQLException e) {
+            logger.error(e);
+            throw new ExceptionDao(e);
+        } finally {
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    logger.error(e);
+                }
+            }
+        }
+
+        return list;
     }
 }

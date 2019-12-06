@@ -14,9 +14,9 @@ public class JourneyList extends AllUsersAction {
         JourneyService journeyService
                 = ServiceFactory.getInstance().getJoureyService();
 
-
+//TODO when realising Per page veiw take limits from request
         request.setAttribute("journeyList",
-                journeyService.findAllJourneyShort());
+                journeyService.findAllActualForJourneyPage(0, 30));
         return "/WEB-INF/jsp/listOfJourneys.jsp";
     }
 }

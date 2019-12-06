@@ -7,6 +7,7 @@ import by.dorozhko.poputka.entity.Car;
 import by.dorozhko.poputka.entity.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.message.StringMapMessage;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -29,9 +30,9 @@ public class MySqlUserDao implements UserDAO {
     private static final String SELECT_ALL_USERS
             = "SELECT users.id, users.login from users";
 
-    private static final String SELECT_USER_NAME_BY_ID
-            = " SELECT user_info.name FROM user_info"
-            + " WHERE id = ?;";
+    private static final String SELECT_USER_FROM_TRIP_BY_ID
+            = " SELECT user_info.user_id, user_info.name, user_info.email, user_info.phone, brand_and_model_id, year_of_produce, climate_type_id  FROM user_info LEFT JOIN cars  on user_info.car_id = cars.id"
+            + " WHERE user_info.id = ?;";
 
     private static final String SELECT_ID_LOGIN_ROLE_BY_ID
             = " SELECT users.login, users.role, users.id FROM users"
@@ -139,8 +140,6 @@ public class MySqlUserDao implements UserDAO {
             statement.setString(2, entity.getPassword());
             statement.setString(3, entity.getSalt());
             statement.executeUpdate();
-
-
 
 
             ResultSet idNewUserSet = statement.getGeneratedKeys();
@@ -284,12 +283,25 @@ public class MySqlUserDao implements UserDAO {
     public User findEntityById(final Integer id) throws ExceptionDao {
         User user = null;
 
-        try (PreparedStatement statement = connection.prepareStatement(SELECT_USER_NAME_BY_ID);) {
+        try (PreparedStatement statement = connection.prepareStatement(SELECT_USER_FROM_TRIP_BY_ID);) {
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 user = new User();
+                user.setId(resultSet.getInt("user_id"));
                 user.setName(resultSet.getString("name"));
+                user.setPhoneNumber(resultSet.getString("phone"));
+                user.setEmail(resultSet.getString("email"));
+
+                String carModel = resultSet.getString("brand_and_model_id");
+
+                if (carModel != null) {
+                    Car car = new Car();
+                    car.setModel(carModel);
+                    car.setYearOfProduce(resultSet.getInt("year_of_produce"));
+                    car.setAirConditioner(resultSet.getString("climate_type_id"));
+                    user.setCar(car);
+                }
             }
         } catch (SQLException e) {
             logger.error(e);

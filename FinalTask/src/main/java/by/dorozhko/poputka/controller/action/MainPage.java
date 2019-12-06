@@ -19,7 +19,7 @@ public class MainPage extends AllUsersAction {
         logger.debug(String.format("local: %s", request.getParameter("local")));
 
         request.setAttribute("journeyList",
-                journeyService.findAllJourneyShort());
+                journeyService.findAllActualForMainPage());
         return "/WEB-INF/jsp/main.jsp";
     }
 }
