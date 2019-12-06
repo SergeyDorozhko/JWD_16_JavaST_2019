@@ -16,7 +16,6 @@ public class DisplayAllUsers extends AdminAction {
                           final HttpServletResponse resp) {
         UserService userService = ServiceFactory.getInstance().getUserService();
         List<User> list = userService.findAll();
-        System.out.println(list);
 
         req.setAttribute("usersList", list);
         return "/WEB-INF/jsp/listOfUsers.jsp";

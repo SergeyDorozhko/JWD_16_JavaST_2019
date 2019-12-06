@@ -110,7 +110,7 @@ To change this template use File | Settings | File Templates.
             <div class="form-group row">
                 <label for="confirmPassword" class="col-sm-3 control-label"><fmt:message key="fields.passwordComfirm"/>*</label>
                 <div class="col-sm-9">
-                    <input type="password" id="confirmPassword" name="<fmt:message key="fields.password"/>" placeholder="Confirm Password"
+                    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="<fmt:message key="fields.password"/>"
                            class="form-control" required autofocus>
                     <div class="invalid-feedback"><fmt:message key="errors.fillOutTheField"/></div>
                 </div>
@@ -141,7 +141,7 @@ To change this template use File | Settings | File Templates.
                         <option></option>
                         <c:forEach var="countries" items="${countriesMap}">
                             <option value="${countries.getKey()}"
-                                    <c:if test="${countries.getKey() == userCountry}">selected</c:if>>${countries.value}</option>
+                                    <c:if test="${ds:equalsValue(userCountry, countries.getKey())}">selected</c:if>>${countries.value}</option>
                         </c:forEach>
                     </select>
                     <div class="invalid-feedback"><fmt:message key="errors.fillOutTheField"/></div>
@@ -176,7 +176,7 @@ To change this template use File | Settings | File Templates.
                         <option></option>
                         <c:forEach var="gender" items="${gendersMap}">
                             <option value="${gender.getKey()}"
-                                    <c:if test="${gender.getKey() == userSex}">selected</c:if>>${gender.value}</option>
+                                    <c:if test="${ds:equalsValue(userSex, gender.getKey())}">selected</c:if>>${gender.value}</option>
                         </c:forEach>
                     </select>
                     <div class="invalid-feedback"><fmt:message key="errors.fillOutTheField"/></div>

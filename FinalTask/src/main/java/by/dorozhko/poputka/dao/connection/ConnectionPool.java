@@ -72,7 +72,6 @@ public final class ConnectionPool {
         getProperties();
 
         try {
-            //TODO if web dont work check registration driver.
             Class.forName(driver);
         } catch (ClassNotFoundException e) {
             logger.error(e);
@@ -122,7 +121,7 @@ public final class ConnectionPool {
         if (poolRealSize == poolSize) {
             logger.debug("pool is correct");
         } else if (poolRealSize > 0) {
-            logger.warn("Connection leak, created pool size: ", poolRealSize);
+            logger.warn(String.format("Connection leak, created pool size: %d", poolRealSize));
         } else {
             logger.error("no connection to DB");
             throw new ExceptionInInitializerError("no connection to DB");

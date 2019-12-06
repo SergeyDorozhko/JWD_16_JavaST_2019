@@ -5,7 +5,6 @@ import by.dorozhko.poputka.dao.exception.ExceptionDao;
 import by.dorozhko.poputka.entity.Address;
 import by.dorozhko.poputka.entity.Journey;
 import by.dorozhko.poputka.entity.User;
-import by.dorozhko.poputka.services.AbstractService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

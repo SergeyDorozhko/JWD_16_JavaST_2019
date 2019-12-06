@@ -117,7 +117,7 @@ To change this template use File | Settings | File Templates.
                     <select class="form-control" id="country" name="country" required>
                         <c:forEach var="countries" items="${countriesMap}">
                             <option value="${countries.getKey()}"
-                                    <c:if test="${countries.getKey() == userData.country}">selected</c:if>>${countries.value}</option>
+                                    <c:if test="${ds:equalsValue(userData.country, countries.getKey())}">selected</c:if>>${countries.value}</option>
                         </c:forEach>
                     </select>
                 </div>
@@ -148,7 +148,7 @@ To change this template use File | Settings | File Templates.
                     <select class="form-control" id="sex" name="sex" required>
                         <c:forEach var="gender" items="${gendersMap}">
                             <option value="${gender.getKey()}"
-                                    <c:if test="${gender.getKey() == userData.gender}">selected</c:if>>${gender.value}</option>
+                                    <c:if test="${ds:equalsValue(userData.gender, gender.getKey())}">selected</c:if>>${gender.value}</option>
                         </c:forEach>
                     </select>
                 </div>

@@ -1,7 +1,6 @@
 package by.dorozhko.poputka.controller.action.autorized_user.user;
 
 import by.dorozhko.poputka.services.ServiceFactory;
-import by.dorozhko.poputka.services.exception.ExceptionService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -21,7 +20,6 @@ public class AddTripPage extends UserAction {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        HttpSession session = request.getSession(false);
         ResourceBundle resourceBundle = takeLocale(request);
 
         setLocaleToCookie(request, response);

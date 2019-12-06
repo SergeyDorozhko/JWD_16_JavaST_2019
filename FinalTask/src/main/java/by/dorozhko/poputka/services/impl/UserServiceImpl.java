@@ -39,7 +39,7 @@ public class UserServiceImpl extends AbstractService implements UserService {
             userList = userDAO.findAll();
             transaction.commit();
         } catch (ExceptionDao exceptionDao) {
-            System.out.println(exceptionDao);
+            logger.error(exceptionDao);
             transaction.rollback();
         }
         transaction.end();
@@ -160,7 +160,7 @@ public class UserServiceImpl extends AbstractService implements UserService {
             regestedUser = userDAO.create(user);
             transaction.commit();
         } catch (ExceptionDao exceptionDao) {
-            System.out.println(exceptionDao);
+            logger.error(exceptionDao);
             transaction.rollback();
             throw new ExceptionService(exceptionDao);
         }
@@ -308,43 +308,37 @@ public class UserServiceImpl extends AbstractService implements UserService {
             try {
                 secretKeyFactory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
             } catch (NoSuchAlgorithmException e) {
-                e.printStackTrace();
+                logger.error(e);
             }
         }
 
 
         public String generateSalt() {
-            System.out.println("salt - " + Arrays.toString(salt));
             random.nextBytes(salt);
-            System.out.println("salt after - " + Arrays.toString(salt));
 
             Formatter formatter = new Formatter();
             for (int i = 0; i < salt.length; i++) {
                 formatter.format("%02X", salt[i]);
             }
             String hashSalt = formatter.toString();
-            System.out.println("salt hash -> " + hashSalt);
             return hashSalt;
         }
 
         public String generatePwdHash(String pwd) {
             spec = new PBEKeySpec(pwd.toCharArray(), salt, 65536, 128);
-            System.out.println(pwd + " -> " + Arrays.toString(hash));
 
             try {
                 hash = secretKeyFactory.generateSecret(spec).getEncoded();
             } catch (InvalidKeySpecException e) {
-                e.printStackTrace();
+                logger.error(e);
             }
 
-            System.out.println(pwd + " -> " + Arrays.toString(hash));
 
             Formatter formatter = new Formatter();
             for (int i = 0; i < hash.length; i++) {
                 formatter.format("%02X", hash[i]);
             }
             String hashPBKDF2 = formatter.toString();
-            System.out.println(pwd + " hash -> " + hashPBKDF2);
             return hashPBKDF2;
         }
 

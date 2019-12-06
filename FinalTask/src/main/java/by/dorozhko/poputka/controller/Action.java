@@ -25,7 +25,6 @@ public abstract class Action {
     }
 
 
-
     public User getUserOfAction() {
         return userOfAction;
     }
@@ -34,12 +33,15 @@ public abstract class Action {
         this.userOfAction = userOfAction;
     }
 
-    public abstract String execute(HttpServletRequest request, HttpServletResponse response);
+    public abstract String execute(HttpServletRequest request,
+                                   HttpServletResponse response);
 
-    protected void setLocaleToCookie(HttpServletRequest request, HttpServletResponse response) {
+    protected void setLocaleToCookie(HttpServletRequest request,
+                                     HttpServletResponse response) {
         String value = request.getParameter("local");
         if (value != null) {
             Cookie localCookie = new Cookie("lang", value);
+            localCookie.setHttpOnly(true);
             response.addCookie(localCookie);
             request.setAttribute("lang", value);
         }

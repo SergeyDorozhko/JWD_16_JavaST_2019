@@ -1,10 +1,11 @@
 package by.dorozhko.poputka.entity;
 
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class User extends Entity {
+public class User extends Entity implements Serializable {
     private String login;
     private String password;
     private String salt;

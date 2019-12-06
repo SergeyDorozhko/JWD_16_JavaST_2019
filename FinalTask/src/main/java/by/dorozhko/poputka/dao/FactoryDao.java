@@ -11,12 +11,10 @@ public final class FactoryDao {
      */
     private static final FactoryDao INSTANCE = new FactoryDao();
 
-    //TODO may be need in any case make new obgect of USERDAO?
 
     /**
      * Cunstructing
      */
-    // TODO private UserDAO userDAO = new MySqlUserDao();
     private FactoryDao() {
     }
 

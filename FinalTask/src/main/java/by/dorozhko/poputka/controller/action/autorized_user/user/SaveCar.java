@@ -54,7 +54,6 @@ public class SaveCar extends UserAction {
         }
 
         setUserInputData();
-        //todo GO to account if success.
         return request.getContextPath() + "/addCar.html";
 
 
@@ -78,7 +77,7 @@ public class SaveCar extends UserAction {
             countErrors++;
         } else {
             try {
-                int i = Integer.parseInt(brand);
+                Integer.parseInt(brand);
             } catch (NumberFormatException ex) {
                 session.setAttribute("errorBrand",
                         resourceBundle.getString("back.addCar.errorBrand"));
@@ -89,7 +88,7 @@ public class SaveCar extends UserAction {
             countErrors++;
         } else {
             try {
-                int i = Integer.parseInt(model);
+                Integer.parseInt(model);
             } catch (NumberFormatException ex) {
                 session.setAttribute("errorModel", "back.addCar.errorModel");
                 countErrors++;
@@ -99,7 +98,7 @@ public class SaveCar extends UserAction {
             countErrors++;
         } else {
             try {
-                int i = Integer.parseInt(climate);
+                Integer.parseInt(climate);
             } catch (NumberFormatException ex) {
                 session.setAttribute("errorClimate", "back.addCar.errorClimate");
                 countErrors++;
@@ -109,7 +108,7 @@ public class SaveCar extends UserAction {
             countErrors++;
         } else {
             try {
-                int i = Integer.parseInt(climate);
+                Integer.parseInt(climate);
             } catch (NumberFormatException ex) {
                 session.setAttribute("errorProduced", "back.addCar.errorProduced");
                 countErrors++;

@@ -24,7 +24,6 @@ public final class TransactionFactory {
         return INSTANCE;
     }
 
-    //TODO access to create only one object?
 
     /**
      * Create new transaction.

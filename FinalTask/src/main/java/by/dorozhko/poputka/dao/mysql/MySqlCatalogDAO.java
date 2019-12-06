@@ -65,101 +65,37 @@ public class MySqlCatalogDAO implements CatalogDAO {
 
     @Override
     public Map<Integer, String> getCarClimateTypesList() throws ExceptionDao {
-        Map<Integer, String> map = new LinkedHashMap<>();
-
-        try (ResultSet resultSet = connection.createStatement()
-                .executeQuery(SELECT_ALL_CAR_CLIMATE);) {
-            while (resultSet.next()) {
-
-                Integer key = Integer.parseInt(resultSet.getString("id"));
-                String value = resultSet.getString("climate_type");
-                map.put(key, value);
-            }
-
-        } catch (SQLException e) {
-            logger.error(e);
-            throw new ExceptionDao(e);
-        }
-
-        return map;
+        return takeListOfCatalogData(SELECT_ALL_CAR_CLIMATE, "climate_type");
     }
 
     @Override
     public Map<Integer, String> getCarModelList(int brand) throws ExceptionDao {
-        Map<Integer, String> map = new LinkedHashMap<>();
-
-        try (PreparedStatement statement
-                     = connection.prepareStatement(SELECT_ALL_CAR_MODELS_OF_BRAND);) {
-            statement.setInt(1, brand);
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-
-                Integer key = Integer.parseInt(resultSet.getString("id"));
-                String value = resultSet.getString("model");
-                map.put(key, value);
-            }
-
-        } catch (SQLException e) {
-            logger.error(e);
-            throw new ExceptionDao(e);
-        }
-
-        return map;
+        return takeListOfCatalogByMajorId(SELECT_ALL_CAR_MODELS_OF_BRAND, brand, "model");
     }
 
     @Override
     public Map<Integer, String> getCountryList() throws ExceptionDao {
-        Map<Integer, String> map = new LinkedHashMap<>();
-
-        try (ResultSet resultSet = connection.createStatement()
-                .executeQuery(SELECT_ALL_COUNTRIES);) {
-            while (resultSet.next()) {
-
-                Integer key = Integer.parseInt(resultSet.getString("id"));
-                String value = resultSet.getString("country_name");
-                map.put(key, value);
-            }
-
-        } catch (SQLException e) {
-            logger.error(e);
-            throw new ExceptionDao(e);
-        }
-
-        return map;
+        return takeListOfCatalogData(SELECT_ALL_COUNTRIES, "country_name");
     }
 
     @Override
     public Map<Integer, String> getRegionOfCountryList(int countryId) throws ExceptionDao {
-        Map<Integer, String> map = new LinkedHashMap<>();
-
-        try (PreparedStatement statement = connection.prepareStatement(SELECT_ALL_REGIONS_OF_COUNTRY);) {
-            statement.setInt(1, countryId);
-
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-
-                Integer key = Integer.parseInt(resultSet.getString("id"));
-                String value = resultSet.getString("region_name");
-                map.put(key, value);
-            }
-
-        } catch (SQLException e) {
-            logger.error(e);
-            throw new ExceptionDao(e);
-        }
-
-        return map;
+        return takeListOfCatalogByMajorId(SELECT_ALL_REGIONS_OF_COUNTRY, countryId, "region_name");
     }
 
     @Override
     public Map<Integer, String> getCitiesOfRegionList(int regionId) throws ExceptionDao {
+        return takeListOfCatalogByMajorId(SELECT_ALL_CITIES_OF_REGION, regionId, "city_name");
+    }
+
+    private Map<Integer, String> takeListOfCatalogByMajorId(String query, int statemantId, String columnValue) throws ExceptionDao {
         Map<Integer, String> map = new LinkedHashMap<>();
-        try (PreparedStatement statement = connection.prepareStatement(SELECT_ALL_CITIES_OF_REGION)) {
-            statement.setInt(1, regionId);
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, statemantId);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 Integer key = Integer.parseInt(resultSet.getString("id"));
-                String value = resultSet.getString("city_name");
+                String value = resultSet.getString(columnValue);
                 map.put(key, value);
             }
         } catch (SQLException ex) {
@@ -171,56 +107,29 @@ public class MySqlCatalogDAO implements CatalogDAO {
 
     @Override
     public Map<Integer, String> getGenderList() throws ExceptionDao {
-        Map<Integer, String> map = new LinkedHashMap<>();
-
-        try (ResultSet resultSet = connection.createStatement()
-                .executeQuery(SELECT_ALL_GENDERS);) {
-            while (resultSet.next()) {
-
-                Integer key = Integer.parseInt(resultSet.getString("id"));
-                String value = resultSet.getString("gender");
-                map.put(key, value);
-            }
-
-        } catch (SQLException e) {
-            logger.error(e);
-            throw new ExceptionDao(e);
-        }
-
-        return map;
+        return takeListOfCatalogData(SELECT_ALL_GENDERS, "gender");
     }
 
     @Override
     public Map<Integer, String> getCarBrandList() throws ExceptionDao {
-        Map<Integer, String> map = new LinkedHashMap<>();
-
-        try (ResultSet resultSet = connection.createStatement()
-                .executeQuery(SELECT_ALL_CAR_BRANDS);) {
-            while (resultSet.next()) {
-
-                Integer key = Integer.parseInt(resultSet.getString("id"));
-                String value = resultSet.getString("brand");
-                map.put(key, value);
-            }
-
-        } catch (SQLException e) {
-            logger.error(e);
-            throw new ExceptionDao(e);
-        }
-
-        return map;
+        return takeListOfCatalogData(SELECT_ALL_CAR_BRANDS, "brand");
     }
 
     @Override
     public Map<Integer, String> getCurrenciesList() throws ExceptionDao {
+        return takeListOfCatalogData(SELECT_ALL_CURRENCIES, "currency");
+    }
+
+    private Map<Integer, String> takeListOfCatalogData(String query, String columnName) throws ExceptionDao {
+
         Map<Integer, String> map = new LinkedHashMap<>();
 
         try (ResultSet resultSet = connection.createStatement()
-                .executeQuery(SELECT_ALL_CURRENCIES);) {
+                .executeQuery(query);) {
             while (resultSet.next()) {
 
                 Integer key = Integer.parseInt(resultSet.getString("id"));
-                String value = resultSet.getString("currency");
+                String value = resultSet.getString(columnName);
                 map.put(key, value);
             }
 
@@ -251,19 +160,27 @@ public class MySqlCatalogDAO implements CatalogDAO {
     }
 
 
-
-    private String takeDataByQuery(String query, String expectedValue, int id) throws ExceptionDao {
+    private String takeDataByQuery(String query, String columnName, int id) throws ExceptionDao {
         String result = null;
+        ResultSet resultSet = null;
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, id);
-            ResultSet resultSet = statement.executeQuery();
+            resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                result = resultSet.getString(expectedValue);
+                result = resultSet.getString(columnName);
             }
-            logger.debug("climate_type taken");
+            logger.debug("data taken");
         } catch (SQLException ex) {
             logger.error(ex);
             throw new ExceptionDao(ex);
+        } finally {
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    logger.error(e);
+                }
+            }
         }
         return result;
     }

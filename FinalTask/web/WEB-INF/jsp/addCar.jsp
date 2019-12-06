@@ -64,11 +64,11 @@ To change this template use File | Settings | File Templates.
             <div class="form-group row">
                 <label for="brand" class="col-sm-3 control-label"><fmt:message key="fields.carBrand"/>*</label>
                 <div class="col-sm-6">
-                    <select class="form-control" id="brand"  onchange="this.form.submit()" name="brand" required>
+                    <select class="form-control" id="brand" onchange="this.form.submit()" name="brand" required>
                         <option></option>
                         <c:forEach var="brands" items="${brandsMap}">
                             <option value="${brands.getKey()}"
-                                    <c:if test="${brands.getKey() == userBrand}">selected</c:if>>${brands.value}</option>
+                                    <c:if test="${ds:equalsValue(userBrand, brands.getKey())}">selected</c:if>>${brands.value}</option>
                         </c:forEach>
                     </select></div>
                 <label style="background-color: B82303; font-size: 25px">${errorBrand}</label>
@@ -80,7 +80,7 @@ To change this template use File | Settings | File Templates.
                         <option></option>
                         <c:forEach var="models" items="${modelsMap}">
                             <option value="${models.getKey()}"
-                                    <c:if test="${models.getKey() == userModel}">selected</c:if>>${models.value}</option>
+                                    <c:if test="${ds:equalsValue(userModel, models.getKey())}">selected</c:if>>${models.value}</option>
                         </c:forEach>
                     </select></div>
                 <label style="background-color: B82303; font-size: 25px">${errorModel}</label>
@@ -92,19 +92,19 @@ To change this template use File | Settings | File Templates.
                         <option></option>
                         <c:forEach var="climateType" items="${climateTypeMap}">
                             <option value="${climateType.getKey()}"
-                                    <c:if test="${climateType.getKey() == userClimate}">selected</c:if>>${climateType.value}</option>
+                                    <c:if test="${ds:equalsValue(userClimate, climateType.getKey())}">selected</c:if>>${climateType.value}</option>
                         </c:forEach>
                     </select></div>
-                                    <label style="background-color: B82303; font-size: 25px">${errorClimate}</label>
+                <label style="background-color: B82303; font-size: 25px">${errorClimate}</label>
             </div>
             <div class="form-group row">
                 <label for="produced" class="col-sm-3 control-label"><fmt:message key="fields.produced"/> *</label>
                 <div class="col-sm-4">
-                    <input type="number" min="1950" max="2020" step="1" id="produced" name="produced" class="form-control" value="${userProduced}" required autofocus>
+                    <input type="number" min="1950" max="2020" step="1" id="produced" name="produced"
+                           class="form-control" value="${userProduced}" required autofocus>
                 </div>
                 <label style="background-color: B82303; font-size: 25px">${errorProduced}</label>
             </div>
-
 
 
             <div class="form-group">
@@ -113,7 +113,8 @@ To change this template use File | Settings | File Templates.
                 </div>
             </div>
             <div class="mx-auto-center">
-                <button type="submit" class="btn btn-primary" name="button" value="saveCar"><fmt:message key="button.save"/></button>
+                <button type="submit" class="btn btn-primary" name="button" value="saveCar"><fmt:message
+                        key="button.save"/></button>
                 <button type="reset" class="btn btn-danger"><fmt:message key="button.reset"/></button>
             </div>
         </form> <!-- /form -->

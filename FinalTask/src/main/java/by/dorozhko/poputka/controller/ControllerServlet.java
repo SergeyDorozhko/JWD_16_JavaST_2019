@@ -21,18 +21,16 @@ public class ControllerServlet extends HttpServlet {
      */
     private final Logger logger = LogManager.getLogger(getClass().getName());
 
-    /**
-     * Path to the storage to upload xml file.
-     */
-    private static final String STORAGE_FOLDER_PATH =
-            "WEB-INF/classes/data/xml";
 
-    /**
-     * buffer to read file size.
-     */
-    private static final int BUFFER = 1024;
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        process(req, resp);
+    }
 
-
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        process(req, resp);
+    }
 
     /**
      * Method take user request, take some information instead of user request
@@ -43,9 +41,8 @@ public class ControllerServlet extends HttpServlet {
      * @throws ServletException servletException.
      * @throws IOException      IOException.
      */
-    @Override
-    protected void service(final HttpServletRequest req,
-                         final HttpServletResponse resp)
+    protected void process(final HttpServletRequest req,
+                           final HttpServletResponse resp)
             throws ServletException, IOException {
 
 
@@ -76,7 +73,6 @@ public class ControllerServlet extends HttpServlet {
     }
 
 
-    //TODO init and destroy create Connectionpool and destroy Connectionpool realise using command and service!!!!!!!!!!!!
     @Override
     public void destroy() {
         super.destroy();

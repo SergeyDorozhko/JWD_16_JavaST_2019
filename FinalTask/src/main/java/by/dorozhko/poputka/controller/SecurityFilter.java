@@ -27,8 +27,7 @@ public class SecurityFilter implements Filter {
             logger.debug("start security filter");
             HttpServletRequest httpRequest
                     = (HttpServletRequest) servletRequest;
-            HttpServletResponse httpResponse
-                    = (HttpServletResponse) servletResponse;
+
 
             Action action = (Action) httpRequest.getAttribute("action");
             logger.debug(action.getClass().getSimpleName());
@@ -75,7 +74,6 @@ public class SecurityFilter implements Filter {
                 }
                 servletRequest.getServletContext().getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(servletRequest, servletResponse);
 
-//                httpResponse.sendRedirect(httpRequest.getContextPath() + "/login.jsp");
             }
         } else {
             logger.error("It is impossible to use HTTP filter");

@@ -1,6 +1,5 @@
 package by.dorozhko.poputka.controller.action.autorized_user;
 
-import by.dorozhko.poputka.controller.action.autorized_user.user.UserAction;
 import by.dorozhko.poputka.entity.User;
 import by.dorozhko.poputka.services.ServiceFactory;
 import by.dorozhko.poputka.services.UserService;

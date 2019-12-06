@@ -5,7 +5,6 @@ import by.dorozhko.poputka.dao.UserDAO;
 import by.dorozhko.poputka.dao.exception.ExceptionDao;
 import by.dorozhko.poputka.entity.Car;
 import by.dorozhko.poputka.entity.User;
-import by.dorozhko.poputka.services.exception.ExceptionService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -27,7 +26,6 @@ public class MySqlUserDao implements UserDAO {
      * Query to mySQL database to find all users, return table with identity
      * and login of users.
      */
-    //TODO optimize query
     private static final String SELECT_ALL_USERS
             = "SELECT users.id, users.login from users";
 
@@ -143,7 +141,6 @@ public class MySqlUserDao implements UserDAO {
             statement.executeUpdate();
 
 
-//  TODO  Best method creating user.
 
 
             ResultSet idNewUserSet = statement.getGeneratedKeys();
@@ -304,12 +301,12 @@ public class MySqlUserDao implements UserDAO {
     @Override
     public String getSalt(final String login) throws ExceptionDao {
         String salt = null;
-
+        ResultSet resultSet = null;
         try (PreparedStatement statement
                      = connection.prepareStatement(SELECT_SALT_BY_LOGIN);) {
             statement.setString(1, login);
 
-            ResultSet resultSet = statement.executeQuery();
+            resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 salt = resultSet.getString("salt");
 
@@ -317,6 +314,14 @@ public class MySqlUserDao implements UserDAO {
         } catch (SQLException e) {
             logger.error(e);
             throw new ExceptionDao(e);
+        } finally {
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    logger.error(e);
+                }
+            }
         }
 
         return salt;
@@ -516,7 +521,7 @@ public class MySqlUserDao implements UserDAO {
             while (resultSet.next()) {
                 userInfoId = resultSet.getInt("id");
             }
-        }catch (SQLException ex) {
+        } catch (SQLException ex) {
             logger.error(ex);
             throw new ExceptionDao(ex);
         }

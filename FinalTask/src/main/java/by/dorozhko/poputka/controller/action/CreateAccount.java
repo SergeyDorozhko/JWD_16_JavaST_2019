@@ -10,6 +10,8 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ResourceBundle;
 
 public class CreateAccount extends AllUsersAction {
@@ -42,6 +44,8 @@ public class CreateAccount extends AllUsersAction {
         getAllAttributes(request);
         User regestedUser = null;
         ResourceBundle resourceBundle = takeLocale(request);
+        logger.debug(String.format("login: %s", login));
+
         if (checkData(resourceBundle)) {
             logger.debug("passwords are equal");
             User user = new User(login, password, firstName, lastName, sex, birthday, country, passportNumber, passportDate, phoneNumber, email);
@@ -89,27 +93,25 @@ public class CreateAccount extends AllUsersAction {
     private boolean checkData(ResourceBundle resourceBundle) {
         logger.debug("check data start");
         int countErrors = 0;
-        logger.debug(String.format("login: %s", login));
-        logger.debug(String.format("data: %s", passportDate));
-        logger.debug(String.format("sex: %s", sex));
 
-        if (login.length() == 0) {
+        if (login == null || login.length() == 0) {
             session.setAttribute("errorLogin",  resourceBundle.getString("back.errors.fieldIsEmptyError"));
             countErrors++;
         }
-        if (firstName.length() == 0) {
+        if (firstName == null || firstName.length() == 0) {
             session.setAttribute("errorFirstName",  resourceBundle.getString("back.errors.fieldIsEmptyError"));
             countErrors++;
         }
-        if (lastName.length() == 0) {
+        if (lastName == null || lastName.length() == 0) {
             session.setAttribute("errorLastName",  resourceBundle.getString("back.errors.fieldIsEmptyError"));
             countErrors++;
         }
-        if (email.length() == 0) {
+        if (email == null || email.length() == 0) {
             session.setAttribute("errorEmail",  resourceBundle.getString("back.errors.fieldIsEmptyError"));
             countErrors++;
         }
-        if (password.length() == 0 || confirmPassword.length() == 0) {
+
+        if (password == null || password.length() == 0 || confirmPassword == null || confirmPassword.length() == 0) {
             session.setAttribute("errorPassword",  resourceBundle.getString("back.errors.fieldIsEmptyError"));
             countErrors++;
         } else {
@@ -118,29 +120,65 @@ public class CreateAccount extends AllUsersAction {
                 countErrors++;
             }
         }
-        if (birthday.length() == 0) {
+        if (birthday == null || birthday.length() == 0) {
             session.setAttribute("errorBirthday",  resourceBundle.getString("back.errors.fieldIsEmptyError"));
             countErrors++;
+        }  else {
+            try {
+                LocalDate.parse(birthday);
+            } catch (DateTimeParseException ex) {
+                logger.error(ex);
+                session.setAttribute("errorBirthday", resourceBundle.getString("back.errors.fieldFormatError"));
+                countErrors++;
+            }
+
         }
-        if (phoneNumber.length() == 0) {
+        if (phoneNumber == null || phoneNumber.length() == 0) {
             session.setAttribute("errorPhoneNumber",  resourceBundle.getString("back.errors.fieldIsEmptyError"));
             countErrors++;
         }
-        if (country.length() == 0) {
+        if (country == null || country.length() == 0) {
             session.setAttribute("errorCountry",  resourceBundle.getString("back.errors.fieldIsEmptyError"));
             countErrors++;
+        } else {
+            try {
+                Integer.parseInt(country);
+            } catch (NumberFormatException ex) {
+                logger.error(ex);
+                session.setAttribute("errorCountry", resourceBundle.getString("back.errors.fieldFormatError"));
+                countErrors++;
+            }
+
         }
-        if (passportNumber.length() == 0) {
+        if (passportNumber == null || passportNumber.length() == 0) {
             session.setAttribute("errorPassportNumber",  resourceBundle.getString("back.errors.fieldIsEmptyError"));
             countErrors++;
         }
-        if (passportDate.length() == 0) {
+        if (passportDate == null || passportDate.length() == 0) {
             session.setAttribute("errorPassportDate",  resourceBundle.getString("back.errors.fieldIsEmptyError"));
             countErrors++;
+        } else {
+            try {
+                LocalDate.parse(passportDate);
+            } catch (DateTimeParseException ex) {
+                logger.error(ex);
+                session.setAttribute("errorPassportDate", resourceBundle.getString("back.errors.fieldFormatError"));
+                countErrors++;
+            }
+
         }
-        if (sex.length() == 0) {
+        if (sex == null || sex.length() == 0) {
             session.setAttribute("errorSex",  resourceBundle.getString("back.errors.fieldIsEmptyError"));
             countErrors++;
+        }  else {
+            try {
+                Integer.parseInt(sex);
+            } catch (NumberFormatException ex) {
+                logger.error(ex);
+                session.setAttribute("errorSex", resourceBundle.getString("back.errors.fieldFormatError"));
+                countErrors++;
+            }
+
         }
         logger.debug(String.format("find %d errors", countErrors));
         return countErrors == 0;

@@ -1,6 +1,5 @@
 package by.dorozhko.poputka.controller.action;
 
-import by.dorozhko.poputka.controller.Action;
 import by.dorozhko.poputka.services.JourneyService;
 import by.dorozhko.poputka.services.ServiceFactory;
 
@@ -16,7 +15,6 @@ public class JourneyList extends AllUsersAction {
                 = ServiceFactory.getInstance().getJoureyService();
 
 
-        System.out.println(journeyService.findAllJourneyShort());
         request.setAttribute("journeyList",
                 journeyService.findAllJourneyShort());
         return "/WEB-INF/jsp/listOfJourneys.jsp";

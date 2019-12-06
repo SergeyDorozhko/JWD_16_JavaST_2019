@@ -23,22 +23,6 @@ public class Commentary extends Entity {
     public Commentary() {
     }
 
-    //TODO delete.
-
-    /**
-     * fds.
-     * @param id sdf
-     * @param commentator sdfd
-     * @param commentAbout sdf
-     * @param comment sdf
-     */
-    public Commentary(final int id, final User commentator,
-                      User commentAbout, String comment) {
-        super(id);
-        this.commentator = commentator;
-        this.commentAbout = commentAbout;
-        this.comment = comment;
-    }
 
     /**
      * Get comment author method.

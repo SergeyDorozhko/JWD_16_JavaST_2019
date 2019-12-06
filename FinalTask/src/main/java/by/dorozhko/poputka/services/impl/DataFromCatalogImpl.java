@@ -4,7 +4,6 @@ import by.dorozhko.poputka.dao.*;
 import by.dorozhko.poputka.dao.exception.ExceptionDao;
 import by.dorozhko.poputka.services.AbstractService;
 import by.dorozhko.poputka.services.DataFromCatalogService;
-import by.dorozhko.poputka.services.exception.ExceptionService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

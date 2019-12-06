@@ -8,14 +8,6 @@ public abstract class Entity {
      */
     private int id;
 
-    //TODO remove
-    public Entity() {
-    }
-
-    //TODO remove
-    public Entity(final int newId) {
-        this.id = newId;
-    }
 
     /**
      * Get idenntity of entity method.
