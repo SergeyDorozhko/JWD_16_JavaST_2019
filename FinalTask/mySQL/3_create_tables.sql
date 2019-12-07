@@ -20,7 +20,7 @@ CREATE TABLE `cars` (
 	`year_of_produce` YEAR NOT NULL CHECK (`year_of_produce` >= 1900),
 	`air_conditioner` BOOLEAN NOT NULL,
 	PRIMARY KEY (`id`),
-	 ADD CONSTRAINT `FK_car_brand_and_model`
+	 CONSTRAINT `FK_car_brand_and_model`
         FOREIGN KEY (`brand_and_model_id`) REFERENCES `car_models`(`id`)
             ON UPDATE CASCADE
             ON DELETE restrict
@@ -50,7 +50,7 @@ CREATE TABLE `user_info` (
 	`phone` VARCHAR(255) NOT NULL UNIQUE,
 	`email` VARCHAR(255) NOT NULL UNIQUE,
 	`car_id` INTEGER,
-	`driving_experience_since` YEAR;
+	`driving_experience_since` YEAR
 	PRIMARY KEY (`id`),
 	CONSTRAINT `FK_car`
 	FOREIGN KEY (`car_id`)
@@ -185,7 +185,7 @@ CREATE TABLE `comments` (
 	ON UPDATE CASCADE
 	ON DELETE SET NULL,
 	CONSTRAINT `FK_passenger`
-	FOREIGN KEY (`comment_about_id``)
+	FOREIGN KEY (`comment_about_id`)
 	REFERENCES `user_info` (`id`)
 	ON UPDATE CASCADE
 	ON DELETE SET NULL
@@ -196,7 +196,7 @@ CREATE TABLE `comments` (
 CREATE TABLE `car_brands` (
 	`id` INTEGER NOT NULL AUTO_INCREMENT,
 	`brand` VARCHAR(50) NOT NULL UNIQUE,
-	PRIMARY KEY (`id`),
+	PRIMARY KEY (`id`)
 ) ENGINE=INNODB DEFAULT CHARACTER SET utf8;
 
 
