@@ -1,4 +1,4 @@
-USE `library_db`;
+USE `poputka_db`;
 
 CREATE TABLE `users` (
 	`id` INTEGER NOT NULL AUTO_INCREMENT,
