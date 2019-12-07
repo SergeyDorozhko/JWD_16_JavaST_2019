@@ -1,1 +1,1 @@
-DROP DATABASE IF EXISTS `library_db`;
+DROP DATABASE IF EXISTS `poputka_db`;
