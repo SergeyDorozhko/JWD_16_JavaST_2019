@@ -91,9 +91,10 @@ public class MySqlCatalogDAO implements CatalogDAO {
 
     private Map<Integer, String> takeListOfCatalogByMajorId(String query, int statemantId, String columnValue) throws ExceptionDao {
         Map<Integer, String> map = new LinkedHashMap<>();
+        ResultSet resultSet = null;
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, statemantId);
-            ResultSet resultSet = statement.executeQuery();
+            resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 Integer key = Integer.parseInt(resultSet.getString("id"));
                 String value = resultSet.getString(columnValue);
@@ -102,6 +103,14 @@ public class MySqlCatalogDAO implements CatalogDAO {
         } catch (SQLException ex) {
             logger.error(ex);
             throw new ExceptionDao(ex);
+        } finally {
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    logger.error(e);
+                }
+            }
         }
         return map;
     }
@@ -193,9 +202,10 @@ public class MySqlCatalogDAO implements CatalogDAO {
     @Override
     public Car getCar(int modelId) throws ExceptionDao {
         Car car = null;
+        ResultSet resultSet = null;
         try (PreparedStatement statement = connection.prepareStatement(SELECT_CAR_BRAND_MODEL_BY_MODEL_ID)) {
             statement.setInt(1, modelId);
-            ResultSet resultSet = statement.executeQuery();
+            resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 car = new Car();
                 car.setBrand(resultSet.getString("brand"));
@@ -204,6 +214,14 @@ public class MySqlCatalogDAO implements CatalogDAO {
         } catch (SQLException ex) {
             logger.error(ex);
             throw new ExceptionDao(ex);
+        } finally {
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    logger.error(e);
+                }
+            }
         }
         return car;
     }
@@ -211,9 +229,10 @@ public class MySqlCatalogDAO implements CatalogDAO {
     @Override
     public Address getAddressByCityId(int id) throws ExceptionDao {
         Address address = null;
+        ResultSet addressQuery = null;
         try (PreparedStatement getAddress = connection.prepareStatement(SELECT_ADDRESS_BY_CITY_ID)) {
             getAddress.setInt(1, id);
-            ResultSet addressQuery = getAddress.executeQuery();
+            addressQuery = getAddress.executeQuery();
             address = new Address();
             while (addressQuery.next()) {
                 address.setCountry(
@@ -225,6 +244,14 @@ public class MySqlCatalogDAO implements CatalogDAO {
         } catch (SQLException ex) {
             logger.error(ex);
             throw new ExceptionDao(ex);
+        } finally {
+            if (addressQuery != null) {
+                try {
+                    addressQuery.close();
+                } catch (SQLException e) {
+                    logger.error(e);
+                }
+            }
         }
         return address;
     }

@@ -13,9 +13,6 @@ import org.apache.logging.log4j.Logger;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 public class JourneyServiceImpl extends AbstractService implements JourneyService {

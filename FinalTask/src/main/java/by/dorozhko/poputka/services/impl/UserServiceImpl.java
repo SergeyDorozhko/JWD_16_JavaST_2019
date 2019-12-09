@@ -16,7 +16,6 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
-import java.util.Arrays;
 import java.util.Formatter;
 import java.util.List;
 
@@ -320,8 +319,8 @@ public class UserServiceImpl extends AbstractService implements UserService {
             for (int i = 0; i < salt.length; i++) {
                 formatter.format("%02X", salt[i]);
             }
-            String hashSalt = formatter.toString();
-            return hashSalt;
+            return formatter.toString();
+
         }
 
         public String generatePwdHash(String pwd) {
@@ -338,8 +337,8 @@ public class UserServiceImpl extends AbstractService implements UserService {
             for (int i = 0; i < hash.length; i++) {
                 formatter.format("%02X", hash[i]);
             }
-            String hashPBKDF2 = formatter.toString();
-            return hashPBKDF2;
+            return formatter.toString();
+
         }
 
         public void setSalt(String newSalt) {

@@ -22,7 +22,7 @@ public class MySqlJourneyDAO implements JourneyDAO {
     private final Logger logger = LogManager.getLogger(getClass().getName());
 
     private Connection connection;
-    //TODO only actual and sort by date then time.
+
     private static final String SELECT_ACTUAL_TRIPS_WITH_LIMIT
             = " SELECT id, driver_id, start_address_id, destination_address_id, "
             + " departure_time, departure_date, cost, currency_id, number_of_passengers, "

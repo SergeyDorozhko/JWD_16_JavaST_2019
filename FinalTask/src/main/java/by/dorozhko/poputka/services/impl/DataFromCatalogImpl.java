@@ -55,11 +55,11 @@ public class DataFromCatalogImpl extends AbstractService implements DataFromCata
 
     @Override
     public Map<Integer, String> getRegionsOfCountry(int countryId) {
-        Map<Integer, String> map = null;
+        Map<Integer, String> mapOfRegions = null;
         CatalogDAO catalogDAO = FactoryDao.getInstance().getCatalogDAO();
         transaction.begin(catalogDAO);
         try {
-            map = catalogDAO.getRegionOfCountryList(countryId);
+            mapOfRegions = catalogDAO.getRegionOfCountryList(countryId);
             transaction.commit();
         } catch (ExceptionDao exceptionDao) {
             logger.error(exceptionDao);
@@ -68,16 +68,16 @@ public class DataFromCatalogImpl extends AbstractService implements DataFromCata
             transaction.end();
         }
 
-        return map;
+        return mapOfRegions;
     }
 
     @Override
     public Map<Integer, String> getCitiesOfRegion(int regionId) {
-        Map<Integer, String> map = null;
+        Map<Integer, String> citiesMap = null;
         CatalogDAO catalogDAO = FactoryDao.getInstance().getCatalogDAO();
         transaction.begin(catalogDAO);
         try {
-            map = catalogDAO.getCitiesOfRegionList(regionId);
+            citiesMap = catalogDAO.getCitiesOfRegionList(regionId);
             transaction.commit();
         } catch (ExceptionDao exceptionDao) {
             logger.error(exceptionDao);
@@ -86,7 +86,7 @@ public class DataFromCatalogImpl extends AbstractService implements DataFromCata
             transaction.end();
         }
 
-        return map;
+        return citiesMap;
     }
 
     @Override

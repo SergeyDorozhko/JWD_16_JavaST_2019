@@ -7,7 +7,6 @@ import by.dorozhko.poputka.entity.Car;
 import by.dorozhko.poputka.entity.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.message.StringMapMessage;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -128,7 +127,7 @@ public class MySqlUserDao implements UserDAO {
     @Override
     public User create(User entity) throws ExceptionDao {
         int userId = -1;
-
+        ResultSet resultSet = null;
         try (PreparedStatement statement
                      = connection.prepareStatement(INSERT_INTO_USERS, Statement.RETURN_GENERATED_KEYS);
              PreparedStatement statementUserInf
@@ -142,9 +141,9 @@ public class MySqlUserDao implements UserDAO {
             statement.executeUpdate();
 
 
-            ResultSet idNewUserSet = statement.getGeneratedKeys();
-            if (idNewUserSet.next()) {
-                userId = idNewUserSet.getInt(1);
+            resultSet = statement.getGeneratedKeys();
+            if (resultSet.next()) {
+                userId = resultSet.getInt(1);
             }
 
             logger.debug(String.format("new user id: %d", userId));
@@ -166,7 +165,7 @@ public class MySqlUserDao implements UserDAO {
             connection.commit();
 
             statementTakeCreatedUser.setInt(1, userId);
-            ResultSet resultSet = statementTakeCreatedUser.executeQuery();
+            resultSet = statementTakeCreatedUser.executeQuery();
             while (resultSet.next()) {
                 logger.debug(String.format("new user take from db: %d", 2));
 
@@ -182,6 +181,15 @@ public class MySqlUserDao implements UserDAO {
         } catch (SQLException e) {
             logger.error(e);
             throw new ExceptionDao(e);
+        } finally {
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    logger.error(e);
+                }
+            }
+
         }
 
 
@@ -282,10 +290,10 @@ public class MySqlUserDao implements UserDAO {
     @Override
     public User findEntityById(final Integer id) throws ExceptionDao {
         User user = null;
-
+        ResultSet resultSet = null
         try (PreparedStatement statement = connection.prepareStatement(SELECT_USER_FROM_TRIP_BY_ID);) {
             statement.setInt(1, id);
-            ResultSet resultSet = statement.executeQuery();
+            resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 user = new User();
                 user.setId(resultSet.getInt("user_id"));
@@ -306,6 +314,15 @@ public class MySqlUserDao implements UserDAO {
         } catch (SQLException e) {
             logger.error(e);
             throw new ExceptionDao(e);
+        } finally {
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    logger.error(e);
+                }
+            }
+
         }
         return user;
     }
@@ -344,11 +361,12 @@ public class MySqlUserDao implements UserDAO {
                                            final String password)
             throws ExceptionDao {
         User user = null;
+        ResultSet resultSet = null;
         try (PreparedStatement statement = connection.prepareStatement(SELECT_USER_BY_LOGIN_PWD);) {
             statement.setString(1, login);
             statement.setString(2, password);
 
-            ResultSet resultSet = statement.executeQuery();
+            resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 user = new User();
                 user.setLogin(resultSet.getString("login"));
@@ -359,6 +377,15 @@ public class MySqlUserDao implements UserDAO {
         } catch (SQLException e) {
             logger.error(e);
             throw new ExceptionDao(e);
+        } finally {
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    logger.error(e);
+                }
+            }
+
         }
         return user;
     }
@@ -367,12 +394,12 @@ public class MySqlUserDao implements UserDAO {
     public User addCar(final User user) throws ExceptionDao {
         int carId = -1;
         Car car = user.getCar();
+        ResultSet idNewCarSet = null;
         try (PreparedStatement statement
                      = connection.prepareStatement(INSERT_INTO_CARS,
                 Statement.RETURN_GENERATED_KEYS);
              PreparedStatement statementUserInfUpdate
-                     = connection.prepareStatement(UPDATE_CAR_INTO_USER_INFO);
-        ) {
+                     = connection.prepareStatement(UPDATE_CAR_INTO_USER_INFO);) {
 
             deleteCar(user);
 
@@ -382,7 +409,7 @@ public class MySqlUserDao implements UserDAO {
             statement.executeUpdate();
 
 
-            ResultSet idNewCarSet = statement.getGeneratedKeys();
+            idNewCarSet = statement.getGeneratedKeys();
             if (idNewCarSet.next()) {
                 carId = idNewCarSet.getInt(1);
             }
@@ -399,6 +426,15 @@ public class MySqlUserDao implements UserDAO {
         } catch (SQLException e) {
             logger.error(e);
             throw new ExceptionDao(e);
+        } finally {
+            if (idNewCarSet != null) {
+                try {
+                    idNewCarSet.close();
+                } catch (SQLException e) {
+                    logger.error(e);
+                }
+            }
+
         }
 
 
@@ -425,10 +461,10 @@ public class MySqlUserDao implements UserDAO {
     @Override
     public boolean hasUserCar(int id) throws ExceptionDao {
         boolean hasCar = false;
-
+        ResultSet resultSet = null;
         try (PreparedStatement statement = connection.prepareStatement(CHECK_HAS_USER_CAR)) {
             statement.setInt(1, id);
-            ResultSet resultSet = statement.executeQuery();
+            resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 String carExist = resultSet.getString("car");
                 hasCar = !carExist.equals(NO_CAR_VALUE);
@@ -436,15 +472,24 @@ public class MySqlUserDao implements UserDAO {
         } catch (SQLException ex) {
             logger.error(ex);
             throw new ExceptionDao(ex);
+        } finally {
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    logger.error(e);
+                }
+            }
         }
         return hasCar;
     }
 
     public User findUserInfoWithCar(int id) throws ExceptionDao {
         User userInfo = null;
+        ResultSet resultSet = null;
         try (PreparedStatement userInfoStatement = connection.prepareStatement(SELECT_ALL_USER_INFO_WITH_CAR_BY_ID);) {
             userInfoStatement.setInt(1, id);
-            ResultSet resultSet = userInfoStatement.executeQuery();
+            resultSet = userInfoStatement.executeQuery();
 
             while (resultSet.next()) {
                 logger.debug(String.format("new user take from db: %d", 2));
@@ -474,6 +519,14 @@ public class MySqlUserDao implements UserDAO {
         } catch (SQLException ex) {
             logger.error(ex);
             throw new ExceptionDao(ex);
+        } finally {
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    logger.error(e);
+                }
+            }
         }
         return userInfo;
     }
@@ -483,9 +536,10 @@ public class MySqlUserDao implements UserDAO {
         User userInfo = null;
 
         logger.debug(String.format("new user take from db: %d", 2));
+        ResultSet resultSet = null;
         try (PreparedStatement userInfoStatement = connection.prepareStatement(SELECT_ALL_USER_INFO_WITHOUT_CAR_BY_ID);) {
             userInfoStatement.setInt(1, id);
-            ResultSet resultSet = userInfoStatement.executeQuery();
+            resultSet = userInfoStatement.executeQuery();
             while (resultSet.next()) {
                 userInfo = new User();
                 userInfo.setLogin(resultSet.getString("login"));
@@ -507,6 +561,14 @@ public class MySqlUserDao implements UserDAO {
         } catch (SQLException ex) {
             logger.error(ex);
             throw new ExceptionDao(ex);
+        } finally {
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    logger.error(e);
+                }
+            }
         }
     }
 
@@ -527,15 +589,24 @@ public class MySqlUserDao implements UserDAO {
     @Override
     public int findUserInfoIdByUsersId(int usersId) throws ExceptionDao {
         int userInfoId = 0;
+        ResultSet resultSet = null;
         try (PreparedStatement statement = connection.prepareStatement(SELECT_USER_INFO_ID_BY_USERS_ID)) {
             statement.setInt(1, usersId);
-            ResultSet resultSet = statement.executeQuery();
+            resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 userInfoId = resultSet.getInt("id");
             }
         } catch (SQLException ex) {
             logger.error(ex);
             throw new ExceptionDao(ex);
+        } finally {
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    logger.error(e);
+                }
+            }
         }
 
         return userInfoId;
