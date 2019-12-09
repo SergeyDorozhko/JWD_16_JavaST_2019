@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class MySqlJourneyDAO implements JourneyDAO {
             = " SELECT id, driver_id, start_address_id, destination_address_id, "
             + " departure_time, departure_date, cost, currency_id, number_of_passengers, "
             + " additional_information FROM journey "
-            + " WHERE departure_date > ? "
+            + " WHERE departure_date > ? OR departure_date = ? AND departure_time > ? "
             + " ORDER BY departure_date, departure_time ASC "
             + " limit ?, ? ";
 
@@ -210,13 +211,15 @@ public class MySqlJourneyDAO implements JourneyDAO {
 
 
     @Override
-    public List<Journey> takeListOfNearestTripForMain(final LocalDate today, int limitFrom, int limitTo) throws ExceptionDao {
+    public List<Journey> takeListOfNearestTripForMain(final LocalDate today, final LocalTime currentTime, int limitFrom, int limitTo) throws ExceptionDao {
         List<Journey> list = new ArrayList<>();
         ResultSet resultSet = null;
         try (PreparedStatement statement = connection.prepareStatement(SELECT_ACTUAL_TRIPS_WITH_LIMIT);) {
             statement.setString(1, today.toString());
-            statement.setInt(2, limitFrom);
-            statement.setInt(3, limitTo);
+            statement.setString(2, today.toString());
+            statement.setString(3, currentTime.toString());
+            statement.setInt(4, limitFrom);
+            statement.setInt(5, limitTo);
 
             resultSet = statement.executeQuery();
             while (resultSet.next()) {

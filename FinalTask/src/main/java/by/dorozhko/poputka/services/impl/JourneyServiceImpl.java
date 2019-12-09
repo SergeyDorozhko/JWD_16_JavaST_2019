@@ -12,6 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -36,9 +37,10 @@ public class JourneyServiceImpl extends AbstractService implements JourneyServic
         UserDAO userDAO = FactoryDao.getInstance().getUserDAO();
         CatalogDAO catalogDAO = FactoryDao.getInstance().getCatalogDAO();
         transaction.begin(journeyDAO, userDAO, catalogDAO);
-        logger.debug(String.format("today : %s", LocalDate.now()));
+        logger.debug(String.format("today : %s time %s", LocalDate.now(), LocalTime.now()));
+
         try {
-            list = journeyDAO.takeListOfNearestTripForMain(LocalDate.now(), limitFrom, limitTo);
+            list = journeyDAO.takeListOfNearestTripForMain(LocalDate.now(), LocalTime.now(), limitFrom, limitTo);
             for (Journey journey : list) {
                 User user = userDAO.findEntityById(journey.getDriver().getId());
                 journey.getDriver().setId(user.getId());
