@@ -13,23 +13,31 @@ import java.util.ResourceBundle;
 public class ViewJourney extends AuthorizedUser {
     private final Logger logger = LogManager.getLogger(getClass().getName());
 
+    private static final String FORWARD_PAGE = "/WEB-INF/jsp/viewJourney.jsp";
+
+    private static final String UNKNOWN_ERROR_ATTRIBUTE = "unknownError";
+    private static final String UNKNOWN_ERROR_MESSAGE = "back.errors.unknownError";
+    private static final String JOURNEY_ID_ATTRIBUTE = "journeyId";
+    private static final String JOURNEY_ATTRIBUTE = "journey";
+
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         setLocaleToCookie(request, response);
 
-        String id = request.getParameter("journeyId");
+        String id = request.getParameter(JOURNEY_ID_ATTRIBUTE);
         try {
             int journeyId = Integer.parseInt(id);
             JourneyService service = ServiceFactory.getInstance().getJoureyService();
             Journey journey = service.findJourney(journeyId);
             logger.debug(String.format("journeyIfo : %s", journey));
-            request.setAttribute("journey", journey);
+            request.setAttribute(JOURNEY_ATTRIBUTE, journey);
         } catch (NumberFormatException ex) {
             logger.error(ex);
             ResourceBundle resourceBundle = takeLocale(request);
-            request.setAttribute("unknownError", resourceBundle.getString("back.errors.unknownError"));
+            request.setAttribute(UNKNOWN_ERROR_ATTRIBUTE, resourceBundle.getString(UNKNOWN_ERROR_MESSAGE));
         }
 
-        return "/WEB-INF/jsp/viewJourney.jsp";
+        return FORWARD_PAGE;
     }
 }

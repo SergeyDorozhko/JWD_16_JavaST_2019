@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 public class MainPage extends AllUsersAction {
     private final Logger logger = LogManager.getLogger(getClass().getName());
 
+    private static final String JOURNEY_LIST_ATTRIBUTE = "journeyList";
+    private static final String FORWARD_PAGE = "/WEB-INF/jsp/main.jsp";
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         JourneyService journeyService
@@ -18,8 +20,8 @@ public class MainPage extends AllUsersAction {
         setLocaleToCookie(request, response);
         logger.debug(String.format("local: %s", request.getParameter("local")));
 
-        request.setAttribute("journeyList",
+        request.setAttribute(JOURNEY_LIST_ATTRIBUTE,
                 journeyService.findAllActualForMainPage());
-        return "/WEB-INF/jsp/main.jsp";
+        return FORWARD_PAGE;
     }
 }

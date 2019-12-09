@@ -7,39 +7,47 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.HashSet;
+import java.util.Set;
 
 public class LoginPage extends AllUsersAction {
     private final Logger logger = LogManager.getLogger(getClass().getName());
+
+    private static final String FORWARD_PAGE = "/WEB-INF/jsp/login.jsp";
+
+    private static final String ERROR_LOGIN_ATTRIBUTE = "errorLogin";
+    private static final String ERROR_PASSWORD_ATTRIBUTE = "errorPassword";
+    private static final String USER_LOGIN_ATTRIBUTE = "userLogin";
+
+    private Set<String> attributesList;
+
+    public LoginPage() {
+        attributesList = new HashSet<>();
+        attributesList.add(ERROR_LOGIN_ATTRIBUTE);
+        attributesList.add(ERROR_PASSWORD_ATTRIBUTE);
+        attributesList.add(USER_LOGIN_ATTRIBUTE);
+    }
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         setLocaleToCookie(request, response);
         attributesData(request);
-        return "/WEB-INF/jsp/login.jsp";
+        return FORWARD_PAGE;
     }
 
     private void attributesData(final HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         logger.debug("check attributes start");
         logger.debug(request.getAttributeNames());
-        String errorLogin =
-                (String) session.getAttribute("errorLogin");
-        if (errorLogin != null) {
-            request.setAttribute("errorLogin", errorLogin);
-            session.removeAttribute("errorLogin");
+
+        for (String attribute : attributesList) {
+            String attributeData =
+                    (String) session.getAttribute(attribute);
+            if (attributeData != null) {
+                request.setAttribute(attribute, attributeData);
+                session.removeAttribute(attribute);
+            }
         }
-        String errorPassword =
-                (String) session.getAttribute("errorPassword");
-        if (errorPassword != null) {
-            request.setAttribute("errorPassword", errorPassword);
-            session.removeAttribute("errorPassword");
-        }
-        String userLogin =
-                (String) session.getAttribute("userLogin");
-        logger.debug(String.format("User login was: %s", userLogin));
-        if (userLogin != null) {
-            request.setAttribute("userLogin", userLogin);
-            session.removeAttribute("userLogin");
-        }
+
     }
 }

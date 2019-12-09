@@ -11,13 +11,18 @@ import java.util.List;
 
 public class DisplayAllUsers extends AdminAction {
 
+    private static final String FORWARD_PAGE = "/WEB-INF/jsp/listOfUsers.jsp";
+
+    private static final String LIST_OF_USERS_ATTRIBUTE = "usersList";
+
+
     @Override
     public String execute(final HttpServletRequest req,
                           final HttpServletResponse resp) {
         UserService userService = ServiceFactory.getInstance().getUserService();
         List<User> list = userService.findAll();
 
-        req.setAttribute("usersList", list);
-        return "/WEB-INF/jsp/listOfUsers.jsp";
+        req.setAttribute(LIST_OF_USERS_ATTRIBUTE, list);
+        return FORWARD_PAGE;
     }
 }

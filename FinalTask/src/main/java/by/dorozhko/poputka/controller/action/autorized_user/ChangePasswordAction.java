@@ -16,6 +16,22 @@ public class ChangePasswordAction extends AuthorizedUser {
 
     private final Logger logger = LogManager.getLogger(getClass().getName());
 
+    private static final String REDIRECT_URL = "/viewUserProfile.html";
+
+    private static final String OLD_PASSWORD_PARAMETER = "oldPassword";
+    private static final String NEW_PASSWORD_PARAMETER = "newPassword";
+    private static final String COMFIRM_NEW_PASSWORD_PARAMETER = "comfirmNewPassword";
+
+    private static final String AUTHORIZED_USER_ATTRIBUTE = "authorizedUser";
+    private static final String UNKNOWN_ERROR_ATTRIBUTE = "unknownError";
+
+    private static final String UNKNOWN_ERROR_MESSAGE = "back.errors.unknownError";
+    private static final String PASSWORD_UPDATE_SUCCESS_MESSAGE = "back.errors.passwordUpdateSuccess";
+    private static final String INCORRECT_OLD_PASSWORD_ERROR_MESSAGE = "back.errors.incorrectOldPassword";
+    private static final String EMPTY_OLD_PASSWORD_MESSAGE = "back.errors.oldPasswordIsEmpty";
+    private static final String EMPTY_NEW_PASSWORD_MESSAGE = "back.errors.newPasswordIsEmpty";
+    private static final String EMPTY_COMFIRM_NEW_PASSWORD_MESSAGE = "back.errors.comfirmNewPasswordIsEmpty";
+    private static final String COMFIRM_NEW_PASSWORD_ERROR_MESSAGE = "back.errors.comfirmPasswordError";
 
     private String oldPassword;
     private String newPassword;
@@ -36,7 +52,7 @@ public class ChangePasswordAction extends AuthorizedUser {
         if (checkData(resourceBundle)) {
             UserService userService
                     = ServiceFactory.getInstance().getUserService();
-            User actionUser = (User) session.getAttribute("authorizedUser");
+            User actionUser = (User) session.getAttribute(AUTHORIZED_USER_ATTRIBUTE);
             User user = new User();
             user.setId(actionUser.getId());
             user.setLogin(actionUser.getLogin());
@@ -47,29 +63,29 @@ public class ChangePasswordAction extends AuthorizedUser {
                 boolean result = userService.updateUserPassword(user, newPassword);
                 logger.debug("take answer from service");
                 if (result) {
-                    session.setAttribute("unknownError", resourceBundle.getString("back.errors.passwordUpdateSuccess"));
+                    session.setAttribute(UNKNOWN_ERROR_ATTRIBUTE, resourceBundle.getString(PASSWORD_UPDATE_SUCCESS_MESSAGE));
                 } else {
-                    session.setAttribute("unknownError", resourceBundle.getString("back.errors.incorrectOldPassword"));
+                    session.setAttribute(UNKNOWN_ERROR_ATTRIBUTE, resourceBundle.getString(INCORRECT_OLD_PASSWORD_ERROR_MESSAGE));
                 }
 
 
             } catch (ExceptionService exceptionService) {
                 logger.error(String.format("sqlmsg : %s",
                         exceptionService.getMessage()));
-                session.setAttribute("unknownError", resourceBundle.getString("back.errors.unknownError"));
+                session.setAttribute(UNKNOWN_ERROR_ATTRIBUTE, resourceBundle.getString(UNKNOWN_ERROR_MESSAGE));
 
             }
 
         }
-        return request.getContextPath() + "/viewUserProfile.html";
+        return request.getContextPath() + REDIRECT_URL;
 
     }
 
 
     private void getAllAttributes(HttpServletRequest request) {
-        oldPassword = request.getParameter("oldPassword");
-        newPassword = request.getParameter("newPassword");
-        comfirmNewPassword = request.getParameter("comfirmNewPassword");
+        oldPassword = request.getParameter(OLD_PASSWORD_PARAMETER);
+        newPassword = request.getParameter(NEW_PASSWORD_PARAMETER);
+        comfirmNewPassword = request.getParameter(COMFIRM_NEW_PASSWORD_PARAMETER);
 
         logger.debug("all params take ok");
     }
@@ -78,19 +94,19 @@ public class ChangePasswordAction extends AuthorizedUser {
         logger.debug("check data start");
 
         if (oldPassword == null || oldPassword.length() == 0) {
-            session.setAttribute("unknownError", resourceBundle.getString("back.errors.oldPasswordIsEmpty"));
+            session.setAttribute(UNKNOWN_ERROR_ATTRIBUTE, resourceBundle.getString(EMPTY_OLD_PASSWORD_MESSAGE));
             return false;
         }
 
         if (newPassword == null || newPassword.length() == 0) {
-            session.setAttribute("unknownError", resourceBundle.getString("back.errors.newPasswordIsEmpty"));
+            session.setAttribute(UNKNOWN_ERROR_ATTRIBUTE, resourceBundle.getString(EMPTY_NEW_PASSWORD_MESSAGE));
             return false;
         } else if (comfirmNewPassword == null || comfirmNewPassword.length() == 0) {
-            session.setAttribute("unknownError", resourceBundle.getString("back.errors.comfirmNewPasswordIsEmpty"));
+            session.setAttribute(UNKNOWN_ERROR_ATTRIBUTE, resourceBundle.getString(EMPTY_COMFIRM_NEW_PASSWORD_MESSAGE));
             return false;
         } else {
             if (!newPassword.equals(comfirmNewPassword)) {
-                session.setAttribute("unknownError", resourceBundle.getString("back.errors.comfirmPasswordError"));
+                session.setAttribute(UNKNOWN_ERROR_ATTRIBUTE, resourceBundle.getString(COMFIRM_NEW_PASSWORD_ERROR_MESSAGE));
                 return false;
             }
         }

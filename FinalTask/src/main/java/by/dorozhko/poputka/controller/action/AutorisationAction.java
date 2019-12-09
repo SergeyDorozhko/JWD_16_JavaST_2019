@@ -15,6 +15,20 @@ import java.util.ResourceBundle;
 public class AutorisationAction extends AllUsersAction {
     private final Logger logger = LogManager.getLogger(getClass().getName());
 
+    private static final String SUCCESSFUL_REDIRECT = "/main.html";
+    private static final String ERROR_REDIRECT = "/loginPage.html";
+
+    private static final String AUTHORIZED_USER_ATTRIBUTE = "authorizedUser";
+    private static final String FIELD_IS_EMPTY_ERROR_MESSAGE = "back.errors.fieldIsEmptyError";
+    private static final String INCORRECT_LOGIN_OR_PASSWORD_ERROR_MESSAGE = "back.errors.incorrectLoginOrPassword";
+
+
+    private static final String LOGIN_ATTRIBUTE = "login";
+    private static final String PASSWORD_ATTRIBUTE = "password";
+    private static final String ERROR_LOGIN_ATTRIBUTE = "errorLogin";
+    private static final String ERROR_PASSWORD_ATTRIBUTE = "errorPassword";
+    private static final String USER_LOGIN_ATTRIBUTE = "userLogin";
+
     private String login;
     private String password;
     private HttpSession session;
@@ -36,19 +50,19 @@ public class AutorisationAction extends AllUsersAction {
             }
         }
         if (user != null) {
-            session.setAttribute("authorizedUser",
+            session.setAttribute(AUTHORIZED_USER_ATTRIBUTE,
                     user);
-            return request.getContextPath() + "/main.html";
+            return request.getContextPath() + SUCCESSFUL_REDIRECT;
         }
         setUserInputData();
-        session.setAttribute("errorLogin", resourceBundle.getString("back.errors.incorrectLoginOrPassword"));
+        session.setAttribute(ERROR_LOGIN_ATTRIBUTE, resourceBundle.getString(INCORRECT_LOGIN_OR_PASSWORD_ERROR_MESSAGE));
 
-        return request.getContextPath() + "/loginPage.html";
+        return request.getContextPath() + ERROR_REDIRECT;
     }
 
     private void getAllAttributes(HttpServletRequest request) {
-        login = request.getParameter("login");
-        password = request.getParameter("password");
+        login = request.getParameter(LOGIN_ATTRIBUTE);
+        password = request.getParameter(PASSWORD_ATTRIBUTE);
         logger.debug("all params take ok");
     }
 
@@ -56,12 +70,12 @@ public class AutorisationAction extends AllUsersAction {
         logger.debug("check data start");
         int countErrors = 0;
         if (login.length() == 0) {
-            session.setAttribute("errorLogin", resourceBundle.getString("back.errors.fieldIsEmptyError"));
+            session.setAttribute(ERROR_LOGIN_ATTRIBUTE, resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
             countErrors++;
         }
 
         if (password.length() == 0) {
-            session.setAttribute("errorPassword", resourceBundle.getString("back.errors.fieldIsEmptyError"));
+            session.setAttribute(ERROR_PASSWORD_ATTRIBUTE, resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
             countErrors++;
         }
 
@@ -70,7 +84,7 @@ public class AutorisationAction extends AllUsersAction {
     }
 
     private void setUserInputData() {
-        session.setAttribute("userLogin", login);
+        session.setAttribute(USER_LOGIN_ATTRIBUTE, login);
     }
 
 }

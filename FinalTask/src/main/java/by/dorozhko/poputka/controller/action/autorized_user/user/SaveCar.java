@@ -16,6 +16,23 @@ import java.util.ResourceBundle;
 public class SaveCar extends UserAction {
     private final Logger logger = LogManager.getLogger(getClass().getName());
 
+    private static final String SUCCESSFUL_REDIRECT_URL = "/viewUserProfile.html";
+    private static final String ERROR_REDIRECT_URL = "/addCar.html";
+
+    private static final String AUTHORIZED_USER_ATTRIBUTE = "authorizedUser";
+
+    
+    private static final String ERROR_BRAND_ATTRIBUTE = "errorBrand";
+    private static final String ERROR_MODEL_ATTRIBUTE = "errorModel";
+    private static final String ERROR_CLIMATE_ATTRIBUTE = "errorClimate";
+    private static final String ERROR_YEAR_OF_PRODUCE_ATTRIBUTE = "errorProduced";
+    private static final String USER_BRAND_ATTRIBUTE = "userBrand";
+    private static final String USER_MODEL_ATTRIBUTE = "userModel";
+    private static final String USER_CLIMATE_ATTRIBUTE = "userClimate";
+    private static final String USER_YEAR_OF_PRODUCE_ATTRIBUTE = "userProduced";
+
+
+
     private String brand;
     private String model;
     private String climate;
@@ -33,7 +50,7 @@ public class SaveCar extends UserAction {
 
 
         if (checkData(request)) {
-            User actionUser = (User) session.getAttribute("authorizedUser");
+            User actionUser = (User) session.getAttribute(AUTHORIZED_USER_ATTRIBUTE);
             User user = new User();
             user.setId(actionUser.getId());
             user.setLogin(actionUser.getLogin());
@@ -46,7 +63,7 @@ public class SaveCar extends UserAction {
             try {
                 userService.addCar(user);
                 logger.debug(user);
-                return request.getContextPath() + "/viewUserProfile.html";
+                return request.getContextPath() + SUCCESSFUL_REDIRECT_URL;
             } catch (ExceptionService exceptionService) {
                 logger.error(exceptionService);
                 //TODO exception parsing to show answer.
@@ -54,7 +71,7 @@ public class SaveCar extends UserAction {
         }
 
         setUserInputData();
-        return request.getContextPath() + "/addCar.html";
+        return request.getContextPath() + ERROR_REDIRECT_URL;
 
 
     }
@@ -123,10 +140,10 @@ public class SaveCar extends UserAction {
     private void setUserInputData() {
         logger.debug(String.format("set user attributes: %s, %s, %s, %s",
                 brand, model, climate, produced));
-        session.setAttribute("userBrand", brand);
-        session.setAttribute("userModel", model);
-        session.setAttribute("userClimate", climate);
-        session.setAttribute("userProduced", produced);
+        session.setAttribute(USER_BRAND_ATTRIBUTE, brand);
+        session.setAttribute(USER_MODEL_ATTRIBUTE, model);
+        session.setAttribute(USER_CLIMATE_ATTRIBUTE, climate);
+        session.setAttribute(USER_YEAR_OF_PRODUCE_ATTRIBUTE, produced);
 
     }
 

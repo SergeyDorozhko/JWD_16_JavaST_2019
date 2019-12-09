@@ -14,25 +14,34 @@ import javax.servlet.http.HttpSession;
 public class ViewProfilePage extends AuthorizedUser {
     private final Logger logger = LogManager.getLogger(getClass().getName());
 
+    private static final String FORWARD_PAGE = "/WEB-INF/jsp/viewUserProfile.jsp";
+
+    private static final String UNKNOWN_ERROR_ATTRIBUTE = "unknownError";
+
+    private static final String AUTHORIZED_USER_ATTRIBUTE = "authorizedUser";
+
+    private static final String USER_DATA_ATTRIBUTE = "userData";
+
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession(false);
         setLocaleToCookie(request, response);
         UserService service = ServiceFactory.getInstance().getUserService();
-        User actionUser = (User) session.getAttribute("authorizedUser");
+        User actionUser = (User) session.getAttribute(AUTHORIZED_USER_ATTRIBUTE);
         User user = new User();
         user.setId(actionUser.getId());
         user.setLogin(actionUser.getLogin());
         try {
             User userData = service.findById(user.getId());
-            request.setAttribute("userData", userData);
+            request.setAttribute(USER_DATA_ATTRIBUTE, userData);
         } catch (ExceptionService exceptionService) {
             logger.error(exceptionService);
         }
 
         logger.debug("done without mistakes.");
         attributesData(request);
-        return "/WEB-INF/jsp/viewUserProfile.jsp";
+        return FORWARD_PAGE;
     }
 
     private void attributesData(final HttpServletRequest request) {
@@ -41,10 +50,10 @@ public class ViewProfilePage extends AuthorizedUser {
         logger.debug(request.getAttributeNames());
 
         String unknownError =
-                (String) session.getAttribute("unknownError");
+                (String) session.getAttribute(UNKNOWN_ERROR_ATTRIBUTE);
         if (unknownError != null) {
-            request.setAttribute("unknownError", unknownError);
-            session.removeAttribute("unknownError");
+            request.setAttribute(UNKNOWN_ERROR_ATTRIBUTE, unknownError);
+            session.removeAttribute(UNKNOWN_ERROR_ATTRIBUTE);
         }
 
     }

@@ -7,26 +7,59 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class AddCarPage extends UserAction {
     private final Logger logger = LogManager.getLogger(getClass().getName());
+
+    private static final String FORWARD_PAGE = "/WEB-INF/jsp/addCar.jsp";
+
+    private static final String BRANDS_MAP_ATTRIBUTE = "brandsMap";
+    private static final String MODELS_MAP_ATTRIBUTE = "modelsMap";
+    private static final String CLIMATE_TYPE_MAP_ATTRIBUTE = "climateTypeMap";
+
+    private static final String ERROR_BRAND_ATTRIBUTE = "errorBrand";
+    private static final String ERROR_MODEL_ATTRIBUTE = "errorModel";
+    private static final String ERROR_CLIMATE_ATTRIBUTE = "errorClimate";
+    private static final String ERROR_YEAR_OF_PRODUCE_ATTRIBUTE = "errorProduced";
+    private static final String USER_BRAND_ATTRIBUTE = "userBrand";
+    private static final String USER_MODEL_ATTRIBUTE = "userModel";
+    private static final String USER_CLIMATE_ATTRIBUTE = "userClimate";
+    private static final String USER_YEAR_OF_PRODUCE_ATTRIBUTE = "userProduced";
+
+
     private String userBrand;
+
+    private Set<String> listOfAttributes;
+
+    public AddCarPage() {
+        listOfAttributes = new HashSet<>();
+        listOfAttributes.add(ERROR_BRAND_ATTRIBUTE);
+        listOfAttributes.add(ERROR_MODEL_ATTRIBUTE);
+        listOfAttributes.add(ERROR_CLIMATE_ATTRIBUTE);
+        listOfAttributes.add(ERROR_YEAR_OF_PRODUCE_ATTRIBUTE);
+        listOfAttributes.add(USER_BRAND_ATTRIBUTE);
+        listOfAttributes.add(USER_MODEL_ATTRIBUTE);
+        listOfAttributes.add(USER_CLIMATE_ATTRIBUTE);
+        listOfAttributes.add(USER_YEAR_OF_PRODUCE_ATTRIBUTE);
+    }
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         setLocaleToCookie(request, response);
         Map<Integer, String> brands = ServiceFactory.getInstance().getCatalogService().getCarBrands();
-        request.setAttribute("brandsMap", brands);
+        request.setAttribute(BRANDS_MAP_ATTRIBUTE, brands);
         Map<Integer, String> climate = ServiceFactory.getInstance().getCatalogService().getCarClimateTypes();
-        request.setAttribute("climateTypeMap", climate);
+        request.setAttribute(CLIMATE_TYPE_MAP_ATTRIBUTE, climate);
 
         attributesData(request);
         if (userBrand != null) {
             Map<Integer, String> models = ServiceFactory.getInstance().getCatalogService().getCarModelsOfBrand(Integer.parseInt(userBrand));
-            request.setAttribute("modelsMap", models);
+            request.setAttribute(MODELS_MAP_ATTRIBUTE, models);
         }
-        return "/WEB-INF/jsp/addCar.jsp";
+        return FORWARD_PAGE;
     }
 
 
@@ -34,56 +67,19 @@ public class AddCarPage extends UserAction {
         HttpSession session = request.getSession(false);
         logger.debug("check attributes start");
         logger.debug(request.getAttributeNames());
-        String errorBrand =
-                (String) session.getAttribute("errorBrand");
-        if (errorBrand != null) {
-            request.setAttribute("errorBrand", errorBrand);
-            session.removeAttribute("errorBrand");
-        }
-        String errorModel =
-                (String) session.getAttribute("errorModel");
-        if (errorModel != null) {
-            request.setAttribute("errorModel", errorModel);
-            session.removeAttribute("errorModel");
-        }
 
-        String errorClimate =
-                (String) session.getAttribute("errorClimate");
-        if (errorClimate != null) {
-            request.setAttribute("errorClimate", errorClimate);
-            session.removeAttribute("errorClimate");
-        }
-        String errorProduced =
-                (String) session.getAttribute("errorProduced");
-        if (errorProduced != null) {
-            request.setAttribute("errorProduced", errorProduced);
-            session.removeAttribute("errorProduced");
-        }
+        for (String attribute : listOfAttributes) {
 
-        userBrand =
-                (String) session.getAttribute("userBrand");
-        if (userBrand != null) {
-            request.setAttribute("userBrand", userBrand);
-            session.removeAttribute("userBrand");
-        }
-        logger.debug(String.format("Brand: %s", userBrand));
-        String userModel =
-                (String) session.getAttribute("userModel");
-        if (userModel != null) {
-            request.setAttribute("userModel", userModel);
-            session.removeAttribute("userModel");
-        }
-        String userClimate =
-                (String) session.getAttribute("userClimate");
-        if (userClimate != null) {
-            request.setAttribute("userClimate", userClimate);
-            session.removeAttribute("userClimate");
-        }
-        String userProduced =
-                (String) session.getAttribute("userProduced");
-        if (userProduced != null) {
-            request.setAttribute("userProduced", userProduced);
-            session.removeAttribute("userProduced");
+            String attributeData =
+                    (String) session.getAttribute(attribute);
+            if (attributeData != null) {
+                request.setAttribute(attribute, attributeData);
+                session.removeAttribute(attribute);
+                if (attribute.equals(USER_BRAND_ATTRIBUTE)) {
+                    userBrand = attributeData;
+                }
+            }
+
         }
     }
 }

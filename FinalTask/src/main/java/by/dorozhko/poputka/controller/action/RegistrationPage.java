@@ -15,7 +15,7 @@ public class RegistrationPage extends AllUsersAction {
     private static final String MAP_OF_GENDORS = "gendersMap";
     private static final String MAP_OF_COUNTRIES = "countriesMap";
 
-    private static final String FORWARD_URI = "/WEB-INF/jsp/registration.jsp";
+    private static final String FORWARD_PAGE = "/WEB-INF/jsp/registration.jsp";
 
 
     private static final String ERROR_LOGIN_ATTRIBUTE = "errorLogin";
@@ -81,7 +81,7 @@ public class RegistrationPage extends AllUsersAction {
         request.setAttribute(MAP_OF_GENDORS, gendors);
         request.setAttribute(MAP_OF_COUNTRIES, countries);
 
-        return FORWARD_URI;
+        return FORWARD_PAGE;
     }
 
     private void attributesData(final HttpServletRequest request) {
