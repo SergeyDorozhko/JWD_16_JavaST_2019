@@ -232,9 +232,7 @@ To change this template use File | Settings | File Templates.
 
             <div class="mx-auto-center">
                 <button type="submit" class="btn btn-primary" name="button" value="add"><fmt:message
-                        key="button.add"/></button>
-                <button type="reset" class="btn btn-danger" name="button" value="reset"><fmt:message
-                        key="button.reset"/></button>
+                        key="button.reservePlace"/></button>
             </div>
         </form> <!-- /form -->
             <%--    </div>--%>
