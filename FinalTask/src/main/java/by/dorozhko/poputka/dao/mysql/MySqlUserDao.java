@@ -290,7 +290,7 @@ public class MySqlUserDao implements UserDAO {
     @Override
     public User findEntityById(final Integer id) throws ExceptionDao {
         User user = null;
-        ResultSet resultSet = null
+        ResultSet resultSet = null;
         try (PreparedStatement statement = connection.prepareStatement(SELECT_USER_FROM_TRIP_BY_ID);) {
             statement.setInt(1, id);
             resultSet = statement.executeQuery();
