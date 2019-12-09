@@ -21,7 +21,7 @@ public class SaveCar extends UserAction {
 
     private static final String AUTHORIZED_USER_ATTRIBUTE = "authorizedUser";
 
-    
+
     private static final String ERROR_BRAND_ATTRIBUTE = "errorBrand";
     private static final String ERROR_MODEL_ATTRIBUTE = "errorModel";
     private static final String ERROR_CLIMATE_ATTRIBUTE = "errorClimate";

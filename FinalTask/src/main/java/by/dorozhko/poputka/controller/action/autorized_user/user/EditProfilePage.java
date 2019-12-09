@@ -10,10 +10,53 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class EditProfilePage extends UserAction {
     private final Logger logger = LogManager.getLogger(getClass().getName());
+
+    private static final String FORWARD_PAGE = "/WEB-INF/jsp/editProfile.jsp";
+
+
+    private static final String MAP_OF_GENDORS = "gendersMap";
+    private static final String MAP_OF_COUNTRIES = "countriesMap";
+
+    private static final String AUTHORIZED_USER_ATTRIBUTE = "authorizedUser";
+    private static final String USER_DATA_ATTRIBUTE = "userData";
+
+
+    private static final String ERROR_LOGIN_ATTRIBUTE = "errorLogin";
+    private static final String ERROR_FIRST_NAME_ATTRIBUTE = "errorFirstName";
+    private static final String ERROR_LAST_NAME_ATTRIBUTE = "errorLastName";
+    private static final String ERROR_EMAIL_ATTRIBUTE = "errorEmail";
+    private static final String ERROR_BIRTHDAY_ATTRIBUTE = "errorBirthday";
+    private static final String ERROR_PHONE_ATTRIBUTE = "errorPhoneNumber";
+    private static final String ERROR_COUNTRY_ATTRIBUTE = "errorCountry";
+    private static final String ERROR_PASSPORT_NUMBER_ATTRIBUTE = "errorPassportNumber";
+    private static final String ERROR_PASSPORT_DATE_ATTRIBUTE = "errorPassportDate";
+    private static final String ERROR_SEX_ATTRIBUTE = "errorSex";
+    private static final String UNKNOWN_ERROR_ATTRIBUTE = "unknownError";
+
+    private Set<String> listOfAattributes;
+
+    public EditProfilePage() {
+        listOfAattributes = new HashSet<>();
+        listOfAattributes.add(ERROR_LOGIN_ATTRIBUTE);
+        listOfAattributes.add(ERROR_FIRST_NAME_ATTRIBUTE);
+        listOfAattributes.add(ERROR_LAST_NAME_ATTRIBUTE);
+        listOfAattributes.add(ERROR_EMAIL_ATTRIBUTE);
+        listOfAattributes.add(ERROR_BIRTHDAY_ATTRIBUTE);
+        listOfAattributes.add(ERROR_PHONE_ATTRIBUTE);
+        listOfAattributes.add(ERROR_COUNTRY_ATTRIBUTE);
+        listOfAattributes.add(ERROR_PASSPORT_NUMBER_ATTRIBUTE);
+        listOfAattributes.add(ERROR_PASSPORT_DATE_ATTRIBUTE);
+        listOfAattributes.add(ERROR_SEX_ATTRIBUTE);
+        listOfAattributes.add(UNKNOWN_ERROR_ATTRIBUTE);
+
+    }
+
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
@@ -23,99 +66,37 @@ public class EditProfilePage extends UserAction {
         attributesData(request);
 
         UserService service = ServiceFactory.getInstance().getUserService();
-        User actionUser = (User) session.getAttribute("authorizedUser");
+        User actionUser = (User) session.getAttribute(AUTHORIZED_USER_ATTRIBUTE);
         User user = new User();
         user.setId(actionUser.getId());
         user.setLogin(actionUser.getLogin());
         Map<Integer, String> gendors = ServiceFactory.getInstance().getCatalogService().getGenders();
         Map<Integer, String> countries = ServiceFactory.getInstance().getCatalogService().getCountries();
 
-        request.setAttribute("gendersMap", gendors);
-        request.setAttribute("countriesMap", countries);
+        request.setAttribute(MAP_OF_GENDORS, gendors);
+        request.setAttribute(MAP_OF_COUNTRIES, countries);
         try {
             User userData = service.takeDataForEditProfile(user.getId());
-            request.setAttribute("userData", userData);
+            request.setAttribute(USER_DATA_ATTRIBUTE, userData);
         } catch (ExceptionService exceptionService) {
             logger.error(exceptionService);
         }
 
-        return "/WEB-INF/jsp/editProfile.jsp";
+        return FORWARD_PAGE;
     }
 
     private void attributesData(final HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         logger.debug("check attributes start");
         logger.debug(request.getAttributeNames());
-        String errorLogin =
-                (String) session.getAttribute("errorLogin");
-        if (errorLogin != null) {
-            request.setAttribute("errorLogin", errorLogin);
-            session.removeAttribute("errorLogin");
-        }
-        String errorFirstName =
-                (String) session.getAttribute("errorFirstName");
-        if (errorFirstName != null) {
-            request.setAttribute("errorFirstName", errorFirstName);
-            session.removeAttribute("errorFirstName");
-        }
 
-        String errorLastName =
-                (String) session.getAttribute("errorLastName");
-        if (errorLastName != null) {
-            request.setAttribute("errorLastName", errorLastName);
-            session.removeAttribute("errorLastName");
+        for (String attribute : listOfAattributes) {
+            String attributeData =
+                    (String) session.getAttribute(attribute);
+            if (attributeData != null) {
+                request.setAttribute(attribute, attributeData);
+                session.removeAttribute(attribute);
+            }
         }
-        String errorEmail =
-                (String) session.getAttribute("errorEmail");
-        if (errorEmail != null) {
-            request.setAttribute("errorEmail", errorEmail);
-            session.removeAttribute("errorEmail");
-        }
-
-        String errorBirthday =
-                (String) session.getAttribute("errorBirthday");
-        if (errorBirthday != null) {
-            request.setAttribute("errorBirthday", errorBirthday);
-            session.removeAttribute("errorBirthday");
-        }
-
-        String errorPhoneNumber =
-                (String) session.getAttribute("errorPhoneNumber");
-        if (errorPhoneNumber != null) {
-            request.setAttribute("errorPhoneNumber", errorPhoneNumber);
-            session.removeAttribute("errorPhoneNumber");
-        }
-
-        String errorCountry =
-                (String) session.getAttribute("errorCountry");
-        if (errorCountry != null) {
-            request.setAttribute("errorCountry", errorCountry);
-            session.removeAttribute("errorCountry");
-        }
-        String errorPassportNumber =
-                (String) session.getAttribute("errorPassportNumber");
-        if (errorPassportNumber != null) {
-            request.setAttribute("errorPassportNumber", errorPassportNumber);
-            session.removeAttribute("errorPassportNumber");
-        }
-        String errorPassportDate =
-                (String) session.getAttribute("errorPassportDate");
-        if (errorPassportDate != null) {
-            request.setAttribute("errorPassportDate", errorPassportDate);
-            session.removeAttribute("errorPassportDate");
-        }
-        String errorSex =
-                (String) session.getAttribute("errorSex");
-        if (errorSex != null) {
-            request.setAttribute("errorSex", errorSex);
-            session.removeAttribute("errorSex");
-        }
-        String unknownError =
-                (String) session.getAttribute("unknownError");
-        if (unknownError != null) {
-            request.setAttribute("unknownError", unknownError);
-            session.removeAttribute("unknownError");
-        }
-
     }
 }

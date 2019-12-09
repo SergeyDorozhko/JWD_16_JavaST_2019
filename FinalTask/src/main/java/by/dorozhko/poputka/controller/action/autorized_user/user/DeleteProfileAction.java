@@ -15,6 +15,16 @@ import java.util.ResourceBundle;
 public class DeleteProfileAction extends UserAction {
     private final Logger logger = LogManager.getLogger(getClass().getName());
 
+    private static final String SUCCESSFUL_REDIRECT_URL = "/main.html";
+    private static final String ERROR_REDIRECT_URL = "/viewUserProfile.html";
+
+    private static final String AUTHORIZED_USER_ATTRIBUTE = "authorizedUser";
+
+    private static final String PASSWORD_ATTRIBUTE = "password";
+    private static final String UNKNOWN_ERROR_ATTRIBUTE = "unknownError";
+
+    private static final String INCORRECT_PASSWORD_MESSAGE = "back.errors.incorrectPassword";
+
 
     private String password;
 
@@ -30,7 +40,7 @@ public class DeleteProfileAction extends UserAction {
 
         getAllAttributes(request);
         if (checkData()) {
-            User actionUser = (User) session.getAttribute("authorizedUser");
+            User actionUser = (User) session.getAttribute(AUTHORIZED_USER_ATTRIBUTE);
             User user = new User();
             user.setId(actionUser.getId());
             user.setLogin(actionUser.getLogin());
@@ -42,7 +52,7 @@ public class DeleteProfileAction extends UserAction {
                 logger.debug("take answer from service");
                 if (result) {
                     session.invalidate();
-                    return request.getContextPath() + "/main.html";
+                    return request.getContextPath() + SUCCESSFUL_REDIRECT_URL;
                 }
 
             } catch (ExceptionService exceptionService) {
@@ -51,16 +61,16 @@ public class DeleteProfileAction extends UserAction {
 
             }
             ResourceBundle resourceBundle = takeLocale(request);
-            session.setAttribute("unknownError", resourceBundle.getString("back.errors.incorrectPassword"));
+            session.setAttribute(UNKNOWN_ERROR_ATTRIBUTE, resourceBundle.getString(INCORRECT_PASSWORD_MESSAGE));
         }
 
-        return request.getContextPath() + "/viewUserProfile.html";
+        return request.getContextPath() + ERROR_REDIRECT_URL;
 
     }
 
 
     private void getAllAttributes(HttpServletRequest request) {
-        password = request.getParameter("password");
+        password = request.getParameter(PASSWORD_ATTRIBUTE);
 
         logger.debug("all params take ok");
     }

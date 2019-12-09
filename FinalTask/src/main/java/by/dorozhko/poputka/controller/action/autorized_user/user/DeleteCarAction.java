@@ -13,10 +13,15 @@ import javax.servlet.http.HttpSession;
 
 public class DeleteCarAction extends UserAction {
     private final Logger logger = LogManager.getLogger(getClass().getName());
+
+    private static final String REDIRECT_URL = "/viewUserProfile.html";
+
+    private static final String AUTHORIZED_USER_ATTRIBUTE = "authorizedUser";
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession(false);
-        User user = (User) session.getAttribute("authorizedUser");
+        User user = (User) session.getAttribute(AUTHORIZED_USER_ATTRIBUTE);
 
         UserService service = ServiceFactory.getInstance().getUserService();
 
@@ -26,6 +31,6 @@ public class DeleteCarAction extends UserAction {
             logger.error(exceptionService);
         }
 
-        return request.getContextPath() + "/viewUserProfile.html";
+        return request.getContextPath() + REDIRECT_URL;
     }
 }
