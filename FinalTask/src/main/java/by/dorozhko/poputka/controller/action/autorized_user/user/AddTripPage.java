@@ -7,229 +7,194 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 public class AddTripPage extends UserAction {
     private final Logger logger = LogManager.getLogger(getClass().getName());
+
+    private static final String FORWARD_PAGE = "/WEB-INF/jsp/addTrip.jsp";
+
+
+    private static final String MAP_OF_COUNTRIES = "countriesMap";
+    private static final String MAP_OF_CURRENCIES = "currenciesMap";
+    private static final String MAP_OF_REGIONS_FROM = "regionFromMap";
+    private static final String MAP_OF_REGIONS_TO = "regionToMap";
+    private static final String MAP_OF_CITIES_FROM = "citiesFromMap";
+    private static final String MAP_OF_CITIES_TO = "citiesToMap";
+
+
+    private static final String USER_COUNTRY_FROM_ATTRIBUTE = "userCountryFrom";
+    private static final String USER_REGION_FROM_ATTRIBUTE = "userRegionFrom";
+    private static final String USER_CITY_FROM_ATTRIBUTE = "userCityFrom";
+    private static final String USER_COUNTRY_TO_ATTRIBUTE = "userCountryTo";
+    private static final String USER_REGION_TO_ATTRIBUTE = "userRegionTo";
+    private static final String USER_CITY_TO_ATTRIBUTE = "userCityTo";
+    private static final String USER_DEPARTURE_DATE_ATTRIBUTE = "userDepartureDate";
+    private static final String USER_DEPARTURE_TIME_ATTRIBUTE = "userDepartureTime";
+    private static final String USER_COST_ATTRIBUTE = "userCost";
+    private static final String USER_CURRENCY_ATTRIBUTE = "userCurrency";
+    private static final String USER_PASSENGERS_ATTRIBUTE = "userPassengers";
+    private static final String USER_ADDITIONAL_INFORMATION_ATTRIBUTE = "userAdditionalInformation";
+
+
+    private static final String ERROR_COUNTRY_FROM_ATTRIBUTE = "errorCountryFrom";
+    private static final String ERROR_REGION_FROM_ATTRIBUTE = "errorRegionFrom";
+    private static final String ERROR_CITY_FROM_ATTRIBUTE = "errorCityFrom";
+    private static final String ERROR_COUNTRY_TO_ATTRIBUTE = "errorCountryTo";
+    private static final String ERROR_REGION_TO_ATTRIBUTE = "errorRegionTo";
+    private static final String ERROR_CITY_TO_ATTRIBUTE = "errorCityTo";
+    private static final String ERROR_DEPARTURE_DATE_ATTRIBUTE = "errorDepartureDate";
+    private static final String ERROR_DEPARTURE_TIME_ATTRIBUTE = "errorDepartureTime";
+    private static final String ERROR_COST_ATTRIBUTE = "errorCost";
+    private static final String ERROR_CURRENCY_ATTRIBUTE = "errorCurrency";
+    private static final String ERROR_PASSENGERS_ATTRIBUTE = "errorPassengers";
+
+    private static final String UNKNOWN_ERROR_ATTRIBUTE = "unknownError";
+
+
+    private static final String FIELD_FORMAT_ERROR_MESSAGE = "back.errors.fieldFormatError";
+
 
     private String userCountryFrom;
     private String userCountryTo;
     private String userRegionFrom;
     private String userRegionTo;
 
+
+    private Set<String> listOfAttributes;
+
+    public AddTripPage() {
+        listOfAttributes = new HashSet<>();
+        listOfAttributes.add(USER_COUNTRY_FROM_ATTRIBUTE);
+        listOfAttributes.add(USER_REGION_FROM_ATTRIBUTE);
+        listOfAttributes.add(USER_CITY_FROM_ATTRIBUTE);
+        listOfAttributes.add(USER_COUNTRY_TO_ATTRIBUTE);
+        listOfAttributes.add(USER_REGION_TO_ATTRIBUTE);
+        listOfAttributes.add(USER_CITY_TO_ATTRIBUTE);
+        listOfAttributes.add(USER_DEPARTURE_DATE_ATTRIBUTE);
+        listOfAttributes.add(USER_DEPARTURE_TIME_ATTRIBUTE);
+        listOfAttributes.add(USER_COST_ATTRIBUTE);
+        listOfAttributes.add(USER_CURRENCY_ATTRIBUTE);
+        listOfAttributes.add(USER_PASSENGERS_ATTRIBUTE);
+        listOfAttributes.add(USER_ADDITIONAL_INFORMATION_ATTRIBUTE);
+        listOfAttributes.add(UNKNOWN_ERROR_ATTRIBUTE);
+        listOfAttributes.add(ERROR_COUNTRY_FROM_ATTRIBUTE);
+        listOfAttributes.add(ERROR_REGION_FROM_ATTRIBUTE);
+        listOfAttributes.add(ERROR_CITY_FROM_ATTRIBUTE);
+        listOfAttributes.add(ERROR_COUNTRY_TO_ATTRIBUTE);
+        listOfAttributes.add(ERROR_REGION_TO_ATTRIBUTE);
+        listOfAttributes.add(ERROR_CITY_TO_ATTRIBUTE);
+        listOfAttributes.add(ERROR_DEPARTURE_DATE_ATTRIBUTE);
+        listOfAttributes.add(ERROR_DEPARTURE_TIME_ATTRIBUTE);
+        listOfAttributes.add(ERROR_COST_ATTRIBUTE);
+        listOfAttributes.add(ERROR_CURRENCY_ATTRIBUTE);
+        listOfAttributes.add(ERROR_PASSENGERS_ATTRIBUTE);
+
+    }
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        ResourceBundle resourceBundle = takeLocale(request);
 
         setLocaleToCookie(request, response);
-        Map<Integer, String> countries = ServiceFactory.getInstance().getCatalogService().getCountries();
-        request.setAttribute("countriesMap", countries);
-        Map<Integer, String> currencies = ServiceFactory.getInstance().getCatalogService().getCurrencies();
-        request.setAttribute("currenciesMap", currencies);
+
         attributesData(request);
+
+        takeCatalogsData(request);
+
+        return FORWARD_PAGE;
+    }
+
+    private void takeCatalogsData(final HttpServletRequest request) {
+        ResourceBundle resourceBundle = takeLocale(request);
+
+        Map<Integer, String> countries = ServiceFactory.getInstance().getCatalogService().getCountries();
+        request.setAttribute(MAP_OF_COUNTRIES, countries);
+        Map<Integer, String> currencies = ServiceFactory.getInstance().getCatalogService().getCurrencies();
+        request.setAttribute(MAP_OF_CURRENCIES, currencies);
+
         if (userCountryFrom != null && userCountryFrom.length() != 0) {
             try {
-                Map<Integer, String> regions = ServiceFactory.getInstance().getCatalogService().getRegionsOfCountry(Integer.parseInt(userCountryFrom));
-                request.setAttribute("regionFromMap", regions);
+                Map<Integer, String> regions = ServiceFactory.getInstance()
+                        .getCatalogService().getRegionsOfCountry(
+                                Integer.parseInt(userCountryFrom));
+                request.setAttribute(MAP_OF_REGIONS_FROM, regions);
             } catch (NumberFormatException ex) {
                 logger.error(ex);
-                request.setAttribute("errorCountryFrom", resourceBundle.getString("back.errors.fieldFormatError"));
+                request.setAttribute(ERROR_COUNTRY_FROM_ATTRIBUTE,
+                        resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
             }
         }
+
         if (userCountryTo != null && userCountryTo.length() != 0) {
             try {
-                Map<Integer, String> regions = ServiceFactory.getInstance().getCatalogService().getRegionsOfCountry(Integer.parseInt(userCountryTo));
-                request.setAttribute("regionToMap", regions);
+                Map<Integer, String> regions = ServiceFactory.getInstance()
+                        .getCatalogService().getRegionsOfCountry(
+                                Integer.parseInt(userCountryTo));
+                request.setAttribute(MAP_OF_REGIONS_TO, regions);
             } catch (NumberFormatException ex) {
                 logger.error(ex);
-                request.setAttribute("errorCountryTo", resourceBundle.getString("back.errors.fieldFormatError"));
+                request.setAttribute(ERROR_COUNTRY_TO_ATTRIBUTE,
+                        resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
             }
         }
 
         if (userRegionFrom != null && userRegionFrom.length() != 0) {
             try {
-                Map<Integer, String> cities = ServiceFactory.getInstance().getCatalogService().getCitiesOfRegion(Integer.parseInt(userRegionFrom));
-                request.setAttribute("citiesFromMap", cities);
+                Map<Integer, String> cities = ServiceFactory.getInstance()
+                        .getCatalogService().getCitiesOfRegion(
+                                Integer.parseInt(userRegionFrom));
+                request.setAttribute(MAP_OF_CITIES_FROM, cities);
             } catch (NumberFormatException ex) {
                 logger.error(ex);
-                request.setAttribute("userRegionFrom", resourceBundle.getString("back.errors.fieldFormatError"));
+                request.setAttribute(ERROR_REGION_FROM_ATTRIBUTE,
+                        resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
             }
         }
         if (userRegionTo != null && userRegionTo.length() != 0) {
             try {
-                Map<Integer, String> cities = ServiceFactory.getInstance().getCatalogService().getCitiesOfRegion(Integer.parseInt(userRegionTo));
-                request.setAttribute("citiesToMap", cities);
+                Map<Integer, String> cities = ServiceFactory.getInstance()
+                        .getCatalogService().getCitiesOfRegion(
+                                Integer.parseInt(userRegionTo));
+                request.setAttribute(MAP_OF_CITIES_TO, cities);
             } catch (NumberFormatException ex) {
                 logger.error(ex);
-                request.setAttribute("userRegionTo", resourceBundle.getString("back.errors.fieldFormatError"));
+                request.setAttribute(ERROR_REGION_TO_ATTRIBUTE,
+                        resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
             }
         }
 
-        return "/WEB-INF/jsp/addTrip.jsp";
     }
 
     private void attributesData(final HttpServletRequest request) {
         HttpSession session = request.getSession(false);
 
+        for (String attribute : listOfAttributes) {
+            String attributeData =
+                    (String) session.getAttribute(attribute);
+            if (attributeData != null) {
+                request.setAttribute(attribute, attributeData);
+                session.removeAttribute(attribute);
+                switch (attribute) {
+                    case USER_COUNTRY_FROM_ATTRIBUTE:
+                        userCountryFrom = attributeData;
+                        break;
+                    case USER_REGION_FROM_ATTRIBUTE:
+                        userRegionFrom = attributeData;
+                        break;
+                    case USER_COUNTRY_TO_ATTRIBUTE:
+                        userCountryTo = attributeData;
+                        break;
+                    case USER_REGION_TO_ATTRIBUTE:
+                        userRegionTo = attributeData;
+                        break;
+                }
 
-        userCountryFrom =
-                (String) session.getAttribute("userCountryFrom");
-        if (userCountryFrom != null) {
-            request.setAttribute("userCountryFrom", userCountryFrom);
-            session.removeAttribute("userCountryFrom");
-        }
-
-        userRegionFrom =
-                (String) session.getAttribute("userRegionFrom");
-        if (userRegionFrom != null) {
-            request.setAttribute("userRegionFrom", userRegionFrom);
-            session.removeAttribute("userRegionFrom");
-        }
-
-        String userCityFrom =
-                (String) session.getAttribute("userCityFrom");
-        if (userCityFrom != null) {
-            request.setAttribute("userCityFrom", userCityFrom);
-            session.removeAttribute("userCityFrom");
-        }
-
-        userCountryTo =
-                (String) session.getAttribute("userCountryTo");
-        if (userCountryTo != null) {
-            request.setAttribute("userCountryTo", userCountryTo);
-            session.removeAttribute("userCountryTo");
+            }
         }
 
-        userRegionTo =
-                (String) session.getAttribute("userRegionTo");
-        if (userRegionTo != null) {
-            request.setAttribute("userRegionTo", userRegionTo);
-            session.removeAttribute("userRegionTo");
-        }
-
-        String userCityTo =
-                (String) session.getAttribute("userCityTo");
-        if (userCityTo != null) {
-            request.setAttribute("userCityTo", userCityTo);
-            session.removeAttribute("userCityTo");
-        }
-
-        String userDepartureDate =
-                (String) session.getAttribute("userDepartureDate");
-        if (userDepartureDate != null) {
-            request.setAttribute("userDepartureDate", userDepartureDate);
-            session.removeAttribute("userDepartureDate");
-        }
-
-        String userDepartureTime =
-                (String) session.getAttribute("userDepartureTime");
-        if (userDepartureTime != null) {
-            request.setAttribute("userDepartureTime", userDepartureTime);
-            session.removeAttribute("userDepartureTime");
-        }
-
-        String userCost =
-                (String) session.getAttribute("userCost");
-        if (userCost != null) {
-            request.setAttribute("userCost", userCost);
-            session.removeAttribute("userCost");
-        }
-
-        String userCurrency =
-                (String) session.getAttribute("userCurrency");
-        if (userCurrency != null) {
-            request.setAttribute("userCurrency", userCurrency);
-            session.removeAttribute("userCurrency");
-        }
-
-        String userPassengers =
-                (String) session.getAttribute("userPassengers");
-        if (userPassengers != null) {
-            request.setAttribute("userPassengers", userPassengers);
-            session.removeAttribute("userPassengers");
-        }
-
-        String userAdditionalInformation =
-                (String) session.getAttribute("userAdditionalInformation");
-        if (userAdditionalInformation != null) {
-            request.setAttribute("userAdditionalInformation", userAdditionalInformation);
-            session.removeAttribute("userAdditionalInformation");
-        }
-
-        String unknownError =
-                (String) session.getAttribute("unknownError");
-        if (unknownError != null) {
-            request.setAttribute("unknownError", unknownError);
-            session.removeAttribute("unknownError");
-        }
-
-        String errorCountryFrom =
-                (String) session.getAttribute("errorCountryFrom");
-        if (errorCountryFrom != null) {
-            request.setAttribute("errorCountryFrom", errorCountryFrom);
-            session.removeAttribute("errorCountryFrom");
-        }
-        String errorRegionFrom =
-                (String) session.getAttribute("errorRegionFrom");
-        if (errorRegionFrom != null) {
-            request.setAttribute("errorRegionFrom", errorRegionFrom);
-            session.removeAttribute("errorRegionFrom");
-        }
-        String errorCityFrom =
-                (String) session.getAttribute("errorCityFrom");
-        if (errorCityFrom != null) {
-            request.setAttribute("errorCityFrom", errorCityFrom);
-            session.removeAttribute("errorCityFrom");
-        }
-        String errorCountryTo =
-                (String) session.getAttribute("errorCountryTo");
-        if (errorCountryTo != null) {
-            request.setAttribute("errorCountryTo", errorCountryTo);
-            session.removeAttribute("errorCountryTo");
-        }
-        String errorRegionTo =
-                (String) session.getAttribute("errorRegionTo");
-        if (errorRegionTo != null) {
-            request.setAttribute("errorRegionTo", errorRegionTo);
-            session.removeAttribute("errorRegionTo");
-        }
-        String errorCityTo =
-                (String) session.getAttribute("errorCityTo");
-        if (errorCityTo != null) {
-            request.setAttribute("errorCityTo", errorCityTo);
-            session.removeAttribute("errorCityTo");
-        }
-        String errorDepartureDate =
-                (String) session.getAttribute("errorDepartureDate");
-        if (errorDepartureDate != null) {
-            request.setAttribute("errorDepartureDate", errorDepartureDate);
-            session.removeAttribute("errorDepartureDate");
-        }
-        String errorDepartureTime =
-                (String) session.getAttribute("errorDepartureTime");
-        if (errorDepartureTime != null) {
-            request.setAttribute("errorDepartureTime", errorDepartureTime);
-            session.removeAttribute("errorDepartureTime");
-        }
-        String errorCost =
-                (String) session.getAttribute("errorCost");
-        if (errorCost != null) {
-            request.setAttribute("errorCost", errorCost);
-            session.removeAttribute("errorCost");
-        }
-        String errorCurrency =
-                (String) session.getAttribute("errorCurrency");
-        if (errorCurrency != null) {
-            request.setAttribute("errorCurrency", errorCurrency);
-            session.removeAttribute("errorCurrency");
-        }
-        String errorPassengers =
-                (String) session.getAttribute("errorPassengers");
-        if (unknownError != null) {
-            request.setAttribute("errorPassengers", errorPassengers);
-            session.removeAttribute("errorPassengers");
-        }
 
     }
 }

@@ -7,6 +7,7 @@ import by.dorozhko.poputka.services.UserService;
 import by.dorozhko.poputka.services.exception.ExceptionService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.message.StringMapMessage;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,6 +22,10 @@ public class SaveCar extends UserAction {
 
     private static final String AUTHORIZED_USER_ATTRIBUTE = "authorizedUser";
 
+    private static final String BRAND_ATTRIBUTE = "brand";
+    private static final String MODEL_ATTRIBUTE = "model";
+    private static final String CLIMATE_ATTRIBUTE = "climate";
+    private static final String YEAR_OF_PRODUCE_ATTRIBUTE = "produced";
 
     private static final String ERROR_BRAND_ATTRIBUTE = "errorBrand";
     private static final String ERROR_MODEL_ATTRIBUTE = "errorModel";
@@ -31,6 +36,14 @@ public class SaveCar extends UserAction {
     private static final String USER_CLIMATE_ATTRIBUTE = "userClimate";
     private static final String USER_YEAR_OF_PRODUCE_ATTRIBUTE = "userProduced";
 
+    private static final String FIELD_IS_EMPTY_ERROR_MESSAGE = "back.errors.fieldIsEmptyError";
+    private static final String ERROR_BRAND_MESSAGE = "back.addCar.errorBrand";
+    private static final String ERROR_MODEL_MESSAGE = "back.addCar.errorModel";
+    private static final String ERROR_CLIMATE_MESSAGE = "back.addCar.errorClimate";
+    private static final String ERROR_YEAR_OF_PRODUCE_MESSAGE = "back.addCar.errorProduced";
+
+    private static final String BUTTON = "button";
+    private static final String SAVE_CAR_BUTTON = "saveCar";
 
 
     private String brand;
@@ -48,8 +61,10 @@ public class SaveCar extends UserAction {
 
         getAllAttributes(request);
 
-
-        if (checkData(request)) {
+        String button = request.getParameter(BUTTON);
+        logger.debug(String.format("button - %s", button));
+        boolean isSaveActionAndValid =  button != null && button.equals(SAVE_CAR_BUTTON) && checkData(request);
+        if (isSaveActionAndValid) {
             User actionUser = (User) session.getAttribute(AUTHORIZED_USER_ATTRIBUTE);
             User user = new User();
             user.setId(actionUser.getId());
@@ -78,10 +93,10 @@ public class SaveCar extends UserAction {
 
 
     private void getAllAttributes(HttpServletRequest request) {
-        brand = request.getParameter("brand");
-        model = request.getParameter("model");
-        climate = request.getParameter("climate");
-        produced = request.getParameter("produced");
+        brand = request.getParameter(BRAND_ATTRIBUTE);
+        model = request.getParameter(MODEL_ATTRIBUTE);
+        climate = request.getParameter(CLIMATE_ATTRIBUTE);
+        produced = request.getParameter(YEAR_OF_PRODUCE_ATTRIBUTE);
     }
 
 
@@ -90,44 +105,55 @@ public class SaveCar extends UserAction {
         int countErrors = 0;
         ResourceBundle resourceBundle = takeLocale(request);
 
-        if (brand.length() == 0) {
+        if (brand == null || brand.length() == 0) {
+            session.setAttribute(ERROR_BRAND_ATTRIBUTE,
+                    resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
             countErrors++;
         } else {
             try {
                 Integer.parseInt(brand);
             } catch (NumberFormatException ex) {
-                session.setAttribute("errorBrand",
-                        resourceBundle.getString("back.addCar.errorBrand"));
+                session.setAttribute(ERROR_BRAND_ATTRIBUTE,
+                        resourceBundle.getString(ERROR_BRAND_MESSAGE));
                 countErrors++;
             }
         }
-        if (model.length() == 0) {
+        if (model == null || model.length() == 0) {
+            session.setAttribute(ERROR_MODEL_ATTRIBUTE,
+                    resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
             countErrors++;
         } else {
             try {
                 Integer.parseInt(model);
             } catch (NumberFormatException ex) {
-                session.setAttribute("errorModel", "back.addCar.errorModel");
+                session.setAttribute(ERROR_MODEL_ATTRIBUTE,
+                        resourceBundle.getString(ERROR_MODEL_MESSAGE));
                 countErrors++;
             }
         }
-        if (climate.length() == 0) {
+        if (climate == null || climate.length() == 0) {
+            session.setAttribute(ERROR_CLIMATE_ATTRIBUTE,
+                    resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
             countErrors++;
         } else {
             try {
                 Integer.parseInt(climate);
             } catch (NumberFormatException ex) {
-                session.setAttribute("errorClimate", "back.addCar.errorClimate");
+                session.setAttribute(ERROR_CLIMATE_ATTRIBUTE,
+                        resourceBundle.getString(ERROR_CLIMATE_MESSAGE));
                 countErrors++;
             }
         }
-        if (produced.length() == 0) {
+        if (produced == null || produced.length() == 0) {
+            session.setAttribute(ERROR_YEAR_OF_PRODUCE_ATTRIBUTE,
+                    resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
             countErrors++;
         } else {
             try {
-                Integer.parseInt(climate);
+                Integer.parseInt(produced);
             } catch (NumberFormatException ex) {
-                session.setAttribute("errorProduced", "back.addCar.errorProduced");
+                session.setAttribute(ERROR_YEAR_OF_PRODUCE_ATTRIBUTE,
+                        resourceBundle.getString(ERROR_YEAR_OF_PRODUCE_MESSAGE));
                 countErrors++;
             }
         }

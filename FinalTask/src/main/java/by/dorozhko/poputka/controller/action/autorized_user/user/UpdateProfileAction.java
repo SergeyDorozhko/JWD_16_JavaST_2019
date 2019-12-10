@@ -83,7 +83,8 @@ public class UpdateProfileAction extends UserAction {
         User updatedUser = null;
         ResourceBundle resourceBundle = takeLocale(request);
         if (checkData(resourceBundle)) {
-            User user = new User(login, firstName, lastName, sex, birthday, country, passportNumber, passportDate, phoneNumber, email);
+            User user = new User(login, firstName, lastName, sex, birthday,
+                    country, passportNumber, passportDate, phoneNumber, email);
             User actionUser = (User) session.getAttribute(AUTHORIZED_USER_ATTRIBUTE);
 
             user.setId(actionUser.getId());

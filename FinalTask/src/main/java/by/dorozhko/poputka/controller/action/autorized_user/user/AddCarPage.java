@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.ResourceBundle;
 import java.util.Set;
 
 public class AddCarPage extends UserAction {
@@ -28,6 +29,8 @@ public class AddCarPage extends UserAction {
     private static final String USER_MODEL_ATTRIBUTE = "userModel";
     private static final String USER_CLIMATE_ATTRIBUTE = "userClimate";
     private static final String USER_YEAR_OF_PRODUCE_ATTRIBUTE = "userProduced";
+
+    private static final String FIELD_FORMAT_ERROR_MESSAGE = "back.errors.fieldFormatError";
 
 
     private String userBrand;
@@ -54,10 +57,17 @@ public class AddCarPage extends UserAction {
         Map<Integer, String> climate = ServiceFactory.getInstance().getCatalogService().getCarClimateTypes();
         request.setAttribute(CLIMATE_TYPE_MAP_ATTRIBUTE, climate);
 
+        ResourceBundle resourceBundle = takeLocale(request);
+
         attributesData(request);
-        if (userBrand != null) {
+        if (userBrand != null && userBrand.length() > 0) {
+            try {
             Map<Integer, String> models = ServiceFactory.getInstance().getCatalogService().getCarModelsOfBrand(Integer.parseInt(userBrand));
             request.setAttribute(MODELS_MAP_ATTRIBUTE, models);
+            } catch (NumberFormatException ex) {
+                logger.error(ex);
+                request.setAttribute(ERROR_BRAND_ATTRIBUTE, resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
+            }
         }
         return FORWARD_PAGE;
     }
