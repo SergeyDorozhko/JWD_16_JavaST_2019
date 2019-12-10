@@ -7,7 +7,6 @@ import by.dorozhko.poputka.services.UserService;
 import by.dorozhko.poputka.services.exception.ExceptionService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.message.StringMapMessage;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

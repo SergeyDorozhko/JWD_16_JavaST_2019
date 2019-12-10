@@ -190,6 +190,8 @@ public class AddTripPage extends UserAction {
                     case USER_REGION_TO_ATTRIBUTE:
                         userRegionTo = attributeData;
                         break;
+                    default:
+                        continue;
                 }
 
             }

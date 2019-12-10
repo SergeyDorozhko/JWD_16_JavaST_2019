@@ -140,14 +140,12 @@ public class MySqlUserDao implements UserDAO {
             statement.setString(3, entity.getSalt());
             statement.executeUpdate();
 
-
             resultSet = statement.getGeneratedKeys();
             if (resultSet.next()) {
                 userId = resultSet.getInt(1);
             }
 
             logger.debug(String.format("new user id: %d", userId));
-//
 
             statementUserInf.setInt(1, userId);
             statementUserInf.setString(2, entity.getSurname());
@@ -176,8 +174,6 @@ public class MySqlUserDao implements UserDAO {
                 logger.debug(String.format("new user created: role: %s, %s", entity.getRole(), entity));
 
             }
-
-
         } catch (SQLException e) {
             logger.error(e);
             throw new ExceptionDao(e);

@@ -17,11 +17,6 @@ public class Commentary extends Entity {
      */
     private String comment;
 
-    /**
-     * public default constructor.
-     */
-    public Commentary() {
-    }
 
 
     /**
