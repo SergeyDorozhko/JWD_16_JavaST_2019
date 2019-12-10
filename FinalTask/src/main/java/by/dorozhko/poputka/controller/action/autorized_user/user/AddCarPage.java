@@ -38,6 +38,7 @@ public class AddCarPage extends UserAction {
     private Set<String> listOfAttributes;
 
     public AddCarPage() {
+        setAllowMethods(GET_METHOD);
         listOfAttributes = new HashSet<>();
         listOfAttributes.add(ERROR_BRAND_ATTRIBUTE);
         listOfAttributes.add(ERROR_MODEL_ATTRIBUTE);

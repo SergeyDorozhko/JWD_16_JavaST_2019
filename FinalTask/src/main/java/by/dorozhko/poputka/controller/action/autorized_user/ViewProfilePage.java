@@ -22,6 +22,9 @@ public class ViewProfilePage extends AuthorizedUser {
 
     private static final String USER_DATA_ATTRIBUTE = "userData";
 
+    public ViewProfilePage() {
+        setAllowMethods(GET_METHOD);
+    }
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {

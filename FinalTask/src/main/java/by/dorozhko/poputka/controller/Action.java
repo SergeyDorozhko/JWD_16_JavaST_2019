@@ -16,8 +16,12 @@ public abstract class Action {
     private Set<String> allowMethods = new HashSet<>();
     private User userOfAction;
 
+    protected static final String GET_METHOD = "GET";
+    private static final String POST_METHOD = "POST";
+
+
     public Action() {
-        allowMethods.add("POST");
+        allowMethods.add(POST_METHOD);
     }
 
     public Set<String> getAllowMethods() {

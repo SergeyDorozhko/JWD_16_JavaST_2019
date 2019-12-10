@@ -51,6 +51,18 @@ public class MySqlJourneyDAO implements JourneyDAO {
             + " number_of_passengers, additional_information FROM journey"
             + " WHERE id = ? ;";
 
+    private static final String SELECT_JOURNEY_BY_ID_AND_DRIVER_ID
+            = " SELECT id, driver_id, start_address_id, destination_address_id,"
+            + " departure_time, departure_date, cost, currency_id,"
+            + " number_of_passengers, additional_information FROM journey"
+            + " WHERE id = ? and driver_id = ?;";
+
+    private static final String UPDATE_JOURNEY_BY_ID_AND_DRIVER_ID
+            = " UPDATE journey SET start_address_id = ?, destination_address_id = ?,"
+            + " departure_time = ?, departure_date = ?, cost = ?, currency_id = ? ,"
+            + " number_of_passengers = ?, additional_information = ?  "
+            + "WHERE id = ? and driver_id = ? ;";
+
     /**
      * Method take connection to database and set it to realisation of Dao.
      *
@@ -109,8 +121,27 @@ public class MySqlJourneyDAO implements JourneyDAO {
      * @return - entity with new params.
      */
     @Override
-    public Journey update(Journey entity) {
-        return null;
+    public Journey update(Journey entity) throws ExceptionDao {
+        logger.debug(String.format("journey params: %d, %d, all %s", entity.getId(), entity.getDriver().getId(), entity));
+        try (PreparedStatement statement = connection.prepareStatement(UPDATE_JOURNEY_BY_ID_AND_DRIVER_ID)) {
+            statement.setInt(1, Integer.parseInt(entity.getStartAddress().getCity()));
+            statement.setInt(2, Integer.parseInt(entity.getDestinationAddress().getCity()));
+            statement.setString(3, entity.getDepartureTime().toString());
+            statement.setString(4, entity.getDepartureDate().toString());
+            statement.setDouble(5, entity.getCost());
+            statement.setInt(6, Integer.parseInt(entity.getCurrency()));
+            statement.setInt(7, entity.getPassengersNumber());
+            statement.setString(8, entity.getAdditionalInformation());
+            statement.setInt(9, entity.getId());
+            statement.setInt(10, entity.getDriver().getId());
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            logger.error(ex);
+            entity = null;
+            throw new ExceptionDao(ex);
+        }
+
+        return entity;
     }
 
     /**
@@ -242,5 +273,31 @@ public class MySqlJourneyDAO implements JourneyDAO {
         }
 
         return list;
+    }
+
+    @Override
+    public Journey takeJourneyByJourneyIdAndDriverId(int journeyId, int driverId) throws ExceptionDao {
+        Journey journey = null;
+        ResultSet resultSet = null;
+        try (PreparedStatement statement = connection.prepareStatement(SELECT_JOURNEY_BY_ID_AND_DRIVER_ID)) {
+            statement.setInt(1, journeyId);
+            statement.setInt(2, driverId);
+            resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                journey = createJourney(resultSet);
+            }
+        } catch (SQLException ex) {
+            logger.error(ex);
+            throw new ExceptionDao(ex);
+        } finally {
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    logger.error(e);
+                }
+            }
+        }
+        return journey;
     }
 }

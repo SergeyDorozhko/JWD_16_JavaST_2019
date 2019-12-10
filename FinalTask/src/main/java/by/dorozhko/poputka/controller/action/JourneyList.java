@@ -14,9 +14,8 @@ public class JourneyList extends AllUsersAction {
     private static final String LIST_OF_JOURNEY_ATTRIBUTE
             = "journeyList";
 
-    private static final String GET_METHOD = "GET";
 
-    public JourneyList () {
+    public JourneyList() {
         setAllowMethods(GET_METHOD);
     }
 

@@ -58,6 +58,10 @@ public class MySqlCatalogDAO implements CatalogDAO {
             + " FROM countries"
             + " INNER JOIN regions r ON countries.id = r.country_id"
             + " INNER JOIN cities c ON r.id = c.region_id WHERE c.id = ?;";
+    private static final String SELECT_ADDRESS_ID_BY_CITY_ID
+            = " SELECT r.country_id, r.id"
+            + " FROM regions r "
+            + " INNER JOIN cities c ON r.id = c.region_id WHERE c.id = ?;";
 
     private static final String SELECT_CAR_BRAND_MODEL_BY_MODEL_ID
             = "SELECT car_brands.brand, car_models.model FROM car_brands" +
@@ -240,6 +244,37 @@ public class MySqlCatalogDAO implements CatalogDAO {
                 address.setRegionalCenter(
                         addressQuery.getString("region_name"));
                 address.setCity(addressQuery.getString("city_name"));
+            }
+        } catch (SQLException ex) {
+            logger.error(ex);
+            throw new ExceptionDao(ex);
+        } finally {
+            if (addressQuery != null) {
+                try {
+                    addressQuery.close();
+                } catch (SQLException e) {
+                    logger.error(e);
+                }
+            }
+        }
+        return address;
+    }
+
+    @Override
+    public Address getAddressIdByCityId(int id) throws ExceptionDao {
+
+        Address address = null;
+        ResultSet addressQuery = null;
+        try (PreparedStatement getAddress = connection.prepareStatement(SELECT_ADDRESS_ID_BY_CITY_ID)) {
+            getAddress.setInt(1, id);
+            addressQuery = getAddress.executeQuery();
+            address = new Address();
+            while (addressQuery.next()) {
+                address.setCountry(
+                        addressQuery.getString("country_id"));
+                address.setRegionalCenter(
+                        addressQuery.getString("id"));
+                address.setCity(Integer.toString(id));
             }
         } catch (SQLException ex) {
             logger.error(ex);

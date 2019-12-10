@@ -56,7 +56,7 @@ To change this template use File | Settings | File Templates.
     <
     <div class="container">
             <%--    <div class="row">--%>
-        <form action="listOfJourneys.html" role="form" class="needs-validation" novalidate method="post">
+        <form action="editJourneyPage.html" role="form" class="needs-validation" novalidate method="post">
             <h2><fmt:message key="titel.viewJourney"/></h2>
             <label style="background-color: B82303; font-size: 25px">${unknownError}</label>
 
@@ -229,11 +229,24 @@ To change this template use File | Settings | File Templates.
                 </div>
             </div>
 
-
-            <div class="mx-auto-center">
-                <button type="submit" class="btn btn-primary" name="button" value="add"><fmt:message
-                        key="button.reservePlace"/></button>
-            </div>
+            <c:choose>
+                <c:when test="${journey.driver.id eq authorizedUser.id}">
+                    <div class="mx-auto-center">
+                        <button type="submit" class="btn btn-warning" name="button" value="editJourney"><fmt:message
+                                key="button.edit"/></button>
+                    </div>
+                    <div class="mx-auto-center">
+                        <button type="submit" class="btn btn-danger" name="button" value="deleteJourney"><fmt:message
+                                key="button.delete"/></button>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <div class="mx-auto-center">
+                        <button type="submit" class="btn btn-primary" name="button" value="reservePlace"><fmt:message
+                                key="button.reservePlace"/></button>
+                    </div>
+                </c:otherwise>
+            </c:choose>
         </form> <!-- /form -->
             <%--    </div>--%>
         <form action="main.html" role="form" method="get">

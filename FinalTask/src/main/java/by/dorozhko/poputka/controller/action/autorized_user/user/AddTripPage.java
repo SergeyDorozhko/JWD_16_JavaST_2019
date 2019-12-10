@@ -67,6 +67,7 @@ public class AddTripPage extends UserAction {
     private Set<String> listOfAttributes;
 
     public AddTripPage() {
+        setAllowMethods(GET_METHOD);
         listOfAttributes = new HashSet<>();
         listOfAttributes.add(USER_COUNTRY_FROM_ATTRIBUTE);
         listOfAttributes.add(USER_REGION_FROM_ATTRIBUTE);

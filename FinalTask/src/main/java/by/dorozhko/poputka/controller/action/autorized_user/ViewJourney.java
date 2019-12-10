@@ -20,6 +20,9 @@ public class ViewJourney extends AuthorizedUser {
     private static final String JOURNEY_ID_ATTRIBUTE = "journeyId";
     private static final String JOURNEY_ATTRIBUTE = "journey";
 
+    public ViewJourney() {
+        setAllowMethods(GET_METHOD);
+    }
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {

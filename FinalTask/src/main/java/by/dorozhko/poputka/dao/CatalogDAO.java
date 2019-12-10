@@ -28,6 +28,6 @@ public interface CatalogDAO extends InterfaceDAO {
 
     Car getCar(int modelId) throws ExceptionDao;
     Address getAddressByCityId(int id) throws ExceptionDao;
-
+    Address getAddressIdByCityId(int id) throws ExceptionDao;
 
 }

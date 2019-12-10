@@ -18,6 +18,8 @@ import java.util.List;
 public class JourneyServiceImpl extends AbstractService implements JourneyService {
     private final Logger logger = LogManager.getLogger(getClass().getName());
 
+    private static final String JOURNEY_NOT_FOUND = "journey not found";
+
     @Override
     public List<Journey> findAllActualForMainPage() {
         return findAllActualJourneyLimit(0, 9);
@@ -84,6 +86,29 @@ public class JourneyServiceImpl extends AbstractService implements JourneyServic
     }
 
     @Override
+    public Journey updateJourney(Journey journey) throws ExceptionService {
+        JourneyDAO journeyDAO = FactoryDao.getInstance().getJourneyDAO();
+        UserDAO userDAO = FactoryDao.getInstance().getUserDAO();
+        transaction.begin(journeyDAO, userDAO);
+
+        try {
+            int userInfoId = userDAO.findUserInfoIdByUsersId(journey.getDriver().getId());
+            journey.getDriver().setId(userInfoId);
+
+            journey = journeyDAO.update(journey);
+            transaction.commit();
+        } catch (ExceptionDao exceptionDao) {
+            logger.error(exceptionDao);
+            transaction.rollback();
+            throw new ExceptionService(exceptionDao);
+        } finally {
+            transaction.end();
+        }
+
+        return journey;
+    }
+
+    @Override
     public Journey findJourney(int id) {
         Journey journey = null;
         JourneyDAO journeyDAO = FactoryDao.getInstance().getJourneyDAO();
@@ -116,6 +141,34 @@ public class JourneyServiceImpl extends AbstractService implements JourneyServic
             transaction.end();
         }
 
+        return journey;
+    }
+
+    @Override
+    public Journey findJourney(int journeyId, int driverId) {
+        Journey journey = null;
+        UserDAO userDAO = FactoryDao.getInstance().getUserDAO();
+        JourneyDAO journeyDAO = FactoryDao.getInstance().getJourneyDAO();
+        CatalogDAO catalogDAO = FactoryDao.getInstance().getCatalogDAO();
+        transaction.begin(userDAO, journeyDAO, catalogDAO);
+
+        try {
+            int userInfoId = userDAO.findUserInfoIdByUsersId(driverId);
+            journey = journeyDAO.takeJourneyByJourneyIdAndDriverId(journeyId, userInfoId);
+
+            if (journey != null) {
+                journey.setStartAddress(catalogDAO.getAddressIdByCityId(
+                        Integer.parseInt(journey.getStartAddress().getCity())));
+                journey.setDestinationAddress(catalogDAO.getAddressIdByCityId(
+                        Integer.parseInt(journey.getDestinationAddress().getCity())));
+            }
+            transaction.commit();
+
+        } catch (ExceptionDao ex) {
+            transaction.rollback();
+        } finally {
+            transaction.end();
+        }
         return journey;
     }
 }

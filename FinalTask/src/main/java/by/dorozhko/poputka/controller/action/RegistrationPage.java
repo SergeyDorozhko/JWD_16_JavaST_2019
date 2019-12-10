@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 public class RegistrationPage extends AllUsersAction {
     private final Logger logger = LogManager.getLogger(getClass().getName());
 
+
     private static final String MAP_OF_GENDORS = "gendersMap";
     private static final String MAP_OF_COUNTRIES = "countriesMap";
 
@@ -45,6 +46,7 @@ public class RegistrationPage extends AllUsersAction {
     private Set<String> listOfAttributes;
 
     public RegistrationPage() {
+        setAllowMethods(GET_METHOD);
         listOfAttributes = new HashSet<>();
         listOfAttributes.add(ERROR_LOGIN_ATTRIBUTE);
         listOfAttributes.add(ERROR_FIRST_NAME_ATTRIBUTE);

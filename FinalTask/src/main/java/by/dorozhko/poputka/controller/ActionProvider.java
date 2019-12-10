@@ -80,6 +80,12 @@ public final class ActionProvider {
             case "/viewJourney":
                 actionByQuery = new ViewJourney();
                 break;
+            case "/editJourneyPage":
+                actionByQuery = new EditJourneyPage();
+                break;
+            case "/editJourney":
+                actionByQuery = new EditJourneyAction();
+                break;
             default:
                 actionByQuery = new MainPage();
                 logger.warn("Default, show main page");

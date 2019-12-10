@@ -42,6 +42,8 @@ public class EditProfilePage extends UserAction {
     private Set<String> listOfAattributes;
 
     public EditProfilePage() {
+        setAllowMethods(GET_METHOD);
+
         listOfAattributes = new HashSet<>();
         listOfAattributes.add(ERROR_LOGIN_ATTRIBUTE);
         listOfAattributes.add(ERROR_FIRST_NAME_ATTRIBUTE);

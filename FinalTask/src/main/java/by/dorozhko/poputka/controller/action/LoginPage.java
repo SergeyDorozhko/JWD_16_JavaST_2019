@@ -19,8 +19,6 @@ public class LoginPage extends AllUsersAction {
     private static final String ERROR_PASSWORD_ATTRIBUTE = "errorPassword";
     private static final String USER_LOGIN_ATTRIBUTE = "userLogin";
 
-    private static final String GET_METHOD = "GET";
-
 
     private Set<String> attributesList;
 

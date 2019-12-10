@@ -11,5 +11,8 @@ public interface JourneyService extends Service {
     List<Journey> findAllActualForJourneyPage(int limitFrom, int limitTo);
 
     Journey createNewJourney(Journey journey) throws ExceptionService;
+    Journey updateJourney(Journey journey) throws ExceptionService;
+
     Journey findJourney(int id);
+    Journey findJourney(int journeyId, int driverId);
 }
