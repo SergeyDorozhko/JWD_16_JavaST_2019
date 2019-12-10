@@ -38,13 +38,13 @@
                     </form>
                     <c:choose>
                         <c:when test="${authorizedUser.role.id == 1}">
-                            <form action="addTrip.html" method="get">
+                            <form action="addTrip.html" method="post">
                                 <button class="dropdown-item" type="submit"><fmt:message
                                         key="mainPage.button.addTrip"/></button>
                             </form>
                         </c:when>
                         <c:when test="${authorizedUser.role.id == 0}">
-                            <form action="listOfUsers.html" method="get">
+                            <form action="listOfUsers.html" method="post">
                                 <button class="dropdown-item" type="submit"><fmt:message
                                         key="mainPage.button.allUsers"/></button>
                             </form>
@@ -53,7 +53,7 @@
                 </div>
             </div>
 
-            <form method="get">
+            <form method="post">
                 <div class="form-group">
                     <select class="form-control" onchange="this.form.submit()" name="local"
                             style=" background-color: #353535; color: orange; border-color: orange; width: 65px; height: 30px; font-size: 10px; position: absolute; top:15px; left: 380px;"
@@ -69,7 +69,7 @@
                 <c:when test="${role}">
                     <div class="btn-group" style="position:absolute; top:15px; right:200px;">
 
-                        <form action="viewUserProfile.html" method="get">
+                        <form action="viewUserProfile.html" method="post">
                             <button type="submit" class="btn btn-outline-warning btn-sm">
                                 <fmt:message key="mainPage.button.viewAccount"/> ${authorizedUser.getLogin()}
                             </button>
@@ -85,13 +85,11 @@
                     <div class="btn-group" style="position:absolute; top:15px; right:200px;">
                         <form action="loginPage.html" method="get">
                             <button type="submit" class="btn btn-outline-warning btn-sm">
-                                    <%--                                style="position:absolute; top:15px; right:300px;"--%>
                                 <fmt:message key="mainPage.button.singIn"/>
                             </button>
                         </form>
                         <form action="registrationPage.html" method="post">
                             <button type="submit" class="btn btn-outline-warning btn-sm">
-                                    <%--                                style="position:absolute; top:15px; right:200px;"--%>
                                 <fmt:message key="mainPage.button.registration"/>
                             </button>
                         </form>
@@ -102,51 +100,5 @@
 
     </div>
 </fmt:bundle>
-<%--    <div class="modal fade" id="myModal" tabindex="-1" role="dialog">--%>
-<%--        <div class="modal-dialog">--%>
-<%--            <div class="modal-content">--%>
 
-<%--                <!-- Modal Header -->--%>
-<%--                <div class="modal-header">--%>
-<%--                    <h4 class="modal-title">Autorisation</h4>--%>
-<%--                    <button type="button" class="close" data-dismiss="modal">&times;</button>--%>
-<%--                </div>--%>
-<%--                <form action="/action_page.php" class="was-validated">--%>
-<%--                    <!-- Modal body -->--%>
-<%--                    <div class="modal-body">--%>
-
-<%--                        <div class="form-group has-feedback">--%>
-<%--                            <label for="uname" class="control-label col-xs-3">Username:</label>--%>
-<%--                            <input type="text" class="form-control" id="uname" placeholder="Enter username"--%>
-<%--                                   name="uname" required pattern="[\w]{6,}">--%>
-<%--                            <div class="valid-feedback">Valid.</div>--%>
-<%--                            <div class="invalid-feedback">Please fill out this field.</div>--%>
-<%--                        </div>--%>
-<%--                        <div class="form-group">--%>
-<%--                            <label for="pwd">Password:</label>--%>
-<%--                            <input type="password" class="form-control" id="pwd"--%>
-<%--                                   placeholder="Enter password" name="pswd" required>--%>
-<%--                            <div class="valid-feedback">Valid.</div>--%>
-<%--                            <div class="invalid-feedback">Please fill out this field.</div>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-
-<%--                    <!-- Modal footer -->--%>
-<%--                    <div class="modal-footer">--%>
-<%--                        <button type="submit" class="btn btn-primary">Log in</button>--%>
-<%--                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>--%>
-<%--                    </div>--%>
-<%--                </form>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--    </div>--%>
-<%--</div>--%>
 </header
-<%--    </div>--%>
-
-<%--<br>--%>
-<%--<br>--%>
-<%--<br>--%>
-<%--<br>--%>
-<%--<br>--%>
-<%--<br><br>--%>

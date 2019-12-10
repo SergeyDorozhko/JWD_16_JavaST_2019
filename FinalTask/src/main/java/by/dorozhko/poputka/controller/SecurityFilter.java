@@ -28,10 +28,12 @@ public class SecurityFilter implements Filter {
             HttpServletRequest httpRequest
                     = (HttpServletRequest) servletRequest;
 
+            logger.debug(String.format("get method : %s", httpRequest.getMethod()));
 
             Action action = (Action) httpRequest.getAttribute("action");
             logger.debug(action.getClass().getSimpleName());
             Set<Role> allowRoles = action.getAllowRoles();
+            Set<String> allowMethods = action.getAllowMethods();
             logger.debug(allowRoles);
             String userName = "unauthorized user";
             logger.debug("");
@@ -59,10 +61,10 @@ public class SecurityFilter implements Filter {
             boolean canExecute = allowRoles == null;
 
             if (user != null) {
-                canExecute = canExecute || allowRoles.contains(user.getRole());
+                canExecute = canExecute || allowRoles.contains(user.getRole()) && allowMethods.contains(httpRequest.getMethod());
                 logger.debug(user.getRole());
             } else {
-                canExecute = allowRoles.contains(Role.GUEST);
+                canExecute = allowRoles.contains(Role.GUEST) && allowMethods.contains(httpRequest.getMethod());
             }
 
             if (canExecute) {

@@ -13,8 +13,20 @@ import java.util.Set;
 
 public abstract class Action {
     private Set<Role> allowRoles = new HashSet<>();
+    private Set<String> allowMethods = new HashSet<>();
     private User userOfAction;
 
+    public Action() {
+        allowMethods.add("POST");
+    }
+
+    public Set<String> getAllowMethods() {
+        return allowMethods;
+    }
+
+    protected void setAllowMethods(String method) {
+        allowMethods.add(method);
+    }
 
     public Set<Role> getAllowRoles() {
         return allowRoles;

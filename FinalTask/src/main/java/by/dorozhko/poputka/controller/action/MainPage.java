@@ -13,6 +13,11 @@ public class MainPage extends AllUsersAction {
 
     private static final String JOURNEY_LIST_ATTRIBUTE = "journeyList";
     private static final String FORWARD_PAGE = "/WEB-INF/jsp/main.jsp";
+
+    private static final String GET_METHOD = "GET";
+    public MainPage() {
+        setAllowMethods(GET_METHOD);
+    }
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         JourneyService journeyService

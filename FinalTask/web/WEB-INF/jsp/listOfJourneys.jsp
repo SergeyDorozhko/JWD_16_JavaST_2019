@@ -82,7 +82,7 @@
 
 
                         <div class="col-sm-12">
-                            <form action="viewJourney.html" method="get">
+                            <form action="viewJourney.html" method="post">
 
                                 <div class="card mb-1">
                                     <div class="card-header">
@@ -134,7 +134,7 @@
 
 
                         <div class="col-sm-12">
-                            <form action="viewJourney.html" method="get">
+                            <form action="viewJourney.html" method="post">
 
                                 <div class="card mb-1">
                                     <div class="card-header">

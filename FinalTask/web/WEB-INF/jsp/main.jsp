@@ -91,7 +91,7 @@
                     <c:choose>
                         <c:when test="${authorizedUser.role.id!=2 and authorizedUser!=null}">
                             <c:forEach var="element" items="${journeyList}">
-                                <form action="viewJourney.html" method="get">
+                                <form action="viewJourney.html" method="post">
                                     <div class="col-sm-4">
 
                                         <div class="card mb-1" style="width: 21rem;">
