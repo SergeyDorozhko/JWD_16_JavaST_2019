@@ -10,8 +10,10 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 public class EditJourneyPage extends UserAction {
 
@@ -34,10 +36,22 @@ public class EditJourneyPage extends UserAction {
 
     private static final String JOURNEY_ID_ATTRIBUTE = "journeyId";
 
+    private static final String ERROR_COUNTRY_FROM_ATTRIBUTE = "errorCountryFrom";
+    private static final String ERROR_REGION_FROM_ATTRIBUTE = "errorRegionFrom";
+    private static final String ERROR_CITY_FROM_ATTRIBUTE = "errorCityFrom";
+    private static final String ERROR_COUNTRY_TO_ATTRIBUTE = "errorCountryTo";
+    private static final String ERROR_REGION_TO_ATTRIBUTE = "errorRegionTo";
+    private static final String ERROR_CITY_TO_ATTRIBUTE = "errorCityTo";
+    private static final String ERROR_DEPARTURE_DATE_ATTRIBUTE = "errorDepartureDate";
+    private static final String ERROR_DEPARTURE_TIME_ATTRIBUTE = "errorDepartureTime";
+    private static final String ERROR_COST_ATTRIBUTE = "errorCost";
+    private static final String ERROR_CURRENCY_ATTRIBUTE = "errorCurrency";
+    private static final String ERROR_PASSENGERS_ATTRIBUTE = "errorPassengers";
     private static final String UNKNOWN_ERROR_ATTRIBUTE = "unknownError";
     private static final String FIELD_FORMAT_ERROR_MESSAGE = "back.errors.fieldFormatError";
     private static final String UNKNOWN_ERROR_MESSAGE = "back.errors.unknownError";
 
+    private Set<String> listOfAttributes;
 
     private String journeyId;
     private int driverId;
@@ -46,16 +60,32 @@ public class EditJourneyPage extends UserAction {
 
     public EditJourneyPage() {
         setAllowMethods(GET_METHOD);
+        listOfAttributes = new HashSet<>();
+        listOfAttributes.add(UNKNOWN_ERROR_ATTRIBUTE);
+        listOfAttributes.add(ERROR_COUNTRY_FROM_ATTRIBUTE);
+        listOfAttributes.add(ERROR_REGION_FROM_ATTRIBUTE);
+        listOfAttributes.add(ERROR_CITY_FROM_ATTRIBUTE);
+        listOfAttributes.add(ERROR_COUNTRY_TO_ATTRIBUTE);
+        listOfAttributes.add(ERROR_REGION_TO_ATTRIBUTE);
+        listOfAttributes.add(ERROR_CITY_TO_ATTRIBUTE);
+        listOfAttributes.add(ERROR_DEPARTURE_DATE_ATTRIBUTE);
+        listOfAttributes.add(ERROR_DEPARTURE_TIME_ATTRIBUTE);
+        listOfAttributes.add(ERROR_COST_ATTRIBUTE);
+        listOfAttributes.add(ERROR_CURRENCY_ATTRIBUTE);
+        listOfAttributes.add(ERROR_PASSENGERS_ATTRIBUTE);
     }
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
+        logger.debug("start method");
         getAttributesData(request);
         ResourceBundle resourceBundle = takeLocale(request);
         if (checkData(resourceBundle)) {
 
             JourneyService journeyService = ServiceFactory.getInstance().getJoureyService();
-            journey = journeyService.findJourney(Integer.parseInt(journeyId), driverId);
+            if (journey == null) {
+                journey = journeyService.findJourney(Integer.parseInt(journeyId), driverId);
+            }
             logger.debug(journey);
             if (journey != null) {
                 takeCatalogsData(request);
@@ -74,12 +104,28 @@ public class EditJourneyPage extends UserAction {
         driverId = authorizedUser.getId();
 
         journeyId = request.getParameter(JOURNEY_ID_ATTRIBUTE);
+        if (journeyId == null) {
+
+            journey = (Journey) session.getAttribute(JOURNEY_ATTRIBUTE);
+            session.removeAttribute(JOURNEY_ATTRIBUTE);
+            journeyId = Integer.toString(journey.getId());
+        }
 
 
+        for (String attribute : listOfAttributes) {
+            String attributeData =
+                    (String) session.getAttribute(attribute);
+            if (attributeData != null) {
+                request.setAttribute(attribute, attributeData);
+                session.removeAttribute(attribute);
+            }
+        }
+        logger.debug("data taken");
     }
 
     private boolean checkData(ResourceBundle resourceBundle) {
         int countErrors = 0;
+        logger.debug(journeyId);
         if (journeyId == null || journeyId.length() == 0) {
             session.setAttribute(UNKNOWN_ERROR_ATTRIBUTE,
                     resourceBundle.getString(UNKNOWN_ERROR_MESSAGE));
@@ -93,39 +139,68 @@ public class EditJourneyPage extends UserAction {
                 countErrors++;
             }
         }
+        logger.debug(String.format("find errors : %d", countErrors));
         return countErrors == 0;
     }
 
     private void takeCatalogsData(final HttpServletRequest request) {
+        ResourceBundle resourceBundle = takeLocale(request);
 
         Map<Integer, String> countries = ServiceFactory.getInstance().getCatalogService().getCountries();
         request.setAttribute(MAP_OF_COUNTRIES, countries);
         Map<Integer, String> currencies = ServiceFactory.getInstance().getCatalogService().getCurrencies();
         request.setAttribute(MAP_OF_CURRENCIES, currencies);
 
+        if (journey.getStartAddress().getCountry() != null && journey.getStartAddress().getCountry().length() != 0) {
+            try {
+                Map<Integer, String> regions = ServiceFactory.getInstance()
+                        .getCatalogService().getRegionsOfCountry(
+                                Integer.parseInt(journey.getStartAddress().getCountry()));
+                request.setAttribute(MAP_OF_REGIONS_FROM, regions);
+            } catch (NumberFormatException ex) {
+                logger.error(ex);
+                request.setAttribute(ERROR_COUNTRY_FROM_ATTRIBUTE,
+                        resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
+            }
+        }
 
-        Map<Integer, String> regionsFrom = ServiceFactory.getInstance()
-                .getCatalogService().getRegionsOfCountry(
-                        Integer.parseInt(journey.getStartAddress().getCountry()));
-        request.setAttribute(MAP_OF_REGIONS_FROM, regionsFrom);
+        if (journey.getDestinationAddress().getCountry() != null && journey.getDestinationAddress().getCountry().length() != 0) {
+            try {
+                Map<Integer, String> regions = ServiceFactory.getInstance()
+                        .getCatalogService().getRegionsOfCountry(
+                                Integer.parseInt(journey.getDestinationAddress().getCountry()));
+                request.setAttribute(MAP_OF_REGIONS_TO, regions);
+            } catch (NumberFormatException ex) {
+                logger.error(ex);
+                request.setAttribute(ERROR_COUNTRY_TO_ATTRIBUTE,
+                        resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
+            }
+        }
 
-
-        Map<Integer, String> regionsTo = ServiceFactory.getInstance()
-                .getCatalogService().getRegionsOfCountry(
-                        Integer.parseInt(journey.getDestinationAddress().getCountry()));
-        request.setAttribute(MAP_OF_REGIONS_TO, regionsTo);
-
-
-        Map<Integer, String> citiesFrom = ServiceFactory.getInstance()
-                .getCatalogService().getCitiesOfRegion(
-                        Integer.parseInt(journey.getStartAddress().getRegionalCenter()));
-        request.setAttribute(MAP_OF_CITIES_FROM, citiesFrom);
-
-
-        Map<Integer, String> citiesTo = ServiceFactory.getInstance()
-                .getCatalogService().getCitiesOfRegion(
-                        Integer.parseInt(journey.getDestinationAddress().getRegionalCenter()));
-        request.setAttribute(MAP_OF_CITIES_TO, citiesTo);
+        if (journey.getStartAddress().getRegionalCenter() != null && journey.getStartAddress().getRegionalCenter().length() != 0) {
+            try {
+                Map<Integer, String> cities = ServiceFactory.getInstance()
+                        .getCatalogService().getCitiesOfRegion(
+                                Integer.parseInt(journey.getStartAddress().getRegionalCenter()));
+                request.setAttribute(MAP_OF_CITIES_FROM, cities);
+            } catch (NumberFormatException ex) {
+                logger.error(ex);
+                request.setAttribute(ERROR_REGION_FROM_ATTRIBUTE,
+                        resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
+            }
+        }
+        if (journey.getDestinationAddress().getRegionalCenter() != null && journey.getDestinationAddress().getRegionalCenter().length() != 0) {
+            try {
+                Map<Integer, String> cities = ServiceFactory.getInstance()
+                        .getCatalogService().getCitiesOfRegion(
+                                Integer.parseInt(journey.getDestinationAddress().getRegionalCenter()));
+                request.setAttribute(MAP_OF_CITIES_TO, cities);
+            } catch (NumberFormatException ex) {
+                logger.error(ex);
+                request.setAttribute(ERROR_REGION_TO_ATTRIBUTE,
+                        resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
+            }
+        }
 
     }
 

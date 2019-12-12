@@ -31,8 +31,9 @@ public class EditJourneyAction extends UserAction {
 
     private static final String AUTHORIZED_USER_ATTRIBUTE = "authorizedUser";
 
+    private static final String JOURNEY_ATTRIBUTE = "journey";
 
-    private static final String JOUREY_ID_ATTRIBUTE = "journeyId";
+    private static final String JOURNEY_ID_ATTRIBUTE = "journeyId";
     private static final String COUNTRY_FROM_ATTRIBUTE = "countryFrom";
     private static final String REGION_FROM_ATTRIBUTE = "regionFrom";
     private static final String CITY_FROM_ATTRIBUTE = "cityFrom";
@@ -45,20 +46,6 @@ public class EditJourneyAction extends UserAction {
     private static final String CURRENCY_ATTRIBUTE = "currency";
     private static final String PASSENGERS_ATTRIBUTE = "passengers";
     private static final String ADDITIONAL_INFORMATION_ATTRIBUTE = "additionalInformation";
-
-
-    private static final String USER_COUNTRY_FROM_ATTRIBUTE = "userCountryFrom";
-    private static final String USER_REGION_FROM_ATTRIBUTE = "userRegionFrom";
-    private static final String USER_CITY_FROM_ATTRIBUTE = "userCityFrom";
-    private static final String USER_COUNTRY_TO_ATTRIBUTE = "userCountryTo";
-    private static final String USER_REGION_TO_ATTRIBUTE = "userRegionTo";
-    private static final String USER_CITY_TO_ATTRIBUTE = "userCityTo";
-    private static final String USER_DEPARTURE_DATE_ATTRIBUTE = "userDepartureDate";
-    private static final String USER_DEPARTURE_TIME_ATTRIBUTE = "userDepartureTime";
-    private static final String USER_COST_ATTRIBUTE = "userCost";
-    private static final String USER_CURRENCY_ATTRIBUTE = "userCurrency";
-    private static final String USER_PASSENGERS_ATTRIBUTE = "userPassengers";
-    private static final String USER_ADDITIONAL_INFORMATION_ATTRIBUTE = "userAdditionalInformation";
 
 
     private static final String ERROR_COUNTRY_FROM_ATTRIBUTE = "errorCountryFrom";
@@ -98,9 +85,10 @@ public class EditJourneyAction extends UserAction {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
+        logger.debug("Start method");
         session = request.getSession(false);
         getAllAttributesData(request);
-
+        logger.debug(journeyId);
         ResourceBundle resourceBundle = takeLocale(request);
 
         String button = request.getParameter(BUTTON);
@@ -128,6 +116,8 @@ public class EditJourneyAction extends UserAction {
                 session.setAttribute(UNKNOWN_ERROR_ATTRIBUTE, resourceBundle.getString(UNKNOWN_ERROR_MESSAGE));
             }
         }
+
+        logger.debug(String.format("id : %s", journeyId));
         if (journeyId != null) {
             setUserInputData();
             return request.getContextPath() + ERROR_REDIRECT_URL;
@@ -136,7 +126,7 @@ public class EditJourneyAction extends UserAction {
     }
 
     private void getAllAttributesData(HttpServletRequest request) {
-        journeyId = request.getParameter(JOUREY_ID_ATTRIBUTE);
+        journeyId = request.getParameter(JOURNEY_ID_ATTRIBUTE);
         countryFrom = request.getParameter(COUNTRY_FROM_ATTRIBUTE);
         regionFrom = request.getParameter(REGION_FROM_ATTRIBUTE);
         cityFrom = request.getParameter(CITY_FROM_ATTRIBUTE);
@@ -181,7 +171,7 @@ public class EditJourneyAction extends UserAction {
                 countErrors++;
             }
         }
-        if (regionFrom.length() == 0) {
+        if (regionFrom == null || regionFrom.length() == 0) {
             session.setAttribute(ERROR_REGION_FROM_ATTRIBUTE, resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
             countErrors++;
         } else {
@@ -194,7 +184,7 @@ public class EditJourneyAction extends UserAction {
             }
 
         }
-        if (cityFrom.length() == 0) {
+        if (cityFrom == null || cityFrom.length() == 0) {
             session.setAttribute(ERROR_CITY_FROM_ATTRIBUTE, resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
             countErrors++;
         } else {
@@ -207,7 +197,7 @@ public class EditJourneyAction extends UserAction {
             }
 
         }
-        if (countryTo.length() == 0) {
+        if (countryTo == null || countryTo.length() == 0) {
             session.setAttribute(ERROR_COUNTRY_TO_ATTRIBUTE, resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
             countErrors++;
         } else {
@@ -220,7 +210,7 @@ public class EditJourneyAction extends UserAction {
             }
 
         }
-        if (regionTo.length() == 0) {
+        if (regionTo == null || regionTo.length() == 0) {
             session.setAttribute(ERROR_REGION_TO_ATTRIBUTE, resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
             countErrors++;
         } else {
@@ -233,7 +223,7 @@ public class EditJourneyAction extends UserAction {
             }
 
         }
-        if (cityTo.length() == 0) {
+        if (cityTo == null || cityTo.length() == 0) {
             session.setAttribute(ERROR_CITY_TO_ATTRIBUTE, resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
             countErrors++;
         } else {
@@ -246,7 +236,7 @@ public class EditJourneyAction extends UserAction {
             }
 
         }
-        if (departureDate.length() == 0) {
+        if (departureDate == null || departureDate.length() == 0) {
             session.setAttribute(ERROR_DEPARTURE_DATE_ATTRIBUTE, resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
             countErrors++;
         } else {
@@ -259,7 +249,7 @@ public class EditJourneyAction extends UserAction {
             }
 
         }
-        if (departureTime.length() == 0) {
+        if (departureTime == null || departureTime.length() == 0) {
             session.setAttribute(ERROR_DEPARTURE_TIME_ATTRIBUTE, resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
             countErrors++;
         } else {
@@ -272,8 +262,9 @@ public class EditJourneyAction extends UserAction {
             }
 
         }
-        if (cost.length() == 0) {
+        if (cost == null || cost.length() == 0) {
             session.setAttribute(ERROR_COST_ATTRIBUTE, resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
+            cost = null;
             countErrors++;
         } else {
             try {
@@ -281,11 +272,12 @@ public class EditJourneyAction extends UserAction {
             } catch (NumberFormatException ex) {
                 logger.error(ex);
                 session.setAttribute(ERROR_COST_ATTRIBUTE, resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
+                cost = null;
                 countErrors++;
             }
 
         }
-        if (currency.length() == 0) {
+        if (currency == null || currency.length() == 0) {
             session.setAttribute(ERROR_CURRENCY_ATTRIBUTE, resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
             countErrors++;
         } else {
@@ -298,8 +290,9 @@ public class EditJourneyAction extends UserAction {
             }
 
         }
-        if (passengers.length() == 0) {
+        if (passengers == null || passengers.length() == 0) {
             session.setAttribute(ERROR_PASSENGERS_ATTRIBUTE, resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
+            passengers = null;
             countErrors++;
         } else {
             try {
@@ -307,6 +300,7 @@ public class EditJourneyAction extends UserAction {
             } catch (NumberFormatException ex) {
                 logger.error(ex);
                 session.setAttribute(ERROR_PASSENGERS_ATTRIBUTE, resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
+                passengers = null;
                 countErrors++;
             }
 
@@ -317,18 +311,26 @@ public class EditJourneyAction extends UserAction {
     }
 
     private void setUserInputData() {
-        session.setAttribute(JOUREY_ID_ATTRIBUTE, journeyId);
-        session.setAttribute(USER_COUNTRY_FROM_ATTRIBUTE, countryFrom);
-        session.setAttribute(USER_REGION_FROM_ATTRIBUTE, regionFrom);
-        session.setAttribute(USER_CITY_FROM_ATTRIBUTE, cityFrom);
-        session.setAttribute(USER_COUNTRY_TO_ATTRIBUTE, countryTo);
-        session.setAttribute(USER_REGION_TO_ATTRIBUTE, regionTo);
-        session.setAttribute(USER_CITY_TO_ATTRIBUTE, cityTo);
-        session.setAttribute(USER_DEPARTURE_DATE_ATTRIBUTE, departureDate);
-        session.setAttribute(USER_DEPARTURE_TIME_ATTRIBUTE, departureTime);
-        session.setAttribute(USER_COST_ATTRIBUTE, cost);
-        session.setAttribute(USER_CURRENCY_ATTRIBUTE, currency);
-        session.setAttribute(USER_PASSENGERS_ATTRIBUTE, passengers);
-        session.setAttribute(USER_ADDITIONAL_INFORMATION_ATTRIBUTE, additionalInformation);
+
+
+        journey = new Journey();
+        journey.setId(Integer.parseInt(journeyId));
+        Address startAddress = new Address(countryFrom, regionFrom, cityFrom);
+        journey.setStartAddress(startAddress);
+        Address destinationAddress = new Address(countryTo, regionTo, cityTo);
+        journey.setDestinationAddress(destinationAddress);
+        journey.setDepartureTime(departureTime);
+        journey.setDepartureDate(departureDate);
+        if (cost != null) {
+            journey.setCost(Double.parseDouble(cost));
+        }
+        journey.setCurrency(currency);
+        if (passengers != null) {
+            journey.setPassengersNumber(Integer.parseInt(passengers));
+        }
+
+        journey.setAdditionalInformation(additionalInformation);
+        session.setAttribute(JOURNEY_ATTRIBUTE, journey);
+
     }
 }
