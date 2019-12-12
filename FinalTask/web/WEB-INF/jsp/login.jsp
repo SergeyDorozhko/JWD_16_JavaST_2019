@@ -43,7 +43,7 @@ To change this template use File | Settings | File Templates.
                         <div class="form-group has-feedback">
                             <label for="uname" class="control-label col-xs-3" style="font-size: 25px;"><fmt:message key="fields.login"/></label>
                             <input type="text" class="form-control" id="uname" placeholder="<fmt:message key="fields.login"/>"
-                                   name="login" value="${userLogin}" required pattern="[\w]{2,}">
+                                   name="login" value="${userLogin}" required autofocus pattern="^[\w-]{1,20}$">
                             <div class="invalid-feedback"><fmt:message key="errors.fillOutTheField"/></div>
                             <label style="background-color: B82303; font-size: 25px">${errorLogin}</label>
                         </div>
@@ -51,7 +51,7 @@ To change this template use File | Settings | File Templates.
                         <div class="form-group">
                             <label for="pwd" style="font-size: 25px"><fmt:message key="fields.password"/></label>
                             <input type="password" class="form-control" id="pwd"
-                                   placeholder="<fmt:message key="fields.password"/>" name="password" required>
+                                   placeholder="<fmt:message key="fields.password"/>" name="password" required autofocus pattern="^[\wа-яА-Я\d-+%$@!]{1,50}$">
                             <div class="invalid-feedback"><fmt:message key="errors.fillOutTheField"/></div>
                             <label style="background-color: B82303; font-size: 25px">${errorPassword}</label>
                         </div>

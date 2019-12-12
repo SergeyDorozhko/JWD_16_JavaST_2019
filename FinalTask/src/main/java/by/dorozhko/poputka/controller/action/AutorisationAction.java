@@ -22,6 +22,9 @@ public class AutorisationAction extends AllUsersAction {
     private static final String FIELD_IS_EMPTY_ERROR_MESSAGE = "back.errors.fieldIsEmptyError";
     private static final String INCORRECT_LOGIN_OR_PASSWORD_ERROR_MESSAGE = "back.errors.incorrectLoginOrPassword";
 
+    private static final String INVALID_CHARACTERS_IN_LOGIN_OR_PASSWORD = "invalid characters in the password or login";
+    private static final String INVALID_CHARACTERS_IN_LOGIN_OR_PASSWORD_MESSAGE = "back.errors.invalidCharactersInThePasswordOrLogin";
+
 
     private static final String LOGIN_ATTRIBUTE = "login";
     private static final String PASSWORD_ATTRIBUTE = "password";
@@ -47,6 +50,10 @@ public class AutorisationAction extends AllUsersAction {
                 user = userService.singIn(login, password);
             } catch (ExceptionService exceptionService) {
                 logger.error(exceptionService);
+                if (exceptionService.getMessage().equals(INVALID_CHARACTERS_IN_LOGIN_OR_PASSWORD)) {
+                    session.setAttribute(ERROR_LOGIN_ATTRIBUTE, resourceBundle.getString(INVALID_CHARACTERS_IN_LOGIN_OR_PASSWORD_MESSAGE));
+                    return request.getContextPath() + ERROR_REDIRECT;
+                }
             }
         }
         if (user != null) {

@@ -23,6 +23,14 @@ import java.util.List;
 public class UserServiceImpl extends AbstractService implements UserService {
     private final Logger logger = LogManager.getLogger(getClass().getName());
 
+    private static final String INVALID_ID_VALUE_MESSAGE = "invalid id";
+    private static final String INVALID_CHARACTERS_IN_LOGIN_OR_PASSWORD = "invalid characters in the password or login";
+    private Validator validator;
+
+    public UserServiceImpl() {
+        validator = new Validator();
+    }
+
     /**
      * Show all users saved in database.
      *
@@ -54,6 +62,10 @@ public class UserServiceImpl extends AbstractService implements UserService {
      */
     @Override
     public User findById(int id) throws ExceptionService {
+
+        if (!validator.validateId(id)) {
+            throw new ExceptionService(INVALID_ID_VALUE_MESSAGE);
+        }
 
         User userInfo = null;
         UserDAO userDAO = FactoryDao.getInstance().getUserDAO();
@@ -103,9 +115,8 @@ public class UserServiceImpl extends AbstractService implements UserService {
             throws ExceptionService {
         Validator validator = new Validator();
         if (!validator.validateAutorisationData(login, password)) {
-            String msg = "incorrect login or password";
-            logger.error(msg);
-            throw new ExceptionService(msg);
+            logger.error(INVALID_CHARACTERS_IN_LOGIN_OR_PASSWORD);
+            throw new ExceptionService(INVALID_CHARACTERS_IN_LOGIN_OR_PASSWORD);
         }
 
         UserDAO userDAO = FactoryDao.getInstance().getUserDAO();
@@ -168,6 +179,8 @@ public class UserServiceImpl extends AbstractService implements UserService {
 
         return regestedUser;
     }
+
+
 
     /**
      * Update user info into database.

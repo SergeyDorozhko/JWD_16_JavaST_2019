@@ -9,16 +9,21 @@ import java.util.regex.Pattern;
 
 class Validator {
     private final Logger logger = LogManager.getLogger(getClass().getName());
-    private static final String LOGIN_PATTERN = "^[\\w\\d-]+$";
-    private static final String PASSWORD_PATTERN = "^[\\wа-яА-Я\\d-+%$@!]+$";
+    private static final String LOGIN_PATTERN = "^[\\w-]{1,20}$";
+    private static final String PASSWORD_PATTERN = "^[\\wа-яА-Я\\d-+%$@!]{1,50}$";
     private static final String USER_NAME_AND_SURNAME_PATTERN = "^[a-zA-Zа-яА-Я-]+$";
     private static final String GENDER_PATTERN = "^[0-9]{1,2}$";
     private static final String COUNTRY_PATTERN = "^[0-9]{1,3}$";
-    private static final String PASSPORT_NUMBER_PATTERN = "^[A-Z0-9]{1,10}$";
-    private static final String PHONE_PATTERN = "^[0-9]{7-15}$";
+    private static final String PASSPORT_NUMBER_PATTERN = "^[\\w-]{1,10}$";
+    private static final String PHONE_PATTERN = "^[0-9]{7,15}$";
     private static final String EMAIL_PATTERN = "^[-\\w.]+@([A-z0-9][-A-z0-9]+\\.)+[A-z]{2,4}$";
     private Pattern pattern;
     private Matcher matcher;
+
+    public boolean validateId(final int id) {
+        return id > 0 ? true : false;
+    }
+
 
     public boolean validateAutorisationData(final String login,
                                             final String password) {
