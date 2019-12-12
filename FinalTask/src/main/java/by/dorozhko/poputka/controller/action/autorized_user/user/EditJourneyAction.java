@@ -109,8 +109,11 @@ public class EditJourneyAction extends UserAction {
             logger.debug(String.format("creating journey: %s", journey.getDriver().getId()));
             try {
                 journey = journeyService.updateJourney(journey);
-                return request.getContextPath() + SUCCESSFUL_REDIRECT_URL;
-
+                if (journey != null) {
+                    session.removeAttribute(JOURNEY_ID_ATTRIBUTE);
+                    return request.getContextPath() + SUCCESSFUL_REDIRECT_URL;
+                }
+                journeyId = null;
             } catch (ExceptionService exceptionService) {
                 logger.error(exceptionService);
                 session.setAttribute(UNKNOWN_ERROR_ATTRIBUTE, resourceBundle.getString(UNKNOWN_ERROR_MESSAGE));
@@ -122,11 +125,13 @@ public class EditJourneyAction extends UserAction {
             setUserInputData();
             return request.getContextPath() + ERROR_REDIRECT_URL;
         }
+        session.removeAttribute(JOURNEY_ID_ATTRIBUTE);
         return FATAL_ERROR_FORWARD_PAGE;
     }
 
     private void getAllAttributesData(HttpServletRequest request) {
-        journeyId = request.getParameter(JOURNEY_ID_ATTRIBUTE);
+
+        journeyId = Integer.toString((Integer) session.getAttribute(JOURNEY_ID_ATTRIBUTE));
         countryFrom = request.getParameter(COUNTRY_FROM_ATTRIBUTE);
         regionFrom = request.getParameter(REGION_FROM_ATTRIBUTE);
         cityFrom = request.getParameter(CITY_FROM_ATTRIBUTE);

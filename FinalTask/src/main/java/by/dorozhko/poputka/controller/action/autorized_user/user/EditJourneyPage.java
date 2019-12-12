@@ -77,19 +77,22 @@ public class EditJourneyPage extends UserAction {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
+        setLocaleToCookie(request, response);
+
         logger.debug("start method");
         getAttributesData(request);
         ResourceBundle resourceBundle = takeLocale(request);
         if (checkData(resourceBundle)) {
-
-            JourneyService journeyService = ServiceFactory.getInstance().getJoureyService();
             if (journey == null) {
+                JourneyService journeyService = ServiceFactory.getInstance().getJoureyService();
                 journey = journeyService.findJourney(Integer.parseInt(journeyId), driverId);
             }
             logger.debug(journey);
             if (journey != null) {
                 takeCatalogsData(request);
+
                 request.setAttribute(JOURNEY_ATTRIBUTE, journey);
+                session.setAttribute(JOURNEY_ID_ATTRIBUTE, journey.getId());
                 return FORWARD_PAGE;
             }
         }
@@ -105,10 +108,9 @@ public class EditJourneyPage extends UserAction {
 
         journeyId = request.getParameter(JOURNEY_ID_ATTRIBUTE);
         if (journeyId == null) {
-
             journey = (Journey) session.getAttribute(JOURNEY_ATTRIBUTE);
             session.removeAttribute(JOURNEY_ATTRIBUTE);
-            journeyId = Integer.toString(journey.getId());
+            journeyId = Integer.toString((Integer) session.getAttribute(JOURNEY_ID_ATTRIBUTE));
         }
 
 

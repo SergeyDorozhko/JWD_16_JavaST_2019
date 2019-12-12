@@ -134,7 +134,11 @@ public class MySqlJourneyDAO implements JourneyDAO {
             statement.setString(8, entity.getAdditionalInformation());
             statement.setInt(9, entity.getId());
             statement.setInt(10, entity.getDriver().getId());
-            statement.executeUpdate();
+            int i = statement.executeUpdate();
+            if (i == 0) {
+                entity = null;
+            }
+            logger.debug(String.format("update value: %d", i));
         } catch (SQLException ex) {
             logger.error(ex);
             entity = null;
@@ -203,6 +207,7 @@ public class MySqlJourneyDAO implements JourneyDAO {
         journey.setCurrency(resultSet.getString("currency_id"));
         journey.setPassengersNumber(Integer.parseInt(
                 resultSet.getString("number_of_passengers")));
+        journey.setAdditionalInformation(resultSet.getString("additional_information"));
         return journey;
     }
 
