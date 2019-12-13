@@ -24,7 +24,22 @@ public class UserServiceImpl extends AbstractService implements UserService {
     private final Logger logger = LogManager.getLogger(getClass().getName());
 
     private static final String INVALID_ID_VALUE_MESSAGE = "invalid id";
-    private static final String INVALID_CHARACTERS_IN_LOGIN_OR_PASSWORD = "invalid characters in the password or login";
+
+    private static final String INVALID_LOGIN_OR_PASSWORD_FORMAT = "invalid password or login format";
+
+    private static final String INVALID_LOGIN_FORMAT = "invalid pseudonym format";
+    private static final String INVALID_PASSWORD_FORMAT = "invalid password format";
+    private static final String INVALID_NAME_FORMAT = "invalid name format";
+    private static final String INVALID_SURNAME_FORMAT = "invalid surname format";
+    private static final String INVALID_EMAIL_FORMAT = "invalid e-mail format";
+    private static final String INVALID_BIRTHDAY_DATE_VALUE = "invalid birthday date value";
+    private static final String INVALID_PHONE_FORMAT = "invalid tel. number format";
+    private static final String INVALID_COUNTRY_ID_VALUE = "invalid country id";
+    private static final String INVALID_PASSPORT_NUMBER_FORMAT = "invalid number of passport format";
+    private static final String INVALID_PASSPORT_ISSUE_DATE_VALUE = "invalid passport date of issue value";
+    private static final String INVALID_GENDER_ID_VALUE = "invalid gender id";
+
+
     private Validator validator;
 
     public UserServiceImpl() {
@@ -115,8 +130,8 @@ public class UserServiceImpl extends AbstractService implements UserService {
             throws ExceptionService {
         Validator validator = new Validator();
         if (!validator.validateAutorisationData(login, password)) {
-            logger.error(INVALID_CHARACTERS_IN_LOGIN_OR_PASSWORD);
-            throw new ExceptionService(INVALID_CHARACTERS_IN_LOGIN_OR_PASSWORD);
+            logger.error(INVALID_LOGIN_OR_PASSWORD_FORMAT);
+            throw new ExceptionService(INVALID_LOGIN_OR_PASSWORD_FORMAT);
         }
 
         UserDAO userDAO = FactoryDao.getInstance().getUserDAO();
@@ -155,6 +170,8 @@ public class UserServiceImpl extends AbstractService implements UserService {
     @Override
     public User add(final User user) throws ExceptionService {
 
+        validateUser(user);
+
         UserDAO userDAO = FactoryDao.getInstance().getUserDAO();
 
         transaction.begin(userDAO);
@@ -180,6 +197,41 @@ public class UserServiceImpl extends AbstractService implements UserService {
         return regestedUser;
     }
 
+    private void validateUser(User user) throws ExceptionService {
+        if (!validator.validateLogin(user.getLogin())) {
+            throw new ExceptionService(INVALID_LOGIN_FORMAT);
+        }
+        if (!validator.validatePassword(user.getPassword())) {
+            throw new ExceptionService(INVALID_PASSWORD_FORMAT);
+        }
+        if (!validator.validateNameOrSurname(user.getName())) {
+            throw new ExceptionService(INVALID_NAME_FORMAT);
+        }
+        if (!validator.validateNameOrSurname(user.getSurname())) {
+            throw new ExceptionService(INVALID_SURNAME_FORMAT);
+        }
+        if (!validator.validateEmail(user.getEmail())) {
+            throw new ExceptionService(INVALID_EMAIL_FORMAT);
+        }
+        if (!validator.validateBirthday(user.getBirthday())) {
+            throw new ExceptionService(INVALID_BIRTHDAY_DATE_VALUE);
+        }
+        if (!validator.validatePhone(user.getPhoneNumber())) {
+            throw new ExceptionService(INVALID_PHONE_FORMAT);
+        }
+        if (!validator.validateId(Integer.parseInt(user.getCountry()))) {
+            throw new ExceptionService(INVALID_COUNTRY_ID_VALUE);
+        }
+        if (!validator.validatePassportNumber(user.getPassportNumber())) {
+            throw new ExceptionService(INVALID_PASSPORT_NUMBER_FORMAT);
+        }
+        if (!validator.validatePassportIssueDate(user.getPassportDateOfIssue())) {
+            throw new ExceptionService(INVALID_PASSPORT_ISSUE_DATE_VALUE);
+        }
+        if (!validator.validateId(Integer.parseInt(user.getGender()))) {
+            throw new ExceptionService(INVALID_GENDER_ID_VALUE);
+        }
+    }
 
 
     /**

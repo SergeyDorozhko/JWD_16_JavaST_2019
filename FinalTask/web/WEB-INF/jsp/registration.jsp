@@ -65,7 +65,7 @@ To change this template use File | Settings | File Templates.
                 <div class="col-sm-9 some-form__line">
                     <input type="text" id="login" name="login" placeholder="<fmt:message key="fields.login"/>"
                            class="form-control" value="${userLogin}"
-                           required>
+                           required autofocus pattern="^[\w-]{1,20}$">
                     <div class="invalid-feedback"><fmt:message key="errors.fillOutTheField"/></div>
                 </div>
                 <label style="background-color: B82303; font-size: 25px">${errorLogin}</label>
@@ -75,7 +75,7 @@ To change this template use File | Settings | File Templates.
                 <div class="col-sm-9">
                     <input type="text" id="firstName" name="firstName"
                            placeholder="<fmt:message key="fields.firstName"/> " class="form-control"
-                           value="${userFirstName}" required autofocus>
+                           value="${userFirstName}" required autofocus pattern="^[a-zA-Zа-яА-Я-]{1,255}$">
                     <div class="invalid-feedback"><fmt:message key="errors.fillOutTheField"/></div>
                 </div>
                 <label style="background-color: B82303; font-size: 25px">${errorFirstName}</label>
@@ -84,7 +84,7 @@ To change this template use File | Settings | File Templates.
                 <label for="lastName" class="col-sm-3 control-label"><fmt:message key="fields.lastName"/>*</label>
                 <div class="col-sm-9">
                     <input type="text" id="lastName" name="lastName" placeholder="<fmt:message key="fields.lastName"/>" class="form-control"
-                           value="${userLastName}" required autofocus>
+                           value="${userLastName}" required autofocus pattern="^^[a-zA-Zа-яА-Я-]{1,255}$">
                     <div class="invalid-feedback"><fmt:message key="errors.fillOutTheField"/></div>
                 </div>
                 <label style="background-color: B82303; font-size: 25px">${errorLastName}</label>
@@ -102,7 +102,7 @@ To change this template use File | Settings | File Templates.
                 <label for="password" class="col-sm-3 control-label"><fmt:message key="fields.password"/>*</label>
                 <div class="col-sm-9">
                     <input type="password" id="password" name="password" placeholder="<fmt:message key="fields.password"/>" class="form-control"
-                           required autofocus>
+                           required autofocus pattern="^[\wа-яА-Я\d-+%$@!]{1,50}$">
                     <div class="invalid-feedback"><fmt:message key="errors.fillOutTheField"/></div>
                 </div>
             </div>
@@ -111,7 +111,7 @@ To change this template use File | Settings | File Templates.
                 <label for="confirmPassword" class="col-sm-3 control-label"><fmt:message key="fields.passwordComfirm"/>*</label>
                 <div class="col-sm-9">
                     <input type="password" id="confirmPassword" name="confirmPassword" placeholder="<fmt:message key="fields.password"/>"
-                           class="form-control" required autofocus>
+                           class="form-control" required autofocus pattern="^[\wа-яА-Я\d-+%$@!]{1,50}$">
                     <div class="invalid-feedback"><fmt:message key="errors.fillOutTheField"/></div>
                 </div>
             </div>
@@ -129,7 +129,7 @@ To change this template use File | Settings | File Templates.
                 <label for="phoneNumber" class="col-sm-3 control-label"><fmt:message key="fields.phoneNumber"/>*</label>
                 <div class="col-sm-6">
                     <input type="phoneNumber" id="phoneNumber" name="phoneNumber" placeholder="375XXYYYYYYY"
-                           class="form-control" value="${userPhoneNumber}" pattern="[0-9]{12}" required>
+                           class="form-control" value="${userPhoneNumber}" pattern="^[0-9]{7,15}$" required>
                     <div class="invalid-feedback"><fmt:message key="errors.fillOutTheField"/></div>
                 </div>
                 <label style="background-color: B82303; font-size: 25px">${errorPhoneNumber}</label>
@@ -154,7 +154,7 @@ To change this template use File | Settings | File Templates.
                 <div class="col-sm-6">
                     <input type="tel" id="passportNumber" name="passportNumber" placeholder="<fmt:message
                         key="fields.passportNumber"/>"
-                           class="form-control" value="${userPassportNumber}" required autofocus>
+                           class="form-control" value="${userPassportNumber}" required autofocus pattern="^[\w-]{1,10}$">
                     <div class="invalid-feedback"><fmt:message key="errors.fillOutTheField"/></div>
                 </div>
                 <label style="background-color: B82303; font-size: 25px">${errorPassportNumber}</label>
