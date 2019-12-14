@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.HashSet;
 import java.util.Map;
-import java.util.ResourceBundle;
 import java.util.Set;
 
 public class AddTripPage extends UserAction {
@@ -109,14 +108,34 @@ public class AddTripPage extends UserAction {
     }
 
     private void takeCatalogsData(final HttpServletRequest request) {
-        ResourceBundle resourceBundle = takeLocale(request);
+        resourceBundle = takeLocale(request);
 
-        Map<Integer, String> countries = ServiceFactory.getInstance().getCatalogService().getCountries();
+        takeCountriesFromCatalog(request);
+        takeCurrenciesFromCatalog(request);
+        takeStartAddressRegionsOfCountryFromCatalog(request);
+        takeStartAddressCitiesOfRegionFromCatalog(request);
+        takeDestinationAddressRegionsOfCountryFromCatalog(request);
+        takeDestinationAddressCitiesOfRegionFromCatalog(request);
+
+
+    }
+
+    private void takeCountriesFromCatalog(final HttpServletRequest request) {
+        Map<Integer, String> countries = ServiceFactory.getInstance()
+                .getCatalogService().getCountries();
         request.setAttribute(MAP_OF_COUNTRIES, countries);
-        Map<Integer, String> currencies = ServiceFactory.getInstance().getCatalogService().getCurrencies();
-        request.setAttribute(MAP_OF_CURRENCIES, currencies);
+    }
 
-        if (userCountryFrom != null && userCountryFrom.length() != 0) {
+    private void takeCurrenciesFromCatalog(final HttpServletRequest request) {
+        Map<Integer, String> currencies = ServiceFactory.getInstance()
+                .getCatalogService().getCurrencies();
+        request.setAttribute(MAP_OF_CURRENCIES, currencies);
+    }
+
+    private void takeStartAddressRegionsOfCountryFromCatalog(final HttpServletRequest request) {
+        boolean isCountryKnown = userCountryFrom != null
+                && userCountryFrom.length() != 0;
+        if (isCountryKnown) {
             try {
                 Map<Integer, String> regions = ServiceFactory.getInstance()
                         .getCatalogService().getRegionsOfCountry(
@@ -128,21 +147,12 @@ public class AddTripPage extends UserAction {
                         resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
             }
         }
+    }
 
-        if (userCountryTo != null && userCountryTo.length() != 0) {
-            try {
-                Map<Integer, String> regions = ServiceFactory.getInstance()
-                        .getCatalogService().getRegionsOfCountry(
-                                Integer.parseInt(userCountryTo));
-                request.setAttribute(MAP_OF_REGIONS_TO, regions);
-            } catch (NumberFormatException ex) {
-                logger.error(ex);
-                request.setAttribute(ERROR_COUNTRY_TO_ATTRIBUTE,
-                        resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
-            }
-        }
-
-        if (userRegionFrom != null && userRegionFrom.length() != 0) {
+    private void takeStartAddressCitiesOfRegionFromCatalog(final HttpServletRequest request) {
+        boolean isRegionKnown = userRegionFrom
+                != null && userRegionFrom.length() != 0;
+        if (isRegionKnown) {
             try {
                 Map<Integer, String> cities = ServiceFactory.getInstance()
                         .getCatalogService().getCitiesOfRegion(
@@ -154,7 +164,28 @@ public class AddTripPage extends UserAction {
                         resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
             }
         }
-        if (userRegionTo != null && userRegionTo.length() != 0) {
+    }
+
+    private void takeDestinationAddressRegionsOfCountryFromCatalog(final HttpServletRequest request) {
+        boolean isCountryKnown = userCountryTo != null
+                && userCountryTo.length() != 0;
+        if (isCountryKnown) {
+            try {
+                Map<Integer, String> regions = ServiceFactory.getInstance()
+                        .getCatalogService().getRegionsOfCountry(
+                                Integer.parseInt(userCountryTo));
+                request.setAttribute(MAP_OF_REGIONS_TO, regions);
+            } catch (NumberFormatException ex) {
+                logger.error(ex);
+                request.setAttribute(ERROR_COUNTRY_TO_ATTRIBUTE,
+                        resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
+            }
+        }
+    }
+
+    private void takeDestinationAddressCitiesOfRegionFromCatalog(final HttpServletRequest request) {
+        boolean isRegionKnown = userRegionTo != null && userRegionTo.length() != 0;
+        if (isRegionKnown) {
             try {
                 Map<Integer, String> cities = ServiceFactory.getInstance()
                         .getCatalogService().getCitiesOfRegion(
@@ -166,8 +197,8 @@ public class AddTripPage extends UserAction {
                         resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
             }
         }
-
     }
+
 
     private void attributesData(final HttpServletRequest request) {
         HttpSession session = request.getSession(false);

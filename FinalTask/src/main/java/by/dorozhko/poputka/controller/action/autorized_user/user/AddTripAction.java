@@ -15,7 +15,6 @@ import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
-import java.util.ResourceBundle;
 
 public class AddTripAction extends UserAction {
     private final Logger logger = LogManager.getLogger(getClass().getName());
@@ -94,10 +93,10 @@ public class AddTripAction extends UserAction {
         session = request.getSession(false);
         getAllAttributesData(request);
 
-        ResourceBundle resourceBundle = takeLocale(request);
+        resourceBundle = takeLocale(request);
 
         String button = request.getParameter(BUTTON);
-        boolean isSaveActionAndValid = button != null && button.equals(ADD_JOURNEY_BUTTON) && checkData(resourceBundle);
+        boolean isSaveActionAndValid = button != null && button.equals(ADD_JOURNEY_BUTTON) && checkData();
 
         if (isSaveActionAndValid) {
             JourneyService journeyService = ServiceFactory.getInstance().getJoureyService();
@@ -110,7 +109,8 @@ public class AddTripAction extends UserAction {
                     destinationAddress, departureTime, departureDate,
                     Double.parseDouble(cost), currency,
                     Integer.parseInt(passengers), additionalInformation);
-            logger.debug(String.format("creating journey: %s", journey.getDriver().getId()));
+            String format = String.format("creating journey: %s", journey.getDriver().getId());
+            logger.debug(format);
             try {
                 journeyService.createNewJourney(journey);
 
@@ -141,156 +141,104 @@ public class AddTripAction extends UserAction {
         additionalInformation = request.getParameter(ADDITIONAL_INFORMATION_ATTRIBUTE);
     }
 
-    private boolean checkData(ResourceBundle resourceBundle) {
+    private boolean checkData() {
         logger.debug("check data start");
         int countErrors = 0;
 
-        if (countryFrom.length() == 0) {
-            session.setAttribute(ERROR_COUNTRY_FROM_ATTRIBUTE, resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
-            countErrors++;
-        } else {
-            try {
-                Integer.parseInt(countryFrom);
-            } catch (NumberFormatException ex) {
-                logger.error(ex);
-                session.setAttribute(ERROR_COUNTRY_FROM_ATTRIBUTE, resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
-                countErrors++;
-            }
-        }
-        if (regionFrom.length() == 0) {
-            session.setAttribute(ERROR_REGION_FROM_ATTRIBUTE, resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
-            countErrors++;
-        } else {
-            try {
-                Integer.parseInt(regionFrom);
-            } catch (NumberFormatException ex) {
-                logger.error(ex);
-                session.setAttribute(ERROR_REGION_FROM_ATTRIBUTE, resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
-                countErrors++;
-            }
+        countErrors += checkForIntegerValue(countryFrom, ERROR_COUNTRY_FROM_ATTRIBUTE);
+        countErrors += checkForIntegerValue(regionFrom, ERROR_REGION_FROM_ATTRIBUTE);
+        countErrors += checkForIntegerValue(cityFrom, ERROR_CITY_FROM_ATTRIBUTE);
+        countErrors += checkForIntegerValue(countryTo, ERROR_COUNTRY_TO_ATTRIBUTE);
+        countErrors += checkForIntegerValue(regionTo, ERROR_REGION_TO_ATTRIBUTE);
+        countErrors += checkForIntegerValue(cityTo, ERROR_CITY_TO_ATTRIBUTE);
+        countErrors += checkForDateValue(departureDate, ERROR_DEPARTURE_DATE_ATTRIBUTE);
+        countErrors += checkForTimeValue(departureTime, ERROR_DEPARTURE_TIME_ATTRIBUTE);
+        countErrors += checkForDoubleValue(cost, ERROR_COST_ATTRIBUTE);
+        countErrors += checkForIntegerValue(currency, ERROR_CURRENCY_ATTRIBUTE);
+        countErrors += checkForIntegerValue(passengers, ERROR_PASSENGERS_ATTRIBUTE);
 
-        }
-        if (cityFrom.length() == 0) {
-            session.setAttribute(ERROR_CITY_FROM_ATTRIBUTE, resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
-            countErrors++;
-        } else {
-            try {
-                Integer.parseInt(cityFrom);
-            } catch (NumberFormatException ex) {
-                logger.error(ex);
-                session.setAttribute(ERROR_CITY_FROM_ATTRIBUTE, resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
-                countErrors++;
-            }
-
-        }
-        if (countryTo.length() == 0) {
-            session.setAttribute(ERROR_COUNTRY_TO_ATTRIBUTE, resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
-            countErrors++;
-        } else {
-            try {
-                Integer.parseInt(countryTo);
-            } catch (NumberFormatException ex) {
-                logger.error(ex);
-                session.setAttribute(ERROR_COUNTRY_TO_ATTRIBUTE, resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
-                countErrors++;
-            }
-
-        }
-        if (regionTo.length() == 0) {
-            session.setAttribute(ERROR_REGION_TO_ATTRIBUTE, resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
-            countErrors++;
-        } else {
-            try {
-                Integer.parseInt(regionTo);
-            } catch (NumberFormatException ex) {
-                logger.error(ex);
-                session.setAttribute(ERROR_REGION_TO_ATTRIBUTE, resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
-                countErrors++;
-            }
-
-        }
-        if (cityTo.length() == 0) {
-            session.setAttribute(ERROR_CITY_TO_ATTRIBUTE, resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
-            countErrors++;
-        } else {
-            try {
-                Integer.parseInt(cityTo);
-            } catch (NumberFormatException ex) {
-                logger.error(ex);
-                session.setAttribute(ERROR_CITY_TO_ATTRIBUTE, resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
-                countErrors++;
-            }
-
-        }
-        if (departureDate.length() == 0) {
-            session.setAttribute(ERROR_DEPARTURE_DATE_ATTRIBUTE, resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
-            countErrors++;
-        } else {
-            try {
-                LocalDate.parse(departureDate);
-            } catch (DateTimeParseException ex) {
-                logger.error(ex);
-                session.setAttribute(ERROR_DEPARTURE_DATE_ATTRIBUTE, resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
-                countErrors++;
-            }
-
-        }
-        if (departureTime.length() == 0) {
-            session.setAttribute(ERROR_DEPARTURE_TIME_ATTRIBUTE, resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
-            countErrors++;
-        } else {
-            try {
-                LocalTime.parse(departureTime);
-            } catch (DateTimeParseException ex) {
-                logger.error(ex);
-                session.setAttribute(ERROR_DEPARTURE_TIME_ATTRIBUTE, resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
-                countErrors++;
-            }
-
-        }
-        if (cost.length() == 0) {
-            session.setAttribute(ERROR_COST_ATTRIBUTE, resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
-            countErrors++;
-        } else {
-            try {
-                Double.parseDouble(cost);
-            } catch (NumberFormatException ex) {
-                logger.error(ex);
-                session.setAttribute(ERROR_COST_ATTRIBUTE, resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
-                countErrors++;
-            }
-
-        }
-        if (currency.length() == 0) {
-            session.setAttribute(ERROR_CURRENCY_ATTRIBUTE, resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
-            countErrors++;
-        } else {
-            try {
-                Integer.parseInt(currency);
-            } catch (NumberFormatException ex) {
-                logger.error(ex);
-                session.setAttribute(ERROR_CURRENCY_ATTRIBUTE, resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
-                countErrors++;
-            }
-
-        }
-        if (passengers.length() == 0) {
-            session.setAttribute(ERROR_PASSENGERS_ATTRIBUTE, resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
-            countErrors++;
-        } else {
-            try {
-                Integer.parseInt(passengers);
-            } catch (NumberFormatException ex) {
-                logger.error(ex);
-                session.setAttribute(ERROR_PASSENGERS_ATTRIBUTE, resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
-                countErrors++;
-            }
-
-        }
-
-        logger.debug(String.format("find %d errors", countErrors));
+        String format = String.format("find %d errors", countErrors);
+        logger.debug(format);
         return countErrors == 0;
     }
+
+    private int checkForIntegerValue(String data, String attribute) {
+        int countErrors = 0;
+        if (data == null || data.length() == 0) {
+            session.setAttribute(attribute,
+                    resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
+            countErrors++;
+        } else {
+            try {
+                Integer.parseInt(data);
+            } catch (NumberFormatException ex) {
+                logger.error(ex);
+                session.setAttribute(attribute,
+                        resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
+                countErrors++;
+            }
+        }
+        return countErrors;
+    }
+
+    private int checkForDoubleValue(String data, String attribute) {
+        int countErrors = 0;
+        if (data == null || data.length() == 0) {
+            session.setAttribute(attribute,
+                    resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
+            countErrors++;
+        } else {
+            try {
+                Double.parseDouble(data);
+            } catch (NumberFormatException ex) {
+                logger.error(ex);
+                session.setAttribute(attribute,
+                        resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
+                countErrors++;
+            }
+        }
+        return countErrors;
+    }
+
+    private int checkForDateValue(String data, String attribute) {
+        int countErrors = 0;
+        if (data == null || data.length() == 0) {
+            session.setAttribute(attribute,
+                    resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
+            countErrors++;
+        } else {
+            try {
+                LocalDate.parse(data);
+            } catch (DateTimeParseException ex) {
+                logger.error(ex);
+                session.setAttribute(attribute,
+                        resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
+                countErrors++;
+            }
+        }
+        return countErrors;
+    }
+
+    private int checkForTimeValue(String data, String attribute) {
+        int countErrors = 0;
+        if (data == null || data.length() == 0) {
+            session.setAttribute(attribute,
+                    resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
+            countErrors++;
+        } else {
+            try {
+                LocalTime.parse(data);
+            } catch (DateTimeParseException ex) {
+                logger.error(ex);
+                session.setAttribute(attribute,
+                        resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
+                countErrors++;
+            }
+        }
+        return countErrors;
+    }
+
+
 
     private void setUserInputData() {
         session.setAttribute(USER_COUNTRY_FROM_ATTRIBUTE, countryFrom);

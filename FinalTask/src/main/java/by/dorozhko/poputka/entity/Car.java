@@ -1,8 +1,9 @@
 package by.dorozhko.poputka.entity;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Car extends Entity {
+public class Car extends Entity implements Serializable {
     /**
      * Name of car's brand.
      */

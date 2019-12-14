@@ -19,6 +19,8 @@ public abstract class Action {
     protected static final String GET_METHOD = "GET";
     private static final String POST_METHOD = "POST";
 
+    protected ResourceBundle resourceBundle = null;
+
 
     public Action() {
         allowMethods.add(POST_METHOD);

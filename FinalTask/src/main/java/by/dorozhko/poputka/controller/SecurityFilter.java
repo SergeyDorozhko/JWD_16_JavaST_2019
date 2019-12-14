@@ -15,6 +15,13 @@ import java.util.Set;
 
 public class SecurityFilter implements Filter {
 
+    public static final String ACTION = "action";
+    public static final String AUTHORIZED_USER = "authorizedUser";
+    public static final String SECURITY_MESSAGE = "SecurityMessage";
+    public static final String MESSAGE = "message";
+    public static final String ERROR_PAGE = "/WEB-INF/jsp/error.jsp";
+    public static final String ACCESS_ERROR = "Доступ запрещён";
+
     private final Logger logger = LogManager.getLogger(getClass().getName());
 
     @Override
@@ -30,57 +37,46 @@ public class SecurityFilter implements Filter {
 
             logger.debug(String.format("get method : %s", httpRequest.getMethod()));
 
-            Action action = (Action) httpRequest.getAttribute("action");
+            Action action = (Action) httpRequest.getAttribute(ACTION);
             logger.debug(action.getClass().getSimpleName());
             Set<Role> allowRoles = action.getAllowRoles();
             Set<String> allowMethods = action.getAllowMethods();
             logger.debug(allowRoles);
             String userName = "unauthorized user";
             logger.debug("");
-            HttpSession session = httpRequest.getSession(false);
+            HttpSession session = httpRequest.getSession();
             logger.debug("get session ok");
-            User user = null;
-            if (session != null) {
-                user = (User) session.getAttribute("authorizedUser");
-                if (user == null) {
-                    user = new User();
-                    user.setLogin(userName);
-                    user.setRole(Role.GUEST.getId());
-                    session.setAttribute("authorizedUser", user);
-
-                }
-                action.setUserOfAction(user);
-                String errorMessage =
-                        (String) session.getAttribute("SecurityMessage");
-                if (errorMessage != null) {
-                    httpRequest.setAttribute("message", errorMessage);
-                    session.removeAttribute("SecurityMessage");
-                }
+            User user = (User) session.getAttribute(AUTHORIZED_USER);
+            if (user == null) {
+                user = new User();
+                user.setLogin(userName);
+                user.setRole(Role.GUEST.getId());
+                session.setAttribute(AUTHORIZED_USER, user);
+            }
+            action.setUserOfAction(user);
+            String errorMessage =
+                    (String) session.getAttribute(SECURITY_MESSAGE);
+            if (errorMessage != null) {
+                httpRequest.setAttribute(MESSAGE, errorMessage);
+                session.removeAttribute(SECURITY_MESSAGE);
             }
             logger.debug("set user to session ok");
             boolean canExecute = allowRoles == null;
-
-            if (user != null) {
-                canExecute = canExecute || allowRoles.contains(user.getRole()) && allowMethods.contains(httpRequest.getMethod());
-                logger.debug(user.getRole());
-            } else {
-                canExecute = allowRoles.contains(Role.GUEST) && allowMethods.contains(httpRequest.getMethod());
-            }
-
+            canExecute = canExecute || allowRoles.contains(user.getRole()) && allowMethods.contains(httpRequest.getMethod());
+            logger.debug(user.getRole());
             if (canExecute) {
                 filterChain.doFilter(servletRequest, servletResponse);
             } else {
-                logger.info(String.format("Trying of %s access to forbidden resource", userName));
-                if (session != null && !(action instanceof AllUsersAction)) {
-                    session.setAttribute("SecurityMessage", "Доступ запрещён");
+                String format = String.format("Trying of %s access to forbidden resource", userName);
+                logger.info(format);
+                if (!(action instanceof AllUsersAction)) {
+                    session.setAttribute(SECURITY_MESSAGE, ACCESS_ERROR);
                 }
-                servletRequest.getServletContext().getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(servletRequest, servletResponse);
-
+                servletRequest.getServletContext().getRequestDispatcher(ERROR_PAGE).forward(servletRequest, servletResponse);
             }
         } else {
             logger.error("It is impossible to use HTTP filter");
-            servletRequest.getServletContext().getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(servletRequest, servletResponse);
+            servletRequest.getServletContext().getRequestDispatcher(ERROR_PAGE).forward(servletRequest, servletResponse);
         }
     }
-
 }

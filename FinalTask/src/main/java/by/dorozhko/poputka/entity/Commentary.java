@@ -1,9 +1,10 @@
 package by.dorozhko.poputka.entity;
 
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Commentary extends Entity {
+public class Commentary extends Entity implements Serializable {
     /**
      * User who left comment.
      */

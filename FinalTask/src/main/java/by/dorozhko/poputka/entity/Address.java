@@ -1,8 +1,9 @@
 package by.dorozhko.poputka.entity;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Address extends Entity {
+public class Address extends Entity implements Serializable {
     /**
      * Country name.
      */

@@ -18,7 +18,6 @@ import java.util.List;
 public class JourneyServiceImpl extends AbstractService implements JourneyService {
     private final Logger logger = LogManager.getLogger(getClass().getName());
 
-    private static final String JOURNEY_NOT_FOUND = "journey not found";
 
     @Override
     public List<Journey> findAllActualForMainPage() {
@@ -65,7 +64,6 @@ public class JourneyServiceImpl extends AbstractService implements JourneyServic
     public Journey createNewJourney(Journey journey) throws ExceptionService {
         JourneyDAO journeyDAO = FactoryDao.getInstance().getJourneyDAO();
         UserDAO userDAO = FactoryDao.getInstance().getUserDAO();
-        //TODO REALISE TAKING DATA FROM CATALOG
         transaction.begin(journeyDAO, userDAO);
 
         try {

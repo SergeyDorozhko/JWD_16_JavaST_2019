@@ -1,12 +1,13 @@
 package by.dorozhko.poputka.entity;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Journey extends Entity {
+public class Journey extends Entity implements Serializable {
     private User driver;
     private Address startAddress;
     private Address destinationAddress;

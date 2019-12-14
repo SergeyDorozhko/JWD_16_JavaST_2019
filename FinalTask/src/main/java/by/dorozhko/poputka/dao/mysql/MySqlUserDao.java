@@ -13,6 +13,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MySqlUserDao implements UserDAO {
+    public static final String LOGIN = "login";
+    public static final String ROLE = "role";
+    public static final String ID = "id";
+    public static final String USER_ID = "user_id";
+    public static final String NAME = "name";
+    public static final String PHONE = "phone";
+    public static final String EMAIL = "email";
+    public static final String BRAND_AND_MODEL_ID = "brand_and_model_id";
+    public static final String YEAR_OF_PRODUCE = "year_of_produce";
+    public static final String CLIMATE_TYPE_ID = "climate_type_id";
+    public static final String SALT = "salt";
+    public static final String SURNAME = "surname";
+    public static final String BIRTHDAY = "birthday";
+    public static final String GENDER_ID = "gender_id";
+    public static final String COUNTRY_ID = "country_id";
+    public static final String PASSPORT_NUMBER = "passport_number";
+    public static final String PASSPORT_DATE_OF_ISSUE = "passport_date_of_issue";
+    public static final String SPLITTER = "-";
     /**
      * Connection to database.
      */
@@ -128,6 +146,7 @@ public class MySqlUserDao implements UserDAO {
     public User create(User entity) throws ExceptionDao {
         int userId = -1;
         ResultSet resultSet = null;
+        ResultSet resultUser = null;
         try (PreparedStatement statement
                      = connection.prepareStatement(INSERT_INTO_USERS, Statement.RETURN_GENERATED_KEYS);
              PreparedStatement statementUserInf
@@ -163,15 +182,16 @@ public class MySqlUserDao implements UserDAO {
             connection.commit();
 
             statementTakeCreatedUser.setInt(1, userId);
-            resultSet = statementTakeCreatedUser.executeQuery();
-            while (resultSet.next()) {
-                logger.debug(String.format("new user take from db: %d", 2));
+            resultUser = statementTakeCreatedUser.executeQuery();
+            while (resultUser.next()) {
+                logger.debug("new user take from db");
 
                 entity = new User();
-                entity.setLogin(resultSet.getString("login"));
-                entity.setRole(resultSet.getInt("role"));
-                entity.setId(resultSet.getInt("id"));
-                logger.debug(String.format("new user created: role: %s, %s", entity.getRole(), entity));
+                entity.setLogin(resultUser.getString(LOGIN));
+                entity.setRole(resultUser.getInt(ROLE));
+                entity.setId(resultUser.getInt(ID));
+                String format = String.format("new user created: role: %s, %s", entity.getRole(), entity);
+                logger.debug(format);
 
             }
         } catch (SQLException e) {
@@ -181,6 +201,13 @@ public class MySqlUserDao implements UserDAO {
             if (resultSet != null) {
                 try {
                     resultSet.close();
+                } catch (SQLException e) {
+                    logger.error(e);
+                }
+            }
+            if (resultUser != null) {
+                try {
+                    resultUser.close();
                 } catch (SQLException e) {
                     logger.error(e);
                 }
@@ -264,8 +291,8 @@ public class MySqlUserDao implements UserDAO {
             while (resultSet.next()) {
                 User user = new User();
 
-                user.setLogin(resultSet.getString("login"));
-                user.setId(Integer.parseInt(resultSet.getString("id")));
+                user.setLogin(resultSet.getString(LOGIN));
+                user.setId(Integer.parseInt(resultSet.getString(ID)));
                 list.add(user);
             }
 
@@ -292,18 +319,18 @@ public class MySqlUserDao implements UserDAO {
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 user = new User();
-                user.setId(resultSet.getInt("user_id"));
-                user.setName(resultSet.getString("name"));
-                user.setPhoneNumber(resultSet.getString("phone"));
-                user.setEmail(resultSet.getString("email"));
+                user.setId(resultSet.getInt(USER_ID));
+                user.setName(resultSet.getString(NAME));
+                user.setPhoneNumber(resultSet.getString(PHONE));
+                user.setEmail(resultSet.getString(EMAIL));
 
-                String carModel = resultSet.getString("brand_and_model_id");
+                String carModel = resultSet.getString(BRAND_AND_MODEL_ID);
 
                 if (carModel != null) {
                     Car car = new Car();
                     car.setModel(carModel);
-                    car.setYearOfProduce(resultSet.getInt("year_of_produce"));
-                    car.setAirConditioner(resultSet.getString("climate_type_id"));
+                    car.setYearOfProduce(resultSet.getInt(YEAR_OF_PRODUCE));
+                    car.setAirConditioner(resultSet.getString(CLIMATE_TYPE_ID));
                     user.setCar(car);
                 }
             }
@@ -333,7 +360,7 @@ public class MySqlUserDao implements UserDAO {
 
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                salt = resultSet.getString("salt");
+                salt = resultSet.getString(SALT);
 
             }
         } catch (SQLException e) {
@@ -365,9 +392,9 @@ public class MySqlUserDao implements UserDAO {
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 user = new User();
-                user.setLogin(resultSet.getString("login"));
-                user.setRole(resultSet.getInt("role"));
-                user.setId(resultSet.getInt("id"));
+                user.setLogin(resultSet.getString(LOGIN));
+                user.setRole(resultSet.getInt(ROLE));
+                user.setId(resultSet.getInt(ID));
 
             }
         } catch (SQLException e) {
@@ -410,7 +437,8 @@ public class MySqlUserDao implements UserDAO {
                 carId = idNewCarSet.getInt(1);
             }
 
-            logger.debug(String.format("new car id: %d", carId));
+            String format = String.format("new car id: %d", carId);
+            logger.debug(format);
 
 
             statementUserInfUpdate.setInt(1, carId);
@@ -491,25 +519,26 @@ public class MySqlUserDao implements UserDAO {
                 logger.debug(String.format("new user take from db: %d", 2));
 
                 userInfo = new User();
-                userInfo.setLogin(resultSet.getString("login"));
-                userInfo.setSurname(resultSet.getString("surname"));
-                userInfo.setName(resultSet.getString("name"));
-                userInfo.setBirthday(resultSet.getString("birthday"));
-                userInfo.setGender(resultSet.getString("gender_id"));
-                userInfo.setCountry(resultSet.getString("country_id"));
-                userInfo.setPassportNumber(resultSet.getString("passport_number"));
-                userInfo.setPassportDateOfIssue(resultSet.getString("passport_date_of_issue"));
-                userInfo.setPhoneNumber(resultSet.getString("phone"));
-                userInfo.setEmail(resultSet.getString("email"));
+                userInfo.setLogin(resultSet.getString(LOGIN));
+                userInfo.setSurname(resultSet.getString(SURNAME));
+                userInfo.setName(resultSet.getString(NAME));
+                userInfo.setBirthday(resultSet.getString(BIRTHDAY));
+                userInfo.setGender(resultSet.getString(GENDER_ID));
+                userInfo.setCountry(resultSet.getString(COUNTRY_ID));
+                userInfo.setPassportNumber(resultSet.getString(PASSPORT_NUMBER));
+                userInfo.setPassportDateOfIssue(resultSet.getString(PASSPORT_DATE_OF_ISSUE));
+                userInfo.setPhoneNumber(resultSet.getString(PHONE));
+                userInfo.setEmail(resultSet.getString(EMAIL));
                 logger.debug("user data ok creating car");
                 Car userCar = new Car();
                 logger.debug("get brand OK");
-                userCar.setModel(resultSet.getString("brand_and_model_id"));
-                userCar.setYearOfProduce(Integer.parseInt(resultSet.getString("year_of_produce").split("-")[0]));
-                userCar.setAirConditioner(resultSet.getString("climate_type_id"));
+                userCar.setModel(resultSet.getString(BRAND_AND_MODEL_ID));
+                userCar.setYearOfProduce(Integer.parseInt(resultSet.getString(YEAR_OF_PRODUCE).split(SPLITTER)[0]));
+                userCar.setAirConditioner(resultSet.getString(CLIMATE_TYPE_ID));
 
                 userInfo.setCar(userCar);
-                logger.debug(String.format("new user created: role: %s", userInfo));
+                String message = String.format("new user created: role: %s", userInfo);
+                logger.debug(message);
 
             }
         } catch (SQLException ex) {
@@ -531,26 +560,28 @@ public class MySqlUserDao implements UserDAO {
     public User findUserInfoWithoutCar(int id) throws ExceptionDao {
         User userInfo = null;
 
-        logger.debug(String.format("new user take from db: %d", 2));
+        String message = String.format("new user take from db: %d", 2);
+        logger.debug(message);
         ResultSet resultSet = null;
         try (PreparedStatement userInfoStatement = connection.prepareStatement(SELECT_ALL_USER_INFO_WITHOUT_CAR_BY_ID);) {
             userInfoStatement.setInt(1, id);
             resultSet = userInfoStatement.executeQuery();
             while (resultSet.next()) {
                 userInfo = new User();
-                userInfo.setLogin(resultSet.getString("login"));
-                userInfo.setSurname(resultSet.getString("surname"));
-                userInfo.setName(resultSet.getString("name"));
-                userInfo.setBirthday(resultSet.getString("birthday"));
-                userInfo.setGender(resultSet.getString("gender_id"));
-                userInfo.setCountry(resultSet.getString("country_id"));
-                userInfo.setPassportNumber(resultSet.getString("passport_number"));
-                userInfo.setPassportDateOfIssue(resultSet.getString("passport_date_of_issue"));
-                userInfo.setPhoneNumber(resultSet.getString("phone"));
-                userInfo.setEmail(resultSet.getString("email"));
+                userInfo.setLogin(resultSet.getString(LOGIN));
+                userInfo.setSurname(resultSet.getString(SURNAME));
+                userInfo.setName(resultSet.getString(NAME));
+                userInfo.setBirthday(resultSet.getString(BIRTHDAY));
+                userInfo.setGender(resultSet.getString(GENDER_ID));
+                userInfo.setCountry(resultSet.getString(COUNTRY_ID));
+                userInfo.setPassportNumber(resultSet.getString(PASSPORT_NUMBER));
+                userInfo.setPassportDateOfIssue(resultSet.getString(PASSPORT_DATE_OF_ISSUE));
+                userInfo.setPhoneNumber(resultSet.getString(PHONE));
+                userInfo.setEmail(resultSet.getString(EMAIL));
                 logger.debug("user data ok");
 
-                logger.debug(String.format("new user created: role: %s", userInfo));
+                String userCreated = String.format("new user created: role: %s", userInfo);
+                logger.debug(userCreated);
 
             }
             return userInfo;
@@ -590,7 +621,7 @@ public class MySqlUserDao implements UserDAO {
             statement.setInt(1, usersId);
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                userInfoId = resultSet.getInt("id");
+                userInfoId = resultSet.getInt(ID);
             }
         } catch (SQLException ex) {
             logger.error(ex);

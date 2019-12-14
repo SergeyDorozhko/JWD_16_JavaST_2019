@@ -82,7 +82,7 @@ public class EditJourneyPage extends UserAction {
         logger.debug("start method");
         getAttributesData(request);
         ResourceBundle resourceBundle = takeLocale(request);
-        if (checkData(resourceBundle)) {
+        if (checkData()) {
             if (journey == null) {
                 JourneyService journeyService = ServiceFactory.getInstance().getJoureyService();
                 journey = journeyService.findJourney(Integer.parseInt(journeyId), driverId);
@@ -125,7 +125,7 @@ public class EditJourneyPage extends UserAction {
         logger.debug("data taken");
     }
 
-    private boolean checkData(ResourceBundle resourceBundle) {
+    private boolean checkData() {
         int countErrors = 0;
         logger.debug(journeyId);
         if (journeyId == null || journeyId.length() == 0) {
@@ -146,14 +146,32 @@ public class EditJourneyPage extends UserAction {
     }
 
     private void takeCatalogsData(final HttpServletRequest request) {
-        ResourceBundle resourceBundle = takeLocale(request);
+        resourceBundle = takeLocale(request);
 
-        Map<Integer, String> countries = ServiceFactory.getInstance().getCatalogService().getCountries();
+        takeCountriesFromCatalog(request);
+        takeCurrenciesFromCatalog(request);
+        takeStartAddressRegionsOfCountryFromCatalog(request);
+        takeStartAddressCitiesOfRegionFromCatalog(request);
+        takeDestinationAddressRegionsOfCountryFromCatalog(request);
+        takeDestinationAddressCitiesOfRegionFromCatalog(request);
+    }
+
+    private void takeCountriesFromCatalog(final HttpServletRequest request) {
+        Map<Integer, String> countries = ServiceFactory.getInstance()
+                .getCatalogService().getCountries();
         request.setAttribute(MAP_OF_COUNTRIES, countries);
-        Map<Integer, String> currencies = ServiceFactory.getInstance().getCatalogService().getCurrencies();
-        request.setAttribute(MAP_OF_CURRENCIES, currencies);
+    }
 
-        if (journey.getStartAddress().getCountry() != null && journey.getStartAddress().getCountry().length() != 0) {
+    private void takeCurrenciesFromCatalog(final HttpServletRequest request) {
+        Map<Integer, String> currencies = ServiceFactory.getInstance()
+                .getCatalogService().getCurrencies();
+        request.setAttribute(MAP_OF_CURRENCIES, currencies);
+    }
+
+    private void takeStartAddressRegionsOfCountryFromCatalog(final HttpServletRequest request) {
+        boolean isCountryKnown = journey.getStartAddress().getCountry() != null
+                && journey.getStartAddress().getCountry().length() != 0;
+        if (isCountryKnown) {
             try {
                 Map<Integer, String> regions = ServiceFactory.getInstance()
                         .getCatalogService().getRegionsOfCountry(
@@ -165,8 +183,13 @@ public class EditJourneyPage extends UserAction {
                         resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
             }
         }
+    }
 
-        if (journey.getDestinationAddress().getCountry() != null && journey.getDestinationAddress().getCountry().length() != 0) {
+    private void takeDestinationAddressRegionsOfCountryFromCatalog(final HttpServletRequest request) {
+        boolean isCountryKnown = journey.getDestinationAddress()
+                .getCountry() != null
+                && journey.getDestinationAddress().getCountry().length() != 0;
+        if (isCountryKnown) {
             try {
                 Map<Integer, String> regions = ServiceFactory.getInstance()
                         .getCatalogService().getRegionsOfCountry(
@@ -178,8 +201,14 @@ public class EditJourneyPage extends UserAction {
                         resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
             }
         }
+    }
 
-        if (journey.getStartAddress().getRegionalCenter() != null && journey.getStartAddress().getRegionalCenter().length() != 0) {
+    private void takeStartAddressCitiesOfRegionFromCatalog(final HttpServletRequest request) {
+     boolean isRegionalCenterKnown = journey.getStartAddress()
+             .getRegionalCenter() != null
+             && journey.getStartAddress().getRegionalCenter().length() != 0;
+
+        if (isRegionalCenterKnown) {
             try {
                 Map<Integer, String> cities = ServiceFactory.getInstance()
                         .getCatalogService().getCitiesOfRegion(
@@ -191,7 +220,14 @@ public class EditJourneyPage extends UserAction {
                         resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
             }
         }
-        if (journey.getDestinationAddress().getRegionalCenter() != null && journey.getDestinationAddress().getRegionalCenter().length() != 0) {
+    }
+
+    private void takeDestinationAddressCitiesOfRegionFromCatalog(final HttpServletRequest request) {
+        boolean isRegionalCenterKnown = journey.getDestinationAddress()
+                .getRegionalCenter() != null
+                && journey.getDestinationAddress()
+                .getRegionalCenter().length() != 0;
+        if (isRegionalCenterKnown) {
             try {
                 Map<Integer, String> cities = ServiceFactory.getInstance()
                         .getCatalogService().getCitiesOfRegion(
@@ -203,8 +239,5 @@ public class EditJourneyPage extends UserAction {
                         resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
             }
         }
-
     }
-
-
 }

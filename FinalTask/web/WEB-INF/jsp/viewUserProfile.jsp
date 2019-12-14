@@ -227,8 +227,8 @@ To change this template use File | Settings | File Templates.
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="comfirmNewPassword" class="col-sm-3 control-label">:*<fmt:message
-                                        key="fields.comfirmNewPassword"/>*</label>
+                                <label for="comfirmNewPassword" class="col-sm-3 control-label"><fmt:message
+                                        key="fields.comfirmNewPassword"/>:*</label>
                                 <div class="col-sm-9">
                                     <input type="password" id="comfirmNewPassword" name="comfirmNewPassword"
                                            placeholder="<fmt:message key="fields.comfirmNewPassword"/>" class="form-control"

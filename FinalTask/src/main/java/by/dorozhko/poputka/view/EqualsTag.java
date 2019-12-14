@@ -4,16 +4,12 @@ import javax.servlet.jsp.tagext.TagSupport;
 
 public class EqualsTag extends TagSupport {
 
-    public static Boolean equalsValue(String userValue, Integer mapValue) {
-        boolean result = false;
-        if (userValue != null && userValue.length() > 0) {
+    public static Boolean equalsValue(final String userValue,
+                                      final Integer mapValue) {
 
-            if (userValue.equals(mapValue.toString())) {
-                result = true;
-            }
-        }
-
-        return result;
+        return userValue != null
+                && userValue.length() > 0
+                && userValue.equals(mapValue.toString());
     }
 
 }

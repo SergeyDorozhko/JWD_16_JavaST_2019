@@ -1,8 +1,9 @@
 package by.dorozhko.poputka.entity;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public abstract class Entity {
+public abstract class Entity implements Serializable {
     /**
      * Identity of entity.
      */

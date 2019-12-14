@@ -11,7 +11,6 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.ResourceBundle;
 
 public class SaveCar extends UserAction {
     private final Logger logger = LogManager.getLogger(getClass().getName());
@@ -35,11 +34,9 @@ public class SaveCar extends UserAction {
     private static final String USER_CLIMATE_ATTRIBUTE = "userClimate";
     private static final String USER_YEAR_OF_PRODUCE_ATTRIBUTE = "userProduced";
 
+    private static final String FIELD_FORMAT_ERROR_MESSAGE = "back.errors.fieldFormatError";
     private static final String FIELD_IS_EMPTY_ERROR_MESSAGE = "back.errors.fieldIsEmptyError";
-    private static final String ERROR_BRAND_MESSAGE = "back.addCar.errorBrand";
-    private static final String ERROR_MODEL_MESSAGE = "back.addCar.errorModel";
-    private static final String ERROR_CLIMATE_MESSAGE = "back.addCar.errorClimate";
-    private static final String ERROR_YEAR_OF_PRODUCE_MESSAGE = "back.addCar.errorProduced";
+
 
     private static final String BUTTON = "button";
     private static final String SAVE_CAR_BUTTON = "saveCar";
@@ -102,65 +99,36 @@ public class SaveCar extends UserAction {
     private boolean checkData(HttpServletRequest request) {
         logger.debug("check data start");
         int countErrors = 0;
-        ResourceBundle resourceBundle = takeLocale(request);
+        resourceBundle = takeLocale(request);
 
-        if (brand == null || brand.length() == 0) {
-            session.setAttribute(ERROR_BRAND_ATTRIBUTE,
-                    resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
-            countErrors++;
-        } else {
-            try {
-                Integer.parseInt(brand);
-            } catch (NumberFormatException ex) {
-                session.setAttribute(ERROR_BRAND_ATTRIBUTE,
-                        resourceBundle.getString(ERROR_BRAND_MESSAGE));
-                countErrors++;
-            }
-        }
-        if (model == null || model.length() == 0) {
-            session.setAttribute(ERROR_MODEL_ATTRIBUTE,
-                    resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
-            countErrors++;
-        } else {
-            try {
-                Integer.parseInt(model);
-            } catch (NumberFormatException ex) {
-                session.setAttribute(ERROR_MODEL_ATTRIBUTE,
-                        resourceBundle.getString(ERROR_MODEL_MESSAGE));
-                countErrors++;
-            }
-        }
-        if (climate == null || climate.length() == 0) {
-            session.setAttribute(ERROR_CLIMATE_ATTRIBUTE,
-                    resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
-            countErrors++;
-        } else {
-            try {
-                Integer.parseInt(climate);
-            } catch (NumberFormatException ex) {
-                session.setAttribute(ERROR_CLIMATE_ATTRIBUTE,
-                        resourceBundle.getString(ERROR_CLIMATE_MESSAGE));
-                countErrors++;
-            }
-        }
-        if (produced == null || produced.length() == 0) {
-            session.setAttribute(ERROR_YEAR_OF_PRODUCE_ATTRIBUTE,
-                    resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
-            countErrors++;
-        } else {
-            try {
-                Integer.parseInt(produced);
-            } catch (NumberFormatException ex) {
-                session.setAttribute(ERROR_YEAR_OF_PRODUCE_ATTRIBUTE,
-                        resourceBundle.getString(ERROR_YEAR_OF_PRODUCE_MESSAGE));
-                countErrors++;
-            }
-        }
+        countErrors += checkForIntegerValue(brand, ERROR_BRAND_ATTRIBUTE);
+        countErrors += checkForIntegerValue(model, ERROR_MODEL_ATTRIBUTE);
+        countErrors += checkForIntegerValue(climate, ERROR_CLIMATE_ATTRIBUTE);
+        countErrors += checkForIntegerValue(produced, ERROR_YEAR_OF_PRODUCE_ATTRIBUTE);
+
 
         logger.debug(String.format("find %d errors", countErrors));
         return countErrors == 0;
     }
 
+    private int checkForIntegerValue(String data, String attribute) {
+        int countErrors = 0;
+        if (data == null || data.length() == 0) {
+            session.setAttribute(attribute,
+                    resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
+            countErrors++;
+        } else {
+            try {
+                Integer.parseInt(data);
+            } catch (NumberFormatException ex) {
+                logger.error(ex);
+                session.setAttribute(attribute,
+                        resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
+                countErrors++;
+            }
+        }
+        return countErrors;
+    }
 
     private void setUserInputData() {
         logger.debug(String.format("set user attributes: %s, %s, %s, %s",
