@@ -64,7 +64,7 @@ To change this template use File | Settings | File Templates.
                 <label for="login" class="col-sm-3 control-label"><fmt:message key="fields.login"/></label>
                 <div class="col-sm-9">
                     <input type="text" id="login" name="login" placeholder="<fmt:message key="fields.login"/>"
-                           class="form-control" value="${userData.login}" required>
+                           class="form-control" value="${userData.login}" required pattern="^[\w-]{1,20}$">
                     <div class="valid-feedback">Valid.</div>
                     <div class="invalid-feedback">Please fill out this field.</div>
                 </div>
@@ -75,7 +75,7 @@ To change this template use File | Settings | File Templates.
                 <div class="col-sm-9">
                     <input type="text" id="firstName" name="firstName"
                            placeholder="<fmt:message key="fields.firstName"/>" class="form-control"
-                           value="${userData.name}" required autofocus>
+                           value="${userData.name}" required autofocus pattern="^[a-zA-Zа-яА-Я-]{1,255}$">
                 </div>
                 <label style="background-color: B82303; font-size: 25px">${errorFirstName}</label>
             </div>
@@ -83,7 +83,7 @@ To change this template use File | Settings | File Templates.
                 <label for="lastName" class="col-sm-3 control-label"><fmt:message key="fields.lastName"/></label>
                 <div class="col-sm-9">
                     <input type="text" id="lastName" name="lastName" placeholder="<fmt:message key="fields.lastName"/>"
-                           class="form-control" value="${userData.surname}" required autofocus>
+                           class="form-control" value="${userData.surname}" required autofocus pattern="^[a-zA-Zа-яА-Я-]{1,255}$">
                 </div>
                 <label style="background-color: B82303; font-size: 25px">${errorLastName}</label>
             </div>
@@ -98,7 +98,7 @@ To change this template use File | Settings | File Templates.
             <div class="form-group row">
                 <label for="birthDate" class="col-sm-3 control-label"><fmt:message key="fields.dateOfBirth"/></label>
                 <div class="col-sm-4">
-                    <input type="date" id="birthDate" name="birthDate" class="form-control" value="${userData.birthday}"
+                    <input type="date" id="birthDate" name="birthDate" min="${ds:nowMinusYears(100)}" max="${ds:nowMinusYears(18)}" class="form-control" value="${userData.birthday}"
                            required autofocus>
                 </div>
                 <label style="background-color: B82303; font-size: 25px">${errorBirthday}</label>
@@ -107,7 +107,7 @@ To change this template use File | Settings | File Templates.
                 <label for="phoneNumber" class="col-sm-3 control-label"><fmt:message key="fields.phoneNumber"/></label>
                 <div class="col-sm-6">
                     <input type="phoneNumber" id="phoneNumber" name="phoneNumber" placeholder="375XXYYYYYYY"
-                           class="form-control" value="${userData.phoneNumber}" pattern="[0-9]{12}" required>
+                           class="form-control" value="${userData.phoneNumber}" pattern="^[0-9]{7,15}$" required>
                 </div>
                 <label style="background-color: B82303; font-size: 25px">${errorPhoneNumber}</label>
             </div>
@@ -129,7 +129,7 @@ To change this template use File | Settings | File Templates.
                 <div class="col-sm-6">
                     <input type="tel" id="passportNumber" name="passportNumber" placeholder="<fmt:message
                         key="fields.passportNumber"/>" class="form-control" value="${userData.passportNumber}" required
-                           autofocus>
+                           autofocus pattern="^[\w-]{1,10}$">
                 </div>
                 <label style="background-color: B82303; font-size: 25px">${errorPassportNumber}</label>
             </div>
@@ -137,7 +137,7 @@ To change this template use File | Settings | File Templates.
                 <label for="passportDate" class="col-sm-3 control-label"><fmt:message
                         key="fields.passportDateOfIssue"/></label>
                 <div class="col-sm-4">
-                    <input type="date" id="passportDate" name="passportDate" class="form-control"
+                    <input type="date" id="passportDate" name="passportDate" min="${ds:nowMinusYears(10)}" max="${ds:nowMinusYears(0)}" class="form-control"
                            value="${userData.passportDateOfIssue}" required autofocus>
                 </div>
                 <label style="background-color: B82303; font-size: 25px">${errorPassportDate}</label>

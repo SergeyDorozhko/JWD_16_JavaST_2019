@@ -33,6 +33,13 @@ public class ChangePasswordAction extends AuthorizedUser {
     private static final String EMPTY_COMFIRM_NEW_PASSWORD_MESSAGE = "back.errors.comfirmNewPasswordIsEmpty";
     private static final String COMFIRM_NEW_PASSWORD_ERROR_MESSAGE = "back.errors.comfirmPasswordError";
 
+    private static final String INVALID_FORMAT_IN_OLD_PASSWORD_MESSAGE = "back.errors.invalidFormatInOldPassword";
+    private static final String INVALID_FORMAT_IN_NEW_PASSWORD_MESSAGE = "back.errors.invalidFormatInNewPassword";
+
+    private static final String INVALID_LOGIN_OR_PASSWORD_FORMAT = "invalid password or login format";
+    private static final String INVALID_PASSWORD_FORMAT = "invalid password format";
+
+
     private String oldPassword;
     private String newPassword;
     private String comfirmNewPassword;
@@ -72,8 +79,7 @@ public class ChangePasswordAction extends AuthorizedUser {
             } catch (ExceptionService exceptionService) {
                 logger.error(String.format("sqlmsg : %s",
                         exceptionService.getMessage()));
-                session.setAttribute(UNKNOWN_ERROR_ATTRIBUTE, resourceBundle.getString(UNKNOWN_ERROR_MESSAGE));
-
+                getErrorMessage(exceptionService.getMessage(), resourceBundle);
             }
 
         }
@@ -114,5 +120,19 @@ public class ChangePasswordAction extends AuthorizedUser {
         return true;
     }
 
+    private void getErrorMessage(String msg, ResourceBundle resourceBundle) {
+
+        if (msg.equals(INVALID_LOGIN_OR_PASSWORD_FORMAT)) {
+            session.setAttribute(UNKNOWN_ERROR_ATTRIBUTE,
+                    resourceBundle.getString(INVALID_FORMAT_IN_OLD_PASSWORD_MESSAGE));
+        } else if (msg.equals(INVALID_PASSWORD_FORMAT)) {
+            session.setAttribute(UNKNOWN_ERROR_ATTRIBUTE,
+                    resourceBundle.getString(INVALID_FORMAT_IN_NEW_PASSWORD_MESSAGE));
+        }  else {
+            session.setAttribute(UNKNOWN_ERROR_ATTRIBUTE,
+                    resourceBundle.getString(UNKNOWN_ERROR_MESSAGE));
+        }
+
+    }
 
 }

@@ -171,6 +171,9 @@ public class UserServiceImpl extends AbstractService implements UserService {
     public User add(final User user) throws ExceptionService {
         logger.debug("stard add");
         validateUser(user);
+        if (!validator.validatePassword(user.getPassword())) {
+            throw new ExceptionService(INVALID_PASSWORD_FORMAT);
+        }
         logger.debug("data checked ok");
         UserDAO userDAO = FactoryDao.getInstance().getUserDAO();
 
@@ -199,9 +202,6 @@ public class UserServiceImpl extends AbstractService implements UserService {
     private void validateUser(User user) throws ExceptionService {
         if (!validator.validateLogin(user.getLogin())) {
             throw new ExceptionService(INVALID_LOGIN_FORMAT);
-        }
-        if (!validator.validatePassword(user.getPassword())) {
-            throw new ExceptionService(INVALID_PASSWORD_FORMAT);
         }
         if (!validator.validateNameOrSurname(user.getName())) {
             throw new ExceptionService(INVALID_NAME_FORMAT);
@@ -241,6 +241,9 @@ public class UserServiceImpl extends AbstractService implements UserService {
      */
     @Override
     public User update(User user) throws ExceptionService {
+
+        validateUser(user);
+
         UserDAO userDAO = FactoryDao.getInstance().getUserDAO();
         transaction.begin(userDAO);
 
@@ -259,6 +262,9 @@ public class UserServiceImpl extends AbstractService implements UserService {
 
     @Override
     public boolean updateUserPassword(User user, String newPassword) throws ExceptionService {
+        if (!validator.validatePassword(newPassword)) {
+            throw new ExceptionService(INVALID_PASSWORD_FORMAT);
+        }
         UserDAO userDAO = FactoryDao.getInstance().getUserDAO();
         if (singIn(user.getLogin(), user.getPassword()) != null) {
             transaction.begin(userDAO);
@@ -285,6 +291,7 @@ public class UserServiceImpl extends AbstractService implements UserService {
 
     @Override
     public User takeDataForEditProfile(int id) throws ExceptionService {
+
 
         User user = null;
         UserDAO userDAO = FactoryDao.getInstance().getUserDAO();

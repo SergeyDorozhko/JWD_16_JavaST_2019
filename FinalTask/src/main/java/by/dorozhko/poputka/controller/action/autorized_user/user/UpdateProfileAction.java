@@ -54,7 +54,16 @@ public class UpdateProfileAction extends UserAction {
     private static final String DUBLICATED_EMAIL_ERROR_MESSAGE = "back.errors.dublicatedEmail";
     private static final String UNKNOWN_ERROR_MESSAGE = "back.errors.unknownError";
 
-
+    private static final String INVALID_LOGIN_FORMAT = "invalid pseudonym format";
+    private static final String INVALID_NAME_FORMAT = "invalid name format";
+    private static final String INVALID_SURNAME_FORMAT = "invalid surname format";
+    private static final String INVALID_EMAIL_FORMAT = "invalid e-mail format";
+    private static final String INVALID_BIRTHDAY_DATE_VALUE = "invalid birthday date value";
+    private static final String INVALID_PHONE_FORMAT = "invalid tel. number format";
+    private static final String INVALID_COUNTRY_ID_VALUE = "invalid country id";
+    private static final String INVALID_PASSPORT_NUMBER_FORMAT = "invalid number of passport format";
+    private static final String INVALID_PASSPORT_ISSUE_DATE_VALUE = "invalid passport date of issue value";
+    private static final String INVALID_GENDER_ID_VALUE = "invalid gender id";
 
 
     private String login;
@@ -130,80 +139,94 @@ public class UpdateProfileAction extends UserAction {
 
 
         if (login == null || login.length() == 0) {
-            session.setAttribute(ERROR_LOGIN_ATTRIBUTE, resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
+            session.setAttribute(ERROR_LOGIN_ATTRIBUTE,
+                    resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
             countErrors++;
         }
         if (firstName == null || firstName.length() == 0) {
-            session.setAttribute(ERROR_FIRST_NAME_ATTRIBUTE, resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
+            session.setAttribute(ERROR_FIRST_NAME_ATTRIBUTE,
+                    resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
             countErrors++;
         }
         if (lastName == null || lastName.length() == 0) {
-            session.setAttribute(ERROR_LAST_NAME_ATTRIBUTE, resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
+            session.setAttribute(ERROR_LAST_NAME_ATTRIBUTE,
+                    resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
             countErrors++;
         }
         if (email == null || email.length() == 0) {
-            session.setAttribute(ERROR_EMAIL_ATTRIBUTE, resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
+            session.setAttribute(ERROR_EMAIL_ATTRIBUTE,
+                    resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
             countErrors++;
         }
         if (birthday == null || birthday.length() == 0) {
-            session.setAttribute(ERROR_BIRTHDAY_ATTRIBUTE,  resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
+            session.setAttribute(ERROR_BIRTHDAY_ATTRIBUTE,
+                    resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
             countErrors++;
-        }  else {
+        } else {
             try {
                 LocalDate.parse(birthday);
             } catch (DateTimeParseException ex) {
                 logger.error(ex);
-                session.setAttribute(ERROR_BIRTHDAY_ATTRIBUTE, resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
+                session.setAttribute(ERROR_BIRTHDAY_ATTRIBUTE,
+                        resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
                 countErrors++;
             }
 
         }
         if (phoneNumber == null || phoneNumber.length() == 0) {
-            session.setAttribute(ERROR_PHONE_ATTRIBUTE, resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
+            session.setAttribute(ERROR_PHONE_ATTRIBUTE,
+                    resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
             countErrors++;
         }
         if (country == null || country.length() == 0) {
-            session.setAttribute(ERROR_COUNTRY_ATTRIBUTE,  resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
+            session.setAttribute(ERROR_COUNTRY_ATTRIBUTE,
+                    resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
             countErrors++;
         } else {
             try {
                 Integer.parseInt(country);
             } catch (NumberFormatException ex) {
                 logger.error(ex);
-                session.setAttribute(ERROR_COUNTRY_ATTRIBUTE, resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
+                session.setAttribute(ERROR_COUNTRY_ATTRIBUTE,
+                        resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
                 countErrors++;
             }
 
         }
         if (passportNumber == null || passportNumber.length() == 0) {
-            session.setAttribute(ERROR_PASSPORT_NUMBER_ATTRIBUTE, resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
+            session.setAttribute(ERROR_PASSPORT_NUMBER_ATTRIBUTE,
+                    resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
             countErrors++;
         }
         if (passportDate == null || passportDate.length() == 0) {
-            session.setAttribute(ERROR_PASSPORT_DATE_ATTRIBUTE,  resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
+            session.setAttribute(ERROR_PASSPORT_DATE_ATTRIBUTE,
+                    resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
             countErrors++;
         } else {
             try {
                 LocalDate.parse(passportDate);
             } catch (DateTimeParseException ex) {
                 logger.error(ex);
-                session.setAttribute(ERROR_PASSPORT_DATE_ATTRIBUTE, resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
+                session.setAttribute(ERROR_PASSPORT_DATE_ATTRIBUTE,
+                        resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
                 countErrors++;
             }
         }
         if (sex == null || sex.length() == 0) {
-            session.setAttribute(ERROR_SEX_ATTRIBUTE, resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
+            session.setAttribute(ERROR_SEX_ATTRIBUTE,
+                    resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
             countErrors++;
         } else {
             try {
                 Integer.parseInt(sex);
             } catch (NumberFormatException ex) {
                 logger.error(ex);
-                session.setAttribute(ERROR_SEX_ATTRIBUTE, resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
+                session.setAttribute(ERROR_SEX_ATTRIBUTE,
+                        resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
                 countErrors++;
             }
         }
-            logger.debug(String.format("find %d errors", countErrors));
+        logger.debug(String.format("find %d errors", countErrors));
         return countErrors == 0;
     }
 
@@ -221,6 +244,36 @@ public class UpdateProfileAction extends UserAction {
         } else if (msg.contains("email")) {
             session.setAttribute(ERROR_EMAIL_ATTRIBUTE,
                     resourceBundle.getString(DUBLICATED_EMAIL_ERROR_MESSAGE));
+        } else if (msg.equals(INVALID_LOGIN_FORMAT)) {
+            session.setAttribute(ERROR_LOGIN_ATTRIBUTE,
+                    resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
+        } else if (msg.equals(INVALID_NAME_FORMAT)) {
+            session.setAttribute(ERROR_FIRST_NAME_ATTRIBUTE,
+                    resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
+        } else if (msg.equals(INVALID_SURNAME_FORMAT)) {
+            session.setAttribute(ERROR_LAST_NAME_ATTRIBUTE,
+                    resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
+        } else if (msg.equals(INVALID_EMAIL_FORMAT)) {
+            session.setAttribute(ERROR_EMAIL_ATTRIBUTE,
+                    resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
+        } else if (msg.equals(INVALID_BIRTHDAY_DATE_VALUE)) {
+            session.setAttribute(ERROR_BIRTHDAY_ATTRIBUTE,
+                    resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
+        } else if (msg.equals(INVALID_PHONE_FORMAT)) {
+            session.setAttribute(ERROR_PHONE_ATTRIBUTE,
+                    resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
+        } else if (msg.equals(INVALID_COUNTRY_ID_VALUE)) {
+            session.setAttribute(ERROR_COUNTRY_ATTRIBUTE,
+                    resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
+        } else if (msg.equals(INVALID_PASSPORT_NUMBER_FORMAT)) {
+            session.setAttribute(ERROR_PASSPORT_NUMBER_ATTRIBUTE,
+                    resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
+        } else if (msg.equals(INVALID_PASSPORT_ISSUE_DATE_VALUE)) {
+            session.setAttribute(ERROR_PASSPORT_DATE_ATTRIBUTE,
+                    resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
+        } else if (msg.equals(INVALID_GENDER_ID_VALUE)) {
+            session.setAttribute(ERROR_SEX_ATTRIBUTE,
+                    resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
         } else {
             session.setAttribute(UNKNOWN_ERROR_ATTRIBUTE,
                     resourceBundle.getString(UNKNOWN_ERROR_MESSAGE));

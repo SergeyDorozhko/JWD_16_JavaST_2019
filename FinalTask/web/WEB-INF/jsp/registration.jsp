@@ -84,7 +84,7 @@ To change this template use File | Settings | File Templates.
                 <label for="lastName" class="col-sm-3 control-label"><fmt:message key="fields.lastName"/>*</label>
                 <div class="col-sm-9">
                     <input type="text" id="lastName" name="lastName" placeholder="<fmt:message key="fields.lastName"/>" class="form-control"
-                           value="${userLastName}" required autofocus pattern="^^[a-zA-Zа-яА-Я-]{1,255}$">
+                           value="${userLastName}" required autofocus pattern="^[a-zA-Zа-яА-Я-]{1,255}$">
                     <div class="invalid-feedback"><fmt:message key="errors.fillOutTheField"/></div>
                 </div>
                 <label style="background-color: B82303; font-size: 25px">${errorLastName}</label>
