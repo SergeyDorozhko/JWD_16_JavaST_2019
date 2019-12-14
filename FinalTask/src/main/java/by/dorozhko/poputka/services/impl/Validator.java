@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 class Validator {
     private final Logger logger = LogManager.getLogger(getClass().getName());
     private static final String LOGIN_PATTERN = "^[\\w-]{1,20}$";
-    private static final String PASSWORD_PATTERN = "^[\\wа-яА-Я\\d-+%$@!]{1,50}$";
+    private static final String PASSWORD_PATTERN = "^[\\w\\dа-яА-Я-+%$@!]{1,50}$";
     private static final String USER_NAME_AND_SURNAME_PATTERN = "^[a-zA-Zа-яА-Я-]{1,255}$";
     private static final String PASSPORT_NUMBER_PATTERN = "^[\\w-]{1,10}$";
     private static final String PHONE_PATTERN = "^[0-9]{7,15}$";

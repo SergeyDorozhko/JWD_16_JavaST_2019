@@ -169,9 +169,9 @@ public class UserServiceImpl extends AbstractService implements UserService {
      */
     @Override
     public User add(final User user) throws ExceptionService {
-
+        logger.debug("stard add");
         validateUser(user);
-
+        logger.debug("data checked ok");
         UserDAO userDAO = FactoryDao.getInstance().getUserDAO();
 
         transaction.begin(userDAO);
@@ -190,10 +190,9 @@ public class UserServiceImpl extends AbstractService implements UserService {
             logger.error(exceptionDao);
             transaction.rollback();
             throw new ExceptionService(exceptionDao);
+        } finally {
+            transaction.end();
         }
-
-        transaction.end();
-
         return regestedUser;
     }
 

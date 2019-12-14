@@ -102,7 +102,7 @@ To change this template use File | Settings | File Templates.
                 <label for="password" class="col-sm-3 control-label"><fmt:message key="fields.password"/>*</label>
                 <div class="col-sm-9">
                     <input type="password" id="password" name="password" placeholder="<fmt:message key="fields.password"/>" class="form-control"
-                           required autofocus pattern="^[\wа-яА-Я\d-+%$@!]{1,50}$">
+                           required autofocus pattern="^[\w\dа-яА-Я-+%$@!]{1,50}$">
                     <div class="invalid-feedback"><fmt:message key="errors.fillOutTheField"/></div>
                 </div>
             </div>
@@ -111,14 +111,14 @@ To change this template use File | Settings | File Templates.
                 <label for="confirmPassword" class="col-sm-3 control-label"><fmt:message key="fields.passwordComfirm"/>*</label>
                 <div class="col-sm-9">
                     <input type="password" id="confirmPassword" name="confirmPassword" placeholder="<fmt:message key="fields.password"/>"
-                           class="form-control" required autofocus pattern="^[\wа-яА-Я\d-+%$@!]{1,50}$">
+                           class="form-control" required autofocus pattern="^[\w\dа-яА-Я-+%$@!]{1,50}$">
                     <div class="invalid-feedback"><fmt:message key="errors.fillOutTheField"/></div>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="birthDate" class="col-sm-3 control-label"><fmt:message key="fields.dateOfBirth"/>*</label>
                 <div class="col-sm-4">
-                    <input type="date" id="birthDate" name="birthDate" class="form-control" value="${userBirthday}"
+                    <input type="date" id="birthDate" name="birthDate" min="${ds:nowMinusYears(100)}" max="${ds:nowMinusYears(18)}" class="form-control" value="${userBirthday}"
                            required
                            autofocus>
                     <div class="invalid-feedback"><fmt:message key="errors.fillOutTheField"/></div>
@@ -163,7 +163,7 @@ To change this template use File | Settings | File Templates.
                 <label for="passportDate" class="col-sm-3 control-label"><fmt:message
                         key="fields.passportDateOfIssue"/>*</label>
                 <div class="col-sm-4">
-                    <input type="date" id="passportDate" name="passportDate" class="form-control"
+                    <input type="date" id="passportDate" name="passportDate" min="${ds:nowMinusYears(10)}" max="${ds:nowMinusYears(0)}" class="form-control"
                            value="${userPassportDate}" required autofocus>
                     <div class="invalid-feedback"><fmt:message key="errors.fillOutTheField"/></div>
                 </div>

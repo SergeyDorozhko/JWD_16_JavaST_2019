@@ -51,7 +51,7 @@ To change this template use File | Settings | File Templates.
                         <div class="form-group">
                             <label for="pwd" style="font-size: 25px"><fmt:message key="fields.password"/></label>
                             <input type="password" class="form-control" id="pwd"
-                                   placeholder="<fmt:message key="fields.password"/>" name="password" required autofocus pattern="^[\wа-яА-Я\d-+%$@!]{1,50}$">
+                                   placeholder="<fmt:message key="fields.password"/>" name="password" required autofocus pattern="^[\w\dа-яА-Я-+%$@!]{1,50}$">
                             <div class="invalid-feedback"><fmt:message key="errors.fillOutTheField"/></div>
                             <label style="background-color: B82303; font-size: 25px">${errorPassword}</label>
                         </div>
