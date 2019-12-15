@@ -8,6 +8,9 @@ import by.dorozhko.poputka.services.exception.ExceptionService;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+import static org.testng.Assert.assertThrows;
+
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -42,26 +45,45 @@ public class UserServiceImplTest {
         TransactionFactory.getInstance().initConnectionPool();
     }
 
-    @Test(description = "Test add user positive scenario", dataProvider = "users for add positive test")
+    @Test(description = "Test add user", dataProvider = "users for add test")
     private void addUserTest(User user, boolean expected) {
         UserService service = ServiceFactory.getInstance().getUserService();
         User createdUser = null;
         try {
             createdUser = service.add(user);
             usersList.add(createdUser);
-            
         } catch (ExceptionService exceptionService) {
             exceptionService.printStackTrace();
         }
         Assert.assertEquals(createdUser != null, expected);
     }
 
-    @DataProvider(name = "users for add positive test")
+
+
+    @DataProvider(name = "users for add test")
     Object[][] createUsersForTest() {
         return new Object[][]{
                 {new User("one", "one", "one", "one", "1", "2000-12-12", "1", "dsadasdasd", "2019-12-01", "375293334455", "dsada@ds.re"), true},
                 {new User("two", "two", "two", "two", "1", "1930-12-10", "1", "MP2333339", "2017-12-02", "375293334400", "dsad@ds.re"), true},
                 {new User("two", "two", "two", "two", "1", "1930-12-10", "1", "MP2333339", "2017-12-02", "375293334400", "dsad@ds.re"), false},
+                {new User("th*", "th", "th", "two", "1", "1930-12-10", "1", "MP23333pk", "2017-12-02", "375293334422", "dsadds@ds.re"), false},
+                {new User("th", "th/", "th", "two", "1", "1930-12-10", "1", "MP23333pk", "2017-12-02", "375293334422", "dsadds@ds.re"), false},
+                {new User("th", "th", "th\\", "two", "1", "1930-12-10", "1", "MP23333pk", "2017-12-02", "375293334422", "dsadds@ds.re"), false},
+                {new User("th", "th", "th", "two<", "1", "1930-12-10", "1", "MP23333pk", "2017-12-02", "375293334422", "dsadds@ds.re"), false},
+                {new User("th", "th", "th", "two", "-2", "1930-12-10", "1", "MP23333pk", "2017-12-02", "375293334422", "dsadds@ds.re"), false},
+                {new User("th", "th", "th", "two", "100", "1930-12-10", "1", "MP23333pk", "2017-12-02", "375293334422", "dsadds@ds.re"), false},
+                {new User("th", "th", "th", "two", "1", "1530-12-10", "1", "MP23333pk", "2017-12-02", "375293334422", "dsadds@ds.re"), false},
+                {new User("th", "th", "th", "two", "1", "2100-12-10", "1", "MP23333pk", "2017-12-02", "375293334422", "dsadds@ds.re"), false},
+                {new User("th", "th", "th", "two", "1", "2000-12-10", "0", "MP23333pk", "2017-12-02", "375293334422", "dsadds@ds.re"), false},
+                {new User("th", "th", "th", "two", "1", "2000-12-10", "2", "MP23333p>", "2017-12-02", "375293334422", "dsadds@ds.re"), false},
+                {new User("th", "th", "th", "two", "1", "2000-12-10", "2", "MP23333p", "2100-12-02", "375293334422", "dsadds@ds.re"), false},
+                {new User("th", "th", "th", "two", "1", "2000-12-10", "2", "MP23333p", "1100-12-02", "375293334422", "dsadds@ds.re"), false},
+                {new User("th", "th", "th", "two", "1", "2000-12-10", "2", "MP23333p", "2019-12-02", "37529333d422", "dsadds@ds.re"), false},
+                {new User("th", "th", "th", "two", "1", "2000-12-10", "2", "MP23333p", "2019-12-02", "37529333<422", "dsadds@ds.re"), false},
+                {new User("th", "th", "th", "two", "1", "2000-12-10", "2", "MP23333p", "2019-12-02", "375293334422", "dsaddsds.re"), false},
+                {new User("th", "th", "th", "two", "1", "2000-12-10", "2", "MP23333p", "2019-12-02", "375", "dsadd@sds.re"), false},
+                {new User("th", "th", "th", "two", "1", "2000-12-10", "2", "MP23333p", "2019-12-02", "375297300600", "dsadd@sds"), false},
+                {new User("th", "th", "th", "two", "1", "2000-12-10", "2", "MP23333p", "2019-12-02", "", "dsadd@sds"), false},
 
         };
     }
