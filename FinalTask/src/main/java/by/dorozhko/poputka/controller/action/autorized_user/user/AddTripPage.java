@@ -50,6 +50,7 @@ public class AddTripPage extends UserAction {
     private static final String ERROR_COST_ATTRIBUTE = "errorCost";
     private static final String ERROR_CURRENCY_ATTRIBUTE = "errorCurrency";
     private static final String ERROR_PASSENGERS_ATTRIBUTE = "errorPassengers";
+    private static final String ERROR_COMMENTARY_ATTRIBUTE = "errorCommentary";
 
     private static final String UNKNOWN_ERROR_ATTRIBUTE = "unknownError";
 
@@ -92,6 +93,7 @@ public class AddTripPage extends UserAction {
         listOfAttributes.add(ERROR_COST_ATTRIBUTE);
         listOfAttributes.add(ERROR_CURRENCY_ATTRIBUTE);
         listOfAttributes.add(ERROR_PASSENGERS_ATTRIBUTE);
+        listOfAttributes.add(ERROR_COMMENTARY_ATTRIBUTE);
 
     }
 

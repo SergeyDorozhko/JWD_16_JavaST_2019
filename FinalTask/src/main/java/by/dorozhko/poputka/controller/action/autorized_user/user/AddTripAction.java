@@ -1,6 +1,7 @@
 package by.dorozhko.poputka.controller.action.autorized_user.user;
 
 import by.dorozhko.poputka.entity.Address;
+import by.dorozhko.poputka.entity.ErrorMessageConficurator;
 import by.dorozhko.poputka.entity.Journey;
 import by.dorozhko.poputka.entity.User;
 import by.dorozhko.poputka.services.JourneyService;
@@ -15,6 +16,8 @@ import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
+import java.util.HashSet;
+import java.util.Set;
 
 public class AddTripAction extends UserAction {
     private final Logger logger = LogManager.getLogger(getClass().getName());
@@ -66,12 +69,28 @@ public class AddTripAction extends UserAction {
     private static final String ERROR_COST_ATTRIBUTE = "errorCost";
     private static final String ERROR_CURRENCY_ATTRIBUTE = "errorCurrency";
     private static final String ERROR_PASSENGERS_ATTRIBUTE = "errorPassengers";
+    private static final String ERROR_COMMENTARY_ATTRIBUTE = "errorCommentary";
 
     private static final String UNKNOWN_ERROR_ATTRIBUTE = "unknownError";
 
     private static final String UNKNOWN_ERROR_MESSAGE = "back.errors.unknownError";
     private static final String FIELD_IS_EMPTY_ERROR_MESSAGE = "back.errors.fieldIsEmptyError";
     private static final String FIELD_FORMAT_ERROR_MESSAGE = "back.errors.fieldFormatError";
+
+    public static final String INVALID_FORMAT_OF_START_COUNTRY = "invalid format of start country";
+    public static final String INVALID_FORMAT_OF_START_REGION = "invalid format of start region";
+    public static final String INVALID_FORMAT_OF_START_CITY = "invalid format of start city";
+    public static final String INVALID_FORMAT_OF_DESTINATION_COUNTRY = "invalid format of destination country";
+    public static final String INVALID_FORMAT_OF_DESTINATION_REGION = "invalid format of destination region";
+    public static final String INVALID_FORMAT_OF_DESTINATION_CITY = "invalid format of destination city";
+    public static final String INVALID_FORMAT_OF_DATE = "invalid format of date";
+    public static final String INVALID_TIME_FORMAT = "invalid time format";
+    public static final String INVALID_COST_VALUE = "invalid cost value";
+    public static final String INVALID_FORMAT_OF_CURRENCY = "invalid format of currency";
+    public static final String INVALID_NUMBER_OF_PASSENGERS = "invalid number of passengers";
+    public static final String INVALID_CHARACTERS_IN_COMMENTARY = "invalid characters in commentary";
+
+
 
     private HttpSession session;
 
@@ -118,7 +137,7 @@ public class AddTripAction extends UserAction {
 
             } catch (ExceptionService exceptionService) {
                 logger.error(exceptionService);
-                session.setAttribute(UNKNOWN_ERROR_ATTRIBUTE, resourceBundle.getString(UNKNOWN_ERROR_MESSAGE));
+                getErrorMessage(exceptionService.getMessage());
             }
         }
 
@@ -254,4 +273,46 @@ public class AddTripAction extends UserAction {
         session.setAttribute(USER_PASSENGERS_ATTRIBUTE, passengers);
         session.setAttribute(USER_ADDITIONAL_INFORMATION_ATTRIBUTE, additionalInformation);
     }
+
+    private void getErrorMessage(String msg) {
+        Set<ErrorMessageConficurator> errorList = expectedMessages();
+
+        boolean isFind = false;
+
+        for (ErrorMessageConficurator errorMessageConficurator : errorList) {
+            if (msg.contains(errorMessageConficurator.getExceptionMessage())) {
+                session.setAttribute(errorMessageConficurator.getAttribute(),
+                        resourceBundle.getString(errorMessageConficurator
+                                .getMessageForUser()));
+                isFind = true;
+            }
+        }
+        if (!isFind) {
+            session.setAttribute(UNKNOWN_ERROR_ATTRIBUTE,
+                    resourceBundle.getString(UNKNOWN_ERROR_MESSAGE));
+        }
+    }
+
+    private Set<ErrorMessageConficurator> expectedMessages() {
+
+        Set<ErrorMessageConficurator> errorList = new HashSet<>();
+
+
+        errorList.add(new ErrorMessageConficurator(INVALID_FORMAT_OF_START_COUNTRY, ERROR_COUNTRY_FROM_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_FORMAT_OF_START_REGION, ERROR_REGION_FROM_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_FORMAT_OF_START_CITY, ERROR_CITY_FROM_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_FORMAT_OF_DESTINATION_COUNTRY, ERROR_COUNTRY_TO_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_FORMAT_OF_DESTINATION_REGION, ERROR_REGION_TO_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_FORMAT_OF_DESTINATION_CITY, ERROR_CITY_TO_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_FORMAT_OF_DATE, ERROR_DEPARTURE_DATE_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_TIME_FORMAT, ERROR_DEPARTURE_TIME_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_COST_VALUE, ERROR_COST_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_FORMAT_OF_CURRENCY, ERROR_CURRENCY_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_NUMBER_OF_PASSENGERS, ERROR_PASSENGERS_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_CHARACTERS_IN_COMMENTARY, ERROR_COMMENTARY_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+
+        return errorList;
+    }
+
+
 }

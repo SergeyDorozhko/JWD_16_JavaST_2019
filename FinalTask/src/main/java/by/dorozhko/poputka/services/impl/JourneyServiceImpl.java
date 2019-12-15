@@ -16,8 +16,25 @@ import java.time.LocalTime;
 import java.util.List;
 
 public class JourneyServiceImpl extends AbstractService implements JourneyService {
+    public static final String INVALID_FORMAT_OF_START_COUNTRY = "invalid format of start country";
+    public static final String INVALID_FORMAT_OF_START_REGION = "invalid format of start region";
+    public static final String INVALID_FORMAT_OF_START_CITY = "invalid format of start city";
+    public static final String INVALID_FORMAT_OF_DESTINATION_COUNTRY = "invalid format of destination country";
+    public static final String INVALID_FORMAT_OF_DESTINATION_REGION = "invalid format of destination region";
+    public static final String INVALID_FORMAT_OF_DESTINATION_CITY = "invalid format of destination city";
+    public static final String INVALID_FORMAT_OF_DATE = "invalid format of date";
+    public static final String INVALID_TIME_FORMAT = "invalid time format";
+    public static final String INVALID_COST_VALUE = "invalid cost value";
+    public static final String INVALID_FORMAT_OF_CURRENCY = "invalid format of currency";
+    public static final String INVALID_NUMBER_OF_PASSENGERS = "invalid number of passengers";
+    public static final String INVALID_CHARACTERS_IN_COMMENTARY = "invalid characters in commentary";
     private final Logger logger = LogManager.getLogger(getClass().getName());
 
+    private Validator validator;
+
+    public JourneyServiceImpl() {
+        validator = new Validator();
+    }
 
     @Override
     public List<Journey> findAllActualForMainPage() {
@@ -62,6 +79,7 @@ public class JourneyServiceImpl extends AbstractService implements JourneyServic
 
     @Override
     public Journey createNewJourney(Journey journey) throws ExceptionService {
+        validateJourney(journey);
         JourneyDAO journeyDAO = FactoryDao.getInstance().getJourneyDAO();
         UserDAO userDAO = FactoryDao.getInstance().getUserDAO();
         transaction.begin(journeyDAO, userDAO);
@@ -83,8 +101,43 @@ public class JourneyServiceImpl extends AbstractService implements JourneyServic
         return journey;
     }
 
+    private void validateJourney(Journey journey) throws ExceptionService {
+        logger.debug(journey);
+        validateWithIdField(journey.getStartAddress().getCountry(), INVALID_FORMAT_OF_START_COUNTRY);
+        validateWithIdField(journey.getStartAddress().getRegionalCenter(), INVALID_FORMAT_OF_START_REGION);
+        validateWithIdField(journey.getStartAddress().getCity(), INVALID_FORMAT_OF_START_CITY);
+        validateWithIdField(journey.getDestinationAddress().getCountry(), INVALID_FORMAT_OF_DESTINATION_COUNTRY);
+        validateWithIdField(journey.getDestinationAddress().getRegionalCenter(), INVALID_FORMAT_OF_DESTINATION_REGION);
+        validateWithIdField(journey.getDestinationAddress().getCity(), INVALID_FORMAT_OF_DESTINATION_CITY);
+        final int todayDate = -2;
+        final int afterTwoYear = 0;
+        if (!validator.validateDate(journey.getDepartureDate(), todayDate, afterTwoYear)) {
+            throw new ExceptionService(INVALID_FORMAT_OF_DATE);
+        }
+        if (!validator.validateFutureTimeByDate(journey.getDepartureDate(), journey.getDepartureTime())) {
+            throw new ExceptionService(INVALID_TIME_FORMAT);
+        }
+        if (!validator.validateCost(journey.getCost())) {
+            throw new ExceptionService(INVALID_COST_VALUE);
+        }
+        validateWithIdField(journey.getCurrency(), INVALID_FORMAT_OF_CURRENCY);
+        if (!validator.validateForPositiveInteger(journey.getPassengersNumber())) {
+            throw new ExceptionService(INVALID_NUMBER_OF_PASSENGERS);
+        }
+        if (!validator.validateCommentary(journey.getAdditionalInformation())) {
+            throw new ExceptionService(INVALID_CHARACTERS_IN_COMMENTARY);
+        }
+    }
+
+    private void validateWithIdField(String idValue, String errorMessage) throws ExceptionService {
+        if (!validator.validateForPositiveInteger(Integer.parseInt(idValue))) {
+            throw new ExceptionService(errorMessage);
+        }
+    }
+
     @Override
     public Journey updateJourney(Journey journey) throws ExceptionService {
+        validateJourney(journey);
         JourneyDAO journeyDAO = FactoryDao.getInstance().getJourneyDAO();
         UserDAO userDAO = FactoryDao.getInstance().getUserDAO();
         transaction.begin(journeyDAO, userDAO);

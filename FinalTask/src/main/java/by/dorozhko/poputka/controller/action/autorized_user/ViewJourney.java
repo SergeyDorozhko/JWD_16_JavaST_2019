@@ -29,15 +29,17 @@ public class ViewJourney extends AuthorizedUser {
         setLocaleToCookie(request, response);
 
         String id = request.getParameter(JOURNEY_ID_ATTRIBUTE);
+        logger.debug(id);
         try {
             int journeyId = Integer.parseInt(id);
             JourneyService service = ServiceFactory.getInstance().getJoureyService();
             Journey journey = service.findJourney(journeyId);
             logger.debug(String.format("journeyIfo : %s", journey));
+
             request.setAttribute(JOURNEY_ATTRIBUTE, journey);
         } catch (NumberFormatException ex) {
             logger.error(ex);
-            ResourceBundle resourceBundle = takeLocale(request);
+            resourceBundle = takeLocale(request);
             request.setAttribute(UNKNOWN_ERROR_ATTRIBUTE, resourceBundle.getString(UNKNOWN_ERROR_MESSAGE));
         }
 

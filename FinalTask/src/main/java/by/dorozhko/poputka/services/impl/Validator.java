@@ -1,10 +1,10 @@
 package by.dorozhko.poputka.services.impl;
 
-import by.dorozhko.poputka.entity.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -16,11 +16,12 @@ class Validator {
     private static final String PASSPORT_NUMBER_PATTERN = "^[\\w-]{1,10}$";
     private static final String PHONE_PATTERN = "^[0-9]{7,15}$";
     private static final String EMAIL_PATTERN = "^[-\\w.]+@([A-z0-9][-A-z0-9]+\\.)+[A-z]{2,4}$";
+    private static final String COMMENTARY_PATTERN = "^[^*/\\;'|<>]{0,1000}$";
     private Pattern pattern;
     private Matcher matcher;
 
-    public boolean validateId(final int id) {
-        return id > 0 ? true : false;
+    public boolean validateForPositiveInteger(final int id) {
+        return id > 0;
     }
 
 
@@ -43,6 +44,7 @@ class Validator {
     public boolean validateLogin(final String login) {
         return validate(login, LOGIN_PATTERN);
     }
+
 
     private boolean validate(final String value, final String template) {
         if (value != null) {
@@ -73,105 +75,42 @@ class Validator {
         return validate(passportNumber, PASSPORT_NUMBER_PATTERN);
     }
 
-    public boolean validateBirthday(LocalDate birthday) {
-        int minAgeValue = 18;
-        int maxAgeValue = 100;
-        return validateDate(birthday, minAgeValue, maxAgeValue);
+    public boolean validateCommentary(final String commentary) {
+        return validate(commentary, COMMENTARY_PATTERN);
     }
 
-    private boolean validateDate(LocalDate date, int minValue, int maxValue) {
-        LocalDate now = LocalDate.now();
 
+    public boolean validateDate(final LocalDate date,
+                                final int minValue, final int maxValue) {
+        logger.debug(date);
+        LocalDate now = LocalDate.now();
+        logger.debug(now);
         boolean overMinValue = date.compareTo(now.minusYears(minValue)) <= 0;
+        logger.debug(now.minusYears(minValue));
         boolean underMaxValue = date.compareTo(now.minusYears(maxValue)) >= 0;
-        if (overMinValue && underMaxValue) {
+        logger.debug(now.minusYears(maxValue));
+        return overMinValue && underMaxValue;
+    }
+
+    public boolean validateFutureTimeByDate(final LocalDate date,
+                                            final LocalTime time) {
+        logger.debug(date);
+        logger.debug(time);
+        LocalDate today = LocalDate.now();
+        logger.debug(today);
+        LocalTime timeNow = LocalTime.now();
+        logger.debug(timeNow);
+
+        if (date.compareTo(today) > 0) {
             return true;
         }
-        return false;
+
+        return date.compareTo(today) == 0
+                && time.compareTo(timeNow) > 0;
     }
 
-
-    public boolean validatePassportIssueDate(LocalDate issueDate) {
-        int minYearsOld = 0;
-        int maxYearsOld = 10;
-        return validateDate(issueDate, minYearsOld, maxYearsOld);
+    public boolean validateCost(final double cost) {
+        return cost >= 0;
     }
 
-
-    //        //TODO check and think about role value. Need or no need to check in query, or only when create or update.
-//        if (user.getRole() != null) {
-//
-//        }
-//
-//        if (user.getName() != null) {
-//            pattern = Pattern.compile(USER_NAME_AND_SURNAME_PATTERN);
-//            matcher = pattern.matcher(user.getName());
-//            if (!matcher.find()) {
-//                return false;
-//            }
-//        }
-//        if (user.getSurname() != null) {
-//            pattern = Pattern.compile(USER_NAME_AND_SURNAME_PATTERN);
-//            matcher = pattern.matcher(user.getSurname());
-//            if (!matcher.find()) {
-//                return false;
-//            }
-//        }
-//
-//        if (user.getGender() != null) {
-//            pattern = Pattern.compile(GENDER_PATTERN);
-//            matcher = pattern.matcher(user.getGender());
-//            if (!matcher.find()) {
-//                return false;
-//            }
-//        }
-//        //TODO check localdate
-//        if (user.getBirthday() != null) {
-//
-//        }
-//        if (user.getCountry() != null) {
-//            pattern = Pattern.compile(COUNTRY_PATTERN);
-//            matcher = pattern.matcher(user.getCountry());
-//            if (!matcher.find()) {
-//                return false;
-//            }
-//        }
-//
-//        if (user.getPassportNumber() != null) {
-//            pattern = Pattern.compile(PASSPORT_NUMBER_PATTERN);
-//            matcher = pattern.matcher(user.getPassportNumber());
-//            if (!matcher.find()) {
-//                return false;
-//            }
-//        }
-//
-//        //TODO check localdate
-//        if (user.getPassportDateOfIssue() != null) {
-//
-//        }
-//
-//        if (user.getPhoneNumber() != null) {
-//            pattern = Pattern.compile(PHONE_PATTERN);
-//            matcher = pattern.matcher(user.getPhoneNumber());
-//            if (!matcher.find()) {
-//                return false;
-//            }
-//        }
-//
-//        if (user.getEmail() != null) {
-//            pattern = Pattern.compile(EMAIL_PATTERN);
-//            matcher = pattern.matcher(user.getEmail());
-//            if (!matcher.find()) {
-//                return false;
-//            }
-//        }
-//
-//        //TODO think about check car field
-//        if (user.getCar() != null) {
-//
-//        }
-//
-//        return true;
-
-//    }
 }

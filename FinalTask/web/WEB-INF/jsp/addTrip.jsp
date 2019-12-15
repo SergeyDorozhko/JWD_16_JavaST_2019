@@ -155,7 +155,7 @@ To change this template use File | Settings | File Templates.
                 <label for="departureDate" class="col-sm-3 control-label"><fmt:message
                         key="fields.departureDate"/>*</label>
                 <div class="col-sm-4">
-                    <input type="date" id="departureDate" name="departureDate" class="form-control"
+                    <input type="date" id="departureDate" name="departureDate" min="${ds:nowMinusYears(0)}" max="${ds:nowMinusYears(-2)}" class="form-control"
                            value="${userDepartureDate}" required autofocus>
                 </div>
                 <label style="background-color: B82303; font-size: 25px">${errorDepartureDate}</label>
@@ -205,7 +205,7 @@ To change this template use File | Settings | File Templates.
                               class="form-control" required autofocus>${userAdditionalInformation}
                     </textarea>
                 </div>
-                <label style="background-color: B82303; font-size: 25px">${errorPassportDate}</label>
+                <label style="background-color: B82303; font-size: 25px">${errorCommentary}</label>
             </div>
 
             <div class="form-group">

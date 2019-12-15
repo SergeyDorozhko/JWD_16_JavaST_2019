@@ -78,7 +78,7 @@ public class UserServiceImpl extends AbstractService implements UserService {
     @Override
     public User findById(int id) throws ExceptionService {
 
-        if (!validator.validateId(id)) {
+        if (!validator.validateForPositiveInteger(id)) {
             throw new ExceptionService(INVALID_ID_VALUE_MESSAGE);
         }
 
@@ -128,7 +128,6 @@ public class UserServiceImpl extends AbstractService implements UserService {
     public User singIn(final String login,
                        final String password)
             throws ExceptionService {
-        Validator validator = new Validator();
         if (!validator.validateAutorisationData(login, password)) {
             logger.error(INVALID_LOGIN_OR_PASSWORD_FORMAT);
             throw new ExceptionService(INVALID_LOGIN_OR_PASSWORD_FORMAT);
@@ -212,22 +211,28 @@ public class UserServiceImpl extends AbstractService implements UserService {
         if (!validator.validateEmail(user.getEmail())) {
             throw new ExceptionService(INVALID_EMAIL_FORMAT);
         }
-        if (!validator.validateBirthday(user.getBirthday())) {
+        final int minAgeValue = 18;
+        final int maxAgeValue = 100;
+        if (!validator.validateDate(user.getBirthday(),
+                minAgeValue, maxAgeValue)) {
             throw new ExceptionService(INVALID_BIRTHDAY_DATE_VALUE);
         }
         if (!validator.validatePhone(user.getPhoneNumber())) {
             throw new ExceptionService(INVALID_PHONE_FORMAT);
         }
-        if (!validator.validateId(Integer.parseInt(user.getCountry()))) {
+        if (!validator.validateForPositiveInteger(Integer.parseInt(user.getCountry()))) {
             throw new ExceptionService(INVALID_COUNTRY_ID_VALUE);
         }
         if (!validator.validatePassportNumber(user.getPassportNumber())) {
             throw new ExceptionService(INVALID_PASSPORT_NUMBER_FORMAT);
         }
-        if (!validator.validatePassportIssueDate(user.getPassportDateOfIssue())) {
+        final int minYearsOld = 0;
+        final int maxYearsOld = 10;
+        if (!validator.validateDate(user.getPassportDateOfIssue(),
+                minYearsOld, maxYearsOld)) {
             throw new ExceptionService(INVALID_PASSPORT_ISSUE_DATE_VALUE);
         }
-        if (!validator.validateId(Integer.parseInt(user.getGender()))) {
+        if (!validator.validateForPositiveInteger(Integer.parseInt(user.getGender()))) {
             throw new ExceptionService(INVALID_GENDER_ID_VALUE);
         }
     }
@@ -368,7 +373,6 @@ public class UserServiceImpl extends AbstractService implements UserService {
     private class HashingPBKDF2 {
         private SecureRandom random;
         private byte[] salt;
-        private KeySpec spec;
         private SecretKeyFactory secretKeyFactory;
         private byte[] hash;
 
@@ -395,6 +399,7 @@ public class UserServiceImpl extends AbstractService implements UserService {
         }
 
         public String generatePwdHash(String pwd) {
+            KeySpec spec;
             spec = new PBEKeySpec(pwd.toCharArray(), salt, 65536, 128);
 
             try {
