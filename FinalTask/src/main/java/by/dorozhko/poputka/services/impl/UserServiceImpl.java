@@ -90,18 +90,19 @@ public class UserServiceImpl extends AbstractService implements UserService {
         try {
 
             userInfo = userDAO.findAllUserInfo(id);
-            if (userInfo.getCar() != null) {
-                Car car = catalogDAO.getCar(Integer.parseInt(
-                        userInfo.getCar().getModel()));
-                userInfo.getCar().setBrand(car.getBrand());
-                userInfo.getCar().setModel(car.getModel());
-                userInfo.getCar().setAirConditioner(catalogDAO
-                        .getClimateType(Integer.parseInt(userInfo
-                                .getCar().getAirConditioner())));
+            if(userInfo != null) {
+                if (userInfo.getCar() != null) {
+                    Car car = catalogDAO.getCar(Integer.parseInt(
+                            userInfo.getCar().getModel()));
+                    userInfo.getCar().setBrand(car.getBrand());
+                    userInfo.getCar().setModel(car.getModel());
+                    userInfo.getCar().setAirConditioner(catalogDAO
+                            .getClimateType(Integer.parseInt(userInfo
+                                    .getCar().getAirConditioner())));
+                }
+                userInfo.setGender(catalogDAO.getGender(Integer.parseInt(userInfo.getGender())));
+                userInfo.setCountry(catalogDAO.getCountry(Integer.parseInt(userInfo.getCountry())));
             }
-            userInfo.setGender(catalogDAO.getGender(Integer.parseInt(userInfo.getGender())));
-            userInfo.setCountry(catalogDAO.getCountry(Integer.parseInt(userInfo.getCountry())));
-
             transaction.commit();
         } catch (ExceptionDao exceptionDao) {
             transaction.rollback();

@@ -193,28 +193,59 @@ public class User extends Entity implements Serializable {
         this.car = car;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
         User user = (User) o;
-        return login.equals(user.login) &&
-                name.equals(user.name) &&
-                surname.equals(user.surname) &&
-                gender.equals(user.gender) &&
-                birthday.equals(user.birthday) &&
-                country.equals(user.country) &&
-                passportNumber.equals(user.passportNumber) &&
-                passportDateOfIssue.equals(user.passportDateOfIssue) &&
-                phoneNumber.equals(user.phoneNumber) &&
-                email.equals(user.email) &&
-                car.equals(user.car);
+        if (car == null && user.car != null) {
+            return false;
+        }
+        if (!login.equals(user.login)) {
+            return false;
+        }
+        if (!Objects.equals(role, user.role)) {
+            return false;
+        }
+        if (!name.equals(user.name)) {
+            return false;
+        }
+        if (!surname.equals(surname)) {
+            return false;
+        }
+        if (!gender.equals(user.gender)) {
+            return false;
+        }
+        if (birthday.compareTo(user.birthday) != 0) {
+            return false;
+        }
+        if (!country.equals(user.country)) {
+            return false;
+        }
+        if (!passportNumber.equals(user.passportNumber)) {
+            return false;
+        }
+        if (passportDateOfIssue.compareTo(user.passportDateOfIssue) != 0) {
+            return false;
+        }
+        if (!passportNumber.equals(user.passportNumber)) {
+            return false;
+        }
+        if (!email.equals(user.email)) {
+            return false;
+        }
+        return Objects.equals(car, user.car);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), login, name, surname, gender, birthday, country, passportNumber, passportDateOfIssue, phoneNumber, email, car);
+        return Objects.hash(super.hashCode(), login, password, salt, role, name, surname, gender, birthday, country, passportNumber, passportDateOfIssue, phoneNumber, email, car);
     }
 
     @Override

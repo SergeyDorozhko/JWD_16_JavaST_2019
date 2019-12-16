@@ -1,6 +1,7 @@
 package by.dorozhko.poputka.services.impl;
 
 import by.dorozhko.poputka.dao.TransactionFactory;
+import by.dorozhko.poputka.entity.Car;
 import by.dorozhko.poputka.entity.User;
 import by.dorozhko.poputka.services.ServiceFactory;
 import by.dorozhko.poputka.services.UserService;
@@ -8,14 +9,9 @@ import by.dorozhko.poputka.services.exception.ExceptionService;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-import static org.testng.Assert.assertThrows;
-
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class UserServiceImplTest {
 
@@ -23,7 +19,9 @@ public class UserServiceImplTest {
 
     private List<User> usersList = new ArrayList<>();
 
-    @BeforeClass
+    private List<User> findUserList = new ArrayList<>();
+
+    @BeforeTest
     private void setConnection() {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("dbresource.database");
         String driver = resourceBundle.getString("db.driver");
@@ -45,6 +43,7 @@ public class UserServiceImplTest {
         TransactionFactory.getInstance().initConnectionPool();
     }
 
+
     @Test(description = "Test add user", dataProvider = "users for add test")
     private void addUserTest(User user, boolean expected) {
         UserService service = ServiceFactory.getInstance().getUserService();
@@ -57,7 +56,6 @@ public class UserServiceImplTest {
         }
         Assert.assertEquals(createdUser != null, expected);
     }
-
 
 
     @DataProvider(name = "users for add test")
@@ -87,6 +85,75 @@ public class UserServiceImplTest {
 
         };
     }
+
+    @BeforeClass
+    private void createUsersEqualsDB() {
+        User diff = new User();
+        diff.setLogin("diff");
+        diff.setSurname("diff");
+        diff.setName("diff");
+        diff.setBirthday("1970-01-14");
+        diff.setGender("Famale");
+        diff.setCountry("Россия");
+        diff.setPassportNumber("MP2333332");
+        diff.setPassportDateOfIssue("2019-12-10");
+        diff.setPhoneNumber("375297300600");
+        diff.setEmail("diff@mail.ru");
+
+        Car diffCar = new Car();
+        diffCar.setBrand("ACURA");
+        diffCar.setModel("LEGEND");
+        diffCar.setYearOfProduce(2000);
+        diffCar.setAirConditioner("climate control");
+        diff.setCar(diffCar);
+
+        findUserList.add(diff);
+
+
+        User gav = new User();
+        gav.setLogin("gav");
+        gav.setSurname("gav");
+        gav.setName("gav");
+        gav.setBirthday("2000-12-14");
+        gav.setGender("Famale");
+        gav.setCountry("Беларусь");
+        gav.setPassportNumber("MC2345678");
+        gav.setPassportDateOfIssue("2019-12-04");
+        gav.setPhoneNumber("375297576719");
+        gav.setEmail("gav@mail.ru");
+
+        findUserList.add(gav);
+    }
+
+    @Test(description = "test find user info by id", dataProvider = "data for find user by id test")
+    public void findUserByIdTest(int id, boolean expectedResult) {
+
+        UserService service = ServiceFactory.getInstance().getUserService();
+        User actualUser = null;
+        try {
+            actualUser = service.findById(id);
+        } catch (ExceptionService exceptionService) {
+            exceptionService.printStackTrace();
+        }
+
+        Assert.assertEquals(findUserList.contains(actualUser), expectedResult);
+
+    }
+
+    @DataProvider(name = "data for find user by id test")
+    Object[][] createDataForFindBuIdTest() {
+        return new Object[][]{
+                {55, true},
+                {56, true},
+                {57, false},
+                {-55, false},
+                {0, false},
+                {1, false}
+
+
+        };
+    }
+
 
     @AfterTest
     private void closeConnection() {

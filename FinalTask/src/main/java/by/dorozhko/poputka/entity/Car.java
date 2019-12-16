@@ -144,10 +144,10 @@ public class Car extends Entity implements Serializable {
             return false;
         }
         Car car = (Car) o;
-        return yearOfProduce == car.yearOfProduce
-                && airConditioner == car.airConditioner
-                && brand.equals(car.brand)
-                && model.equals(car.model);
+        return Objects.equals(yearOfProduce, car.yearOfProduce)
+                && Objects.equals(airConditioner, car.airConditioner)
+                && Objects.equals(brand, car.brand)
+                && Objects.equals(model, car.model);
     }
 
     /**
