@@ -88,10 +88,9 @@ public class UserServiceImpl extends AbstractService implements UserService {
 
         transaction.begin(userDAO, catalogDAO);
         try {
-            boolean hasCar = userDAO.hasUserCar(id);
-            if (hasCar) {
-                logger.debug("user has car");
-                userInfo = userDAO.findUserInfoWithCar(id);
+
+            userInfo = userDAO.findAllUserInfo(id);
+            if (userInfo.getCar() != null) {
                 Car car = catalogDAO.getCar(Integer.parseInt(
                         userInfo.getCar().getModel()));
                 userInfo.getCar().setBrand(car.getBrand());
@@ -99,9 +98,6 @@ public class UserServiceImpl extends AbstractService implements UserService {
                 userInfo.getCar().setAirConditioner(catalogDAO
                         .getClimateType(Integer.parseInt(userInfo
                                 .getCar().getAirConditioner())));
-            } else {
-                logger.debug("user without car");
-                userInfo = userDAO.findUserInfoWithoutCar(id);
             }
             userInfo.setGender(catalogDAO.getGender(Integer.parseInt(userInfo.getGender())));
             userInfo.setCountry(catalogDAO.getCountry(Integer.parseInt(userInfo.getCountry())));

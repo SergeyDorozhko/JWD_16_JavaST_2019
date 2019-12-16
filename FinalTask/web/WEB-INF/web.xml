@@ -37,6 +37,10 @@
         <filter-name>SecurityFilter</filter-name>
         <url-pattern>*.html</url-pattern>
     </filter-mapping>
+    <error-page>
+        <location>/WEB-INF/jsp/error.jsp</location>
+    </error-page>
+    
     <jsp-config>
         <taglib>
             <taglib-uri>dorozhkoTag</taglib-uri>

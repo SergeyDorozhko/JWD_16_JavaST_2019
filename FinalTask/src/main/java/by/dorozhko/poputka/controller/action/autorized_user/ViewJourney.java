@@ -8,15 +8,15 @@ import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ResourceBundle;
+import java.io.IOException;
 
 public class ViewJourney extends AuthorizedUser {
     private final Logger logger = LogManager.getLogger(getClass().getName());
 
     private static final String FORWARD_PAGE = "/WEB-INF/jsp/viewJourney.jsp";
 
-    private static final String UNKNOWN_ERROR_ATTRIBUTE = "unknownError";
-    private static final String UNKNOWN_ERROR_MESSAGE = "back.errors.unknownError";
+    private static final String ERROR_ATTRIBUTE = "error";
+    private static final String ERROR_ID_MESSAGE = "invalidIdValue";
     private static final String JOURNEY_ID_ATTRIBUTE = "journeyId";
     private static final String JOURNEY_ATTRIBUTE = "journey";
 
@@ -40,7 +40,13 @@ public class ViewJourney extends AuthorizedUser {
         } catch (NumberFormatException ex) {
             logger.error(ex);
             resourceBundle = takeLocale(request);
-            request.setAttribute(UNKNOWN_ERROR_ATTRIBUTE, resourceBundle.getString(UNKNOWN_ERROR_MESSAGE));
+            request.setAttribute(ERROR_ATTRIBUTE, ERROR_ID_MESSAGE);
+            try {
+
+                response.sendError(HttpServletResponse.SC_NOT_FOUND);
+            } catch (IOException e) {
+                logger.error(e);
+            }
         }
 
         return FORWARD_PAGE;

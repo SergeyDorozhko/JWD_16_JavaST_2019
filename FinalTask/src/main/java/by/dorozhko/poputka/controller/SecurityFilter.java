@@ -17,10 +17,10 @@ public class SecurityFilter implements Filter {
 
     public static final String ACTION = "action";
     public static final String AUTHORIZED_USER = "authorizedUser";
-    public static final String SECURITY_MESSAGE = "SecurityMessage";
+    public static final String SECURITY_MESSAGE = "error";
     public static final String MESSAGE = "message";
     public static final String ERROR_PAGE = "/WEB-INF/jsp/error.jsp";
-    public static final String ACCESS_ERROR = "Доступ запрещён";
+    public static final String ACCESS_ERROR = "securityMessage";
 
     private final Logger logger = LogManager.getLogger(getClass().getName());
 
@@ -70,9 +70,9 @@ public class SecurityFilter implements Filter {
                 String format = String.format("Trying of %s access to forbidden resource", userName);
                 logger.info(format);
                 if (!(action instanceof AllUsersAction)) {
-                    session.setAttribute(SECURITY_MESSAGE, ACCESS_ERROR);
+                    httpRequest.setAttribute(SECURITY_MESSAGE, ACCESS_ERROR);
                 }
-                servletRequest.getServletContext().getRequestDispatcher(ERROR_PAGE).forward(servletRequest, servletResponse);
+                ((HttpServletResponse) servletResponse).sendError(HttpServletResponse.SC_UNAUTHORIZED);
             }
         } else {
             logger.error("It is impossible to use HTTP filter");

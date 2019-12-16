@@ -87,13 +87,15 @@ public class MySqlUserDao implements UserDAO {
             + " surname = ?, email = ?, birthday = ?, phone = ?,"
             + " country_id = ?, passport_number = ?, passport_date_of_issue = ?,"
             + " gender_id = ?  WHERE users.id = ? AND user_info.user_id = ?;";
-    private static final String SELECT_ALL_USER_INFO_WITH_CAR_BY_ID
-            = " SELECT login, surname, name, birthday, gender_id, country_id,"
-            + " passport_number, passport_date_of_issue, phone, email, brand_and_model_id, year_of_produce, climate_type_id"
-            + " from cars, users, user_info"
-            + " WHERE user_info.user_id = ? "
-            + " AND user_info.user_id = users.id"
-            + " AND user_info.car_id =cars.id";
+
+    private static final String SELECT_ALL_USER_INFO_WITH_CAR_BY_ID =
+            "SELECT login, surname, name, birthday, gender_id, country_id,"
+                    + " passport_number, passport_date_of_issue, phone, email,"
+                    + " brand_and_model_id, year_of_produce, climate_type_id"
+                    + " from user_info"
+                    + " LEFT JOIN cars ON user_info.car_id = cars.id"
+                    + " INNER JOIN users ON user_info.user_id = users.id"
+                    + " WHERE user_id = ?;";
 
 
     private static final String SELECT_ALL_USER_INFO_WITHOUT_CAR_BY_ID
@@ -103,12 +105,6 @@ public class MySqlUserDao implements UserDAO {
             + " WHERE user_info.user_id = ? "
             + " AND user_info.user_id = users.id";
 
-    private static final String CHECK_HAS_USER_CAR =
-            "SELECT user_id,"
-                    + " IFNULL(car_id, 'no car') AS car"
-                    + " FROM user_info"
-                    + " where user_id = ?";
-    private static final String NO_CAR_VALUE = "no car";
 
     private static final String DELETE_CAR
             = "DELETE FROM cars  WHERE id IN"
@@ -482,33 +478,7 @@ public class MySqlUserDao implements UserDAO {
     }
 
 
-    @Override
-    public boolean hasUserCar(int id) throws ExceptionDao {
-        boolean hasCar = false;
-        ResultSet resultSet = null;
-        try (PreparedStatement statement = connection.prepareStatement(CHECK_HAS_USER_CAR)) {
-            statement.setInt(1, id);
-            resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                String carExist = resultSet.getString("car");
-                hasCar = !carExist.equals(NO_CAR_VALUE);
-            }
-        } catch (SQLException ex) {
-            logger.error(ex);
-            throw new ExceptionDao(ex);
-        } finally {
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException e) {
-                    logger.error(e);
-                }
-            }
-        }
-        return hasCar;
-    }
-
-    public User findUserInfoWithCar(int id) throws ExceptionDao {
+    public User findAllUserInfo(int id) throws ExceptionDao {
         User userInfo = null;
         ResultSet resultSet = null;
         try (PreparedStatement userInfoStatement = connection.prepareStatement(SELECT_ALL_USER_INFO_WITH_CAR_BY_ID);) {
@@ -530,13 +500,16 @@ public class MySqlUserDao implements UserDAO {
                 userInfo.setPhoneNumber(resultSet.getString(PHONE));
                 userInfo.setEmail(resultSet.getString(EMAIL));
                 logger.debug("user data ok creating car");
-                Car userCar = new Car();
-                logger.debug("get brand OK");
-                userCar.setModel(resultSet.getString(BRAND_AND_MODEL_ID));
-                userCar.setYearOfProduce(Integer.parseInt(resultSet.getString(YEAR_OF_PRODUCE).split(SPLITTER)[0]));
-                userCar.setAirConditioner(resultSet.getString(CLIMATE_TYPE_ID));
+                String model = resultSet.getString(BRAND_AND_MODEL_ID);
+                if (model != null) {
+                    Car userCar = new Car();
+                    logger.debug("get brand OK");
+                    userCar.setModel(resultSet.getString(BRAND_AND_MODEL_ID));
+                    userCar.setYearOfProduce(Integer.parseInt(resultSet.getString(YEAR_OF_PRODUCE).split(SPLITTER)[0]));
+                    userCar.setAirConditioner(resultSet.getString(CLIMATE_TYPE_ID));
 
-                userInfo.setCar(userCar);
+                    userInfo.setCar(userCar);
+                }
                 String message = String.format("new user created: role: %s", userInfo);
                 logger.debug(message);
 

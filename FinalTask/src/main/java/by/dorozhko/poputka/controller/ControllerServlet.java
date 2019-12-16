@@ -15,10 +15,6 @@ import java.io.IOException;
 @MultipartConfig
 public class ControllerServlet extends HttpServlet {
 
-
-    /**
-     * logger.
-     */
     private final Logger logger = LogManager.getLogger(getClass().getName());
 
 
@@ -63,13 +59,13 @@ public class ControllerServlet extends HttpServlet {
             requestDispatcher
                     = req.getRequestDispatcher(page);
         }
-
-        if (page.contains(".jsp")) {
-            requestDispatcher.forward(req, resp);
-        } else {
-            resp.sendRedirect(page);
+        if (!resp.isCommitted()) {
+            if (page.contains(".jsp")) {
+                requestDispatcher.forward(req, resp);
+            } else {
+                resp.sendRedirect(page);
+            }
         }
-
     }
 
 
