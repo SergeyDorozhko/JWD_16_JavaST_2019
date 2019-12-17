@@ -56,6 +56,7 @@
                     <label><fmt:message key="statusCode"/> ${pageContext.errorData.statusCode}:</label>
                     <c:if test="${not empty error}"><label><fmt:message key="${error}"/></label></c:if>
                     <label>${pageContext.exception.message}</label>
+
                 </c:otherwise>
             </c:choose>
 

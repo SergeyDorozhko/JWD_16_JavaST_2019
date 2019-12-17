@@ -214,7 +214,7 @@ To change this template use File | Settings | File Templates.
                                 <div class="col-sm-9">
                                     <input type="password" id="oldPassword" name="oldPassword"
                                            placeholder="<fmt:message key="fields.oldPassword"/>" class="form-control"
-                                           required autofocus pattern="^[\w-]{1,20}$">
+                                           required autofocus pattern="^[\w\dа-яА-Я-+%$@!]{1,50}$">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -223,7 +223,7 @@ To change this template use File | Settings | File Templates.
                                 <div class="col-sm-9">
                                     <input type="password" id="newPassword" name="newPassword"
                                            placeholder="<fmt:message key="fields.newPassword"/>" class="form-control"
-                                           required autofocus pattern="^[\w-]{1,20}$">
+                                           required autofocus pattern="^[\w\dа-яА-Я-+%$@!]{1,50}$">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -232,7 +232,7 @@ To change this template use File | Settings | File Templates.
                                 <div class="col-sm-9">
                                     <input type="password" id="comfirmNewPassword" name="comfirmNewPassword"
                                            placeholder="<fmt:message key="fields.comfirmNewPassword"/>" class="form-control"
-                                           required autofocus pattern="^[\w-]{1,20}$">
+                                           required autofocus pattern="^[\w\dа-яА-Я-+%$@!]{1,50}$">
                                 </div>
                             </div>
                         </div>

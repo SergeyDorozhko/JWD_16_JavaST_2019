@@ -90,7 +90,7 @@ public class UserServiceImpl extends AbstractService implements UserService {
         try {
 
             userInfo = userDAO.findAllUserInfo(id);
-            if(userInfo != null) {
+            if (userInfo != null) {
                 if (userInfo.getCar() != null) {
                     Car car = catalogDAO.getCar(Integer.parseInt(
                             userInfo.getCar().getModel()));

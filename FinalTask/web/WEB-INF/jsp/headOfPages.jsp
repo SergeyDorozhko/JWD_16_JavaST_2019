@@ -52,7 +52,8 @@
                     </c:choose>
                 </div>
             </div>
-
+            <c:set var="errorPage" value="/poputkaApp/WEB-INF/jsp/error.jsp"/>
+            <c:if test="${pageContext.request.requestURI ne errorPage}">
             <form method="post">
                 <div class="form-group">
                     <select class="form-control" onchange="this.form.submit()" name="local"
@@ -64,6 +65,7 @@
                     </select>
                 </div>
             </form>
+            </c:if>
             <c:set var="role" value="${authorizedUser.role.id!=2 and authorizedUser!=null}"/>
             <c:choose>
                 <c:when test="${role}">
