@@ -20,8 +20,8 @@ public final class ConnectionPool {
     public static final String URL = "db.url";
     public static final String LOGIN = "db.login";
     public static final String PASSWORD = "db.password";
-    public static final String POOLSIZE = "db.poolsize";
-    public static final String DRIVER = "db.driver";
+    public static final String CONNECTION_POOLSIZE = "db.poolsize";
+    public static final String DB_DRIVER = "db.driver";
     private final Logger logger = LogManager.getLogger(getClass().getName());
 
     /**
@@ -117,8 +117,8 @@ public final class ConnectionPool {
         userLogin = resourceBundle.getString(LOGIN);
         pwd = resourceBundle.getString(PASSWORD);
         poolSize = Integer.parseInt(
-                resourceBundle.getString(POOLSIZE).trim());
-        driver = resourceBundle.getString(DRIVER);
+                resourceBundle.getString(CONNECTION_POOLSIZE).trim());
+        driver = resourceBundle.getString(DB_DRIVER);
     }
 
     private void checkPoolSize() {
