@@ -91,7 +91,6 @@ public class AddTripAction extends UserAction {
     public static final String INVALID_CHARACTERS_IN_COMMENTARY = "invalid characters in commentary";
 
 
-
     private HttpSession session;
 
     private String countryFrom;
@@ -115,15 +114,19 @@ public class AddTripAction extends UserAction {
         resourceBundle = takeLocale(request);
 
         String button = request.getParameter(BUTTON);
-        boolean isSaveActionAndValid = button != null && button.equals(ADD_JOURNEY_BUTTON) && checkData();
+        boolean isSaveActionAndValid = button != null
+                && button.equals(ADD_JOURNEY_BUTTON) && checkData();
 
         if (isSaveActionAndValid) {
-            JourneyService journeyService = ServiceFactory.getInstance().getJoureyService();
+            JourneyService journeyService = ServiceFactory.getInstance()
+                    .getJoureyService();
             User user = (User) session.getAttribute(AUTHORIZED_USER_ATTRIBUTE);
             User driverId = new User();
             driverId.setId(user.getId());
-            Address startAddress = new Address(countryFrom, regionFrom, cityFrom);
-            Address destinationAddress = new Address(countryTo, regionTo, cityTo);
+            Address startAddress
+                    = new Address(countryFrom, regionFrom, cityFrom);
+            Address destinationAddress
+                    = new Address(countryTo, regionTo, cityTo);
             Journey journey = new Journey(driverId, startAddress,
                     destinationAddress, departureTime, departureDate,
                     Double.parseDouble(cost), currency,
@@ -145,7 +148,7 @@ public class AddTripAction extends UserAction {
         return request.getContextPath() + ERROR_REDIRECT_URL;
     }
 
-    private void getAllAttributesData(HttpServletRequest request) {
+    private void getAllAttributesData(final HttpServletRequest request) {
         countryFrom = request.getParameter(COUNTRY_FROM_ATTRIBUTE);
         regionFrom = request.getParameter(REGION_FROM_ATTRIBUTE);
         cityFrom = request.getParameter(CITY_FROM_ATTRIBUTE);
@@ -258,7 +261,6 @@ public class AddTripAction extends UserAction {
     }
 
 
-
     private void setUserInputData() {
         session.setAttribute(USER_COUNTRY_FROM_ATTRIBUTE, countryFrom);
         session.setAttribute(USER_REGION_FROM_ATTRIBUTE, regionFrom);
@@ -298,18 +300,30 @@ public class AddTripAction extends UserAction {
         Set<ErrorMessageConficurator> errorList = new HashSet<>();
 
 
-        errorList.add(new ErrorMessageConficurator(INVALID_FORMAT_OF_START_COUNTRY, ERROR_COUNTRY_FROM_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(INVALID_FORMAT_OF_START_REGION, ERROR_REGION_FROM_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(INVALID_FORMAT_OF_START_CITY, ERROR_CITY_FROM_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(INVALID_FORMAT_OF_DESTINATION_COUNTRY, ERROR_COUNTRY_TO_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(INVALID_FORMAT_OF_DESTINATION_REGION, ERROR_REGION_TO_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(INVALID_FORMAT_OF_DESTINATION_CITY, ERROR_CITY_TO_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(INVALID_FORMAT_OF_DATE, ERROR_DEPARTURE_DATE_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(INVALID_TIME_FORMAT, ERROR_DEPARTURE_TIME_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(INVALID_COST_VALUE, ERROR_COST_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(INVALID_FORMAT_OF_CURRENCY, ERROR_CURRENCY_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(INVALID_NUMBER_OF_PASSENGERS, ERROR_PASSENGERS_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(INVALID_CHARACTERS_IN_COMMENTARY, ERROR_COMMENTARY_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_FORMAT_OF_START_COUNTRY,
+                ERROR_COUNTRY_FROM_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_FORMAT_OF_START_REGION,
+                ERROR_REGION_FROM_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_FORMAT_OF_START_CITY,
+                ERROR_CITY_FROM_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_FORMAT_OF_DESTINATION_COUNTRY,
+                ERROR_COUNTRY_TO_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_FORMAT_OF_DESTINATION_REGION,
+                ERROR_REGION_TO_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_FORMAT_OF_DESTINATION_CITY,
+                ERROR_CITY_TO_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_FORMAT_OF_DATE,
+                ERROR_DEPARTURE_DATE_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_TIME_FORMAT,
+                ERROR_DEPARTURE_TIME_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_COST_VALUE,
+                ERROR_COST_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_FORMAT_OF_CURRENCY,
+                ERROR_CURRENCY_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_NUMBER_OF_PASSENGERS,
+                ERROR_PASSENGERS_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_CHARACTERS_IN_COMMENTARY,
+                ERROR_COMMENTARY_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
 
         return errorList;
     }

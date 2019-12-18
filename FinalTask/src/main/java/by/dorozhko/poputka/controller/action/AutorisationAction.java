@@ -20,10 +20,12 @@ public class AutorisationAction extends AllUsersAction {
 
     private static final String AUTHORIZED_USER_ATTRIBUTE = "authorizedUser";
     private static final String FIELD_IS_EMPTY_ERROR_MESSAGE = "back.errors.fieldIsEmptyError";
-    private static final String INCORRECT_LOGIN_OR_PASSWORD_ERROR_MESSAGE = "back.errors.incorrectLoginOrPassword";
+    private static final String INCORRECT_LOGIN_OR_PASSWORD_ERROR_MESSAGE
+            = "back.errors.incorrectLoginOrPassword";
 
     private static final String INVALID_LOGIN_OR_PASSWORD_FORMAT = "invalid password or login format";
-    private static final String INVALID_CHARACTERS_IN_LOGIN_OR_PASSWORD_MESSAGE = "back.errors.invalidCharactersInThePasswordOrLogin";
+    private static final String INVALID_CHARACTERS_IN_LOGIN_OR_PASSWORD_MESSAGE
+            = "back.errors.invalidCharactersInThePasswordOrLogin";
 
 
     private static final String LOGIN_ATTRIBUTE = "login";
@@ -51,7 +53,8 @@ public class AutorisationAction extends AllUsersAction {
             } catch (ExceptionService exceptionService) {
                 logger.error(exceptionService);
                 if (exceptionService.getMessage().equals(INVALID_LOGIN_OR_PASSWORD_FORMAT)) {
-                    session.setAttribute(ERROR_LOGIN_ATTRIBUTE, resourceBundle.getString(INVALID_CHARACTERS_IN_LOGIN_OR_PASSWORD_MESSAGE));
+                    session.setAttribute(ERROR_LOGIN_ATTRIBUTE,
+                            resourceBundle.getString(INVALID_CHARACTERS_IN_LOGIN_OR_PASSWORD_MESSAGE));
                     return request.getContextPath() + ERROR_REDIRECT;
                 }
             }
@@ -62,7 +65,8 @@ public class AutorisationAction extends AllUsersAction {
             return request.getContextPath() + SUCCESSFUL_REDIRECT;
         }
         setUserInputData();
-        session.setAttribute(ERROR_LOGIN_ATTRIBUTE, resourceBundle.getString(INCORRECT_LOGIN_OR_PASSWORD_ERROR_MESSAGE));
+        session.setAttribute(ERROR_LOGIN_ATTRIBUTE,
+                resourceBundle.getString(INCORRECT_LOGIN_OR_PASSWORD_ERROR_MESSAGE));
 
         return request.getContextPath() + ERROR_REDIRECT;
     }
@@ -77,15 +81,15 @@ public class AutorisationAction extends AllUsersAction {
         logger.debug("check data start");
         int countErrors = 0;
         if (login.length() == 0) {
-            session.setAttribute(ERROR_LOGIN_ATTRIBUTE, resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
+            session.setAttribute(ERROR_LOGIN_ATTRIBUTE,
+                    resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
             countErrors++;
         }
-
         if (password.length() == 0) {
-            session.setAttribute(ERROR_PASSWORD_ATTRIBUTE, resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
+            session.setAttribute(ERROR_PASSWORD_ATTRIBUTE,
+                    resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
             countErrors++;
         }
-
         logger.debug(String.format("find %d errors", countErrors));
         return countErrors == 0;
     }

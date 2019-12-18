@@ -24,7 +24,17 @@ public class User extends Entity implements Serializable {
     public User() {
     }
 
-    public User(String login, String password, String name, String surname, String gender, String birthday, String country, String passportNumber, String passportDateOfIssue, String phoneNumber, String email) {
+    public User(String login,
+                String password,
+                String name,
+                String surname,
+                String gender,
+                String birthday,
+                String country,
+                String passportNumber,
+                String passportDateOfIssue,
+                String phoneNumber,
+                String email) {
         this.login = login;
         this.password = password;
         this.name = name;
@@ -38,7 +48,18 @@ public class User extends Entity implements Serializable {
         this.email = email;
     }
 
-    public User(String login, String password, String name, String surname, String gender, String birthday, String country, String passportNumber, String passportDateOfIssue, String phoneNumber, String email, Car car) {
+    public User(String login,
+                String password,
+                String name,
+                String surname,
+                String gender,
+                String birthday,
+                String country,
+                String passportNumber,
+                String passportDateOfIssue,
+                String phoneNumber,
+                String email,
+                Car car) {
         this.login = login;
         this.password = password;
         this.name = name;
@@ -53,7 +74,16 @@ public class User extends Entity implements Serializable {
         this.car = car;
     }
 
-    public User(String login, String name, String surname, String gender, String birthday, String country, String passportNumber, String passportDateOfIssue, String phoneNumber, String email) {
+    public User(String login,
+                String name,
+                String surname,
+                String gender,
+                String birthday,
+                String country,
+                String passportNumber,
+                String passportDateOfIssue,
+                String phoneNumber,
+                String email) {
         this.login = login;
         this.name = name;
         this.surname = surname;
@@ -66,7 +96,17 @@ public class User extends Entity implements Serializable {
         this.email = email;
     }
 
-    public User(String login, String name, String surname, String gender, String birthday, String country, String passportNumber, String passportDateOfIssue, String phoneNumber, String email, Car car) {
+    public User(String login,
+                String name,
+                String surname,
+                String gender,
+                String birthday,
+                String country,
+                String passportNumber,
+                String passportDateOfIssue,
+                String phoneNumber,
+                String email,
+                Car car) {
         this.login = login;
         this.name = name;
         this.surname = surname;
@@ -245,23 +285,26 @@ public class User extends Entity implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), login, password, salt, role, name, surname, gender, birthday, country, passportNumber, passportDateOfIssue, phoneNumber, email, car);
+        return Objects.hash(super.hashCode(),
+                login, password, salt, role,
+                name, surname, gender, birthday,
+                country, passportNumber, passportDateOfIssue,
+                phoneNumber, email, car);
     }
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() +
-                "login='" + login + '\'' +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", gender='" + gender + '\'' +
-                ", birthday=" + birthday +
-                ", country='" + country + '\'' +
-                ", passportNumber='" + passportNumber + '\'' +
-                ", passportDateOfIssue=" + passportDateOfIssue +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", email='" + email + '\'' +
-                ", car=" + car +
-                '}';
+        return getClass().getSimpleName()
+                + "login='" + login + '\''
+                + ", name='" + name + '\''
+                + ", surname='" + surname + '\''
+                + ", gender='" + gender + '\''
+                + ", birthday=" + birthday
+                + ", country='" + country + '\''
+                + ", passportNumber='" + passportNumber + '\''
+                + ", passportDateOfIssue=" + passportDateOfIssue
+                + ", phoneNumber='" + phoneNumber + '\''
+                + ", email='" + email + '\''
+                + ", car=" + car + '}';
     }
 }

@@ -9,11 +9,15 @@ import java.io.IOException;
 
 public class ActionFromUriFilter implements Filter {
 
+    public static final String ERROR_PAGE = "/WEB-INF/jsp/error.jsp";
     private final Logger logger = LogManager.getLogger(getClass().getName());
 
 
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+    public void doFilter(ServletRequest servletRequest,
+                         ServletResponse servletResponse,
+                         FilterChain filterChain)
+            throws IOException, ServletException {
         if (servletRequest instanceof HttpServletRequest) {
             HttpServletRequest httpRequest = (HttpServletRequest) servletRequest;
             String contextPath = httpRequest.getContextPath();
@@ -42,11 +46,15 @@ public class ActionFromUriFilter implements Filter {
             } catch (NullPointerException e) {
                 logger.error("It is impossible to create action handler object", e);
                 httpRequest.setAttribute("error", String.format("Запрошенный адрес %s не может быть обработан сервером", uri));
-                httpRequest.getServletContext().getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(servletRequest, servletResponse);
+                httpRequest.getServletContext()
+                        .getRequestDispatcher(ERROR_PAGE)
+                        .forward(servletRequest, servletResponse);
             }
         } else {
             logger.error("It is impossible to use HTTP filter");
-            servletRequest.getServletContext().getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(servletRequest, servletResponse);
+            servletRequest.getServletContext()
+                    .getRequestDispatcher(ERROR_PAGE)
+                    .forward(servletRequest, servletResponse);
         }
     }
 

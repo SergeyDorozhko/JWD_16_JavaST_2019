@@ -55,7 +55,8 @@ public class JourneyServiceImpl extends AbstractService implements JourneyServic
         logger.debug(String.format("today : %s time %s", LocalDate.now(), LocalTime.now()));
 
         try {
-            list = journeyDAO.takeListOfNearestTripForMain(LocalDate.now(), LocalTime.now(), limitFrom, limitTo);
+            list = journeyDAO.takeListOfNearestTripForMain(LocalDate.now(),
+                    LocalTime.now(), limitFrom, limitTo);
             for (Journey journey : list) {
                 User user = userDAO.findEntityById(journey.getDriver().getId());
                 journey.getDriver().setId(user.getId());
@@ -65,7 +66,8 @@ public class JourneyServiceImpl extends AbstractService implements JourneyServic
                 journey.setDestinationAddress(catalogDAO.getAddressByCityId(
                         Integer.parseInt(journey
                                 .getDestinationAddress().getCity())));
-                journey.setCurrency(catalogDAO.getCurrency(Integer.parseInt(journey.getCurrency())));
+                journey.setCurrency(catalogDAO
+                        .getCurrency(Integer.parseInt(journey.getCurrency())));
             }
             transaction.commit();
         } catch (ExceptionDao exceptionDao) {
@@ -85,7 +87,8 @@ public class JourneyServiceImpl extends AbstractService implements JourneyServic
         transaction.begin(journeyDAO, userDAO);
 
         try {
-            int userInfoId = userDAO.findUserInfoIdByUsersId(journey.getDriver().getId());
+            int userInfoId = userDAO
+                    .findUserInfoIdByUsersId(journey.getDriver().getId());
             journey.getDriver().setId(userInfoId);
 
             journey = journeyDAO.create(journey);
@@ -103,18 +106,26 @@ public class JourneyServiceImpl extends AbstractService implements JourneyServic
 
     private void validateJourney(Journey journey) throws ExceptionService {
         logger.debug(journey);
-        validateWithIdField(journey.getStartAddress().getCountry(), INVALID_FORMAT_OF_START_COUNTRY);
-        validateWithIdField(journey.getStartAddress().getRegionalCenter(), INVALID_FORMAT_OF_START_REGION);
-        validateWithIdField(journey.getStartAddress().getCity(), INVALID_FORMAT_OF_START_CITY);
-        validateWithIdField(journey.getDestinationAddress().getCountry(), INVALID_FORMAT_OF_DESTINATION_COUNTRY);
-        validateWithIdField(journey.getDestinationAddress().getRegionalCenter(), INVALID_FORMAT_OF_DESTINATION_REGION);
-        validateWithIdField(journey.getDestinationAddress().getCity(), INVALID_FORMAT_OF_DESTINATION_CITY);
+        validateWithIdField(journey.getStartAddress().getCountry(),
+                INVALID_FORMAT_OF_START_COUNTRY);
+        validateWithIdField(journey.getStartAddress().getRegionalCenter(),
+                INVALID_FORMAT_OF_START_REGION);
+        validateWithIdField(journey.getStartAddress().getCity(),
+                INVALID_FORMAT_OF_START_CITY);
+        validateWithIdField(journey.getDestinationAddress().getCountry(),
+                INVALID_FORMAT_OF_DESTINATION_COUNTRY);
+        validateWithIdField(journey.getDestinationAddress().getRegionalCenter(),
+                INVALID_FORMAT_OF_DESTINATION_REGION);
+        validateWithIdField(journey.getDestinationAddress().getCity(),
+                INVALID_FORMAT_OF_DESTINATION_CITY);
         final int todayDate = -2;
         final int afterTwoYear = 0;
-        if (!validator.validateDate(journey.getDepartureDate(), todayDate, afterTwoYear)) {
+        if (!validator.validateDate(journey.getDepartureDate(),
+                todayDate, afterTwoYear)) {
             throw new ExceptionService(INVALID_FORMAT_OF_DATE);
         }
-        if (!validator.validateFutureTimeByDate(journey.getDepartureDate(), journey.getDepartureTime())) {
+        if (!validator.validateFutureTimeByDate(journey.getDepartureDate(),
+                journey.getDepartureTime())) {
             throw new ExceptionService(INVALID_TIME_FORMAT);
         }
         if (!validator.validateCost(journey.getCost())) {
@@ -129,7 +140,9 @@ public class JourneyServiceImpl extends AbstractService implements JourneyServic
         }
     }
 
-    private void validateWithIdField(String idValue, String errorMessage) throws ExceptionService {
+    private void validateWithIdField(String idValue,
+                                     String errorMessage)
+            throws ExceptionService {
         if (!validator.validateForPositiveInteger(Integer.parseInt(idValue))) {
             throw new ExceptionService(errorMessage);
         }
@@ -143,7 +156,9 @@ public class JourneyServiceImpl extends AbstractService implements JourneyServic
         transaction.begin(journeyDAO, userDAO);
 
         try {
-            int userInfoId = userDAO.findUserInfoIdByUsersId(journey.getDriver().getId());
+            int userInfoId
+                    = userDAO.findUserInfoIdByUsersId(
+                            journey.getDriver().getId());
             journey.getDriver().setId(userInfoId);
 
             journey = journeyDAO.update(journey);
@@ -172,9 +187,14 @@ public class JourneyServiceImpl extends AbstractService implements JourneyServic
             logger.debug(String.format("journey driver id: %s", journey.getDriver().getId()));
             User driverInfo = userDAO.findEntityById(journey.getDriver().getId());
             journey.setDriver(driverInfo);
-            journey.setStartAddress(catalogDAO.getAddressByCityId(Integer.parseInt(journey.getStartAddress().getCity())));
-            journey.setDestinationAddress(catalogDAO.getAddressByCityId(Integer.parseInt(journey.getDestinationAddress().getCity())));
-            journey.setCurrency(catalogDAO.getCurrency(Integer.parseInt(journey.getCurrency())));
+            journey.setStartAddress(catalogDAO
+                    .getAddressByCityId(Integer.parseInt(
+                            journey.getStartAddress().getCity())));
+            journey.setDestinationAddress(
+                    catalogDAO.getAddressByCityId(Integer.parseInt(
+                            journey.getDestinationAddress().getCity())));
+            journey.setCurrency(catalogDAO.getCurrency(Integer.parseInt(
+                    journey.getCurrency())));
 
             if (journey.getDriver().getCar() != null) {
                 Car car = catalogDAO.getCar(Integer.parseInt(
@@ -205,7 +225,8 @@ public class JourneyServiceImpl extends AbstractService implements JourneyServic
 
         try {
             int userInfoId = userDAO.findUserInfoIdByUsersId(driverId);
-            journey = journeyDAO.takeJourneyByJourneyIdAndDriverId(journeyId, userInfoId);
+            journey = journeyDAO.takeJourneyByJourneyIdAndDriverId(
+                    journeyId, userInfoId);
 
             if (journey != null) {
                 journey.setStartAddress(catalogDAO.getAddressIdByCityId(

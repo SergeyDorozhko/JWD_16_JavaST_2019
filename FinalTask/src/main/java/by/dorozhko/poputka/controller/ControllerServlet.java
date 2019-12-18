@@ -15,16 +15,22 @@ import java.io.IOException;
 @MultipartConfig
 public class ControllerServlet extends HttpServlet {
 
+    public static final String FORWARD_KEY = ".jsp";
+    public static final String DEFAULT_ACTION = "default";
     private final Logger logger = LogManager.getLogger(getClass().getName());
 
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req,
+                         HttpServletResponse resp)
+            throws ServletException, IOException {
         process(req, resp);
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req,
+                          HttpServletResponse resp)
+            throws ServletException, IOException {
         process(req, resp);
     }
 
@@ -54,13 +60,14 @@ public class ControllerServlet extends HttpServlet {
             requestDispatcher = req.getRequestDispatcher(page);
         } else {
             logger.debug("go to main page");
-            String defaultAction = "default";
-            page = ActionProvider.getInstance().getAction(defaultAction).execute(req, resp);
+            String defaultAction = DEFAULT_ACTION;
+            page = ActionProvider.getInstance()
+                    .getAction(defaultAction).execute(req, resp);
             requestDispatcher
                     = req.getRequestDispatcher(page);
         }
         if (!resp.isCommitted()) {
-            if (page.contains(".jsp")) {
+            if (page.contains(FORWARD_KEY)) {
                 requestDispatcher.forward(req, resp);
             } else {
                 resp.sendRedirect(page);

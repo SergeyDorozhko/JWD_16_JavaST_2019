@@ -59,7 +59,8 @@ public class SaveCar extends UserAction {
 
         String button = request.getParameter(BUTTON);
         logger.debug(String.format("button - %s", button));
-        boolean isSaveActionAndValid =  button != null && button.equals(SAVE_CAR_BUTTON) && checkData(request);
+        boolean isSaveActionAndValid = button != null
+                && button.equals(SAVE_CAR_BUTTON) && checkData(request);
         if (isSaveActionAndValid) {
             User actionUser = (User) session.getAttribute(AUTHORIZED_USER_ATTRIBUTE);
             User user = new User();

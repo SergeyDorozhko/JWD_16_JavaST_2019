@@ -51,11 +51,15 @@ public class AddCarPage extends UserAction {
     }
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
+    public String execute(final HttpServletRequest request,
+                          final HttpServletResponse response) {
         setLocaleToCookie(request, response);
-        Map<Integer, String> brands = ServiceFactory.getInstance().getCatalogService().getCarBrands();
+        Map<Integer, String> brands = ServiceFactory.getInstance()
+                .getCatalogService().getCarBrands();
         request.setAttribute(BRANDS_MAP_ATTRIBUTE, brands);
-        Map<Integer, String> climate = ServiceFactory.getInstance().getCatalogService().getCarClimateTypes();
+
+        Map<Integer, String> climate = ServiceFactory.getInstance()
+                .getCatalogService().getCarClimateTypes();
         request.setAttribute(CLIMATE_TYPE_MAP_ATTRIBUTE, climate);
 
         ResourceBundle resourceBundle = takeLocale(request);
@@ -63,11 +67,14 @@ public class AddCarPage extends UserAction {
         attributesData(request);
         if (userBrand != null && userBrand.length() > 0) {
             try {
-            Map<Integer, String> models = ServiceFactory.getInstance().getCatalogService().getCarModelsOfBrand(Integer.parseInt(userBrand));
-            request.setAttribute(MODELS_MAP_ATTRIBUTE, models);
+                Map<Integer, String> models = ServiceFactory.getInstance()
+                        .getCatalogService()
+                        .getCarModelsOfBrand(Integer.parseInt(userBrand));
+                request.setAttribute(MODELS_MAP_ATTRIBUTE, models);
             } catch (NumberFormatException ex) {
                 logger.error(ex);
-                request.setAttribute(ERROR_BRAND_ATTRIBUTE, resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
+                request.setAttribute(ERROR_BRAND_ATTRIBUTE,
+                        resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
             }
         }
         return FORWARD_PAGE;

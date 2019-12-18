@@ -40,7 +40,9 @@ public interface UserService extends Service {
      */
     User update(User user) throws ExceptionService;
 
-    boolean updateUserPassword (User user, String newPassword) throws ExceptionService;
+    boolean updateUserPassword (User user,
+                                String newPassword)
+            throws ExceptionService;
 
     User takeDataForEditProfile(int id) throws ExceptionService;
     User addCar(User user) throws ExceptionService;

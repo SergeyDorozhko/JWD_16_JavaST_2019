@@ -77,8 +77,10 @@ public class RegistrationPage extends AllUsersAction {
         setLocaleToCookie(request, response);
 
         attributesData(request);
-        Map<Integer, String> gendors = ServiceFactory.getInstance().getCatalogService().getGenders();
-        Map<Integer, String> countries = ServiceFactory.getInstance().getCatalogService().getCountries();
+        Map<Integer, String> gendors = ServiceFactory.getInstance()
+                .getCatalogService().getGenders();
+        Map<Integer, String> countries = ServiceFactory.getInstance()
+                .getCatalogService().getCountries();
 
         request.setAttribute(MAP_OF_GENDORS, gendors);
         request.setAttribute(MAP_OF_COUNTRIES, countries);

@@ -9,9 +9,11 @@ public final class ServiceFactory {
     /**
      * static variable single_instance of type FactoryDao.
      */
-    private static final ServiceFactory INSTANCE = new ServiceFactory();
+    private static final ServiceFactory INSTANCE
+            = new ServiceFactory();
 
-    private ConnectionService connectionService = new ConnectionServiceImpl();
+    private ConnectionService connectionService
+            = new ConnectionServiceImpl();
 
     private ServiceFactory() {
 

@@ -53,8 +53,12 @@ public class UserServiceImplTest {
 
     @AfterClass
     public void closeConnection() {
-        try (PreparedStatement statementUserInfo = connection.prepareStatement("DELETE FROM user_info WHERE user_id = ?;");
-             PreparedStatement statementUsers = connection.prepareStatement("DELETE FROM users WHERE id = ?;")) {
+        try (PreparedStatement statementUserInfo
+                     = connection.prepareStatement(
+                             "DELETE FROM user_info WHERE user_id = ?;");
+             PreparedStatement statementUsers
+                     = connection.prepareStatement(
+                             "DELETE FROM users WHERE id = ?;")) {
 
             for (User user : usersList) {
                 statementUserInfo.setInt(1, user.getId());
@@ -134,7 +138,8 @@ public class UserServiceImplTest {
     }
 
 
-    @Test(description = "test find user info by id", dataProvider = "data for find user by id test")
+    @Test(description = "test find user info by id",
+            dataProvider = "data for find user by id test")
     public void findUserByIdTest(int id, boolean expectedResult) {
 
         User actualUser = null;
@@ -203,7 +208,8 @@ public class UserServiceImplTest {
         };
     }
 
-    @Test(description = "find user by id exception test", dataProvider = "data for find user by id exception test")
+    @Test(description = "find user by id exception test",
+            dataProvider = "data for find user by id exception test")
     public void findUserByIdExceptionTest(int id) {
         assertThrows(ExceptionService.class, () -> service.findById(id));
     }
@@ -217,8 +223,11 @@ public class UserServiceImplTest {
     }
 
 
-    @Test(description = "positive test sing in", dataProvider = "data for testing positive scenario of sing in")
-    public void singInTest(final String[] loginPassword, final User expextedUserWithRole) throws ExceptionService {
+    @Test(description = "positive test sing in",
+            dataProvider = "data for testing positive scenario of sing in")
+    public void singInTest(final String[] loginPassword,
+                           final User expextedUserWithRole)
+            throws ExceptionService {
         User actualUser = service.singIn(loginPassword[0], loginPassword[1]);
         if (actualUser != null) {
             String actualRole = actualUser.getRole().toString();
@@ -249,9 +258,13 @@ public class UserServiceImplTest {
         return user;
     }
 
-    @Test(description = "negotive test sing in", dataProvider = "data for testing negotive scenario of sing in")
-    public void singInErrorTest(final String login, final String password) throws ExceptionService {
-        assertThrows(ExceptionService.class, () -> service.singIn(login, password));
+    @Test(description = "negotive test sing in",
+            dataProvider = "data for testing negotive scenario of sing in")
+    public void singInErrorTest(final String login,
+                                final String password)
+            throws ExceptionService {
+        assertThrows(ExceptionService.class,
+                () -> service.singIn(login, password));
     }
 
     @DataProvider(name = "data for testing negotive scenario of sing in")
@@ -275,7 +288,8 @@ public class UserServiceImplTest {
         };
     }
 
-    @Test(dependsOnMethods = {"addUserTest"}, description = "find all users test")
+    @Test(dependsOnMethods = {"addUserTest"},
+            description = "find all users test")
     public void findAllTest() {
         List<User> actulList = service.findAll();
         int expectedSize = usersList.size() + 3; //number "3" because data base has admin, gav, diff before test
@@ -283,8 +297,11 @@ public class UserServiceImplTest {
     }
 
 
-    @Test(description = "test change password", dataProvider = "data for update Password")
-    public void updateUserPasswordTest(Object[] userAndNewPssword, final boolean expectedResult) throws ExceptionService {
+    @Test(description = "test change password",
+            dataProvider = "data for update Password")
+    public void updateUserPasswordTest(Object[] userAndNewPssword,
+                                       final boolean expectedResult)
+            throws ExceptionService {
         User actualUser = (User) userAndNewPssword[0];
         String newPassword = (String) userAndNewPssword[1];
         boolean actualResult = service.updateUserPassword(actualUser, newPassword);

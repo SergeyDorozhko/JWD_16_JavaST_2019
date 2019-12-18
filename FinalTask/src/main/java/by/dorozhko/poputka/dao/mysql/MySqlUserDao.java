@@ -48,7 +48,9 @@ public class MySqlUserDao implements UserDAO {
             = "SELECT users.id, users.login from users";
 
     private static final String SELECT_USER_FROM_TRIP_BY_ID
-            = " SELECT user_info.user_id, user_info.name, user_info.email, user_info.phone, brand_and_model_id, year_of_produce, climate_type_id  FROM user_info LEFT JOIN cars  on user_info.car_id = cars.id"
+            = " SELECT user_info.user_id, user_info.name, user_info.email,"
+            + " user_info.phone, brand_and_model_id, year_of_produce, climate_type_id"
+            + " FROM user_info LEFT JOIN cars  on user_info.car_id = cars.id"
             + " WHERE user_info.id = ?;";
 
     private static final String SELECT_ID_LOGIN_ROLE_BY_ID
@@ -144,7 +146,8 @@ public class MySqlUserDao implements UserDAO {
         ResultSet resultSet = null;
         ResultSet resultUser = null;
         try (PreparedStatement statement
-                     = connection.prepareStatement(INSERT_INTO_USERS, Statement.RETURN_GENERATED_KEYS);
+                     = connection.prepareStatement(INSERT_INTO_USERS,
+                Statement.RETURN_GENERATED_KEYS);
              PreparedStatement statementUserInf
                      = connection.prepareStatement(INSERT_INTO_USER_INFO);
              PreparedStatement statementTakeCreatedUser
@@ -224,7 +227,8 @@ public class MySqlUserDao implements UserDAO {
     @Override
     public boolean delete(final Integer id) throws ExceptionDao {
 
-        try (PreparedStatement statement = connection.prepareStatement(DELETE_USER_BY_ID)) {
+        try (PreparedStatement statement = connection
+                .prepareStatement(DELETE_USER_BY_ID)) {
             statement.setInt(1, id);
             statement.executeUpdate();
         } catch (SQLException ex) {
@@ -245,7 +249,8 @@ public class MySqlUserDao implements UserDAO {
     @Override
     public User update(final User entity) throws ExceptionDao {
 
-        try (PreparedStatement statement = connection.prepareStatement(UPDATE_USER_INFO)) {
+        try (PreparedStatement statement = connection
+                .prepareStatement(UPDATE_USER_INFO)) {
             setStatementDataToUpdateUser(statement, entity);
             statement.executeUpdate();
         } catch (SQLException ex) {
@@ -255,7 +260,8 @@ public class MySqlUserDao implements UserDAO {
         return entity;
     }
 
-    private void setStatementDataToUpdateUser(PreparedStatement statement, User user) throws SQLException {
+    private void setStatementDataToUpdateUser(PreparedStatement statement,
+                                              User user) throws SQLException {
         logger.debug(user);
         statement.setString(1, user.getLogin());
         statement.setString(2, user.getName());
@@ -310,7 +316,8 @@ public class MySqlUserDao implements UserDAO {
     public User findEntityById(final Integer id) throws ExceptionDao {
         User user = null;
         ResultSet resultSet = null;
-        try (PreparedStatement statement = connection.prepareStatement(SELECT_USER_FROM_TRIP_BY_ID);) {
+        try (PreparedStatement statement = connection
+                .prepareStatement(SELECT_USER_FROM_TRIP_BY_ID);) {
             statement.setInt(1, id);
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
@@ -536,7 +543,8 @@ public class MySqlUserDao implements UserDAO {
         String message = String.format("new user take from db: %d", 2);
         logger.debug(message);
         ResultSet resultSet = null;
-        try (PreparedStatement userInfoStatement = connection.prepareStatement(SELECT_ALL_USER_INFO_WITHOUT_CAR_BY_ID);) {
+        try (PreparedStatement userInfoStatement = connection
+                .prepareStatement(SELECT_ALL_USER_INFO_WITHOUT_CAR_BY_ID);) {
             userInfoStatement.setInt(1, id);
             resultSet = userInfoStatement.executeQuery();
             while (resultSet.next()) {
@@ -574,7 +582,8 @@ public class MySqlUserDao implements UserDAO {
 
     @Override
     public boolean updateUserPassword(User user) throws ExceptionDao {
-        try (PreparedStatement statement = connection.prepareStatement(UPDATE_USER_PASSWORD)) {
+        try (PreparedStatement statement = connection
+                .prepareStatement(UPDATE_USER_PASSWORD)) {
             statement.setString(1, user.getPassword());
             statement.setString(2, user.getSalt());
             statement.setInt(3, user.getId());
@@ -590,7 +599,8 @@ public class MySqlUserDao implements UserDAO {
     public int findUserInfoIdByUsersId(int usersId) throws ExceptionDao {
         int userInfoId = 0;
         ResultSet resultSet = null;
-        try (PreparedStatement statement = connection.prepareStatement(SELECT_USER_INFO_ID_BY_USERS_ID)) {
+        try (PreparedStatement statement = connection
+                .prepareStatement(SELECT_USER_INFO_ID_BY_USERS_ID)) {
             statement.setInt(1, usersId);
             resultSet = statement.executeQuery();
             while (resultSet.next()) {

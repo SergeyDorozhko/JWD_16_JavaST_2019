@@ -108,7 +108,8 @@ public class EditJourneyAction extends UserAction {
         resourceBundle = takeLocale(request);
 
         String button = request.getParameter(BUTTON);
-        boolean isSaveActionAndValid = button != null && button.equals(SAVE_JOURNEY_BUTTON) && checkData();
+        boolean isSaveActionAndValid = button != null
+                && button.equals(SAVE_JOURNEY_BUTTON) && checkData();
 
         if (isSaveActionAndValid) {
             JourneyService journeyService = ServiceFactory.getInstance().getJoureyService();
@@ -306,18 +307,30 @@ public class EditJourneyAction extends UserAction {
         Set<ErrorMessageConficurator> errorList = new HashSet<>();
 
 
-        errorList.add(new ErrorMessageConficurator(INVALID_FORMAT_OF_START_COUNTRY, ERROR_COUNTRY_FROM_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(INVALID_FORMAT_OF_START_REGION, ERROR_REGION_FROM_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(INVALID_FORMAT_OF_START_CITY, ERROR_CITY_FROM_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(INVALID_FORMAT_OF_DESTINATION_COUNTRY, ERROR_COUNTRY_TO_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(INVALID_FORMAT_OF_DESTINATION_REGION, ERROR_REGION_TO_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(INVALID_FORMAT_OF_DESTINATION_CITY, ERROR_CITY_TO_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(INVALID_FORMAT_OF_DATE, ERROR_DEPARTURE_DATE_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(INVALID_TIME_FORMAT, ERROR_DEPARTURE_TIME_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(INVALID_COST_VALUE, ERROR_COST_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(INVALID_FORMAT_OF_CURRENCY, ERROR_CURRENCY_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(INVALID_NUMBER_OF_PASSENGERS, ERROR_PASSENGERS_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(INVALID_CHARACTERS_IN_COMMENTARY, ERROR_COMMENTARY_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_FORMAT_OF_START_COUNTRY,
+                ERROR_COUNTRY_FROM_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_FORMAT_OF_START_REGION,
+                ERROR_REGION_FROM_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_FORMAT_OF_START_CITY,
+                ERROR_CITY_FROM_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_FORMAT_OF_DESTINATION_COUNTRY,
+                ERROR_COUNTRY_TO_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_FORMAT_OF_DESTINATION_REGION,
+                ERROR_REGION_TO_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_FORMAT_OF_DESTINATION_CITY,
+                ERROR_CITY_TO_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_FORMAT_OF_DATE,
+                ERROR_DEPARTURE_DATE_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_TIME_FORMAT,
+                ERROR_DEPARTURE_TIME_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_COST_VALUE,
+                ERROR_COST_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_FORMAT_OF_CURRENCY,
+                ERROR_CURRENCY_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_NUMBER_OF_PASSENGERS,
+                ERROR_PASSENGERS_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_CHARACTERS_IN_COMMENTARY,
+                ERROR_COMMENTARY_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
 
         return errorList;
     }

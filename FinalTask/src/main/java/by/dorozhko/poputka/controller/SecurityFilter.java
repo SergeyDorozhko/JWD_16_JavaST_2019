@@ -62,7 +62,8 @@ public class SecurityFilter implements Filter {
             }
             logger.debug("set user to session ok");
             boolean canExecute = allowRoles == null;
-            canExecute = canExecute || allowRoles.contains(user.getRole()) && allowMethods.contains(httpRequest.getMethod());
+            canExecute = canExecute || allowRoles.contains(user.getRole())
+                    && allowMethods.contains(httpRequest.getMethod());
             logger.debug(user.getRole());
             if (canExecute) {
                 filterChain.doFilter(servletRequest, servletResponse);
@@ -72,11 +73,14 @@ public class SecurityFilter implements Filter {
                 if (!(action instanceof AllUsersAction)) {
                     httpRequest.setAttribute(SECURITY_MESSAGE, ACCESS_ERROR);
                 }
-                ((HttpServletResponse) servletResponse).sendError(HttpServletResponse.SC_UNAUTHORIZED);
+                ((HttpServletResponse) servletResponse)
+                        .sendError(HttpServletResponse.SC_UNAUTHORIZED);
             }
         } else {
             logger.error("It is impossible to use HTTP filter");
-            servletRequest.getServletContext().getRequestDispatcher(ERROR_PAGE).forward(servletRequest, servletResponse);
+            servletRequest.getServletContext()
+                    .getRequestDispatcher(ERROR_PAGE)
+                    .forward(servletRequest, servletResponse);
         }
     }
 }

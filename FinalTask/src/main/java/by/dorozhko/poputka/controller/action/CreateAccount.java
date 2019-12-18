@@ -119,7 +119,11 @@ public class CreateAccount extends AllUsersAction {
 
         if (checkData()) {
             logger.debug("passwords are equal");
-            User user = new User(login, password, firstName, lastName, sex, birthday, country, passportNumber, passportDate, phoneNumber, email);
+            User user = new User(login, password,
+                    firstName, lastName,
+                    sex, birthday, country,
+                    passportNumber, passportDate,
+                    phoneNumber, email);
 
             logger.debug("user created");
             try {
@@ -168,7 +172,8 @@ public class CreateAccount extends AllUsersAction {
         countErrors += checkValueIsExist(firstName, ERROR_FIRST_NAME_ATTRIBUTE);
         countErrors += checkValueIsExist(lastName, ERROR_LAST_NAME_ATTRIBUTE);
         countErrors += checkValueIsExist(email, ERROR_EMAIL_ATTRIBUTE);
-        countErrors += checkPasswordIsExistAndEquals(password, confirmPassword, ERROR_PASSWORD_ATTRIBUTE);
+        countErrors += checkPasswordIsExistAndEquals(password,
+                confirmPassword, ERROR_PASSWORD_ATTRIBUTE);
         countErrors += checkForDateValue(birthday, ERROR_BIRTHDAY_ATTRIBUTE);
         countErrors += checkValueIsExist(passportNumber, ERROR_PHONE_ATTRIBUTE);
         countErrors += checkForIntegerValue(country, ERROR_COUNTRY_ATTRIBUTE);
@@ -190,15 +195,24 @@ public class CreateAccount extends AllUsersAction {
         return countErrors;
     }
 
-    private int checkPasswordIsExistAndEquals(String pwd, String confirmPwd, String attributeForErrorMessage) {
+    private int checkPasswordIsExistAndEquals(String pwd,
+                                              String confirmPwd,
+                                              String attributeForErrorMessage) {
         int countErrors = 0;
 
-        if (pwd == null || pwd.length() == 0 || confirmPwd == null || confirmPwd.length() == 0) {
-            session.setAttribute(attributeForErrorMessage, resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
+        boolean isPasswordAndComfirmPasswordTaken = pwd == null
+                || pwd.length() == 0
+                || confirmPwd == null
+                || confirmPwd.length() == 0;
+
+        if (isPasswordAndComfirmPasswordTaken) {
+            session.setAttribute(attributeForErrorMessage,
+                    resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
             countErrors++;
         } else {
             if (!pwd.equals(confirmPwd)) {
-                session.setAttribute(attributeForErrorMessage, resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
+                session.setAttribute(attributeForErrorMessage,
+                        resourceBundle.getString(FIELD_IS_EMPTY_ERROR_MESSAGE));
                 countErrors++;
             }
         }
@@ -266,21 +280,36 @@ public class CreateAccount extends AllUsersAction {
     private Set<ErrorMessageConficurator> expectedMessages() {
 
         Set<ErrorMessageConficurator> errorList = new HashSet<>();
-        errorList.add(new ErrorMessageConficurator(DUBLICATED_LOGIN, ERROR_LOGIN_ATTRIBUTE, DUBLICATED_LOGIN_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(DUBLICATED_PASSPORT_NUMBER, ERROR_PASSPORT_NUMBER_ATTRIBUTE, DUBLICATED_PASSPORT_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(DUBLICATED_PHONE, ERROR_PHONE_ATTRIBUTE, DUBLICATED_PHONE_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(DUBLICATED_EMAIL, ERROR_EMAIL_ATTRIBUTE, DUBLICATED_EMAIL_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(INVALID_LOGIN_FORMAT, ERROR_LOGIN_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(INVALID_PASSWORD_FORMAT, ERROR_PASSWORD_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(INVALID_NAME_FORMAT, ERROR_FIRST_NAME_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(INVALID_SURNAME_FORMAT, ERROR_LAST_NAME_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(INVALID_EMAIL_FORMAT, ERROR_EMAIL_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(INVALID_BIRTHDAY_DATE_VALUE, ERROR_BIRTHDAY_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(INVALID_PHONE_FORMAT, ERROR_PHONE_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(INVALID_COUNTRY_ID_VALUE, ERROR_COUNTRY_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(INVALID_PASSPORT_NUMBER_FORMAT, ERROR_PASSPORT_NUMBER_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(INVALID_PASSPORT_ISSUE_DATE_VALUE, ERROR_PASSPORT_DATE_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(INVALID_GENDER_ID_VALUE, ERROR_SEX_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(DUBLICATED_LOGIN,
+                ERROR_LOGIN_ATTRIBUTE, DUBLICATED_LOGIN_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(DUBLICATED_PASSPORT_NUMBER,
+                ERROR_PASSPORT_NUMBER_ATTRIBUTE, DUBLICATED_PASSPORT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(DUBLICATED_PHONE,
+                ERROR_PHONE_ATTRIBUTE, DUBLICATED_PHONE_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(DUBLICATED_EMAIL,
+                ERROR_EMAIL_ATTRIBUTE, DUBLICATED_EMAIL_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_LOGIN_FORMAT,
+                ERROR_LOGIN_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_PASSWORD_FORMAT,
+                ERROR_PASSWORD_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_NAME_FORMAT,
+                ERROR_FIRST_NAME_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_SURNAME_FORMAT,
+                ERROR_LAST_NAME_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_EMAIL_FORMAT,
+                ERROR_EMAIL_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_BIRTHDAY_DATE_VALUE,
+                ERROR_BIRTHDAY_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_PHONE_FORMAT,
+                ERROR_PHONE_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_COUNTRY_ID_VALUE,
+                ERROR_COUNTRY_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_PASSPORT_NUMBER_FORMAT,
+                ERROR_PASSPORT_NUMBER_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_PASSPORT_ISSUE_DATE_VALUE,
+                ERROR_PASSPORT_DATE_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_GENDER_ID_VALUE,
+                ERROR_SEX_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
 
         return errorList;
     }

@@ -100,8 +100,10 @@ public class UserServiceImpl extends AbstractService implements UserService {
                             .getClimateType(Integer.parseInt(userInfo
                                     .getCar().getAirConditioner())));
                 }
-                userInfo.setGender(catalogDAO.getGender(Integer.parseInt(userInfo.getGender())));
-                userInfo.setCountry(catalogDAO.getCountry(Integer.parseInt(userInfo.getCountry())));
+                userInfo.setGender(catalogDAO.getGender(
+                        Integer.parseInt(userInfo.getGender())));
+                userInfo.setCountry(catalogDAO.getCountry(
+                        Integer.parseInt(userInfo.getCountry())));
             }
             transaction.commit();
         } catch (ExceptionDao exceptionDao) {
@@ -217,7 +219,8 @@ public class UserServiceImpl extends AbstractService implements UserService {
         if (!validator.validatePhone(user.getPhoneNumber())) {
             throw new ExceptionService(INVALID_PHONE_FORMAT);
         }
-        if (!validator.validateForPositiveInteger(Integer.parseInt(user.getCountry()))) {
+        if (!validator.validateForPositiveInteger(
+                Integer.parseInt(user.getCountry()))) {
             throw new ExceptionService(INVALID_COUNTRY_ID_VALUE);
         }
         if (!validator.validatePassportNumber(user.getPassportNumber())) {
@@ -229,7 +232,8 @@ public class UserServiceImpl extends AbstractService implements UserService {
                 minYearsOld, maxYearsOld)) {
             throw new ExceptionService(INVALID_PASSPORT_ISSUE_DATE_VALUE);
         }
-        if (!validator.validateForPositiveInteger(Integer.parseInt(user.getGender()))) {
+        if (!validator.validateForPositiveInteger(
+                Integer.parseInt(user.getGender()))) {
             throw new ExceptionService(INVALID_GENDER_ID_VALUE);
         }
     }
@@ -263,7 +267,9 @@ public class UserServiceImpl extends AbstractService implements UserService {
     }
 
     @Override
-    public boolean updateUserPassword(User user, String newPassword) throws ExceptionService {
+    public boolean updateUserPassword(User user,
+                                      String newPassword)
+            throws ExceptionService {
         if (!validator.validatePassword(newPassword)) {
             throw new ExceptionService(INVALID_PASSWORD_FORMAT);
         }
@@ -418,7 +424,8 @@ public class UserServiceImpl extends AbstractService implements UserService {
             byte[] val = new byte[newSalt.length() / 2];
             for (int i = 0; i < val.length; i++) {
                 int index = i * 2;
-                int j = Integer.parseInt(newSalt.substring(index, index + 2), 16);
+                int j = Integer.parseInt(newSalt
+                        .substring(index, index + 2), 16);
                 val[i] = (byte) j;
             }
 

@@ -10,15 +10,17 @@ import org.apache.logging.log4j.Logger;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DataFromCatalogImpl extends AbstractService implements DataFromCatalogService {
+public class DataFromCatalogImpl extends AbstractService
+        implements DataFromCatalogService {
+
     private final Logger logger = LogManager.getLogger(getClass().getName());
     private Map<Integer, String> map = new HashMap<>();
 
+    private CatalogDAO catalogDAO
+            = FactoryDao.getInstance().getCatalogDAO();
+
     @Override
     public Map<Integer, String> getGenders() {
-
-        CatalogDAO catalogDAO = FactoryDao.getInstance().getCatalogDAO();
-        Transaction transaction = TransactionFactory.getInstance().getTransaction();
         transaction.begin(catalogDAO);
         try {
             map = catalogDAO.getGenderList();
@@ -36,8 +38,6 @@ public class DataFromCatalogImpl extends AbstractService implements DataFromCata
 
     @Override
     public Map<Integer, String> getCountries() {
-        CatalogDAO catalogDAO = FactoryDao.getInstance().getCatalogDAO();
-        Transaction transaction = TransactionFactory.getInstance().getTransaction();
         transaction.begin(catalogDAO);
         try {
             map = catalogDAO.getCountryList();
@@ -49,14 +49,13 @@ public class DataFromCatalogImpl extends AbstractService implements DataFromCata
             transaction.end();
         }
 
-
         return map;
     }
 
     @Override
     public Map<Integer, String> getRegionsOfCountry(int countryId) {
         Map<Integer, String> mapOfRegions = null;
-        CatalogDAO catalogDAO = FactoryDao.getInstance().getCatalogDAO();
+
         transaction.begin(catalogDAO);
         try {
             mapOfRegions = catalogDAO.getRegionOfCountryList(countryId);
@@ -74,7 +73,6 @@ public class DataFromCatalogImpl extends AbstractService implements DataFromCata
     @Override
     public Map<Integer, String> getCitiesOfRegion(int regionId) {
         Map<Integer, String> citiesMap = null;
-        CatalogDAO catalogDAO = FactoryDao.getInstance().getCatalogDAO();
         transaction.begin(catalogDAO);
         try {
             citiesMap = catalogDAO.getCitiesOfRegionList(regionId);
@@ -91,8 +89,6 @@ public class DataFromCatalogImpl extends AbstractService implements DataFromCata
 
     @Override
     public Map<Integer, String> getCarBrands() {
-        CatalogDAO catalogDAO = FactoryDao.getInstance().getCatalogDAO();
-        Transaction transaction = TransactionFactory.getInstance().getTransaction();
         transaction.begin(catalogDAO);
         try {
             map = catalogDAO.getCarBrandList();
@@ -104,14 +100,11 @@ public class DataFromCatalogImpl extends AbstractService implements DataFromCata
             transaction.end();
         }
 
-
         return map;
     }
 
     @Override
     public Map<Integer, String> getCarModelsOfBrand(int brandId) {
-        CatalogDAO catalogDAO = FactoryDao.getInstance().getCatalogDAO();
-        Transaction transaction = TransactionFactory.getInstance().getTransaction();
         transaction.begin(catalogDAO);
         try {
             map = catalogDAO.getCarModelList(brandId);
@@ -123,14 +116,11 @@ public class DataFromCatalogImpl extends AbstractService implements DataFromCata
             transaction.end();
         }
 
-
         return map;
     }
 
     @Override
     public Map<Integer, String> getCarClimateTypes() {
-        CatalogDAO catalogDAO = FactoryDao.getInstance().getCatalogDAO();
-        Transaction transaction = TransactionFactory.getInstance().getTransaction();
         transaction.begin(catalogDAO);
         try {
             map = catalogDAO.getCarClimateTypesList();
@@ -142,14 +132,11 @@ public class DataFromCatalogImpl extends AbstractService implements DataFromCata
             transaction.end();
         }
 
-
         return map;
     }
 
     @Override
     public Map<Integer, String> getCurrencies() {
-        CatalogDAO catalogDAO = FactoryDao.getInstance().getCatalogDAO();
-        Transaction transaction = TransactionFactory.getInstance().getTransaction();
         transaction.begin(catalogDAO);
         try {
             map = catalogDAO.getCurrenciesList();
@@ -161,6 +148,6 @@ public class DataFromCatalogImpl extends AbstractService implements DataFromCata
             transaction.end();
         }
 
-
-        return map;    }
+        return map;
+    }
 }

@@ -61,7 +61,8 @@ public class DeleteProfileAction extends UserAction {
 
             }
             ResourceBundle resourceBundle = takeLocale(request);
-            session.setAttribute(UNKNOWN_ERROR_ATTRIBUTE, resourceBundle.getString(INCORRECT_PASSWORD_MESSAGE));
+            session.setAttribute(UNKNOWN_ERROR_ATTRIBUTE,
+                    resourceBundle.getString(INCORRECT_PASSWORD_MESSAGE));
         }
 
         return request.getContextPath() + ERROR_REDIRECT_URL;

@@ -23,7 +23,15 @@ public class Journey extends Entity implements Serializable {
         passengers = new ArrayList<>();
     }
 
-    public Journey(User driver, Address startAddress, Address destinationAddress, String departureTime, String date, double cost, String currency, int numberOfPassengers, String additionalInformation) {
+    public Journey(User driver,
+                   Address startAddress,
+                   Address destinationAddress,
+                   String departureTime,
+                   String date,
+                   double cost,
+                   String currency,
+                   int numberOfPassengers,
+                   String additionalInformation) {
         this.driver = driver;
         this.startAddress = startAddress;
         this.destinationAddress = destinationAddress;
@@ -128,37 +136,47 @@ public class Journey extends Entity implements Serializable {
             return false;
         }
         Journey journey = (Journey) o;
-        return Double.compare(journey.cost, cost) == 0 &&
-                passengersNumber == journey.passengersNumber &&
-                Objects.equals(driver, journey.driver) &&
-                Objects.equals(startAddress, journey.startAddress) &&
-                Objects.equals(destinationAddress, journey.destinationAddress) &&
-                Objects.equals(departureTime, journey.departureTime) &&
-                Objects.equals(departureDate, journey.departureDate) &&
-                Objects.equals(currency, journey.currency) &&
-                Objects.equals(passengers, journey.passengers) &&
-                Objects.equals(additionalInformation, journey.additionalInformation);
+        return Double.compare(journey.cost, cost) == 0
+                && passengersNumber == journey.passengersNumber
+                && Objects.equals(driver, journey.driver)
+                && Objects.equals(startAddress, journey.startAddress)
+                && Objects.equals(destinationAddress, journey.destinationAddress)
+                && Objects.equals(departureTime, journey.departureTime)
+                && Objects.equals(departureDate, journey.departureDate)
+                && Objects.equals(currency, journey.currency)
+                && Objects.equals(passengers, journey.passengers)
+                && Objects.equals(additionalInformation, journey.additionalInformation);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), driver, startAddress, destinationAddress, departureTime, departureDate, cost, currency, passengersNumber, passengers, additionalInformation);
+        return Objects.hash(super.hashCode(),
+                driver,
+                startAddress,
+                destinationAddress,
+                departureTime,
+                departureDate,
+                cost,
+                currency,
+                passengersNumber,
+                passengers,
+                additionalInformation);
     }
 
     @Override
     public String toString() {
         return getClass().getSimpleName() + "{"
                 + "id=" + getId()
-                + "driver=" + driver +
-                ", startAddress=" + startAddress +
-                ", destinationAddress=" + destinationAddress +
-                ", departureTime='" + departureTime + '\'' +
-                ", date='" + departureDate + '\'' +
-                ", cost=" + cost +
-                ", currency='" + currency + '\'' +
-                ", passengersNumber=" + passengersNumber +
-                ", passengers=" + passengers +
-                ", additionalInformation='" + additionalInformation + '\'' +
-                '}';
+                + "driver=" + driver
+                + ", startAddress=" + startAddress
+                + ", destinationAddress=" + destinationAddress
+                + ", departureTime='" + departureTime + '\''
+                + ", date='" + departureDate + '\''
+                + ", cost=" + cost
+                + ", currency='" + currency + '\''
+                + ", passengersNumber=" + passengersNumber
+                + ", passengers=" + passengers
+                + ", additionalInformation='" + additionalInformation + '\''
+                + '}';
     }
 }

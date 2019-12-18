@@ -8,7 +8,8 @@ public final class TransactionFactory {
     /**
      * static variable single_instance of type TransactionFactory.
      */
-    private static final TransactionFactory INSTANCE = new TransactionFactory();
+    private static final TransactionFactory INSTANCE
+            = new TransactionFactory();
 
 
     private TransactionFactory() {

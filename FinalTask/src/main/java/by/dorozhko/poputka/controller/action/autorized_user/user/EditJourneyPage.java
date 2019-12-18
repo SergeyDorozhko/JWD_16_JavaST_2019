@@ -107,14 +107,16 @@ public class EditJourneyPage extends UserAction {
 
     private void getAttributesData(HttpServletRequest request) {
         session = request.getSession();
-        User authorizedUser = (User) session.getAttribute(AUTHORIZED_USER_ATTRIBUTE);
+        User authorizedUser = (User)
+                session.getAttribute(AUTHORIZED_USER_ATTRIBUTE);
         driverId = authorizedUser.getId();
 
         journeyId = request.getParameter(JOURNEY_ID_ATTRIBUTE);
         if (journeyId == null) {
             journey = (Journey) session.getAttribute(JOURNEY_ATTRIBUTE);
             session.removeAttribute(JOURNEY_ATTRIBUTE);
-            journeyId = Integer.toString((Integer) session.getAttribute(JOURNEY_ID_ATTRIBUTE));
+            journeyId = Integer.toString((Integer)
+                    session.getAttribute(JOURNEY_ID_ATTRIBUTE));
         }
 
 
@@ -141,7 +143,8 @@ public class EditJourneyPage extends UserAction {
                 Integer.parseInt(journeyId);
             } catch (NumberFormatException ex) {
                 logger.error(ex);
-                session.setAttribute(UNKNOWN_ERROR_ATTRIBUTE, resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
+                session.setAttribute(UNKNOWN_ERROR_ATTRIBUTE,
+                        resourceBundle.getString(FIELD_FORMAT_ERROR_MESSAGE));
                 countErrors++;
             }
         }
@@ -172,7 +175,9 @@ public class EditJourneyPage extends UserAction {
         request.setAttribute(MAP_OF_CURRENCIES, currencies);
     }
 
-    private void takeStartAddressRegionsOfCountryFromCatalog(final HttpServletRequest request) {
+    private void takeStartAddressRegionsOfCountryFromCatalog(
+            final HttpServletRequest request) {
+
         boolean isCountryKnown = journey.getStartAddress().getCountry() != null
                 && journey.getStartAddress().getCountry().length() != 0;
         if (isCountryKnown) {
@@ -189,7 +194,8 @@ public class EditJourneyPage extends UserAction {
         }
     }
 
-    private void takeDestinationAddressRegionsOfCountryFromCatalog(final HttpServletRequest request) {
+    private void takeDestinationAddressRegionsOfCountryFromCatalog(
+            final HttpServletRequest request) {
         boolean isCountryKnown = journey.getDestinationAddress()
                 .getCountry() != null
                 && journey.getDestinationAddress().getCountry().length() != 0;
@@ -207,16 +213,18 @@ public class EditJourneyPage extends UserAction {
         }
     }
 
-    private void takeStartAddressCitiesOfRegionFromCatalog(final HttpServletRequest request) {
-     boolean isRegionalCenterKnown = journey.getStartAddress()
-             .getRegionalCenter() != null
-             && journey.getStartAddress().getRegionalCenter().length() != 0;
+    private void takeStartAddressCitiesOfRegionFromCatalog(
+            final HttpServletRequest request) {
+        boolean isRegionalCenterKnown = journey.getStartAddress()
+                .getRegionalCenter() != null
+                && journey.getStartAddress().getRegionalCenter().length() != 0;
 
         if (isRegionalCenterKnown) {
             try {
                 Map<Integer, String> cities = ServiceFactory.getInstance()
                         .getCatalogService().getCitiesOfRegion(
-                                Integer.parseInt(journey.getStartAddress().getRegionalCenter()));
+                                Integer.parseInt(journey.getStartAddress()
+                                        .getRegionalCenter()));
                 request.setAttribute(MAP_OF_CITIES_FROM, cities);
             } catch (NumberFormatException ex) {
                 logger.error(ex);
@@ -226,7 +234,8 @@ public class EditJourneyPage extends UserAction {
         }
     }
 
-    private void takeDestinationAddressCitiesOfRegionFromCatalog(final HttpServletRequest request) {
+    private void takeDestinationAddressCitiesOfRegionFromCatalog(
+            final HttpServletRequest request) {
         boolean isRegionalCenterKnown = journey.getDestinationAddress()
                 .getRegionalCenter() != null
                 && journey.getDestinationAddress()
@@ -235,7 +244,8 @@ public class EditJourneyPage extends UserAction {
             try {
                 Map<Integer, String> cities = ServiceFactory.getInstance()
                         .getCatalogService().getCitiesOfRegion(
-                                Integer.parseInt(journey.getDestinationAddress().getRegionalCenter()));
+                                Integer.parseInt(journey.getDestinationAddress()
+                                        .getRegionalCenter()));
                 request.setAttribute(MAP_OF_CITIES_TO, cities);
             } catch (NumberFormatException ex) {
                 logger.error(ex);

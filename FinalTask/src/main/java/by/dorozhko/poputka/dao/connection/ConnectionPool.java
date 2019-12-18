@@ -15,9 +15,13 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.ReentrantLock;
 
 public final class ConnectionPool {
-    /**
-     * Logger of class.
-     */
+
+    public static final String DATABASE_PROPERTIES = "dbresource.database";
+    public static final String URL = "db.url";
+    public static final String LOGIN = "db.login";
+    public static final String PASSWORD = "db.password";
+    public static final String POOLSIZE = "db.poolsize";
+    public static final String DRIVER = "db.driver";
     private final Logger logger = LogManager.getLogger(getClass().getName());
 
     /**
@@ -46,7 +50,8 @@ public final class ConnectionPool {
      * If it was initialised identifier has value true, otherwise
      * false.
      */
-    private static AtomicBoolean isCreated = new AtomicBoolean(false);
+    private static AtomicBoolean isCreated
+            = new AtomicBoolean(false);
     /**
      * Value of database location.
      */
@@ -107,13 +112,13 @@ public final class ConnectionPool {
      */
     private void getProperties() {
         ResourceBundle resourceBundle
-                = ResourceBundle.getBundle("dbresource.database");
-        jdbcUrl = resourceBundle.getString("db.url");
-        userLogin = resourceBundle.getString("db.login");
-        pwd = resourceBundle.getString("db.password");
+                = ResourceBundle.getBundle(DATABASE_PROPERTIES);
+        jdbcUrl = resourceBundle.getString(URL);
+        userLogin = resourceBundle.getString(LOGIN);
+        pwd = resourceBundle.getString(PASSWORD);
         poolSize = Integer.parseInt(
-                resourceBundle.getString("db.poolsize").trim());
-        driver = resourceBundle.getString("db.driver");
+                resourceBundle.getString(POOLSIZE).trim());
+        driver = resourceBundle.getString(DRIVER);
     }
 
     private void checkPoolSize() {

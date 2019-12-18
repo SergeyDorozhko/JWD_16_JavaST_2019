@@ -98,7 +98,7 @@ public class AddTripPage extends UserAction {
     }
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) {
+    public String execute(final HttpServletRequest request, final HttpServletResponse response) {
 
         setLocaleToCookie(request, response);
 

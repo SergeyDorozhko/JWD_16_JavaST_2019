@@ -70,9 +70,11 @@ public class ChangePasswordAction extends AuthorizedUser {
                 boolean result = userService.updateUserPassword(user, newPassword);
                 logger.debug("take answer from service");
                 if (result) {
-                    session.setAttribute(UNKNOWN_ERROR_ATTRIBUTE, resourceBundle.getString(PASSWORD_UPDATE_SUCCESS_MESSAGE));
+                    session.setAttribute(UNKNOWN_ERROR_ATTRIBUTE,
+                            resourceBundle.getString(PASSWORD_UPDATE_SUCCESS_MESSAGE));
                 } else {
-                    session.setAttribute(UNKNOWN_ERROR_ATTRIBUTE, resourceBundle.getString(INCORRECT_OLD_PASSWORD_ERROR_MESSAGE));
+                    session.setAttribute(UNKNOWN_ERROR_ATTRIBUTE,
+                            resourceBundle.getString(INCORRECT_OLD_PASSWORD_ERROR_MESSAGE));
                 }
 
 
@@ -100,19 +102,23 @@ public class ChangePasswordAction extends AuthorizedUser {
         logger.debug("check data start");
 
         if (oldPassword == null || oldPassword.length() == 0) {
-            session.setAttribute(UNKNOWN_ERROR_ATTRIBUTE, resourceBundle.getString(EMPTY_OLD_PASSWORD_MESSAGE));
+            session.setAttribute(UNKNOWN_ERROR_ATTRIBUTE,
+                    resourceBundle.getString(EMPTY_OLD_PASSWORD_MESSAGE));
             return false;
         }
 
         if (newPassword == null || newPassword.length() == 0) {
-            session.setAttribute(UNKNOWN_ERROR_ATTRIBUTE, resourceBundle.getString(EMPTY_NEW_PASSWORD_MESSAGE));
+            session.setAttribute(UNKNOWN_ERROR_ATTRIBUTE,
+                    resourceBundle.getString(EMPTY_NEW_PASSWORD_MESSAGE));
             return false;
         } else if (comfirmNewPassword == null || comfirmNewPassword.length() == 0) {
-            session.setAttribute(UNKNOWN_ERROR_ATTRIBUTE, resourceBundle.getString(EMPTY_COMFIRM_NEW_PASSWORD_MESSAGE));
+            session.setAttribute(UNKNOWN_ERROR_ATTRIBUTE,
+                    resourceBundle.getString(EMPTY_COMFIRM_NEW_PASSWORD_MESSAGE));
             return false;
         } else {
             if (!newPassword.equals(comfirmNewPassword)) {
-                session.setAttribute(UNKNOWN_ERROR_ATTRIBUTE, resourceBundle.getString(COMFIRM_NEW_PASSWORD_ERROR_MESSAGE));
+                session.setAttribute(UNKNOWN_ERROR_ATTRIBUTE,
+                        resourceBundle.getString(COMFIRM_NEW_PASSWORD_ERROR_MESSAGE));
                 return false;
             }
         }

@@ -106,7 +106,10 @@ public class MySqlCatalogDAO implements CatalogDAO {
         return takeListOfCatalogByMajorId(SELECT_ALL_CITIES_OF_REGION, regionId, CITY_NAME);
     }
 
-    private Map<Integer, String> takeListOfCatalogByMajorId(String query, int statemantId, String columnValue) throws ExceptionDao {
+    private Map<Integer, String> takeListOfCatalogByMajorId(String query,
+                                                            int statemantId,
+                                                            String columnValue)
+            throws ExceptionDao {
         Map<Integer, String> map = new LinkedHashMap<>();
         ResultSet resultSet = null;
         try (PreparedStatement statement = connection.prepareStatement(query)) {
@@ -147,7 +150,9 @@ public class MySqlCatalogDAO implements CatalogDAO {
         return takeListOfCatalogData(SELECT_ALL_CURRENCIES, CURRENCY);
     }
 
-    private Map<Integer, String> takeListOfCatalogData(String query, String columnName) throws ExceptionDao {
+    private Map<Integer, String> takeListOfCatalogData(String query,
+                                                       String columnName)
+            throws ExceptionDao {
 
         Map<Integer, String> map = new LinkedHashMap<>();
 
@@ -191,7 +196,9 @@ public class MySqlCatalogDAO implements CatalogDAO {
         return takeDataByQuery(SELECT_CURRENCY_BY_ID, CURRENCY, id);
     }
 
-    private String takeDataByQuery(String query, String columnName, int id) throws ExceptionDao {
+    private String takeDataByQuery(String query,
+                                   String columnName,
+                                   int id) throws ExceptionDao {
         String result = null;
         ResultSet resultSet = null;
         try (PreparedStatement statement = connection.prepareStatement(query)) {
@@ -220,7 +227,8 @@ public class MySqlCatalogDAO implements CatalogDAO {
     public Car getCar(int modelId) throws ExceptionDao {
         Car car = null;
         ResultSet resultSet = null;
-        try (PreparedStatement statement = connection.prepareStatement(SELECT_CAR_BRAND_MODEL_BY_MODEL_ID)) {
+        try (PreparedStatement statement = connection
+                .prepareStatement(SELECT_CAR_BRAND_MODEL_BY_MODEL_ID)) {
             statement.setInt(1, modelId);
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
@@ -247,7 +255,8 @@ public class MySqlCatalogDAO implements CatalogDAO {
     public Address getAddressByCityId(int id) throws ExceptionDao {
         Address address = null;
         ResultSet addressQuery = null;
-        try (PreparedStatement getAddress = connection.prepareStatement(SELECT_ADDRESS_BY_CITY_ID)) {
+        try (PreparedStatement getAddress = connection
+                .prepareStatement(SELECT_ADDRESS_BY_CITY_ID)) {
             getAddress.setInt(1, id);
             addressQuery = getAddress.executeQuery();
             address = new Address();
@@ -278,7 +287,8 @@ public class MySqlCatalogDAO implements CatalogDAO {
 
         Address address = null;
         ResultSet addressQuery = null;
-        try (PreparedStatement getAddress = connection.prepareStatement(SELECT_ADDRESS_ID_BY_CITY_ID)) {
+        try (PreparedStatement getAddress = connection
+                .prepareStatement(SELECT_ADDRESS_ID_BY_CITY_ID)) {
             getAddress.setInt(1, id);
             addressQuery = getAddress.executeQuery();
             address = new Address();

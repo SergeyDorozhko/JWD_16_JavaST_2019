@@ -230,20 +230,34 @@ public class UpdateProfileAction extends UserAction {
     private Set<ErrorMessageConficurator> expectedMessages() {
 
         Set<ErrorMessageConficurator> errorList = new HashSet<>();
-        errorList.add(new ErrorMessageConficurator(DUBLICATED_LOGIN, ERROR_LOGIN_ATTRIBUTE, DUBLICATED_LOGIN_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(DUBLICATED_PASSPORT_NUMBER, ERROR_PASSPORT_NUMBER_ATTRIBUTE, DUBLICATED_PASSPORT_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(DUBLICATED_PHONE, ERROR_PHONE_ATTRIBUTE, DUBLICATED_PHONE_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(DUBLICATED_EMAIL, ERROR_EMAIL_ATTRIBUTE, DUBLICATED_EMAIL_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(INVALID_LOGIN_FORMAT, ERROR_LOGIN_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(INVALID_NAME_FORMAT, ERROR_FIRST_NAME_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(INVALID_SURNAME_FORMAT, ERROR_LAST_NAME_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(INVALID_EMAIL_FORMAT, ERROR_EMAIL_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(INVALID_BIRTHDAY_DATE_VALUE, ERROR_BIRTHDAY_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(INVALID_PHONE_FORMAT, ERROR_PHONE_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(INVALID_COUNTRY_ID_VALUE, ERROR_COUNTRY_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(INVALID_PASSPORT_NUMBER_FORMAT, ERROR_PASSPORT_NUMBER_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(INVALID_PASSPORT_ISSUE_DATE_VALUE, ERROR_PASSPORT_DATE_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
-        errorList.add(new ErrorMessageConficurator(INVALID_GENDER_ID_VALUE, ERROR_SEX_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(DUBLICATED_LOGIN,
+                ERROR_LOGIN_ATTRIBUTE, DUBLICATED_LOGIN_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(DUBLICATED_PASSPORT_NUMBER,
+                ERROR_PASSPORT_NUMBER_ATTRIBUTE, DUBLICATED_PASSPORT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(DUBLICATED_PHONE,
+                ERROR_PHONE_ATTRIBUTE, DUBLICATED_PHONE_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(DUBLICATED_EMAIL,
+                ERROR_EMAIL_ATTRIBUTE, DUBLICATED_EMAIL_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_LOGIN_FORMAT,
+                ERROR_LOGIN_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_NAME_FORMAT,
+                ERROR_FIRST_NAME_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_SURNAME_FORMAT,
+                ERROR_LAST_NAME_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_EMAIL_FORMAT,
+                ERROR_EMAIL_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_BIRTHDAY_DATE_VALUE,
+                ERROR_BIRTHDAY_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_PHONE_FORMAT,
+                ERROR_PHONE_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_COUNTRY_ID_VALUE,
+                ERROR_COUNTRY_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_PASSPORT_NUMBER_FORMAT,
+                ERROR_PASSPORT_NUMBER_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_PASSPORT_ISSUE_DATE_VALUE,
+                ERROR_PASSPORT_DATE_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
+        errorList.add(new ErrorMessageConficurator(INVALID_GENDER_ID_VALUE,
+                ERROR_SEX_ATTRIBUTE, FIELD_FORMAT_ERROR_MESSAGE));
 
         return errorList;
     }
