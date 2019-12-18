@@ -101,7 +101,7 @@ public class EditJourneyPage extends UserAction {
             }
         }
 
-        session.setAttribute(UNKNOWN_ERROR_ATTRIBUTE, resourceBundle.getString(UNKNOWN_ERROR_MESSAGE));
+        request.setAttribute(UNKNOWN_ERROR_ATTRIBUTE, resourceBundle.getString(UNKNOWN_ERROR_MESSAGE));
         return ERROR_FORWARD_PAGE;
     }
 

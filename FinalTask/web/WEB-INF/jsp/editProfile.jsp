@@ -65,8 +65,7 @@ To change this template use File | Settings | File Templates.
                 <div class="col-sm-9">
                     <input type="text" id="login" name="login" placeholder="<fmt:message key="fields.login"/>"
                            class="form-control" value="${userData.login}" required pattern="^[\w-]{1,20}$">
-                    <div class="valid-feedback">Valid.</div>
-                    <div class="invalid-feedback">Please fill out this field.</div>
+
                 </div>
                 <label style="background-color: B82303; font-size: 25px">${errorLogin}</label>
             </div>

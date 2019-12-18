@@ -236,7 +236,7 @@ To change this template use File | Settings | File Templates.
                                 key="button.edit"/></button>
                     </div>
                     <div class="mx-auto-center">
-                        <button type="submit" class="btn btn-danger" name="button" value="deleteJourney"><fmt:message
+                        <button type="button" class="btn btn-danger" name="button" value="deleteJourney"><fmt:message
                                 key="button.delete"/></button>
                     </div>
                 </c:when>
